@@ -202,19 +202,39 @@ const GENERATED_AT = "...";
 
 ## STEP 6 — Commit & Push (ตรงเข้า main)
 
+⚠️ **สำคัญ:** archive ทั้งหมดอยู่ใน `docs/archive/` ไม่ใช่ `archive/` ที่ root  
+เพราะ GitHub Pages serve จาก `docs/` ดังนั้นทุกไฟล์ที่ต้องเข้าถึงผ่านเว็บต้องอยู่ใน `docs/`
+
 ```bash
 cd stock-screener
 git checkout main
 git pull origin main
 
-# Save docs/index.html
-# Copy เป็น archive/YYYY-MM-DD.html
-# Update archive/index.json (append)
+# Save docs/index.html (รายงานวันนี้)
+# Copy เป็น docs/archive/YYYY-MM-DD.html
+# Update docs/archive/index.json (append entry ใหม่ — อ่านไฟล์เก่าก่อน ห้าม overwrite)
 
-git add docs/index.html archive/YYYY-MM-DD.html archive/index.json
+git add docs/
 git commit -m "Daily report: YYYY-MM-DD"
 git push origin main
 ```
+
+### Schema ของ `docs/archive/index.json`
+
+```json
+{
+  "reports": [
+    {
+      "date": "YYYY-MM-DD",
+      "url": "YYYY-MM-DD.html",
+      "topPicks": ["TICKER1", "TICKER2", "TICKER3", "TICKER4", "TICKER5", "TICKER6", "TICKER7", "TICKER8", "TICKER9", "TICKER10"]
+    }
+  ]
+}
+```
+
+⚠️ **เวลา append:** อ่านไฟล์เก่าก่อน → push entry ใหม่เข้า array `reports` → write กลับ  
+❌ ห้าม overwrite ทั้งไฟล์ จะทำให้ประวัติเก่าหาย
 
 ⚠️ **ถ้า push เข้า main ไม่ได้ (เพราะ permission)** — แสดงว่า routine ตั้งค่าผิด อย่าพยายาม fallback ไป branch อื่น ให้ commit error log แล้วจบ
 

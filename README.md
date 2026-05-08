@@ -69,12 +69,12 @@ git push origin main
 Stock_filter_helper/
 ├── prompts/
 │   └── daily-screener.md      # Prompt v2 — ภาษาไทยง่ายๆ + push main
-├── docs/
-│   └── index.html              # หน้าเว็บปัจจุบัน
-├── archive/
-│   ├── index.html              # หน้าประวัติย้อนหลัง
-│   ├── index.json              # ดัชนี
-│   └── YYYY-MM-DD.html         # รายงานย้อนหลัง
+├── docs/                       # ⭐ GitHub Pages serve จากที่นี่
+│   ├── index.html              # หน้าเว็บปัจจุบัน (รายงานวันล่าสุด)
+│   └── archive/                # ประวัติย้อนหลังทั้งหมดอยู่ใน docs/
+│       ├── index.html          # หน้าประวัติย้อนหลัง
+│       ├── index.json          # ดัชนี (อ่านก่อน append, ห้าม overwrite)
+│       └── YYYY-MM-DD.html     # รายงานย้อนหลังของแต่ละวัน
 ├── assets/
 │   └── template.html           # Template ที่ Routine ใช้สร้าง
 └── README.md
