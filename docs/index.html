@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Stock Screener</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --bg: #fafaf7;
+    --surface: #ffffff;
+    --surface-2: #f4f3ee;
+    --text: #1a1a17;
+    --text-2: #5f5e5a;
+    --text-3: #888780;
+    --border: rgba(0,0,0,0.08);
+    --accent: #185FA5;
+    --accent-bg: #E6F1FB;
+    --green-bg: #EAF3DE;
+    --green-text: #27500A;
+    --red-bg: #FCEBEB;
+    --red-text: #791F1F;
+    --amber-bg: #FAEEDA;
+    --amber-text: #633806;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a17;
+      --surface: #242420;
+      --surface-2: #2c2c28;
+      --text: #f4f3ee;
+      --text-2: #b4b2a9;
+      --text-3: #888780;
+      --border: rgba(255,255,255,0.1);
+      --accent: #85B7EB;
+      --accent-bg: rgba(133,183,235,0.1);
+      --green-bg: rgba(151,196,89,0.15);
+      --green-text: #C0DD97;
+      --red-bg: rgba(240,149,149,0.15);
+      --red-text: #F09595;
+      --amber-bg: rgba(239,159,39,0.15);
+      --amber-text: #FAC775;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Noto Sans Thai", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 24px 16px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+  header {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+  }
+  header h1 { font-size: 24px; font-weight: 500; margin-bottom: 4px; }
+  header .meta { font-size: 13px; color: var(--text-2); }
+  header .badges { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .badge {
+    background: var(--accent-bg); color: var(--accent);
+    padding: 4px 12px; border-radius: 8px; font-size: 12px; font-weight: 500;
+  }
+  .archive-link {
+    background: var(--surface-2); color: var(--text-2);
+    padding: 4px 12px; border-radius: 8px; font-size: 12px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+  }
+  .archive-link:hover { color: var(--accent); }
+
+  .stock-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 14px;
+  }
+  .stock-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 18px; gap: 16px; flex-wrap: wrap;
+  }
+  .ticker-block { flex: 1; min-width: 0; }
+  .rank-badge {
+    display: inline-block;
+    background: var(--accent-bg); color: var(--accent);
+    padding: 2px 8px; border-radius: 6px; font-size: 11px;
+    font-weight: 500; margin-right: 8px; vertical-align: 2px;
+  }
+  .ticker { font-size: 20px; font-weight: 500; }
+  .company-name { color: var(--text-2); }
+  .sector { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+  .price-block { text-align: right; }
+  .price { font-size: 20px; font-weight: 500; }
+  .change-up { color: #0F6E56; font-size: 13px; }
+  .change-down { color: #A32D2D; font-size: 13px; }
+  .score {
+    display: inline-block; background: var(--surface-2);
+    padding: 4px 10px; border-radius: 6px; font-size: 12px;
+    margin-top: 4px; color: var(--text-2);
+  }
+
+  .step-section { margin-bottom: 18px; }
+  .step-label {
+    font-size: 11px; color: var(--text-3); letter-spacing: 0.5px;
+    margin-bottom: 8px; text-transform: uppercase; font-weight: 500;
+  }
+
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 8px;
+  }
+  .metric {
+    background: var(--surface-2);
+    border-radius: 8px; padding: 10px 12px;
+  }
+  .metric-label { font-size: 11px; color: var(--text-3); }
+  .metric-value { font-size: 14px; font-weight: 500; margin-top: 2px; }
+  .metric-pass { color: #0F6E56; }
+  .metric-fail { color: #A32D2D; }
+
+  .reasoning {
+    font-size: 13px; color: var(--text-2);
+    margin-top: 10px; line-height: 1.6;
+    padding-left: 12px; border-left: 2px solid var(--border);
+  }
+  .reasoning strong { color: var(--text); font-weight: 500; }
+
+  .news-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  }
+  @media (max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
+  .news-block {
+    border-radius: 8px; padding: 12px 14px;
+  }
+  .news-positive { background: var(--green-bg); }
+  .news-negative { background: var(--red-bg); }
+  .news-title {
+    font-size: 12px; font-weight: 500; margin-bottom: 6px;
+  }
+  .news-positive .news-title { color: var(--green-text); }
+  .news-negative .news-title { color: var(--red-text); }
+  .news-item {
+    font-size: 12px; line-height: 1.5; margin-bottom: 4px;
+  }
+  .news-positive .news-item { color: var(--green-text); }
+  .news-negative .news-item { color: var(--red-text); }
+  .news-source {
+    font-size: 10px; opacity: 0.7;
+  }
+
+  .chart-wrap {
+    position: relative; width: 100%; height: 180px;
+    margin-bottom: 8px;
+  }
+
+  .levels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 6px; margin-top: 8px;
+  }
+  .level-cell {
+    background: var(--surface-2);
+    border-radius: 6px; padding: 6px 10px;
+  }
+  .level-label { font-size: 10px; color: var(--text-3); }
+  .level-value { font-size: 13px; font-weight: 500; margin-top: 2px; }
+
+  .rank-reasoning {
+    background: var(--accent-bg);
+    border-radius: 8px; padding: 12px 14px; margin-top: 12px;
+    font-size: 13px; color: var(--accent); line-height: 1.6;
+  }
+  .rank-reasoning strong { font-weight: 500; }
+
+  .disclaimer {
+    background: var(--amber-bg);
+    border-radius: 8px; padding: 14px 18px; margin-top: 24px;
+    font-size: 12px; color: var(--amber-text); line-height: 1.6;
+  }
+  .disclaimer strong { font-weight: 500; }
+  
+  .empty-state {
+    text-align: center; padding: 60px 20px;
+    color: var(--text-2); font-size: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Stock Screener</h1>
+    <div class="meta" id="meta">Generated: <span id="report-date"></span> · <span id="generated-at"></span></div>
+    <div class="badges">
+      <span class="badge" id="count-badge">— candidates</span>
+      <span class="badge">S&P 500 + Nasdaq</span>
+      <a class="archive-link" href="archive/">
+        <i class="ti ti-archive" style="font-size:13px"></i> Archive
+      </a>
+    </div>
+  </header>
+
+  <div id="stocks-container"></div>
+
+  <div class="disclaimer">
+    <strong><i class="ti ti-info-circle" style="font-size:14px; vertical-align:-2px"></i> Information only — not investment advice.</strong>
+    ข้อมูลทั้งหมดเป็นการรวบรวมจากแหล่งสาธารณะ (Yahoo Finance, Reuters, MarketWatch, etc.) เพื่อใช้ประกอบการตัดสินใจของผู้ใช้เท่านั้น
+    การตัดสินใจซื้อ-ขาย การกำหนด stop loss / take profit และความเสี่ยงทั้งหมดเป็นของผู้ใช้
+    ผู้พัฒนาและ AI ที่จัดทำรายงานนี้ไม่รับผิดชอบต่อผลการตัดสินใจลงทุน
+  </div>
+</div>
+
+<script>
+// ============================================================================
+// DATA — Routine จะแทนที่ object นี้ในทุกการรัน
+// ============================================================================
+const REPORT_DATE = "2026-05-08";
+const GENERATED_AT = "07:00 ICT";
+
+const STOCKS_DATA = [
+  // ตัวอย่างข้อมูล (Routine จะแทนที่)
+  {
+    rank: 1,
+    ticker: "MSFT",
+    name: "Microsoft Corporation",
+    sector: "Technology · Software · Large Cap",
+    marketCap: "$3.1T",
+    price: 412.50,
+    changePercent: 1.2,
+    score: 87,
+    fundamentals: {
+      roe: { value: "38%", pass: true },
+      netMargin: { value: "36%", pass: true },
+      opMargin: { value: "44%", pass: true },
+      revGrowth: { value: "+12%", pass: true },
+      de: { value: "0.31", pass: true },
+      currentRatio: { value: "1.27", pass: true },
+      pe: { value: "34", pass: true }
+    },
+    fundamentalReasoning: "ผ่านเกณฑ์ 7/7 ทุกด้าน — ROE และ margin โดดเด่นใน sector software",
+    news: {
+      positive: [
+        { headline: "Azure cloud revenue +28% YoY in Q3", source: "Reuters", date: "May 6" },
+        { headline: "BofA upgrades to Buy, PT $480", source: "MarketWatch", date: "May 5" }
+      ],
+      negative: [
+        { headline: "EU antitrust probe expanded", source: "FT", date: "May 4" }
+      ]
+    },
+    technical: {
+      priceHistory: [395, 402, 408, 410, 412.50],
+      labels: ["May 2", "May 3", "May 6", "May 7", "May 8"],
+      week52High: 425.00,
+      week52Low: 348.50,
+      support1: 405.00,
+      support2: 392.00,
+      resistance1: 418.00,
+      resistance2: 425.00,
+      ma50: 408.20,
+      ma200: 385.40,
+      vsMA50: "above",
+      vsMA200: "above"
+    },
+    technicalObservation: "ราคาอยู่ใกล้ resistance 1 ($418) — โซนตัดสินใจ ถ้า breakout มี momentum ต่อเนื่อง support ใกล้ที่สุดอยู่ $405",
+    rankReasoning: "Fundamental ดีที่สุดในกลุ่ม + sentiment บวกชัด + อยู่ใน uptrend (เหนือ MA50 และ MA200)"
+  }
+];
+
+// ============================================================================
+// RENDERING
+// ============================================================================
+document.getElementById('report-date').textContent = REPORT_DATE;
+document.getElementById('generated-at').textContent = GENERATED_AT;
+document.getElementById('count-badge').textContent = STOCKS_DATA.length + ' candidates';
+
+const FUNDAMENTAL_LABELS = {
+  roe: "ROE",
+  netMargin: "Net margin",
+  opMargin: "Op. margin",
+  revGrowth: "Rev. growth",
+  de: "D/E",
+  currentRatio: "Current ratio",
+  pe: "P/E"
+};
+
+const container = document.getElementById('stocks-container');
+
+if (STOCKS_DATA.length === 0) {
+  container.innerHTML = '<div class="empty-state">ยังไม่มีรายงานวันนี้ — ลองเช็คอีกครั้งหลัง 07:30 น.</div>';
+} else {
+  STOCKS_DATA.forEach((stock, idx) => {
+    const changeClass = stock.changePercent >= 0 ? 'change-up' : 'change-down';
+    const changeSign = stock.changePercent >= 0 ? '+' : '';
+
+    const fundamentalsHTML = Object.entries(stock.fundamentals).map(([key, val]) => {
+      const passClass = val.pass ? 'metric-pass' : 'metric-fail';
+      const icon = val.pass ? '✓' : '✗';
+      return `
+        <div class="metric">
+          <div class="metric-label">${FUNDAMENTAL_LABELS[key] || key}</div>
+          <div class="metric-value ${passClass}">${val.value} ${icon}</div>
+        </div>`;
+    }).join('');
+
+    const positiveHTML = stock.news.positive.length
+      ? stock.news.positive.map(n => `
+          <div class="news-item">• ${n.headline}<br><span class="news-source">${n.source} · ${n.date}</span></div>
+        `).join('')
+      : '<div class="news-item" style="opacity:0.6">ไม่มีข่าวบวกในรอบ 7 วัน</div>';
+
+    const negativeHTML = stock.news.negative.length
+      ? stock.news.negative.map(n => `
+          <div class="news-item">• ${n.headline}<br><span class="news-source">${n.source} · ${n.date}</span></div>
+        `).join('')
+      : '<div class="news-item" style="opacity:0.6">ไม่มีข่าวลบในรอบ 7 วัน</div>';
+
+    const cardHTML = `
+      <article class="stock-card">
+        <div class="stock-header">
+          <div class="ticker-block">
+            <div>
+              <span class="rank-badge">#${stock.rank}</span>
+              <span class="ticker">${stock.ticker}</span>
+              <span class="company-name"> · ${stock.name}</span>
+            </div>
+            <div class="sector">${stock.sector} · ${stock.marketCap}</div>
+          </div>
+          <div class="price-block">
+            <div class="price">$${stock.price.toFixed(2)}</div>
+            <div class="${changeClass}">${changeSign}${stock.changePercent.toFixed(1)}% today</div>
+            <div class="score">Score: ${stock.score}/100</div>
+          </div>
+        </div>
+
+        <div class="step-section">
+          <div class="step-label">Step 1 — Fundamentals</div>
+          <div class="metric-grid">${fundamentalsHTML}</div>
+          <div class="reasoning"><strong>Reasoning:</strong> ${stock.fundamentalReasoning}</div>
+        </div>
+
+        <div class="step-section">
+          <div class="step-label">Step 2 — News sentiment (7 days)</div>
+          <div class="news-grid">
+            <div class="news-block news-positive">
+              <div class="news-title">🟢 Positive · ${stock.news.positive.length}</div>
+              ${positiveHTML}
+            </div>
+            <div class="news-block news-negative">
+              <div class="news-title">🔴 Negative · ${stock.news.negative.length}</div>
+              ${negativeHTML}
+            </div>
+          </div>
+        </div>
+
+        <div class="step-section">
+          <div class="step-label">Step 3 — Technical reference levels</div>
+          <div class="chart-wrap">
+            <canvas id="chart-${idx}" role="img" aria-label="${stock.ticker} 5-day price chart">${stock.ticker} price last 5 days.</canvas>
+          </div>
+          <div class="levels-grid">
+            <div class="level-cell"><div class="level-label">52w high</div><div class="level-value">$${stock.technical.week52High.toFixed(2)}</div></div>
+            <div class="level-cell"><div class="level-label">52w low</div><div class="level-value">$${stock.technical.week52Low.toFixed(2)}</div></div>
+            <div class="level-cell"><div class="level-label">Support 1</div><div class="level-value">$${stock.technical.support1.toFixed(2)}</div></div>
+            <div class="level-cell"><div class="level-label">Support 2</div><div class="level-value">$${stock.technical.support2.toFixed(2)}</div></div>
+            <div class="level-cell"><div class="level-label">Resistance 1</div><div class="level-value">$${stock.technical.resistance1.toFixed(2)}</div></div>
+            <div class="level-cell"><div class="level-label">Resistance 2</div><div class="level-value">$${stock.technical.resistance2.toFixed(2)}</div></div>
+            <div class="level-cell"><div class="level-label">MA50</div><div class="level-value">$${stock.technical.ma50.toFixed(2)}</div></div>
+            <div class="level-cell"><div class="level-label">MA200</div><div class="level-value">$${stock.technical.ma200.toFixed(2)}</div></div>
+          </div>
+          <div class="reasoning"><strong>Observation:</strong> ${stock.technicalObservation}</div>
+        </div>
+
+        <div class="rank-reasoning">
+          <strong>เหตุผลที่ติด Top:</strong> ${stock.rankReasoning}
+        </div>
+      </article>
+    `;
+
+    container.insertAdjacentHTML('beforeend', cardHTML);
+  });
+
+  // Render charts
+  setTimeout(() => {
+    STOCKS_DATA.forEach((stock, idx) => {
+      const ctx = document.getElementById(`chart-${idx}`);
+      if (!ctx) return;
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: stock.technical.labels,
+          datasets: [
+            {
+              label: 'Price',
+              data: stock.technical.priceHistory,
+              borderColor: '#185FA5',
+              backgroundColor: 'rgba(24,95,165,0.08)',
+              tension: 0.3,
+              fill: true,
+              pointRadius: 4,
+              pointBackgroundColor: '#185FA5'
+            },
+            {
+              label: 'Support 1',
+              data: Array(stock.technical.labels.length).fill(stock.technical.support1),
+              borderColor: '#0F6E56',
+              borderDash: [5, 5],
+              pointRadius: 0,
+              fill: false
+            },
+            {
+              label: 'Resistance 1',
+              data: Array(stock.technical.labels.length).fill(stock.technical.resistance1),
+              borderColor: '#A32D2D',
+              borderDash: [5, 5],
+              pointRadius: 0,
+              fill: false
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { ticks: { font: { size: 10 } } },
+            x: { ticks: { font: { size: 10 } } }
+          }
+        }
+      });
+    });
+  }, 50);
+}
+</script>
+</body>
+</html>
