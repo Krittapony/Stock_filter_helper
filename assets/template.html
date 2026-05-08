@@ -3,437 +3,764 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daily Stock Screener</title>
+<title>📊 หุ้นเด็ดวันนี้ — Stock Screener</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
   :root {
-    --bg: #fafaf7;
-    --surface: #ffffff;
-    --surface-2: #f4f3ee;
-    --text: #1a1a17;
-    --text-2: #5f5e5a;
-    --text-3: #888780;
-    --border: rgba(0,0,0,0.08);
-    --accent: #185FA5;
-    --accent-bg: #E6F1FB;
-    --green-bg: #EAF3DE;
-    --green-text: #27500A;
-    --red-bg: #FCEBEB;
-    --red-text: #791F1F;
-    --amber-bg: #FAEEDA;
-    --amber-text: #633806;
+    --bg-page: #fff8f3;
+    --bg-card: #ffffff;
+    --bg-soft: #fff3e8;
+    --text-1: #1a1015;
+    --text-2: #5a4d52;
+    --text-3: #8a7d82;
+    --border: rgba(0,0,0,0.06);
+    --pink-bg: #fff0f5;
+    --pink-text: #c2185b;
+    --pink-strong: #e91e63;
+    --green-bg: #e8f8ee;
+    --green-text: #1f7a3e;
+    --green-strong: #2ec866;
+    --red-bg: #ffeaea;
+    --red-text: #b3261e;
+    --red-strong: #f44336;
+    --orange-bg: #fff4e0;
+    --orange-text: #b35900;
+    --orange-strong: #ff9800;
+    --purple-bg: #f3edff;
+    --purple-text: #5e35b1;
+    --purple-strong: #7c4dff;
+    --blue-bg: #e3f2fd;
+    --blue-text: #0d47a1;
+    --blue-strong: #2196f3;
+    --gold: #ffb300;
+    --silver: #b0bec5;
+    --bronze: #d7a86e;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1a1a17;
-      --surface: #242420;
-      --surface-2: #2c2c28;
-      --text: #f4f3ee;
-      --text-2: #b4b2a9;
-      --text-3: #888780;
-      --border: rgba(255,255,255,0.1);
-      --accent: #85B7EB;
-      --accent-bg: rgba(133,183,235,0.1);
-      --green-bg: rgba(151,196,89,0.15);
-      --green-text: #C0DD97;
-      --red-bg: rgba(240,149,149,0.15);
-      --red-text: #F09595;
-      --amber-bg: rgba(239,159,39,0.15);
-      --amber-text: #FAC775;
+      --bg-page: #1a1015;
+      --bg-card: #251a20;
+      --bg-soft: #2e2128;
+      --text-1: #fff8f3;
+      --text-2: #d4c4ca;
+      --text-3: #a89097;
+      --border: rgba(255,255,255,0.08);
+      --pink-bg: rgba(233,30,99,0.15);
+      --pink-text: #ff80ab;
+      --green-bg: rgba(46,200,102,0.15);
+      --green-text: #81c784;
+      --red-bg: rgba(244,67,54,0.15);
+      --red-text: #ff8a80;
+      --orange-bg: rgba(255,152,0,0.15);
+      --orange-text: #ffb74d;
+      --purple-bg: rgba(124,77,255,0.15);
+      --purple-text: #b39ddb;
+      --blue-bg: rgba(33,150,243,0.15);
+      --blue-text: #90caf9;
     }
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Noto Sans Thai", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    padding: 24px 16px;
+    font-family: 'Sarabun', 'Inter', -apple-system, sans-serif;
+    background: var(--bg-page);
+    color: var(--text-1);
+    line-height: 1.7;
+    padding: 20px 12px;
   }
-  .container { max-width: 1100px; margin: 0 auto; }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* ============ HEADER ============ */
   header {
-    background: var(--surface);
-    border: 0.5px solid var(--border);
-    border-radius: 12px;
-    padding: 24px 28px;
-    margin-bottom: 16px;
+    background: linear-gradient(135deg, #ff6b9d 0%, #ffa06b 50%, #ffd16b 100%);
+    border-radius: 24px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
   }
-  header h1 { font-size: 24px; font-weight: 500; margin-bottom: 4px; }
-  header .meta { font-size: 13px; color: var(--text-2); }
-  header .badges { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
-  .badge {
-    background: var(--accent-bg); color: var(--accent);
-    padding: 4px 12px; border-radius: 8px; font-size: 12px; font-weight: 500;
+  header::before {
+    content: ""; position: absolute; top: -40px; right: -40px;
+    width: 180px; height: 180px; background: rgba(255,255,255,0.15);
+    border-radius: 50%;
   }
-  .archive-link {
-    background: var(--surface-2); color: var(--text-2);
-    padding: 4px 12px; border-radius: 8px; font-size: 12px;
-    text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+  header::after {
+    content: ""; position: absolute; bottom: -60px; left: 30%;
+    width: 140px; height: 140px; background: rgba(255,255,255,0.1);
+    border-radius: 50%;
   }
-  .archive-link:hover { color: var(--accent); }
+  header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; position: relative; }
+  header .subtitle { font-size: 14px; opacity: 0.95; position: relative; }
+  header .meta-row { 
+    display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; position: relative;
+  }
+  header .pill {
+    background: rgba(255,255,255,0.25); backdrop-filter: blur(10px);
+    padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  header .archive-pill {
+    background: rgba(255,255,255,0.95); color: #c2185b;
+    text-decoration: none;
+  }
 
+  /* ============ INTRO BANNER ============ */
+  .intro-banner {
+    background: var(--bg-card); border-radius: 20px; padding: 18px 22px;
+    margin-bottom: 16px; border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .intro-banner .emoji-big { font-size: 36px; }
+  .intro-banner .text-block { flex: 1; }
+  .intro-banner .title { font-size: 15px; font-weight: 600; color: var(--text-1); }
+  .intro-banner .desc { font-size: 13px; color: var(--text-2); margin-top: 2px; }
+
+  /* ============ STOCK CARDS ============ */
   .stock-card {
-    background: var(--surface);
-    border: 0.5px solid var(--border);
-    border-radius: 12px;
+    background: var(--bg-card);
+    border-radius: 24px;
     padding: 24px 28px;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
   }
-  .stock-header {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    margin-bottom: 18px; gap: 16px; flex-wrap: wrap;
+  .stock-card:hover { transform: translateY(-2px); }
+  .stock-card.rank-1::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg, #ffd700, #ffb300, #ffd700);
   }
-  .ticker-block { flex: 1; min-width: 0; }
-  .rank-badge {
-    display: inline-block;
-    background: var(--accent-bg); color: var(--accent);
-    padding: 2px 8px; border-radius: 6px; font-size: 11px;
-    font-weight: 500; margin-right: 8px; vertical-align: 2px;
+  .stock-card.rank-2::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg, #c0c0c0, #b0bec5, #c0c0c0);
   }
-  .ticker { font-size: 20px; font-weight: 500; }
-  .company-name { color: var(--text-2); }
-  .sector { font-size: 12px; color: var(--text-3); margin-top: 2px; }
-  .price-block { text-align: right; }
-  .price { font-size: 20px; font-weight: 500; }
-  .change-up { color: #0F6E56; font-size: 13px; }
-  .change-down { color: #A32D2D; font-size: 13px; }
-  .score {
-    display: inline-block; background: var(--surface-2);
-    padding: 4px 10px; border-radius: 6px; font-size: 12px;
-    margin-top: 4px; color: var(--text-2);
+  .stock-card.rank-3::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg, #cd7f32, #d7a86e, #cd7f32);
   }
 
-  .step-section { margin-bottom: 18px; }
-  .step-label {
-    font-size: 11px; color: var(--text-3); letter-spacing: 0.5px;
-    margin-bottom: 8px; text-transform: uppercase; font-weight: 500;
+  /* Card header */
+  .card-header {
+    display: flex; gap: 16px; margin-bottom: 16px;
+    align-items: flex-start; flex-wrap: wrap;
+  }
+  .ticker-emoji {
+    width: 64px; height: 64px; border-radius: 18px;
+    background: var(--bg-soft);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; flex-shrink: 0;
+  }
+  .ticker-info { flex: 1; min-width: 0; }
+  .rank-medal {
+    display: inline-block; padding: 3px 12px; border-radius: 100px;
+    font-size: 12px; font-weight: 700; margin-bottom: 4px;
+  }
+  .rank-medal.gold { background: linear-gradient(135deg, #ffd700, #ffb300); color: #5d3700; }
+  .rank-medal.silver { background: linear-gradient(135deg, #e0e0e0, #b0bec5); color: #424242; }
+  .rank-medal.bronze { background: linear-gradient(135deg, #d7a86e, #cd7f32); color: #5d3700; }
+  .rank-medal.normal { background: var(--bg-soft); color: var(--text-2); }
+  .ticker-name { font-size: 22px; font-weight: 700; color: var(--text-1); margin-top: 2px; }
+  .ticker-name .symbol { color: var(--pink-strong); }
+  .ticker-thai { font-size: 14px; color: var(--text-2); margin-top: 1px; }
+  .ticker-sector {
+    font-size: 12px; color: var(--text-3); margin-top: 6px;
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+  }
+  .ticker-sector .dot { width: 3px; height: 3px; background: var(--text-3); border-radius: 50%; }
+
+  .price-block { text-align: right; min-width: 110px; }
+  .price-now { font-size: 24px; font-weight: 700; color: var(--text-1); }
+  .price-change {
+    font-size: 13px; font-weight: 600; margin-top: 2px;
+    display: inline-block; padding: 3px 10px; border-radius: 100px;
+  }
+  .price-change.up { background: var(--green-bg); color: var(--green-text); }
+  .price-change.down { background: var(--red-bg); color: var(--red-text); }
+
+  /* What it does */
+  .what-it-does {
+    background: var(--bg-soft); border-radius: 14px;
+    padding: 12px 16px; margin-bottom: 16px;
+    font-size: 14px; color: var(--text-2);
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .what-it-does .icon { font-size: 18px; flex-shrink: 0; }
+
+  /* Score bar — the centerpiece */
+  .score-section {
+    background: linear-gradient(135deg, var(--purple-bg), var(--pink-bg));
+    border-radius: 18px; padding: 16px 20px; margin-bottom: 16px;
+  }
+  .score-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px;
+  }
+  .score-label {
+    font-size: 13px; color: var(--text-2); font-weight: 500;
+    display: flex; gap: 6px; align-items: center;
+  }
+  .score-value {
+    font-size: 20px; font-weight: 700; color: var(--purple-text);
+  }
+  .score-value .total { color: var(--text-3); font-size: 14px; font-weight: 500; }
+  .score-bar-track {
+    height: 12px; background: rgba(255,255,255,0.6);
+    border-radius: 100px; overflow: hidden; position: relative;
+  }
+  @media (prefers-color-scheme: dark) {
+    .score-bar-track { background: rgba(0,0,0,0.3); }
+  }
+  .score-bar-fill {
+    height: 100%; border-radius: 100px;
+    background: linear-gradient(90deg, #ff6b9d, #b75ce8, #5e6cff);
+    transition: width 1s ease-out;
+  }
+  .score-segments {
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: var(--text-3); margin-top: 8px;
   }
 
-  .metric-grid {
+  /* One-line summary */
+  .one-liner {
+    font-size: 15px; color: var(--text-1); font-weight: 500;
+    margin-bottom: 16px; line-height: 1.6;
+    padding: 12px 16px; border-radius: 14px;
+    background: var(--blue-bg); border-left: 4px solid var(--blue-strong);
+  }
+
+  /* Pros & Cons */
+  .pros-cons {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    margin-bottom: 18px;
+  }
+  @media (max-width: 640px) { .pros-cons { grid-template-columns: 1fr; } }
+  .pros-col, .cons-col {
+    border-radius: 16px; padding: 14px 16px;
+  }
+  .pros-col { background: var(--green-bg); }
+  .cons-col { background: var(--red-bg); }
+  .pros-cons-title {
+    font-size: 13px; font-weight: 700; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .pros-col .pros-cons-title { color: var(--green-text); }
+  .cons-col .pros-cons-title { color: var(--red-text); }
+  .pros-cons ul { list-style: none; }
+  .pros-cons li {
+    font-size: 13px; line-height: 1.7; margin-bottom: 4px;
+    color: var(--text-1);
+  }
+
+  /* Section header */
+  .section-title {
+    font-size: 14px; font-weight: 700; color: var(--text-1);
+    margin: 18px 0 10px; display: flex; align-items: center; gap: 8px;
+  }
+
+  /* Fundamentals — kawaii cards */
+  .fund-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     gap: 8px;
   }
-  .metric {
-    background: var(--surface-2);
-    border-radius: 8px; padding: 10px 12px;
+  .fund-card {
+    background: var(--bg-soft); border-radius: 14px; padding: 10px 12px;
+    border: 1px solid var(--border);
   }
-  .metric-label { font-size: 11px; color: var(--text-3); }
-  .metric-value { font-size: 14px; font-weight: 500; margin-top: 2px; }
-  .metric-pass { color: #0F6E56; }
-  .metric-fail { color: #A32D2D; }
+  .fund-card.pass { background: var(--green-bg); }
+  .fund-card.fail { background: var(--red-bg); }
+  .fund-label { font-size: 11px; color: var(--text-3); margin-bottom: 2px; }
+  .fund-value { font-size: 15px; font-weight: 700; color: var(--text-1); }
+  .fund-icon { font-size: 14px; margin-left: 4px; }
+  .fund-thai { font-size: 10px; color: var(--text-2); margin-top: 2px; }
 
-  .reasoning {
-    font-size: 13px; color: var(--text-2);
-    margin-top: 10px; line-height: 1.6;
-    padding-left: 12px; border-left: 2px solid var(--border);
-  }
-  .reasoning strong { color: var(--text); font-weight: 500; }
-
+  /* News */
   .news-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
   }
-  @media (max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
-  .news-block {
-    border-radius: 8px; padding: 12px 14px;
+  @media (max-width: 640px) { .news-grid { grid-template-columns: 1fr; } }
+  .news-block { border-radius: 16px; padding: 14px 16px; }
+  .news-block.positive { background: var(--green-bg); }
+  .news-block.negative { background: var(--red-bg); }
+  .news-block-title {
+    font-size: 13px; font-weight: 700; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
   }
-  .news-positive { background: var(--green-bg); }
-  .news-negative { background: var(--red-bg); }
-  .news-title {
-    font-size: 12px; font-weight: 500; margin-bottom: 6px;
-  }
-  .news-positive .news-title { color: var(--green-text); }
-  .news-negative .news-title { color: var(--red-text); }
+  .news-block.positive .news-block-title { color: var(--green-text); }
+  .news-block.negative .news-block-title { color: var(--red-text); }
   .news-item {
-    font-size: 12px; line-height: 1.5; margin-bottom: 4px;
+    font-size: 13px; line-height: 1.6; margin-bottom: 6px;
+    color: var(--text-1); padding-left: 24px; position: relative;
   }
-  .news-positive .news-item { color: var(--green-text); }
-  .news-negative .news-item { color: var(--red-text); }
-  .news-source {
-    font-size: 10px; opacity: 0.7;
+  .news-item .news-emoji {
+    position: absolute; left: 0; top: 0; font-size: 16px;
   }
+  .news-source { font-size: 11px; color: var(--text-3); margin-top: 1px; }
 
+  /* Chart container — bigger now */
+  .chart-area {
+    background: var(--bg-soft); border-radius: 18px; padding: 16px;
+    margin-top: 12px;
+  }
   .chart-wrap {
-    position: relative; width: 100%; height: 180px;
+    position: relative; width: 100%; height: 300px;
+    margin-bottom: 8px;
+  }
+  .volume-wrap {
+    position: relative; width: 100%; height: 80px;
     margin-bottom: 8px;
   }
 
+  /* RSI gauge */
+  .rsi-section {
+    display: flex; gap: 14px; align-items: center;
+    background: var(--bg-card); border-radius: 14px; padding: 12px 16px;
+    margin-top: 10px; border: 1px solid var(--border);
+  }
+  .rsi-emoji { font-size: 28px; flex-shrink: 0; }
+  .rsi-info { flex: 1; }
+  .rsi-title { font-size: 13px; font-weight: 600; color: var(--text-1); }
+  .rsi-desc { font-size: 12px; color: var(--text-2); margin-top: 1px; }
+  .rsi-bar-track {
+    height: 10px; background: linear-gradient(90deg,
+      var(--blue-strong) 0%, var(--blue-strong) 30%,
+      var(--green-strong) 30%, var(--green-strong) 70%,
+      var(--red-strong) 70%, var(--red-strong) 100%);
+    border-radius: 100px; position: relative; margin-top: 6px;
+  }
+  .rsi-marker {
+    position: absolute; top: -3px; width: 16px; height: 16px;
+    background: white; border: 3px solid var(--text-1);
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Reference levels */
   .levels-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 6px; margin-top: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+    gap: 6px; margin-top: 10px;
   }
-  .level-cell {
-    background: var(--surface-2);
-    border-radius: 6px; padding: 6px 10px;
+  .level-pill {
+    background: var(--bg-soft); border-radius: 10px;
+    padding: 8px 10px; border: 1px solid var(--border);
   }
-  .level-label { font-size: 10px; color: var(--text-3); }
-  .level-value { font-size: 13px; font-weight: 500; margin-top: 2px; }
+  .level-name { font-size: 10px; color: var(--text-3); }
+  .level-num { font-size: 13px; font-weight: 600; color: var(--text-1); margin-top: 1px; }
 
-  .rank-reasoning {
-    background: var(--accent-bg);
-    border-radius: 8px; padding: 12px 14px; margin-top: 12px;
-    font-size: 13px; color: var(--accent); line-height: 1.6;
+  .technical-simple {
+    background: var(--orange-bg); border-radius: 14px;
+    padding: 12px 16px; margin-top: 10px;
+    font-size: 13px; color: var(--orange-text);
+    display: flex; gap: 10px;
   }
-  .rank-reasoning strong { font-weight: 500; }
+  .technical-simple .icon { font-size: 18px; flex-shrink: 0; }
 
+  /* Why top reasoning */
+  .why-top {
+    background: linear-gradient(135deg, var(--purple-bg), var(--pink-bg));
+    border-radius: 16px; padding: 14px 18px; margin-top: 14px;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .why-top .why-emoji { font-size: 24px; flex-shrink: 0; }
+  .why-top .why-text {
+    font-size: 13px; color: var(--text-1); line-height: 1.7;
+  }
+  .why-top .why-text strong { color: var(--purple-text); }
+
+  /* Disclaimer */
   .disclaimer {
-    background: var(--amber-bg);
-    border-radius: 8px; padding: 14px 18px; margin-top: 24px;
-    font-size: 12px; color: var(--amber-text); line-height: 1.6;
+    background: var(--orange-bg); border-radius: 18px;
+    padding: 16px 20px; margin-top: 24px;
+    font-size: 12px; color: var(--orange-text); line-height: 1.7;
   }
-  .disclaimer strong { font-weight: 500; }
-  
+  .disclaimer strong { font-weight: 700; }
+
   .empty-state {
-    text-align: center; padding: 60px 20px;
-    color: var(--text-2); font-size: 14px;
+    text-align: center; padding: 80px 20px;
+    color: var(--text-2); font-size: 16px;
   }
+  .empty-state .emoji { font-size: 64px; margin-bottom: 12px; }
 </style>
 </head>
 <body>
 <div class="container">
+
   <header>
-    <h1>Daily Stock Screener</h1>
-    <div class="meta" id="meta">Generated: <span id="report-date"></span> · <span id="generated-at"></span></div>
-    <div class="badges">
-      <span class="badge" id="count-badge">— candidates</span>
-      <span class="badge">S&P 500 + Nasdaq</span>
-      <a class="archive-link" href="archive/">
-        <i class="ti ti-archive" style="font-size:13px"></i> Archive
-      </a>
+    <h1>📊 หุ้นเด็ดวันนี้</h1>
+    <div class="subtitle">Top 10 หุ้น US ที่น่าจับตามองวันนี้ — คัดเองโดย AI</div>
+    <div class="meta-row">
+      <span class="pill">📅 <span id="report-date">—</span></span>
+      <span class="pill">⏰ <span id="generated-at">—</span></span>
+      <span class="pill" id="count-badge">10 ตัวเลือก</span>
+      <a class="pill archive-pill" href="archive/">📚 ดูประวัติย้อนหลัง</a>
     </div>
   </header>
+
+  <div class="intro-banner">
+    <div class="emoji-big">👋</div>
+    <div class="text-block">
+      <div class="title">หุ้นในรายการนี้คัดมาจากอะไร?</div>
+      <div class="desc">เราดู 3 ด้านหลัก: <strong>พื้นฐานบริษัท</strong> (กำไรดี หนี้น้อย) + <strong>ข่าว 7 วันล่าสุด</strong> + <strong>ราคาในกราฟ</strong> — แล้วให้คะแนนรวม</div>
+    </div>
+  </div>
 
   <div id="stocks-container"></div>
 
   <div class="disclaimer">
-    <strong><i class="ti ti-info-circle" style="font-size:14px; vertical-align:-2px"></i> Information only — not investment advice.</strong>
-    ข้อมูลทั้งหมดเป็นการรวบรวมจากแหล่งสาธารณะ (Yahoo Finance, Reuters, MarketWatch, etc.) เพื่อใช้ประกอบการตัดสินใจของผู้ใช้เท่านั้น
-    การตัดสินใจซื้อ-ขาย การกำหนด stop loss / take profit และความเสี่ยงทั้งหมดเป็นของผู้ใช้
-    ผู้พัฒนาและ AI ที่จัดทำรายงานนี้ไม่รับผิดชอบต่อผลการตัดสินใจลงทุน
+    <strong>⚠️ ข้อควรรู้:</strong>
+    รายงานนี้จัดทำเพื่อ<strong>ให้ข้อมูล</strong>เท่านั้น <strong>ไม่ใช่คำแนะนำการลงทุน</strong>
+    การตัดสินใจซื้อ-ขาย การกำหนดจุดตัดขาดทุน และความเสี่ยงทั้งหมดเป็นของผู้ใช้
+    หุ้นมีความเสี่ยง ผู้ลงทุนควรศึกษาข้อมูลและพิจารณาให้รอบคอบก่อนตัดสินใจ
+    AI อาจมีข้อมูลผิดพลาด — ตรวจสอบกับแหล่งข้อมูลทางการก่อนใช้เสมอ
   </div>
 </div>
 
 <script>
-// ============================================================================
-// DATA — Routine จะแทนที่ object นี้ในทุกการรัน
-// ============================================================================
+// ============== ROUTINE: REPLACE BELOW ==============
 const REPORT_DATE = "2026-05-08";
-const GENERATED_AT = "07:00 ICT";
+const GENERATED_AT = "07:00 น.";
 
 const STOCKS_DATA = [
-  // ตัวอย่างข้อมูล (Routine จะแทนที่)
   {
     rank: 1,
-    ticker: "MSFT",
-    name: "Microsoft Corporation",
-    sector: "Technology · Software · Large Cap",
-    marketCap: "$3.1T",
-    price: 412.50,
-    changePercent: 1.2,
-    score: 87,
+    ticker: "GOOGL",
+    name: "Alphabet (Google)",
+    thaiName: "กูเกิล",
+    emoji: "🔍",
+    sector: "เทคโนโลยี · เสิร์ชเอนจิน",
+    whatItDoes: "บริษัทแม่ของ Google, YouTube, Gmail — หาเงินจากโฆษณาและคลาวด์",
+    marketCap: "$2.4T",
+    marketCapThai: "2.4 ล้านล้านดอลลาร์",
+    price: 395.33,
+    changePercent: 0.05,
+    score: 94,
+    oneLineSummary: "บริษัทแข็งแรงทุกด้าน 💪 ราคาไม่แพง 💰 คลาวด์โตแรง 63% 🚀",
+    pros: [
+      "💰 กำไรสุทธิ 38% ของยอดขาย — สูงมาก",
+      "📈 รายได้โตเร็ว 22% เทียบปีที่แล้ว",
+      "🏦 หนี้น้อยมาก ฐานะการเงินแข็งแรง",
+      "☁️ Google Cloud โตแรง 63%"
+    ],
+    cons: [
+      "⚖️ ถูกฟ้องเรื่องผูกขาดในยุโรป (อาจกระทบในอนาคต)"
+    ],
     fundamentals: {
-      roe: { value: "38%", pass: true },
-      netMargin: { value: "36%", pass: true },
-      opMargin: { value: "44%", pass: true },
-      revGrowth: { value: "+12%", pass: true },
-      de: { value: "0.31", pass: true },
-      currentRatio: { value: "1.27", pass: true },
-      pe: { value: "34", pass: true }
+      roe:         { value: "38.9%",  pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
+      netMargin:   { value: "37.9%",  pass: true,  label: "กำไรสุทธิ" },
+      opMargin:    { value: "32.7%",  pass: true,  label: "กำไรธุรกิจหลัก" },
+      revGrowth:   { value: "+22%",   pass: true,  label: "รายได้โตขึ้น" },
+      de:          { value: "0.16",   pass: true,  label: "หนี้ต่อทุน" },
+      currentRatio:{ value: "2.01",   pass: true,  label: "สภาพคล่อง" },
+      pe:          { value: "21.7x",  pass: true,  label: "ราคา/กำไร" }
     },
-    fundamentalReasoning: "ผ่านเกณฑ์ 7/7 ทุกด้าน — ROE และ margin โดดเด่นใน sector software",
     news: {
       positive: [
-        { headline: "Azure cloud revenue +28% YoY in Q3", source: "Reuters", date: "May 6" },
-        { headline: "BofA upgrades to Buy, PT $480", source: "MarketWatch", date: "May 5" }
+        { emoji: "🚀", headline: "ยอดขายไตรมาสแรกพุ่ง 22% ทำสถิติใหม่", source: "Reuters", date: "29 เม.ย." },
+        { emoji: "⬆️", headline: "Citizens ปรับเป้าราคาขึ้นเป็น $515", source: "MarketWatch", date: "30 เม.ย." },
+        { emoji: "☁️", headline: "Google Cloud โต 63% เพราะ AI", source: "Bloomberg", date: "29 เม.ย." }
       ],
       negative: [
-        { headline: "EU antitrust probe expanded", source: "FT", date: "May 4" }
+        { emoji: "⚖️", headline: "อังกฤษเปิดสอบสวนเรื่องผูกขาด", source: "FT", date: "5 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [395, 402, 408, 410, 412.50],
-      labels: ["May 2", "May 3", "May 6", "May 7", "May 8"],
-      week52High: 425.00,
-      week52Low: 348.50,
-      support1: 405.00,
-      support2: 392.00,
-      resistance1: 418.00,
-      resistance2: 425.00,
-      ma50: 408.20,
-      ma200: 385.40,
-      vsMA50: "above",
-      vsMA200: "above"
+      priceHistory: [368, 370, 372, 369, 374, 376, 375, 378, 381, 380, 383, 385, 388, 390, 389, 392, 393, 394, 395, 395.33],
+      volumeHistory: [22000000, 18500000, 19200000, 17800000, 21000000, 23500000, 19800000, 18900000, 20100000, 22300000, 19500000, 24100000, 21800000, 20500000, 19200000, 22800000, 21100000, 19900000, 18700000, 20800000],
+      labels: ["18 เม.ย.", "21", "22", "23", "24", "25", "28", "29", "30", "1 พ.ค.", "2", "5", "6", "7", "8", "9", "12", "13", "14", "15"],
+      week52High: 400.10, week52Low:  149.49,
+      support1:   380.00, support2:   340.00,
+      resistance1:400.10, resistance2:425.00,
+      ma50: 365.00, ma200: 310.00,
+      rsi: 62, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
     },
-    technicalObservation: "ราคาอยู่ใกล้ resistance 1 ($418) — โซนตัดสินใจ ถ้า breakout มี momentum ต่อเนื่อง support ใกล้ที่สุดอยู่ $405",
-    rankReasoning: "Fundamental ดีที่สุดในกลุ่ม + sentiment บวกชัด + อยู่ใน uptrend (เหนือ MA50 และ MA200)"
+    technicalSimple: "ราคาอยู่ในขาขึ้น 📈 เกือบแตะจุดสูงสุดของปี — RSI 62 ปกติ ไม่ร้อนเกินไป",
+    rankReasoning: "อันดับ 1 เพราะ<strong>แข็งแรงทุกด้าน</strong> ผ่านเกณฑ์ครบ 7/7 + ข่าวดีล้น + กำลังจะทำ new high"
   }
 ];
+// ============== ROUTINE: REPLACE ABOVE ==============
 
-// ============================================================================
-// RENDERING
-// ============================================================================
+// =============== RENDERING ===============
 document.getElementById('report-date').textContent = REPORT_DATE;
 document.getElementById('generated-at').textContent = GENERATED_AT;
-document.getElementById('count-badge').textContent = STOCKS_DATA.length + ' candidates';
+document.getElementById('count-badge').textContent = `🎯 ${STOCKS_DATA.length} หุ้นเด็ด`;
 
-const FUNDAMENTAL_LABELS = {
-  roe: "ROE",
-  netMargin: "Net margin",
-  opMargin: "Op. margin",
-  revGrowth: "Rev. growth",
-  de: "D/E",
-  currentRatio: "Current ratio",
-  pe: "P/E"
-};
+const RANK_CLASS = { 1: "rank-1", 2: "rank-2", 3: "rank-3" };
+const MEDAL_CLASS = { 1: "gold", 2: "silver", 3: "bronze" };
+const MEDAL_EMOJI = { 1: "🥇", 2: "🥈", 3: "🥉" };
+
+function getRsiEmoji(rsi) {
+  if (rsi >= 70) return { emoji: "🔥", title: "อาจร้อนเกินไป", desc: "RSI สูงเกิน 70 — บางคนรอ pullback ก่อน" };
+  if (rsi <= 30) return { emoji: "❄️", title: "อาจเย็นเกินไป", desc: "RSI ต่ำกว่า 30 — บางคนมองว่าเป็นโอกาส" };
+  return { emoji: "⚖️", title: "ระดับปกติ", desc: "RSI 30-70 ถือว่าปกติ ไม่ร้อนไม่เย็น" };
+}
 
 const container = document.getElementById('stocks-container');
 
 if (STOCKS_DATA.length === 0) {
-  container.innerHTML = '<div class="empty-state">ยังไม่มีรายงานวันนี้ — ลองเช็คอีกครั้งหลัง 07:30 น.</div>';
+  container.innerHTML = '<div class="empty-state"><div class="emoji">🌙</div>ยังไม่มีรายงานวันนี้<br><small>ลองเช็คอีกครั้งหลัง 8 โมงเช้า</small></div>';
 } else {
   STOCKS_DATA.forEach((stock, idx) => {
-    const changeClass = stock.changePercent >= 0 ? 'change-up' : 'change-down';
+    const changeClass = stock.changePercent >= 0 ? 'up' : 'down';
+    const changeArrow = stock.changePercent >= 0 ? '▲' : '▼';
     const changeSign = stock.changePercent >= 0 ? '+' : '';
+    const rankCardClass = RANK_CLASS[stock.rank] || '';
+    const medalClass = MEDAL_CLASS[stock.rank] || 'normal';
+    const medalText = stock.rank <= 3 ? `${MEDAL_EMOJI[stock.rank]} อันดับ ${stock.rank}` : `อันดับ ${stock.rank}`;
 
     const fundamentalsHTML = Object.entries(stock.fundamentals).map(([key, val]) => {
-      const passClass = val.pass ? 'metric-pass' : 'metric-fail';
-      const icon = val.pass ? '✓' : '✗';
+      const passClass = val.pass ? 'pass' : 'fail';
+      const icon = val.pass ? '✅' : '⚠️';
       return `
-        <div class="metric">
-          <div class="metric-label">${FUNDAMENTAL_LABELS[key] || key}</div>
-          <div class="metric-value ${passClass}">${val.value} ${icon}</div>
+        <div class="fund-card ${passClass}">
+          <div class="fund-label">${val.label || key}</div>
+          <div class="fund-value">${val.value}<span class="fund-icon">${icon}</span></div>
         </div>`;
     }).join('');
 
     const positiveHTML = stock.news.positive.length
       ? stock.news.positive.map(n => `
-          <div class="news-item">• ${n.headline}<br><span class="news-source">${n.source} · ${n.date}</span></div>
-        `).join('')
-      : '<div class="news-item" style="opacity:0.6">ไม่มีข่าวบวกในรอบ 7 วัน</div>';
+          <div class="news-item">
+            <span class="news-emoji">${n.emoji || '🟢'}</span>
+            ${n.headline}<br>
+            <span class="news-source">${n.source} · ${n.date}</span>
+          </div>`).join('')
+      : '<div class="news-item" style="opacity:0.6">ไม่มีข่าวบวก</div>';
 
     const negativeHTML = stock.news.negative.length
       ? stock.news.negative.map(n => `
-          <div class="news-item">• ${n.headline}<br><span class="news-source">${n.source} · ${n.date}</span></div>
-        `).join('')
-      : '<div class="news-item" style="opacity:0.6">ไม่มีข่าวลบในรอบ 7 วัน</div>';
+          <div class="news-item">
+            <span class="news-emoji">${n.emoji || '🔴'}</span>
+            ${n.headline}<br>
+            <span class="news-source">${n.source} · ${n.date}</span>
+          </div>`).join('')
+      : '<div class="news-item" style="opacity:0.6">ไม่มีข่าวลบ ✨</div>';
+
+    const prosHTML = stock.pros.map(p => `<li>${p}</li>`).join('');
+    const consHTML = stock.cons.length 
+      ? stock.cons.map(c => `<li>${c}</li>`).join('')
+      : '<li style="opacity:0.6">ยังไม่พบข้อกังวลที่สำคัญ ✨</li>';
+
+    const rsi = stock.technical.rsi;
+    const rsiInfo = getRsiEmoji(rsi);
 
     const cardHTML = `
-      <article class="stock-card">
-        <div class="stock-header">
-          <div class="ticker-block">
-            <div>
-              <span class="rank-badge">#${stock.rank}</span>
-              <span class="ticker">${stock.ticker}</span>
-              <span class="company-name"> · ${stock.name}</span>
+      <article class="stock-card ${rankCardClass}">
+        <div class="card-header">
+          <div class="ticker-emoji">${stock.emoji}</div>
+          <div class="ticker-info">
+            <span class="rank-medal ${medalClass}">${medalText}</span>
+            <div class="ticker-name"><span class="symbol">$${stock.ticker}</span> · ${stock.name}</div>
+            <div class="ticker-thai">${stock.thaiName}</div>
+            <div class="ticker-sector">
+              <span>${stock.sector}</span>
+              <span class="dot"></span>
+              <span>มูลค่าบริษัท ${stock.marketCapThai}</span>
             </div>
-            <div class="sector">${stock.sector} · ${stock.marketCap}</div>
           </div>
           <div class="price-block">
-            <div class="price">$${stock.price.toFixed(2)}</div>
-            <div class="${changeClass}">${changeSign}${stock.changePercent.toFixed(1)}% today</div>
-            <div class="score">Score: ${stock.score}/100</div>
+            <div class="price-now">$${stock.price.toFixed(2)}</div>
+            <div class="price-change ${changeClass}">${changeArrow} ${changeSign}${stock.changePercent.toFixed(2)}%</div>
           </div>
         </div>
 
-        <div class="step-section">
-          <div class="step-label">Step 1 — Fundamentals</div>
-          <div class="metric-grid">${fundamentalsHTML}</div>
-          <div class="reasoning"><strong>Reasoning:</strong> ${stock.fundamentalReasoning}</div>
+        <div class="what-it-does">
+          <span class="icon">💼</span>
+          <span><strong>บริษัทนี้ทำอะไร?</strong> ${stock.whatItDoes}</span>
         </div>
 
-        <div class="step-section">
-          <div class="step-label">Step 2 — News sentiment (7 days)</div>
-          <div class="news-grid">
-            <div class="news-block news-positive">
-              <div class="news-title">🟢 Positive · ${stock.news.positive.length}</div>
-              ${positiveHTML}
-            </div>
-            <div class="news-block news-negative">
-              <div class="news-title">🔴 Negative · ${stock.news.negative.length}</div>
-              ${negativeHTML}
-            </div>
+        <div class="score-section">
+          <div class="score-row">
+            <div class="score-label">⭐ คะแนนรวมวันนี้</div>
+            <div class="score-value">${stock.score}<span class="total">/100</span></div>
+          </div>
+          <div class="score-bar-track">
+            <div class="score-bar-fill" style="width: ${stock.score}%;"></div>
+          </div>
+          <div class="score-segments">
+            <span>0</span><span>50</span><span>100</span>
           </div>
         </div>
 
-        <div class="step-section">
-          <div class="step-label">Step 3 — Technical reference levels</div>
+        <div class="one-liner">
+          💡 <strong>สรุปสั้นๆ:</strong> ${stock.oneLineSummary}
+        </div>
+
+        <div class="pros-cons">
+          <div class="pros-col">
+            <div class="pros-cons-title">👍 ข้อดี</div>
+            <ul>${prosHTML}</ul>
+          </div>
+          <div class="cons-col">
+            <div class="pros-cons-title">👎 ข้อควรระวัง</div>
+            <ul>${consHTML}</ul>
+          </div>
+        </div>
+
+        <div class="section-title">📊 ตัวเลขสำคัญของบริษัท</div>
+        <div class="fund-grid">${fundamentalsHTML}</div>
+
+        <div class="section-title">📰 ข่าวล่าสุด 7 วัน</div>
+        <div class="news-grid">
+          <div class="news-block positive">
+            <div class="news-block-title">🟢 ข่าวดี · ${stock.news.positive.length} ข่าว</div>
+            ${positiveHTML}
+          </div>
+          <div class="news-block negative">
+            <div class="news-block-title">🔴 ข่าวควรรู้ · ${stock.news.negative.length} ข่าว</div>
+            ${negativeHTML}
+          </div>
+        </div>
+
+        <div class="section-title">📈 กราฟราคา 20 วันล่าสุด</div>
+        <div class="chart-area">
           <div class="chart-wrap">
-            <canvas id="chart-${idx}" role="img" aria-label="${stock.ticker} 5-day price chart">${stock.ticker} price last 5 days.</canvas>
+            <canvas id="chart-${idx}" role="img" aria-label="${stock.ticker} price chart">${stock.ticker} กราฟราคา</canvas>
           </div>
+          <div class="volume-wrap">
+            <canvas id="volume-${idx}" role="img" aria-label="${stock.ticker} volume">${stock.ticker} ปริมาณซื้อขาย</canvas>
+          </div>
+
+          <div class="rsi-section">
+            <div class="rsi-emoji">${rsiInfo.emoji}</div>
+            <div class="rsi-info">
+              <div class="rsi-title">RSI ${rsi} — ${rsiInfo.title}</div>
+              <div class="rsi-desc">${rsiInfo.desc}</div>
+              <div class="rsi-bar-track">
+                <div class="rsi-marker" style="left: ${rsi}%;"></div>
+              </div>
+            </div>
+          </div>
+
           <div class="levels-grid">
-            <div class="level-cell"><div class="level-label">52w high</div><div class="level-value">$${stock.technical.week52High.toFixed(2)}</div></div>
-            <div class="level-cell"><div class="level-label">52w low</div><div class="level-value">$${stock.technical.week52Low.toFixed(2)}</div></div>
-            <div class="level-cell"><div class="level-label">Support 1</div><div class="level-value">$${stock.technical.support1.toFixed(2)}</div></div>
-            <div class="level-cell"><div class="level-label">Support 2</div><div class="level-value">$${stock.technical.support2.toFixed(2)}</div></div>
-            <div class="level-cell"><div class="level-label">Resistance 1</div><div class="level-value">$${stock.technical.resistance1.toFixed(2)}</div></div>
-            <div class="level-cell"><div class="level-label">Resistance 2</div><div class="level-value">$${stock.technical.resistance2.toFixed(2)}</div></div>
-            <div class="level-cell"><div class="level-label">MA50</div><div class="level-value">$${stock.technical.ma50.toFixed(2)}</div></div>
-            <div class="level-cell"><div class="level-label">MA200</div><div class="level-value">$${stock.technical.ma200.toFixed(2)}</div></div>
+            <div class="level-pill">
+              <div class="level-name">⬆️ จุดสูงสุดปี</div>
+              <div class="level-num">$${stock.technical.week52High.toFixed(2)}</div>
+            </div>
+            <div class="level-pill">
+              <div class="level-name">⬇️ จุดต่ำสุดปี</div>
+              <div class="level-num">$${stock.technical.week52Low.toFixed(2)}</div>
+            </div>
+            <div class="level-pill">
+              <div class="level-name">🟢 แนวรับ 1</div>
+              <div class="level-num">$${stock.technical.support1.toFixed(2)}</div>
+            </div>
+            <div class="level-pill">
+              <div class="level-name">🟢 แนวรับ 2</div>
+              <div class="level-num">$${stock.technical.support2.toFixed(2)}</div>
+            </div>
+            <div class="level-pill">
+              <div class="level-name">🔴 แนวต้าน 1</div>
+              <div class="level-num">$${stock.technical.resistance1.toFixed(2)}</div>
+            </div>
+            <div class="level-pill">
+              <div class="level-name">🔴 แนวต้าน 2</div>
+              <div class="level-num">$${stock.technical.resistance2.toFixed(2)}</div>
+            </div>
           </div>
-          <div class="reasoning"><strong>Observation:</strong> ${stock.technicalObservation}</div>
+
+          <div class="technical-simple">
+            <span class="icon">🎯</span>
+            <span>${stock.technicalSimple}</span>
+          </div>
         </div>
 
-        <div class="rank-reasoning">
-          <strong>เหตุผลที่ติด Top:</strong> ${stock.rankReasoning}
+        <div class="why-top">
+          <span class="why-emoji">✨</span>
+          <div class="why-text"><strong>ทำไมติด Top:</strong> ${stock.rankReasoning}</div>
         </div>
       </article>
     `;
-
     container.insertAdjacentHTML('beforeend', cardHTML);
   });
 
   // Render charts
   setTimeout(() => {
     STOCKS_DATA.forEach((stock, idx) => {
+      // Price chart
       const ctx = document.getElementById(`chart-${idx}`);
-      if (!ctx) return;
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: stock.technical.labels,
-          datasets: [
-            {
-              label: 'Price',
-              data: stock.technical.priceHistory,
-              borderColor: '#185FA5',
-              backgroundColor: 'rgba(24,95,165,0.08)',
-              tension: 0.3,
-              fill: true,
-              pointRadius: 4,
-              pointBackgroundColor: '#185FA5'
+      if (ctx) {
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: stock.technical.labels,
+            datasets: [
+              {
+                label: 'ราคา',
+                data: stock.technical.priceHistory,
+                borderColor: '#e91e63',
+                backgroundColor: 'rgba(233, 30, 99, 0.08)',
+                tension: 0.4, fill: true, pointRadius: 3, borderWidth: 3,
+                pointBackgroundColor: '#e91e63'
+              },
+              {
+                label: 'แนวรับ',
+                data: Array(stock.technical.labels.length).fill(stock.technical.support1),
+                borderColor: '#2ec866', borderDash: [6, 6], pointRadius: 0, fill: false, borderWidth: 2
+              },
+              {
+                label: 'แนวต้าน',
+                data: Array(stock.technical.labels.length).fill(stock.technical.resistance1),
+                borderColor: '#f44336', borderDash: [6, 6], pointRadius: 0, fill: false, borderWidth: 2
+              },
+              {
+                label: 'MA50',
+                data: Array(stock.technical.labels.length).fill(stock.technical.ma50),
+                borderColor: '#ff9800', borderDash: [3, 3], pointRadius: 0, fill: false, borderWidth: 1.5
+              }
+            ]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: { display: true, position: 'top', labels: { boxWidth: 12, font: { size: 11, family: 'Sarabun' } } },
+              tooltip: { callbacks: { label: (c) => `${c.dataset.label}: $${c.parsed.y.toFixed(2)}` } }
             },
-            {
-              label: 'Support 1',
-              data: Array(stock.technical.labels.length).fill(stock.technical.support1),
-              borderColor: '#0F6E56',
-              borderDash: [5, 5],
-              pointRadius: 0,
-              fill: false
-            },
-            {
-              label: 'Resistance 1',
-              data: Array(stock.technical.labels.length).fill(stock.technical.resistance1),
-              borderColor: '#A32D2D',
-              borderDash: [5, 5],
-              pointRadius: 0,
-              fill: false
+            scales: {
+              y: { ticks: { font: { size: 11, family: 'Sarabun' }, callback: (v) => '$' + v } },
+              x: { ticks: { font: { size: 10, family: 'Sarabun' }, maxRotation: 45 } }
             }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
-          scales: {
-            y: { ticks: { font: { size: 10 } } },
-            x: { ticks: { font: { size: 10 } } }
           }
-        }
-      });
+        });
+      }
+
+      // Volume bar chart
+      const volCtx = document.getElementById(`volume-${idx}`);
+      if (volCtx && stock.technical.volumeHistory) {
+        const avgVol = stock.technical.volumeHistory.reduce((a, b) => a + b, 0) / stock.technical.volumeHistory.length;
+        const colors = stock.technical.volumeHistory.map(v => v > avgVol * 1.3 ? '#7c4dff' : 'rgba(124, 77, 255, 0.4)');
+        new Chart(volCtx, {
+          type: 'bar',
+          data: {
+            labels: stock.technical.labels,
+            datasets: [{
+              label: 'Volume',
+              data: stock.technical.volumeHistory,
+              backgroundColor: colors,
+              borderWidth: 0,
+              borderRadius: 3
+            }]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { callbacks: { label: (c) => 'Volume: ' + (c.parsed.y / 1e6).toFixed(1) + 'M' } }
+            },
+            scales: {
+              y: { ticks: { font: { size: 10, family: 'Sarabun' }, callback: (v) => (v / 1e6).toFixed(0) + 'M' } },
+              x: { ticks: { display: false } }
+            }
+          }
+        });
+      }
     });
-  }, 50);
+  }, 100);
 }
 </script>
 </body>

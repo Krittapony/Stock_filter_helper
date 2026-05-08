@@ -1,110 +1,89 @@
-# Stock Screener
+# 📊 Stock Screener v2
 
-รายงานหุ้น US (S&P 500 + Nasdaq) ที่กรองด้วย AI ทุกเช้าวันทำการ — แสดง Top 10 พร้อม fundamental, sentiment ข่าว, และ technical reference levels
+หน้าเว็บรายงานหุ้นเด็ดทุกวัน ออกแบบสำหรับมือใหม่ — ภาษาไทย เข้าใจง่าย มี emoji 🌸
 
-🌐 **Live site:** https://[your-username].github.io/stock-screener/
-
----
-
-## ⚠️ Disclaimer
-
-This is **information only — not investment advice.**
-ข้อมูลทั้งหมดเป็นการรวบรวมจากแหล่งสาธารณะ (Yahoo Finance, Reuters, MarketWatch, etc.) เพื่อใช้ประกอบการตัดสินใจของผู้ใช้เท่านั้น การตัดสินใจซื้อ-ขาย และความเสี่ยงทั้งหมดเป็นของผู้ใช้
+🌐 **เว็บไซต์:** https://[your-username].github.io/Stock_filter_helper/
 
 ---
 
-## โครงสร้าง Repo
+## 🎨 จุดเด่น Design v2
+
+- 🌸 **Style สดใส** — เหมือน Shopee/Lazada ไม่น่าเบื่อแบบรายงานการเงิน
+- 🇹🇭 **ภาษาไทยทั้งหมด** — ไม่มีศัพท์ยาก อธิบายเหมือนคุยกับเพื่อน
+- 😀 **Emoji ทุกที่** — แต่ละหุ้นมี emoji เฉพาะตัว, ข่าวมี emoji, ตัวเลขมี emoji
+- ⭐ **Score Bar สีไล่** — เห็นปุ๊บรู้ปั๊บว่าหุ้นไหนดี
+- 📈 **กราฟใหญ่ 20 วัน** + Volume bar + RSI gauge
+- 🥇🥈🥉 **เหรียญรางวัล** อันดับ 1-3 เด่นพิเศษ
+- 👍👎 **Pros/Cons แยกชัด** ในกล่องสีเขียว-แดง
+- 🌙 **Dark mode อัตโนมัติ**
+
+---
+
+## 🚀 Deploy ครั้งแรก
+
+### 1. Push ขึ้น GitHub repo (ใช้ repo เดิมได้)
+
+```bash
+cd Stock_filter_helper
+# แทนที่ไฟล์เก่าด้วย v2
+# (เก็บไฟล์เก่าไว้ก็ได้ใน archive/)
+
+git add .
+git commit -m "Update to v2: friendly Thai design with indicators"
+git push origin main
+```
+
+### 2. แก้ Routine prompt
+
+ไปที่ **claude.ai/code/routines** → routine ของคุณ → **Edit**
+
+ลบ prompt เก่าออก → วาง prompt ใหม่จาก `prompts/daily-screener.md`
+
+🆕 **สำคัญที่สุด:** prompt v2 บอก Routine ให้ **push ตรงเข้า main** ไม่สร้าง branch ใหม่อีก
+
+### 3. Run now ทดสอบ
+
+กด Run → รอ 5-10 นาที → ครั้งนี้:
+- ✅ Push เข้า main ตรงๆ
+- ✅ ไม่ต้อง merge เอง
+- ✅ GitHub Pages อัพเดทเอง
+
+---
+
+## ⚙️ ปรับแต่ง
+
+### เปลี่ยนสีหลัก
+แก้ `assets/template.html` → section `:root { --pink-strong: ... }`
+
+### เปลี่ยน emoji ของหุ้น
+แก้ใน prompt → field `emoji` ของแต่ละ stock — Routine จะใส่ตามที่บอก
+
+### เพิ่ม/ลด indicator
+แก้ prompt section "STEP 3" — เพิ่ม MACD, Bollinger Bands, ฯลฯ ได้
+
+---
+
+## 📁 Folder Structure
 
 ```
-stock-screener/
+Stock_filter_helper/
 ├── prompts/
-│   └── daily-screener.md      # Prompt ของ Routine
+│   └── daily-screener.md      # Prompt v2 — ภาษาไทยง่ายๆ + push main
 ├── docs/
-│   └── index.html              # หน้าเว็บปัจจุบัน (GitHub Pages serve จากนี่)
+│   └── index.html              # หน้าเว็บปัจจุบัน
 ├── archive/
-│   ├── index.html              # หน้ารายการประวัติ
-│   ├── index.json              # ดัชนีรายงานย้อนหลัง
+│   ├── index.html              # หน้าประวัติย้อนหลัง
+│   ├── index.json              # ดัชนี
 │   └── YYYY-MM-DD.html         # รายงานย้อนหลัง
 ├── assets/
-│   └── template.html           # Template ที่ Routine ใช้สร้าง report
+│   └── template.html           # Template ที่ Routine ใช้สร้าง
 └── README.md
 ```
 
 ---
 
-## ขั้นตอน Deploy ครั้งแรก
+## ⚠️ Disclaimer
 
-### 1. สร้าง GitHub repo
-
-```bash
-cd /path/to/stock-screener
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/stock-screener.git
-git push -u origin main
-```
-
-### 2. เปิด GitHub Pages
-
-1. ไปที่ repo → **Settings** → **Pages**
-2. **Source:** Deploy from a branch
-3. **Branch:** `main` / **Folder:** `/docs`
-4. Save
-
-รอ 1-2 นาที จะได้ URL: `https://YOUR_USERNAME.github.io/stock-screener/`
-
-### 3. ตั้งค่า Claude Routine
-
-ไปที่ **claude.ai/code/routines** → **New routine**:
-
-| Field | ค่า |
-|-------|-----|
-| Name | `Daily Stock Screener` |
-| Trigger | Scheduled |
-| Schedule | Weekdays at 07:00 Asia/Bangkok |
-| Environment | Remote |
-| Repository | `YOUR_USERNAME/stock-screener` (ให้ branch push permission) |
-| Connectors | (ไม่ต้องเลือก — ใช้ web_search ในตัว) |
-
-**Prompt:** copy เนื้อหาจาก `prompts/daily-screener.md` ทั้งหมดวางลงในช่อง prompt ของ Routine
-
-### 4. Test run
-
-กด **Run now** → รอ 3-5 นาที → เช็ค:
-- มี commit ใหม่ใน repo
-- `docs/index.html` ถูก update
-- เว็บที่ deploy แสดง 10 หุ้น
-
----
-
-## วิธีปรับเกณฑ์ screening
-
-แก้ไข `prompts/daily-screener.md` section **Step 1** เปลี่ยน threshold ของ metric ตามที่ต้องการ เช่น:
-
-- เน้นหุ้นเติบโต → ลด P/E threshold ลง, เพิ่ม Revenue growth threshold
-- เน้นหุ้น dividend → เพิ่มเกณฑ์ dividend yield > 2%
-- เน้น mid cap → ลด market cap threshold เหลือ $2B-$10B
-
-หลังแก้ commit + push → Routine จะใช้เกณฑ์ใหม่ในรอบถัดไป
-
----
-
-## Troubleshooting
-
-**Routine ทำงานแล้วแต่ docs/index.html ไม่ update:**
-- เช็ค repository permissions ว่ามี branch push ไหม
-- เช็ค Routine logs ที่ claude.ai/code/routines
-
-**GitHub Pages ไม่ขึ้น:**
-- รอ 5-10 นาทีหลัง push (deploy ใช้เวลา)
-- เช็คใน Settings → Pages ว่า source ถูกต้อง
-
-**ข้อมูลหุ้นไม่ตรง real-time:**
-- Yahoo Finance ฟรี delay ~15-20 นาที — เป็นเรื่องปกติ
-- Routine ออกแบบให้รัน pre-market ก่อนตลาดเปิด ใช้ข้อมูลปิดของวันก่อน
-
-**Run quota หมด:**
-- Pro plan = 5 routine runs/วัน
-- ถ้ารัน weekdays only ใช้แค่ 1/วัน เหลืออีก 4 ไว้ on-demand
+This is **information only — not investment advice.**  
+ข้อมูลจัดทำเพื่อให้ความรู้เท่านั้น ไม่ใช่คำแนะนำลงทุน  
+หุ้นมีความเสี่ยง ผู้ลงทุนควรศึกษาข้อมูลก่อนตัดสินใจ
