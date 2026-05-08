@@ -1,5 +1,62 @@
-cd /path/to/Stock_filter_helper
-unzip ~/Downloads/auto-merge-workflow.zip
-git add .github/
-git commit -m "Add auto-merge workflow for claude branches"
-git push origin main
+name: Auto-merge claude branches into main
+
+# ทำงานเมื่อ Routine push ไปที่ branch claude/...
+on:
+  push:
+    branches:
+      - 'claude/**'
+
+# ต้องมีสิทธิ์เขียน contents เพื่อ push เข้า main
+permissions:
+  contents: write
+  pull-requests: write
+
+# ป้องกันการ run ซ้ำซ้อนถ้า push มาติดๆ กัน
+concurrency:
+  group: auto-merge-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Merge claude branch into main
+        run: |
+          git checkout main
+          git pull origin main
+          if git merge --no-ff "origin/${{ github.ref_name }}" \
+            -m "Auto-merge ${{ github.ref_name }} into main"; then
+            echo "Merge successful"
+          else
+            echo "Merge conflict detected"
+            git merge --abort
+            exit 1
+          fi
+
+      - name: Push merged main to origin
+        run: git push origin main
+
+      - name: Delete claude branch (cleanup)
+        run: |
+          git push origin --delete "${{ github.ref_name }}" || \
+            echo "Branch already deleted or not found"
+
+      - name: Summary
+        if: success()
+        run: |
+          echo "## Auto-merge complete" >> $GITHUB_STEP_SUMMARY
+          echo "- Source: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Merged into main and deleted source branch" >> $GITHUB_STEP_SUMMARY
