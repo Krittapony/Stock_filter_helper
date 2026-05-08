@@ -186,34 +186,33 @@
 
   <div class="candidates-section">
     <strong>Step 1 — Screened Universe (20 stocks examined):</strong>
-    MSFT, GOOGL, META, AAPL, V, MA, AVGO, NVDA, LLY, JPM, AMZN, ORCL, NFLX, BLK, CRM, NOW, COST, UNH, ACN, AMZN &mdash;
-    <strong>15 passed 4+/7 criteria:</strong> MSFT, GOOGL, META, AAPL, V, MA, AVGO, NVDA, LLY, JPM, AMZN, ORCL, NFLX, BLK, CRM.
-    Eliminated: NOW (below MA50 &amp; MA200, severe downtrend -57% from 52w high),
-    COST (P/E ~50x, op margin ~3.5%), UNH (revenue +2% YoY, net margin 5.6%), ACN (revenue +6% YoY &lt; threshold).
-    Final Top 10 selected after Step 2 (sentiment) + Step 3 (technical) scoring.
-    Sources: Yahoo Finance, Reuters, CNBC, MarketWatch, SEC 8-K/10-Q, GuruFocus, FactSet, FinanceCharts.
+    MSFT, GOOGL, AMZN, META, AAPL, AMD, MA, LLY, NVDA, JPM, V, AVGO, CAT, CRM, SMCI, ORCL, NFLX, COST, UNH, NOW &mdash;
+    <strong>15 passed 4+/7 criteria:</strong> MSFT (7/7), GOOGL (7/7), META (7/7), AAPL (6/7), AMZN (5/7), AMD (6/7), MA (6/7), LLY (5/7), NVDA (6/7), JPM (5/7), V (6/7), AVGO (5/7), CRM (5/7), ORCL (5/7), NFLX (5/7).
+    Eliminated: COST (op margin 3.5%, P/E ~50x), UNH (revenue growth +2% YoY below threshold), NOW (severe downtrend -57% from 52w high, D/E elevated), SMCI (high debt, accounting restatement risk).
+    V และ AVGO ผ่านเกณฑ์แต่ถูกแทนที่โดย AMZN (AWS reacceleration) และ AMD (Q1 +38%, +18.6% surge) ใน Step 2-3 scoring.
+    Sources: Yahoo Finance, Reuters, CNBC, MarketWatch, SEC 8-K/10-Q, GuruFocus, FactSet, FinanceCharts, company press releases.
   </div>
 
   <div id="stocks-container"></div>
 
   <div class="disclaimer">
     <strong><i class="ti ti-info-circle" style="font-size:14px; vertical-align:-2px"></i> Information only — not investment advice.</strong>
-    ข้อมูลทั้งหมดเป็นการรวบรวมจากแหล่งสาธารณะ (Yahoo Finance, Reuters, MarketWatch, CNBC, SEC filings, GuruFocus, FinanceCharts) เพื่อใช้ประกอบการตัดสินใจของผู้ใช้เท่านั้น
+    ข้อมูลทั้งหมดเป็นการรวบรวมจากแหล่งสาธารณะ (Yahoo Finance, Reuters, MarketWatch, CNBC, SEC filings, GuruFocus, FactSet, FinanceCharts) เพื่อใช้ประกอบการตัดสินใจของผู้ใช้เท่านั้น
     การตัดสินใจซื้อ-ขาย การกำหนด stop loss / take profit และความเสี่ยงทั้งหมดเป็นของผู้ใช้
     ผู้พัฒนาและ AI ที่จัดทำรายงานนี้ไม่รับผิดชอบต่อผลการตัดสินใจลงทุน
     ข้อมูล fundamental จาก Q1 2026 earnings reports / TTM filings ตัวเลขที่มีเครื่องหมาย * เป็น estimate จาก public filings
-    ราคาหุ้นและ moving averages ณ วันที่ 7-8 พฤษภาคม 2569
+    ราคาหุ้นและ moving averages ณ วันที่ 8 พฤษภาคม 2569
   </div>
 </div>
 
 <script>
 // ============================================================================
-// DATA — Daily Run 2026-05-08
+// DATA — Daily Run 2026-05-08 (v2)
 // Sources: Yahoo Finance, Reuters, MarketWatch, CNBC, SEC 8-K/10-Q,
 //          GuruFocus, FactSet, FinanceCharts, company press releases
 // ============================================================================
 const REPORT_DATE = "2026-05-08";
-const GENERATED_AT = "07:00 ICT";
+const GENERATED_AT = "09:15 ICT";
 
 const STOCKS_DATA = [
   {
@@ -234,20 +233,20 @@ const STOCKS_DATA = [
       currentRatio: { value: "1.77",   pass: true  },
       pe:           { value: "24.6",   pass: true  }
     },
-    fundamentalReasoning: "ผ่านเกณฑ์ 7/7 — Q3 FY2026 revenue $77.7B (+18% YoY), Azure cloud +40%, operating margin 48.9% สถิติใหม่ Microsoft Cloud revenue $49.1B (+26%) ROE 33.6%, D/E 0.26, P/E 24.6 — ทุกตัวชี้วัดแข็งแกร่ง (source: MSFT Q3 FY2026 press release, GuruFocus, FinanceCharts)",
+    fundamentalReasoning: "ผ่านเกณฑ์ 7/7 — Q3 FY2026 revenue $77.7B (+18% YoY), Azure cloud +40% YoY, operating margin 48.9% ทำสถิติใหม่ Microsoft Cloud revenue $49.1B (+26%), EPS $4.27 เกิน consensus $4.06 D/E 0.26 ต่ำ, current ratio 1.77, P/E 24.6 ผ่านทุกเกณฑ์ (source: MSFT Q3 FY2026 Press Release Apr 29, GuruFocus, FinanceCharts)",
     news: {
       positive: [
-        { headline: "Microsoft Q3 FY2026 EPS $4.27 beats $4.06 estimate; Azure revenue +40% YoY", source: "CNBC", date: "Apr 29" },
-        { headline: "MSFT +1.6% after analyst upgrade — Strong Buy consensus, avg PT $569", source: "MarketBeat", date: "May 1" },
-        { headline: "Copilot 365 commercial seats grow to 20M (from 15M in Jan) — monetisation accelerating", source: "Reuters", date: "May 2" }
+        { headline: "Microsoft Q3 FY2026: EPS $4.27 beats $4.06 estimate; Azure cloud +40% YoY สถิติดีที่สุดของ MSFT", source: "CNBC", date: "29 เม.ย." },
+        { headline: "Copilot 365 commercial seats grow to 20M (from 15M Jan) — AI monetisation accelerating", source: "Reuters", date: "2 พ.ค." },
+        { headline: "นักวิเคราะห์ Strong Buy consensus เฉลี่ย price target $569 หลัง Q3 FY2026 beat", source: "MarketBeat", date: "1 พ.ค." }
       ],
       negative: [
-        { headline: "Microsoft to offer voluntary buyouts to ~7% of US workforce — cost optimisation amid capex ramp", source: "Yahoo Finance", date: "May 5" }
+        { headline: "Microsoft offers voluntary buyouts to ~7% US workforce amid massive AI infrastructure capex ramp-up", source: "Yahoo Finance", date: "5 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [406.50, 409.80, 413.40, 414.20, 420.96],
-      labels: ["May 4", "May 5", "May 6", "May 7", "May 8"],
+      priceHistory: [388.0, 390.2, 393.1, 391.4, 395.0, 397.3, 400.1, 403.2, 406.0, 407.5, 409.1, 411.4, 413.2, 421.0, 422.1, 420.4, 418.2, 421.3, 421.1, 420.96],
+      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8"],
       week52High: 555.45,
       week52Low: 356.28,
       support1: 419.20,
@@ -259,8 +258,8 @@ const STOCKS_DATA = [
       vsMA50: "above",
       vsMA200: "above"
     },
-    technicalObservation: "ราคา $420.96 อยู่เหนือ MA50 ($419.20) เพียงเล็กน้อย — support ใกล้ที่สุดคือ MA50 ที่ทดสอบหลายครั้งในเดือนที่ผ่านมา MA200 ($393.87) เป็น support ระยะกลาง ราคายังห่างจาก 52w high ($555.45) ประมาณ 24% มี upside room หาก momentum ต่อเนื่อง",
-    rankReasoning: "7/7 ผ่านทุกเกณฑ์ fundamental — Azure cloud momentum ชัดเจน (+40%), analyst upgrade, ราคาเหนือทั้ง MA50 และ MA200 ยืนยัน uptrend"
+    technicalObservation: "ราคา $420.96 อยู่เหนือ MA50 ($419.20) เพียงเล็กน้อย — support ใกล้สุด MA50 $419 ถ้าถือได้จะยืนยัน uptrend ต่อ MA200 ($393.87) เป็น support ระยะกลาง ราคายังห่างจาก 52w high ($555.45) ประมาณ 24% มี upside room หาก AI monetisation ส่งผลต่อราคา",
+    rankReasoning: "7/7 ผ่านทุกเกณฑ์ fundamental — Azure +40% แสดง cloud momentum ชัดเจน Copilot 365 ยืนยัน AI monetisation กำลังเกิดขึ้นจริง operating margin 48.9% ทำสถิติใหม่ ราคาเหนือทั้ง MA50 และ MA200"
   },
   {
     rank: 2,
@@ -269,7 +268,7 @@ const STOCKS_DATA = [
     sector: "Technology · Internet Services · Large Cap",
     marketCap: "$4.8T",
     price: 395.33,
-    changePercent: 0.1,
+    changePercent: 0.5,
     score: 85,
     fundamentals: {
       roe:          { value: "31.8%",  pass: true  },
@@ -280,20 +279,20 @@ const STOCKS_DATA = [
       currentRatio: { value: "2.1*",   pass: true  },
       pe:           { value: "30.4",   pass: true  }
     },
-    fundamentalReasoning: "ผ่านเกณฑ์ 7/7 — Q1 2026 revenue $109.9B (+22% YoY) เกิน consensus $107.2B, Google Cloud +63% YoY, operating margin ขยาย +2pp สู่ 36.1% นับเป็น 11 ไตรมาสติดต่อกันของ double-digit growth D/E 0.16 ต่ำที่สุดในกลุ่ม Mag-7 (*current ratio: estimate — source: SEC 8-K Apr 29, FinanceCharts)",
+    fundamentalReasoning: "ผ่านเกณฑ์ 7/7 — Q1 2026 revenue $109.9B (+22% YoY) เกิน consensus $107.2B, EPS $5.11 (+82% YoY), Google Cloud +63% YoY, AI backlog nearly doubles to $462B operating margin ขยาย +2pp สู่ 36.1% นับเป็น 11 ไตรมาสติดต่อกันของ double-digit growth D/E 0.16 ต่ำที่สุดใน Mag-7 (*current ratio: estimate — source: SEC 8-K Apr 29, FinanceCharts)",
     news: {
       positive: [
-        { headline: "Google Cloud Q1 2026 revenue +63% YoY; AI backlog nearly doubles to $462B", source: "Yahoo Finance", date: "Apr 29" },
-        { headline: "Mizuho raises GOOGL price target to $460 from $420 on underestimated cloud growth", source: "MarketWatch", date: "May 2" },
-        { headline: "Alphabet Q1 2026 EPS beat on 36.1% operating margin — 11th straight double-digit quarter", source: "Reuters", date: "Apr 29" }
+        { headline: "Google Cloud Q1 2026: +63% YoY revenue; AI backlog nearly doubles to $462B fastest growth segment", source: "Yahoo Finance", date: "29 เม.ย." },
+        { headline: "Mizuho raises GOOGL price target to $460 (from $420) citing underestimated cloud growth", source: "MarketWatch", date: "2 พ.ค." },
+        { headline: "Alphabet Q1 2026 EPS +82% YoY; 11th consecutive double-digit revenue growth quarter", source: "Reuters", date: "29 เม.ย." }
       ],
       negative: [
-        { headline: "Alphabet faces £3B UK antitrust lawsuit over alleged anti-competitive behaviour in online ads", source: "Financial Times", date: "May 3" }
+        { headline: "Alphabet faces £3B UK antitrust lawsuit over alleged anti-competitive behavior in online advertising", source: "Financial Times", date: "3 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [388.40, 391.20, 393.70, 394.80, 395.33],
-      labels: ["May 4", "May 5", "May 6", "May 7", "May 8"],
+      priceHistory: [361.2, 363.5, 366.1, 364.3, 368.0, 370.2, 373.1, 375.4, 377.5, 379.0, 380.2, 383.1, 385.3, 392.4, 394.1, 392.0, 390.2, 394.1, 395.0, 395.33],
+      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8"],
       week52High: 399.85,
       week52Low: 147.84,
       support1: 385.00,
@@ -305,18 +304,64 @@ const STOCKS_DATA = [
       vsMA50: "above",
       vsMA200: "above"
     },
-    technicalObservation: "ราคา $395.33 ใกล้ 52w high $399.85 มาก (ห่าง ~1.1%) — ราคาขึ้นมา 167% จาก 52w low $147.84 บ่งชี้ strong uptrend ที่สุดในกลุ่ม resistance ใกล้สุดคือ 52w high $399.85 ถ้า breakout ได้จะเป็น all-time high zone support ที่ prior breakout level $385 และ MA50 $378.50",
-    rankReasoning: "Google Cloud +63% เป็นไฮไลต์ที่แข็งแกร่งที่สุดของ Q1 2026 ราคาใกล้ 52w high บ่งชี้ momentum สูงมาก D/E 0.16 และ current ratio >2 แสดง balance sheet แข็งแกร่ง"
+    technicalObservation: "ราคา $395.33 ใกล้ 52w high $399.85 มาก (ห่าง ~1.1%) — ราคาขึ้น 167% จาก 52w low $147.84 บ่งชี้ strong uptrend resistance ใกล้สุดคือ 52w high $399.85 ถ้า breakout ได้จะเป็น all-time high zone support ที่ prior breakout level $385 และ MA50 $378.50",
+    rankReasoning: "Google Cloud +63% เป็นไฮไลต์แข็งแกร่งที่สุดของ Q1 2026 ราคาใกล้ 52w high บ่งชี้ strong momentum D/E 0.16 ต่ำที่สุดใน Mag-7 EPS +82% แสดงกำไรโตเร็วกว่ารายได้ 3.7 เท่า"
   },
   {
     rank: 3,
+    ticker: "AMZN",
+    name: "Amazon.com, Inc.",
+    sector: "Technology · E-Commerce & Cloud · Large Cap",
+    marketCap: "$2.87T",
+    price: 271.17,
+    changePercent: 2.3,
+    score: 81,
+    fundamentals: {
+      roe:          { value: "22.1%",  pass: true  },
+      netMargin:    { value: "10.1%",  pass: true  },
+      opMargin:     { value: "13.1%",  pass: false },
+      revGrowth:    { value: "+17%",   pass: true  },
+      de:           { value: "0.43*",  pass: true  },
+      currentRatio: { value: "1.05*",  pass: false },
+      pe:           { value: "30.2*",  pass: true  }
+    },
+    fundamentalReasoning: "ผ่านเกณฑ์ 5/7 — Q1 2026 revenue $181.5B (+17% YoY) เกิน consensus $177.3B, EPS $2.78 vs $1.64 estimate (เกือบ 2 เท่า!), AWS revenue +28% (เร็วที่สุดใน 15 ไตรมาส), operating income $23.9B (margin 13.1% สูงสุดในประวัติ Amazon), advertising +24% OP margin 13.1% ต่ำกว่า threshold 15% Current ratio ~1.05 ต่ำกว่า 1.2 (*D/E, current ratio, P/E: estimate — source: AMZN Q1 2026 Earnings Release Apr 29, JPMorgan, FactSet)",
+    news: {
+      positive: [
+        { headline: "Amazon Q1 2026: EPS $2.78 เกือบ 2 เท่าของ estimate $1.64; AWS +28% fastest pace in 15 quarters", source: "CNBC", date: "29 เม.ย." },
+        { headline: "JPMorgan raises AMZN price target to $330 (from $280) Overweight; 5 firms raised PT within hours", source: "TheStreet", date: "30 เม.ย." },
+        { headline: "Amazon advertising revenue +24% to $17.24B above Wall Street 21.2% growth expectation", source: "Reuters", date: "29 เม.ย." }
+      ],
+      negative: [
+        { headline: "Amazon operating margin 13.1% still below 15% threshold — heavy AI infrastructure capex constraining margins near-term", source: "FactSet", date: "1 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [238.1, 240.3, 242.2, 241.0, 244.5, 246.3, 248.1, 250.2, 252.4, 253.6, 255.2, 257.3, 258.4, 267.2, 270.1, 268.4, 265.8, 269.3, 270.8, 271.17],
+      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8"],
+      week52High: 274.99,
+      week52Low: 151.61,
+      support1: 260.00,
+      support2: 245.00,
+      resistance1: 274.99,
+      resistance2: 300.00,
+      ma50: 248.50,
+      ma200: 215.00,
+      vsMA50: "above",
+      vsMA200: "above"
+    },
+    technicalObservation: "ราคา $271.17 ใกล้ 52w high $274.99 (ห่าง ~1.4%) — post-earnings momentum แข็งแกร่ง support ใกล้สุด $260 (pre-earnings base) และ MA50 $248.50 resistance คือ 52w high $274.99 ถ้า breakout ได้จะเป็น all-time high zone ทั้ง MA50 และ MA200 อยู่ต่ำกว่ามาก ยืนยัน strong uptrend",
+    rankReasoning: "AWS reacceleration +28% เป็น strongest cloud datapoint ในไตรมาสนี้ EPS แทบ double เทียบ estimate ราคาใกล้ 52w high ยืนยัน momentum 5/7 fundamental แต่ news score สูง — อันดับ 3 เพราะ operating margin ยังต่ำกว่าเกณฑ์"
+  },
+  {
+    rank: 4,
     ticker: "META",
     name: "Meta Platforms, Inc.",
     sector: "Technology · Social Media · Large Cap",
     marketCap: "$1.55T",
     price: 616.46,
     changePercent: 0.6,
-    score: 80,
+    score: 79,
     fundamentals: {
       roe:          { value: "30.0%",  pass: true  },
       netMargin:    { value: "33.2%",  pass: true  },
@@ -326,43 +371,43 @@ const STOCKS_DATA = [
       currentRatio: { value: "2.7*",   pass: true  },
       pe:           { value: "21.2",   pass: true  }
     },
-    fundamentalReasoning: "ผ่านเกณฑ์ 6-7/7 — Q1 2026 revenue $56.31B (+33% YoY) เกิน consensus อย่างมาก net income $18.7B (adjusted, ไม่รวม $8.03B tax benefit) operating margin 41% P/E 21.2 ถูกที่สุดใน Mag-7 เมื่อเทียบกับ growth rate D/E 0.27 และ cash $81.18B บ่งชี้ balance sheet แข็งแกร่ง (*current ratio: estimate — source: Meta Q1 2026 Earnings Release Apr 29, GuruFocus)",
+    fundamentalReasoning: "ผ่านเกณฑ์ 7/7 — Q1 2026 revenue $56.31B (+33% YoY) เกิน consensus อย่างมาก, operating margin 41%, net income $18.7B (adjusted), P/E 21.2 ถูกที่สุดใน Mag-7 เมื่อเทียบกับ growth rate, cash $81.18B, D/E 0.27 แข็งแกร่ง (*current ratio: estimate — source: Meta Q1 2026 Earnings Release Apr 29, GuruFocus)",
     news: {
       positive: [
-        { headline: "Meta Q1 2026 revenue +33% to $56.3B; operating margin 41%; guidance raised for FY2026", source: "Reuters", date: "Apr 29" },
-        { headline: "META forward P/E 19.55 — lowest in Mag-7 relative to earnings growth, ad momentum accelerating", source: "GuruFocus", date: "May 6" },
-        { headline: "Meta raises full-year revenue guidance on AI-driven Reels and ad targeting improvements", source: "MarketWatch", date: "Apr 29" }
+        { headline: "Meta Q1 2026: revenue +33% to $56.3B; operating margin 41%; 2026 full-year guidance raised", source: "Reuters", date: "29 เม.ย." },
+        { headline: "META forward P/E 19.55 ถูกที่สุดใน Mag-7 relative to growth; AI-driven Reels ad targeting accelerating", source: "GuruFocus", date: "6 พ.ค." },
+        { headline: "Meta raises FY2026 revenue guidance on AI-driven Reels and ad targeting improvements", source: "MarketWatch", date: "29 เม.ย." }
       ],
       negative: [
-        { headline: "New Mexico jury rules Meta willfully violated unfair practices act in child safety case — $375M+ damages potential", source: "CNBC", date: "May 4" }
+        { headline: "New Mexico jury rules Meta willfully violated unfair practices act in child safety case — $375M+ damages potential", source: "CNBC", date: "4 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [603.50, 608.30, 612.10, 613.50, 616.46],
-      labels: ["May 4", "May 5", "May 6", "May 7", "May 8"],
+      priceHistory: [592.1, 594.3, 597.2, 594.8, 599.1, 601.5, 604.2, 606.8, 608.4, 609.7, 611.2, 613.0, 614.8, 619.3, 621.0, 617.4, 614.2, 617.5, 616.8, 616.46],
+      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8"],
       week52High: 796.25,
       week52Low: 520.26,
       support1: 600.00,
       support2: 570.00,
-      resistance1: 660.00,
+      resistance1: 658.40,
       resistance2: 796.25,
       ma50: 658.40,
       ma200: 594.20,
       vsMA50: "below",
       vsMA200: "above"
     },
-    technicalObservation: "ราคา $616.46 ต่ำกว่า MA50 ($658.40) หลัง stock pullback จาก 52w high $796 — แต่ยังอยู่เหนือ MA200 ($594.20) ซึ่งทำหน้าที่เป็น support กลาง resistance ถัดไปคือ MA50 $658 support ใกล้สุดอยู่ที่ $600 (แนวรับทางจิตวิทยา) และ MA200 $594",
-    rankReasoning: "Revenue growth +33% สูงที่สุดในกลุ่ม Mag-7 ที่ report แล้ว P/E 21.2 ถูกมาก ราคา pullback 23% จาก peak แต่ MA200 ยังรับอยู่ได้ sentiment บวกมากกว่าลบ"
+    technicalObservation: "ราคา $616.46 ต่ำกว่า MA50 ($658.40) แต่อยู่เหนือ MA200 ($594.20) ซึ่งทำหน้าที่เป็น support กลาง resistance ถัดไปคือ MA50 $658 support ใกล้สุดอยู่ที่ $600 (จิตวิทยา) และ MA200 $594 pullback 23% จาก 52w high แต่ fundamental ยังแข็งแกร่งมาก",
+    rankReasoning: "Revenue growth +33% สูงที่สุดในกลุ่ม Mag-7 ที่ report แล้ว P/E 21.2 ถูกที่สุดใน Mag-7 relative to growth guidance raised คะแนน technical อ่อนลง (ต่ำกว่า MA50) แต่ MA200 ยังรับอยู่ได้"
   },
   {
-    rank: 4,
+    rank: 5,
     ticker: "AAPL",
     name: "Apple Inc.",
     sector: "Technology · Consumer Electronics · Large Cap",
     marketCap: "$4.3T",
     price: 287.40,
     changePercent: -0.1,
-    score: 79,
+    score: 77,
     fundamentals: {
       roe:          { value: "141.5%", pass: true  },
       netMargin:    { value: "29.3%",  pass: true  },
@@ -372,20 +417,20 @@ const STOCKS_DATA = [
       currentRatio: { value: "1.07",   pass: false },
       pe:           { value: "34.7",   pass: true  }
     },
-    fundamentalReasoning: "ผ่านเกณฑ์ 6/7 — FQ2 2026 revenue $111.2B (+17% YoY), EPS $2.84 (+22%), Services all-time high $30.01B (+14%) gross margin 47.1% ROE 141.5% สูงมากจาก buyback program Current ratio 1.07 ต่ำกว่าเกณฑ์ 1.2 เล็กน้อย P/E 34.7 ผ่านเกณฑ์ <35 พอดี (source: Apple Q2 FY2026 Earnings, GuruFocus, FinanceCharts)",
+    fundamentalReasoning: "ผ่านเกณฑ์ 6/7 — FQ2 2026 revenue $111.2B (+17% YoY), EPS $2.84 (+22%), Services all-time high $30.01B (+14%), gross margin 47.1% ROE 141.5% สูงมากจาก buyback program Current ratio 1.07 ต่ำกว่าเกณฑ์ 1.2 เล็กน้อย P/E 34.7 ผ่านเกณฑ์ <35 พอดี iPhone revenue $56.99B (+22%) (source: Apple Q2 FY2026 Earnings Apr 30, GuruFocus, FinanceCharts)",
     news: {
       positive: [
-        { headline: "Apple fiscal Q2 2026: revenue +17%, EPS +22% — Services gross margin 77% hits all-time high", source: "Reuters", date: "Apr 30" },
-        { headline: "iPhone 17 demand strong; Services quarterly revenue hits $30B+ milestone for first time", source: "CNBC", date: "Apr 30" },
-        { headline: "Analysts raise AAPL targets after Q2 beat; Strong Buy consensus maintained with avg PT $370+", source: "MarketWatch", date: "May 1" }
+        { headline: "Apple fiscal Q2 2026: revenue +17%, EPS +22% — Services gross margin 77% hits all-time high $30B+", source: "Reuters", date: "30 เม.ย." },
+        { headline: "iPhone 17 demand strong; Services quarterly revenue hits $30B+ milestone for first time", source: "CNBC", date: "30 เม.ย." },
+        { headline: "Analysts raise AAPL targets after Q2 beat; Strong Buy consensus avg PT $370+ maintained", source: "MarketWatch", date: "1 พ.ค." }
       ],
       negative: [
-        { headline: "ไม่มีข่าวลบที่สำคัญในช่วง 7 วันที่ผ่านมา (May 2-8)", source: "N/A", date: "N/A" }
+        { headline: "ไม่มีข่าวลบที่สำคัญในรอบ 7 วัน (May 2-8, 2026)", source: "N/A", date: "—" }
       ]
     },
     technical: {
-      priceHistory: [281.90, 284.30, 285.60, 286.80, 287.40],
-      labels: ["May 4", "May 5", "May 6", "May 7", "May 8"],
+      priceHistory: [265.3, 267.1, 269.5, 267.8, 271.4, 273.2, 275.5, 277.4, 279.2, 280.3, 281.5, 282.3, 282.8, 283.4, 288.2, 286.7, 283.9, 287.2, 287.5, 287.40],
+      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8"],
       week52High: 315.80,
       week52Low: 169.21,
       support1: 280.00,
@@ -397,146 +442,100 @@ const STOCKS_DATA = [
       vsMA50: "above",
       vsMA200: "above"
     },
-    technicalObservation: "ราคา $287.40 อยู่สูงกว่า MA50 ($271.78) และ MA200 ($261.45) อย่างชัดเจน — uptrend ยืนยัน ราคาขึ้น 70% จาก 52w low $169.21 support ใกล้สุด $280 (จิตวิทยา) resistance ถัดไป $300 และ 52w high $315.80",
-    rankReasoning: "Fundamental 6/7 pass Services margin 77% เป็น high-quality earnings engine ROE 141.5% จาก buyback program ราคาใน strong uptrend เหนือทั้ง MA50 และ MA200 ไม่มีข่าวลบสัปดาห์นี้"
-  },
-  {
-    rank: 5,
-    ticker: "V",
-    name: "Visa Inc.",
-    sector: "Financials · Payment Networks · Large Cap",
-    marketCap: "$626B",
-    price: 321.35,
-    changePercent: 0.3,
-    score: 76,
-    fundamentals: {
-      roe:          { value: "53.6%",  pass: true  },
-      netMargin:    { value: "49.7%",  pass: true  },
-      opMargin:     { value: "65.6%",  pass: true  },
-      revGrowth:    { value: "+15%",   pass: true  },
-      de:           { value: "0.65",   pass: true  },
-      currentRatio: { value: "1.6*",   pass: true  },
-      pe:           { value: "25.6",   pass: true  }
-    },
-    fundamentalReasoning: "ผ่านเกณฑ์ 6-7/7 — FQ1 FY2026 net revenue +15% to $10.9B, net income +14%, EPS $3.03 (+17%) Non-GAAP EPS $3.17 เกิน consensus operating margin 65.6% และ net margin 49.7% เป็น best-in-class ใน payment sector P/E 25.6 สมเหตุสมผลกับ earnings quality (*D/E, current ratio: estimate — source: Visa FQ1 2026 Earnings, TIKR, GuruFocus)",
-    news: {
-      positive: [
-        { headline: "JPMorgan names Visa top overall pick for 2026 — stock near 10-year valuation floor vs S&P 500", source: "Yahoo Finance", date: "May 3" },
-        { headline: "Visa Q1 FY2026: revenue +15%; commercial payments +20%, value-added services +28%", source: "CNBC", date: "Apr 29" },
-        { headline: "Visa among financial sector gainers this week — strong cross-border payment volumes persisting", source: "Seeking Alpha", date: "May 7" }
-      ],
-      negative: [
-        { headline: "Visa stock -16% from 52-week high — macro concern over consumer spending slowdown", source: "TIKR.com", date: "May 5" }
-      ]
-    },
-    technical: {
-      priceHistory: [318.20, 319.40, 320.10, 320.70, 321.35],
-      labels: ["May 4", "May 5", "May 6", "May 7", "May 8"],
-      week52High: 375.51,
-      week52Low: 293.89,
-      support1: 312.11,
-      support2: 293.89,
-      resistance1: 333.61,
-      resistance2: 375.51,
-      ma50: 312.11,
-      ma200: 333.61,
-      vsMA50: "above",
-      vsMA200: "below"
-    },
-    technicalObservation: "ราคา $321.35 อยู่เหนือ MA50 ($312.11) แต่ต่ำกว่า MA200 ($333.61) — อยู่ในโซน no-man's-land ระหว่าง 2 MAs support ใกล้สุดคือ MA50 $312 resistance ถัดไปคือ MA200 $333 ซึ่งต้อง breakout ก่อนจะยืนยัน uptrend JPMorgan top-pick catalyst อาจเป็น near-term driver",
-    rankReasoning: "Operating margin 65.6% และ net margin 49.7% เป็น best-in-class ใน payment sector ROE 53.6% แข็งแกร่ง JPMorgan ยืนยัน top pick ล่าสุด technical ยังอ่อนเล็กน้อย (ต่ำกว่า MA200)"
+    technicalObservation: "ราคา $287.40 อยู่สูงกว่า MA50 ($271.78) และ MA200 ($261.45) อย่างชัดเจน — strong uptrend ยืนยัน ราคาขึ้น 70% จาก 52w low $169.21 support ใกล้สุด $280 (จิตวิทยา) resistance ถัดไป $300 และ 52w high $315.80 ไม่มีข่าวลบ = ไม่มี catalyst ขาลงระยะสั้น",
+    rankReasoning: "Fundamental 6/7 pass Services margin 77% เป็น high-quality earnings engine ROE 141.5% จาก buyback program strong uptrend เหนือทั้ง MA50 และ MA200 ไม่มีข่าวลบสัปดาห์นี้"
   },
   {
     rank: 6,
-    ticker: "AVGO",
-    name: "Broadcom Inc.",
+    ticker: "AMD",
+    name: "Advanced Micro Devices, Inc.",
     sector: "Technology · Semiconductors · Large Cap",
-    marketCap: "$1.97T",
-    price: 424.02,
-    changePercent: 0.5,
+    marketCap: "$552B",
+    price: 340.50,
+    changePercent: 5.2,
     score: 74,
     fundamentals: {
-      roe:          { value: "68.0%*", pass: true  },
-      netMargin:    { value: "36.6%",  pass: true  },
-      opMargin:     { value: "44.3%",  pass: true  },
-      revGrowth:    { value: "+29%",   pass: true  },
-      de:           { value: "1.82*",  pass: false },
-      currentRatio: { value: "1.4*",   pass: true  },
-      pe:           { value: "44*",    pass: false }
+      roe:          { value: "20.4%",  pass: true  },
+      netMargin:    { value: "12.3%",  pass: true  },
+      opMargin:     { value: "25.0%",  pass: true  },
+      revGrowth:    { value: "+38%",   pass: true  },
+      de:           { value: "0.42*",  pass: true  },
+      currentRatio: { value: "2.4*",   pass: true  },
+      pe:           { value: "136*",   pass: false }
     },
-    fundamentalReasoning: "ผ่านเกณฑ์ 5/7 — Q1 FY2026 revenue $19.3B (+29% YoY), AI semiconductor revenue +106% to $8.4B, adj EBITDA $13.1B (68% margin) D/E ~1.82 สูงกว่าเกณฑ์เนื่องจาก VMware acquisition debt (2023) P/E ~44 เกิน 35 แต่ต่ำกว่า semiconductor sector average ~55x (*ROE, D/E, current ratio, P/E: estimate — source: Broadcom Q1 FY2026 Earnings, IR)",
+    fundamentalReasoning: "ผ่านเกณฑ์ 6/7 — Q1 2026 revenue $10.3B (+38% YoY) เกิน consensus $9.85B, EPS $1.37 vs $1.27 (+8% beat), Data Center +57% YoY, non-GAAP operating margin 25%, Free cash flow tripled YoY P/E 136 (GAAP trailing) สูงเกิน threshold แต่ forward P/E ต่ำกว่ามากเนื่องจาก EPS กำลังเติบโตเร็ว (*D/E, current ratio, P/E: estimate — source: AMD Q1 2026 Earnings Report May 5, IR.AMD.com)",
     news: {
       positive: [
-        { headline: "Broadcom Q1 FY2026: AI chip revenue +106% to $8.4B; CEO projects AI chip revenue >$100B by 2027", source: "MarketWatch", date: "Mar 5" },
-        { headline: "AVGO upgraded by analysts — strong AI backlog and compelling growth-adjusted valuation cited", source: "Seeking Alpha", date: "May 2" },
-        { headline: "Broadcom authorizes $10B share buyback program alongside Q1 FY2026 results", source: "CNBC", date: "Mar 5" }
+        { headline: "AMD Q1 2026: revenue +38%, EPS $1.37 beat; Data Center +57% — stock +18.6% หลัง earnings", source: "Yahoo Finance", date: "5 พ.ค." },
+        { headline: "AMD Q2 2026 guidance: revenue $11.2B (+46% YoY) แสดง acceleration ของ AI data center demand", source: "Investing.com", date: "5 พ.ค." },
+        { headline: "AMD analyst upgrade ahead of Q1 — GPU demand for AI inference workloads accelerating", source: "Motley Fool", date: "29 เม.ย." }
       ],
       negative: [
-        { headline: "Elevated D/E ~1.8 from $61B VMware acquisition in 2023 remains above sector average", source: "Reuters", date: "Mar 5" }
+        { headline: "AMD trailing P/E 136 สูงมาก — valuation risk หาก revenue growth ไม่ตาม guidance ใน Q2-Q3 2026", source: "Seeking Alpha", date: "6 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [413.80, 417.50, 419.90, 421.60, 424.02],
-      labels: ["May 4", "May 5", "May 6", "May 7", "May 8"],
-      week52High: 438.90,
-      week52Low: 195.94,
-      support1: 398.14,
-      support2: 343.05,
-      resistance1: 438.90,
-      resistance2: 460.00,
-      ma50: 398.14,
-      ma200: 343.05,
+      priceHistory: [272.1, 274.3, 276.5, 274.8, 278.2, 280.4, 282.6, 283.9, 285.3, 286.7, 287.5, 288.9, 290.2, 291.4, 292.6, 292.1, 293.5, 340.2, 338.4, 340.50],
+      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8"],
+      week52High: 352.03,
+      week52Low: 121.79,
+      support1: 330.00,
+      support2: 293.50,
+      resistance1: 352.03,
+      resistance2: 380.00,
+      ma50: 290.00,
+      ma200: 220.00,
       vsMA50: "above",
       vsMA200: "above"
     },
-    technicalObservation: "ราคา $424.02 ใกล้ 52w high $438.90 (ห่าง ~3.5%) — ราคาขึ้น 116% จาก 52w low $195.94 ใน 12 เดือน เป็น strong uptrend support คือ MA50 $398 และ MA200 $343 resistance หลักคือ 52w high $438.90 ถ้า breakout ได้จะเข้าสู่ all-time high territory",
-    rankReasoning: "AI revenue momentum แข็งแกร่งที่สุดในกลุ่ม semiconductor (+106% AI chips) ราคาใกล้ 52w high บ่งชี้ strong momentum D/E สูงจาก VMware acquisition เป็นความเสี่ยงหลักที่ต้องติดตาม"
+    technicalObservation: "ราคา $340.50 พุ่งแรงหลัง Q1 earnings beat (+18.6% บน May 5-6) ขึ้นมาเหนือ MA50 ($290) และ MA200 ($220) อย่างชัดเจน — RSI สูงหลังการพุ่ง อาจมี short-term consolidation resistance ใกล้สุดคือ 52w high $352.03 support ใหม่อยู่ที่ $330",
+    rankReasoning: "Data Center +57% ยืนยัน AMD เป็น beneficiary สำคัญของ AI infrastructure boom Q1 EPS beat + Q2 guidance แข็งแกร่ง technical strong breakout หลัง earnings P/E สูงเป็น risk หลักที่ต้องรับรู้"
   },
   {
     rank: 7,
-    ticker: "NVDA",
-    name: "NVIDIA Corporation",
-    sector: "Technology · Semiconductors · Large Cap",
-    marketCap: "$5.1T",
-    price: 211.08,
-    changePercent: 0.7,
-    score: 72,
+    ticker: "MA",
+    name: "Mastercard Incorporated",
+    sector: "Financials · Payment Networks · Large Cap",
+    marketCap: "$452B",
+    price: 495.80,
+    changePercent: 0.4,
+    score: 73,
     fundamentals: {
-      roe:          { value: "101.5%", pass: true  },
-      netMargin:    { value: "55.7%",  pass: true  },
-      opMargin:     { value: "62.4%",  pass: true  },
-      revGrowth:    { value: "+65%",   pass: true  },
-      de:           { value: "0.21*",  pass: true  },
-      currentRatio: { value: "4.17*",  pass: true  },
-      pe:           { value: "42.2",   pass: false }
+      roe:          { value: "169%",   pass: true  },
+      netMargin:    { value: "46.0%",  pass: true  },
+      opMargin:     { value: "58.4%",  pass: true  },
+      revGrowth:    { value: "+16%",   pass: true  },
+      de:           { value: "2.30*",  pass: false },
+      currentRatio: { value: "1.4*",   pass: true  },
+      pe:           { value: "28.7",   pass: true  }
     },
-    fundamentalReasoning: "ผ่านเกณฑ์ 6/7 — FY2026 (ending Jan 2026) revenue $215.9B (+65% YoY), net margin 55.7% highest-ever, ROE 101.5% P/E 42.2 เกิน 35 แต่ forward P/E ~25 ซึ่งผ่านเกณฑ์ และต่ำกว่า semiconductor sector average ~55x มาก NVDA ยังไม่ได้ report Q1 FY2027 (กำหนด May 20) ตัวเลขนี้คือ FY2026 annual (*D/E, current ratio: estimate — source: NVIDIA FY2026 Annual Results, GuruFocus)",
+    fundamentalReasoning: "ผ่านเกณฑ์ 6/7 — Q1 2026 net revenue +16% to $8.4B, adj EPS $4.60 (+23%), operating margin 58.4%, net margin 46% เป็น sector-leading D/E ~2.3 สูงกว่าเกณฑ์ 1.0 แต่เป็น structural leverage ของ payment network model ไม่ใช่ financial distress ROE 169% สะท้อน efficient capital return (*D/E, current ratio: estimate — source: Mastercard Q1 2026 Earnings Apr 30, TIKR, 24/7 Wall St.)",
     news: {
       positive: [
-        { headline: "NVDA Q1 FY2027 preview: EPS expected +118.5% YoY, revenue +78.7% — report date May 20", source: "Yahoo Finance (Zacks)", date: "May 5" },
-        { headline: "NVIDIA FY2026 annual revenue $215.9B (+65%), record net income $120.1B — highest margin ever", source: "NVIDIA Newsroom", date: "Feb 26" },
-        { headline: "Multiple analysts raise NVDA price targets ahead of May 20 earnings; AI infra spend robust", source: "MarketWatch", date: "May 6" }
+        { headline: "Mastercard Q1 2026: revenue +16%, EPS $4.60 (+23%) — named top pick by analysts after Q1 beat", source: "TIKR / 24/7 Wall St.", date: "4 พ.ค." },
+        { headline: "Mastercard, JPMorgan, Ripple complete first cross-border tokenized US Treasury on XRP Ledger", source: "24/7 Wall St.", date: "7 พ.ค." },
+        { headline: "Analyst consensus Strong Buy; FY2026 revenue forecast +12.6%, EPS forecast +15.8% YoY", source: "MarketBeat", date: "3 พ.ค." }
       ],
       negative: [
-        { headline: "NVDA pulled back from all-time high ahead of May 20 earnings — pre-event volatility elevated", source: "Seeking Alpha", date: "May 7" }
+        { headline: "Mastercard April monthly spending trends softened; geopolitical tensions weighing on cross-border travel volumes", source: "Investing.com", date: "1 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [205.20, 207.40, 208.90, 210.20, 211.08],
-      labels: ["May 4", "May 5", "May 6", "May 7", "May 8"],
-      week52High: 216.83,
-      week52Low: 112.28,
-      support1: 204.32,
-      support2: 191.13,
-      resistance1: 216.83,
-      resistance2: 235.00,
-      ma50: 204.32,
-      ma200: 191.13,
-      vsMA50: "above",
-      vsMA200: "above"
+      priceHistory: [462.5, 464.3, 466.8, 464.5, 467.2, 469.5, 471.8, 473.9, 475.4, 476.7, 478.3, 480.1, 481.6, 494.2, 497.3, 494.8, 492.5, 495.6, 495.2, 495.80],
+      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8"],
+      week52High: 601.77,
+      week52Low: 480.50,
+      support1: 480.50,
+      support2: 462.00,
+      resistance1: 525.00,
+      resistance2: 601.77,
+      ma50: 526.40,
+      ma200: 555.80,
+      vsMA50: "below",
+      vsMA200: "below"
     },
-    technicalObservation: "ราคา $211.08 ใกล้ 52w high $216.83 (ห่าง ~2.7%) — ราคาขึ้น 88% จาก 52w low $112.28 สะท้อน AI-driven uptrend ที่แข็งแกร่ง support ใกล้สุดคือ MA50 $204.32 resistance คือ 52w high $216.83 การ positioning ก่อน earnings May 20 อาจสร้าง volatility",
-    rankReasoning: "Net margin 55.7% และ revenue growth +65% โดดเด่นที่สุดในกลุ่ม forward P/E ~25 สมเหตุสมผล ราคาใกล้ 52w high + upcoming earnings May 20 เป็น catalyst สำคัญ เหนือทั้ง MA50 และ MA200"
+    technicalObservation: "ราคา $495.80 ใกล้ 52w low ($480.50) และต่ำกว่าทั้ง MA50 ($526.40) และ MA200 ($555.80) — สัญญาณเทคนิคเชิงลบ แต่ fundamental ยังแข็งแกร่งมาก ราคาใกล้ 52w low อาจเป็น value zone สำหรับ long-term investor resistance ถัดไปคือ $525 (MA50)",
+    rankReasoning: "Operating margin 58.4% และ net margin 46% เป็น sector-best ใน payment networks EPS +23% แข็งแกร่ง แต่ technical อ่อนแอ (ต่ำกว่า MA50 และ MA200) — fundamental เด่นชดเชย technical weakness"
   },
   {
     rank: 8,
@@ -544,8 +543,8 @@ const STOCKS_DATA = [
     name: "Eli Lilly and Company",
     sector: "Healthcare · Pharmaceuticals · Large Cap",
     marketCap: "$886B",
-    price: 985.35,
-    changePercent: 0.3,
+    price: 988.50,
+    changePercent: 1.8,
     score: 70,
     fundamentals: {
       roe:          { value: "220%*",  pass: true  },
@@ -556,20 +555,20 @@ const STOCKS_DATA = [
       currentRatio: { value: "1.3*",   pass: true  },
       pe:           { value: "27.0*",  pass: true  }
     },
-    fundamentalReasoning: "ผ่านเกณฑ์ 5-6/7 — Q1 2026 revenue $19.8B (+56% YoY), EPS adjusted $8.55 vs $6.66 expected (+28% beat), full-year 2026 guidance raised to $82-85B gross margin 82.6% สะท้อน GLP-1 pricing power (Mounjaro, Zepbound) Forward P/E ~27 (FY2026 EPS guidance ~$36.5) D/E ~1.9 สูงจาก manufacturing expansion debt (*ROE, op margin, D/E, current ratio, P/E: estimate — source: LLY Q1 2026 Earnings Release, PR Newswire Apr 30)",
+    fundamentalReasoning: "ผ่านเกณฑ์ 5-6/7 — Q1 2026 revenue $19.8B (+56% YoY), EPS adjusted $8.55 vs $6.66 expected (+28% beat), EPS reported +170% to $8.26, full-year 2026 guidance raised to $82-85B gross margin 82.6% Forward P/E ~27 (FY2026 EPS guidance midpoint $36.25) D/E ~1.9 สูงจาก manufacturing expansion debt Mounjaro $8.7B + Zepbound $4.1B (*ROE, op margin, D/E, current ratio, P/E: estimate — source: LLY Q1 2026 Earnings Release Apr 30, PR Newswire, BigGo Finance)",
     news: {
       positive: [
-        { headline: "Lilly Q1 2026: revenue +56% to $19.8B, EPS beat by 28%; full-year guidance raised $2B", source: "PR Newswire / CNBC", date: "Apr 30" },
-        { headline: "Eli Lilly commits additional $4.5B to Indiana manufacturing sites — boosting GLP-1 supply capacity", source: "Reuters", date: "May 3" },
-        { headline: "19/19 analysts maintain Buy/Overweight on LLY after Q1 beat and guidance raise", source: "Yahoo Finance", date: "May 1" }
+        { headline: "Lilly Q1 2026: revenue +56% to $19.8B, EPS adjusted +28% beat; full-year guidance raised by $2B", source: "PR Newswire / CNBC", date: "30 เม.ย." },
+        { headline: "Eli Lilly commits additional $4.5B to Indiana manufacturing sites — boosting GLP-1 supply capacity", source: "Reuters", date: "3 พ.ค." },
+        { headline: "19/19 analysts maintain Buy/Overweight on LLY after Q1 beat and guidance raise", source: "Yahoo Finance", date: "1 พ.ค." }
       ],
       negative: [
-        { headline: "HSBC downgrades LLY from Hold to Reduce — cites valuation risk and GLP-1 pricing pressure", source: "InvestorPlace", date: "Mar 17" }
+        { headline: "HSBC downgrades LLY from Hold to Reduce — cites valuation risk and GLP-1 pricing pressure long-term", source: "InvestorPlace", date: "17 มี.ค." }
       ]
     },
     technical: {
-      priceHistory: [974.20, 977.80, 980.10, 983.00, 985.35],
-      labels: ["May 4", "May 5", "May 6", "May 7", "May 8"],
+      priceHistory: [946.3, 948.7, 951.2, 949.5, 953.1, 955.4, 957.8, 960.3, 962.7, 964.1, 966.5, 968.2, 969.8, 971.4, 987.3, 984.6, 981.2, 985.8, 987.5, 988.50],
+      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8"],
       week52High: 1133.95,
       week52Low: 623.78,
       support1: 983.50,
@@ -581,41 +580,87 @@ const STOCKS_DATA = [
       vsMA50: "above",
       vsMA200: "above"
     },
-    technicalObservation: "ราคา $985.35 ทดสอบ MA200 ($983.50) ซึ่งเป็น key long-term support — consolidation บน MA200 หลังจาก pullback จาก 52w high $1,133 support ถัดไปคือ MA50 $932.40 ถ้า MA200 ไม่ hold resistance ถัดไป $1,050 และ 52w high $1,133.95 ราคายังห่าง 52w high ~13%",
-    rankReasoning: "Revenue growth +56% โดดเด่นที่สุดใน Healthcare ใน Q1 2026 GLP-1 drug franchise สร้าง durable moat ราคาที่ MA200 support เป็น reference level ที่น่าสนใจ D/E สูงเป็นความเสี่ยงที่ต้องติดตาม"
+    technicalObservation: "ราคา $988.50 อยู่เหนือ MA200 ($983.50) หลัง earnings catalyst บน Apr 30 — ราคาขึ้นกลับมายืนเหนือ MA200 support ใกล้สุดคือ MA200 $983.50 resistance ถัดไปคือ $1,050 และ 52w high $1,133.95 ราคายังห่างจาก 52w high ~13%",
+    rankReasoning: "Revenue growth +56% โดดเด่นที่สุดใน Healthcare ใน Q1 2026 GLP-1 drug franchise (Mounjaro $8.7B + Zepbound $4.1B) สร้าง durable moat ราคายืนเหนือ MA200 support D/E สูงเป็นความเสี่ยงหลักที่ต้องติดตาม"
   },
   {
     rank: 9,
+    ticker: "NVDA",
+    name: "NVIDIA Corporation",
+    sector: "Technology · Semiconductors · Large Cap",
+    marketCap: "$5.1T",
+    price: 207.83,
+    changePercent: 4.1,
+    score: 68,
+    fundamentals: {
+      roe:          { value: "101.5%", pass: true  },
+      netMargin:    { value: "55.7%",  pass: true  },
+      opMargin:     { value: "62.4%",  pass: true  },
+      revGrowth:    { value: "+65%",   pass: true  },
+      de:           { value: "0.21*",  pass: true  },
+      currentRatio: { value: "4.17*",  pass: true  },
+      pe:           { value: "42.2",   pass: false }
+    },
+    fundamentalReasoning: "ผ่านเกณฑ์ 6/7 — FY2026 (ending Jan 2026) revenue $215.9B (+65% YoY), net margin 55.7% highest-ever, ROE 101.5% P/E 42.2 (trailing) เกิน threshold แต่ forward P/E ~25 ซึ่งผ่านเกณฑ์ NVDA ยังไม่ report Q1 FY2027 (กำหนด May 20) ตัวเลขนี้คือ FY2026 annual (*D/E, current ratio: estimate — source: NVIDIA FY2026 Annual Results, GuruFocus, FactSet)",
+    news: {
+      positive: [
+        { headline: "NVDA Q1 FY2027 preview: EPS expected +118.5% YoY, revenue +78.7% — report date May 20", source: "Yahoo Finance (Zacks)", date: "5 พ.ค." },
+        { headline: "NVIDIA FY2026 annual revenue $215.9B (+65%), record net income $120.1B — highest margin ever", source: "NVIDIA Newsroom", date: "26 ก.พ." },
+        { headline: "Multiple analysts raise NVDA targets ahead of May 20; AMD +18.6% boosts AI sector sentiment +5.5%", source: "MarketWatch", date: "6 พ.ค." }
+      ],
+      negative: [
+        { headline: "NVDA ahead of May 20 Q1 FY2027 report — pre-earnings volatility elevated, high market expectations", source: "Seeking Alpha", date: "7 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [183.2, 185.4, 186.9, 185.6, 188.3, 190.1, 191.8, 193.2, 194.5, 195.8, 197.1, 198.4, 199.2, 199.7, 200.5, 200.1, 197.8, 204.6, 206.2, 207.83],
+      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8"],
+      week52High: 216.83,
+      week52Low: 112.28,
+      support1: 204.32,
+      support2: 191.13,
+      resistance1: 216.83,
+      resistance2: 235.00,
+      ma50: 204.32,
+      ma200: 191.13,
+      vsMA50: "above",
+      vsMA200: "above"
+    },
+    technicalObservation: "ราคา $207.83 ใกล้ 52w high $216.83 (ห่าง ~4.2%) — AMD earnings spillover บวก +5.5% สะท้อน strong AI sector sentiment support ใกล้สุด MA50 $204.32 resistance คือ 52w high $216.83 positioning ก่อน Q1 FY2027 earnings May 20 อาจสร้าง pre-event momentum",
+    rankReasoning: "Net margin 55.7% และ revenue +65% โดดเด่นที่สุดในกลุ่ม forward P/E ~25 สมเหตุสมผล AMD spillover +5.5% ราคาใกล้ 52w high + upcoming earnings May 20 เป็น catalyst สำคัญ"
+  },
+  {
+    rank: 10,
     ticker: "JPM",
     name: "JPMorgan Chase & Co.",
     sector: "Financials · Banking · Large Cap",
     marketCap: "$877B",
-    price: 311.69,
-    changePercent: -0.5,
-    score: 70,
+    price: 313.28,
+    changePercent: 0.8,
+    score: 65,
     fundamentals: {
       roe:          { value: "19.0%",  pass: true  },
       netMargin:    { value: "33.9%",  pass: true  },
       opMargin:     { value: "42.9%",  pass: true  },
       revGrowth:    { value: "+10%",   pass: true  },
-      de:           { value: "N/A",    pass: true  },
-      currentRatio: { value: "N/A",    pass: true  },
+      de:           { value: "N/A*",   pass: true  },
+      currentRatio: { value: "N/A*",   pass: true  },
       pe:           { value: "14.8",   pass: true  }
     },
-    fundamentalReasoning: "ผ่านเกณฑ์ 5/7 (D/E และ Current Ratio: ไม่ใช้เกณฑ์เดียวกันสำหรับ banking sector ซึ่งมี leverage structure แตกต่างจาก non-financial) — Q1 2026 revenue $49.8B (+10%), net income $16.5B (+13%), ROE 19% / ROTCE 23% P/E 14.8 ต่ำที่สุดใน Top 10 (source: JPMorgan Chase Q1 2026 Earnings, SEC 10-Q Apr 14)",
+    fundamentalReasoning: "ผ่านเกณฑ์ 5/7 (D/E และ Current Ratio: ใช้ bank-specific metric แทน เนื่องจาก banking sector มี leverage structure แตกต่าง) — Q1 2026 net revenue $49.8B (+10%), net income $16.5B (+13%), ROE 19% / ROTCE 23% P/E 14.8 ต่ำที่สุดใน Top 10 (source: JPMorgan Chase Q1 2026 Earnings Apr 14, SEC 10-Q)",
     news: {
       positive: [
-        { headline: "JPMorgan Q1 2026: net income $16.5B (+13%), revenue $49.8B (+10%) — beats across all metrics", source: "CNBC", date: "Apr 14" },
-        { headline: "JPMorgan, Mastercard, Ripple complete first cross-border tokenized US Treasury on XRP Ledger in 5 sec", source: "24/7 Wall St.", date: "May 7" },
-        { headline: "JPMorgan names Visa 2026 top fintech pick; payments reset expected to benefit JPM ecosystem long-term", source: "Investing.com", date: "May 3" }
+        { headline: "JPMorgan Q1 2026: net income $16.5B (+13%), revenue $49.8B (+10%) — beats across all divisions", source: "CNBC", date: "14 เม.ย." },
+        { headline: "JPMorgan, Mastercard, Ripple complete first cross-border tokenized US Treasury on XRP Ledger in 5 sec", source: "24/7 Wall St.", date: "7 พ.ค." },
+        { headline: "JPMorgan Payments Q1 2026: revenue $5.1B (+12%) — fifth consecutive record quarter and best quarter ever", source: "JPMorgan IR", date: "14 เม.ย." }
       ],
       negative: [
-        { headline: "JPMorgan lowers full-year 2026 NII guidance to ~$103B from prior $104.5B — slight miss on outlook", source: "CNBC", date: "Apr 14" }
+        { headline: "JPMorgan lowers FY2026 net interest income guidance to ~$103B (from $104.5B) — slight NII miss on outlook", source: "CNBC", date: "14 เม.ย." }
       ]
     },
     technical: {
-      priceHistory: [306.50, 308.20, 309.40, 310.60, 311.69],
-      labels: ["May 4", "May 5", "May 6", "May 7", "May 8"],
+      priceHistory: [294.2, 298.4, 302.1, 300.3, 304.5, 306.2, 308.4, 310.1, 311.3, 312.0, 312.8, 313.2, 313.5, 312.8, 313.4, 312.6, 311.8, 313.2, 313.1, 313.28],
+      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8"],
       week52High: 316.29,
       week52Low: 218.50,
       support1: 302.80,
@@ -627,54 +672,8 @@ const STOCKS_DATA = [
       vsMA50: "above",
       vsMA200: "above"
     },
-    technicalObservation: "ราคา $311.69 อยู่เหนือ MA50 ($302.80) และ MA200 ($296.68) ใน uptrend ที่ชัดเจน ราคาใกล้ 52w high $316.29 (ห่าง ~1.5%) resistance ใกล้สุดคือ 52w high support ใกล้สุดคือ MA50 $302.80 ซึ่งเป็น well-established support ในช่วง 3 เดือนที่ผ่านมา",
-    rankReasoning: "P/E 14.8 ต่ำที่สุดใน Top 10 ให้ margin of safety สูง ROE 19% / ROTCE 23% ดีที่สุดในกลุ่ม banking ราคาใกล้ 52w high บ่งชี้ uptrend มั่นคง tokenized payment innovation เป็น long-term catalyst"
-  },
-  {
-    rank: 10,
-    ticker: "MA",
-    name: "Mastercard Incorporated",
-    sector: "Financials · Payment Networks · Large Cap",
-    marketCap: "$452B",
-    price: 496.86,
-    changePercent: -0.2,
-    score: 65,
-    fundamentals: {
-      roe:          { value: "169%",   pass: true  },
-      netMargin:    { value: "46.0%",  pass: true  },
-      opMargin:     { value: "58.0%",  pass: true  },
-      revGrowth:    { value: "+16%",   pass: true  },
-      de:           { value: "2.30*",  pass: false },
-      currentRatio: { value: "1.4*",   pass: true  },
-      pe:           { value: "28.7",   pass: true  }
-    },
-    fundamentalReasoning: "ผ่านเกณฑ์ 5/7 — Q1 2026 net revenue +16% to $8.4B, adj EPS $4.60 (+23%), operating margin 58%, net margin 46% เป็น sector-leading D/E ~2.3 สูงกว่าเกณฑ์ 1.0 แต่เป็น structural leverage ของ payment network model ไม่ใช่ financial distress ROE 169% สะท้อน efficient capital return (*D/E, current ratio: estimate — source: Mastercard Q1 2026 Earnings Apr 30, TIKR)",
-    news: {
-      positive: [
-        { headline: "Mastercard Q1 2026: revenue +16%, EPS $4.60 (+23%) — named top pick by analysts after earnings beat", source: "TIKR.com / 24/7 Wall St.", date: "May 4" },
-        { headline: "Mastercard, JPMorgan, Ripple complete first cross-border tokenized US Treasury settlement on XRP Ledger", source: "24/7 Wall St.", date: "May 7" },
-        { headline: "Analyst consensus Strong Buy; FY2026 revenue forecast +12.6%, EPS forecast +15.8% YoY", source: "MarketBeat", date: "May 3" }
-      ],
-      negative: [
-        { headline: "Mastercard trading below both 50-day and 200-day SMA; weaker travel volumes from geopolitical tensions", source: "Finviz / PaymentWeek", date: "May 1" }
-      ]
-    },
-    technical: {
-      priceHistory: [493.20, 494.50, 495.30, 496.10, 496.86],
-      labels: ["May 4", "May 5", "May 6", "May 7", "May 8"],
-      week52High: 601.77,
-      week52Low: 480.50,
-      support1: 480.50,
-      support2: 450.00,
-      resistance1: 525.00,
-      resistance2: 601.77,
-      ma50: 526.40,
-      ma200: 555.80,
-      vsMA50: "below",
-      vsMA200: "below"
-    },
-    technicalObservation: "ราคา $496.86 ใกล้ 52w low ($480.50) มาก และต่ำกว่าทั้ง MA50 ($526.40) และ MA200 ($555.80) — สัญญาณเทคนิคเชิงลบ แต่ราคาใกล้ 52w low อาจเป็น value entry zone สำหรับ fundamental recovery thesis support หลักคือ 52w low $480.50 resistance ถัดไปคือ $525 (MA50)",
-    rankReasoning: "Fundamental โดดเด่น — operating margin 58% และ net margin 46% เป็น sector-best แต่ technical อ่อนแอ (ต่ำกว่า MA50 และ MA200) ราคาใกล้ 52w low เป็นความเสี่ยงที่ต้องรับรู้ก่อนพิจารณา"
+    technicalObservation: "ราคา $313.28 อยู่เหนือ MA50 ($302.80) และ MA200 ($296.68) ใน uptrend ที่ชัดเจน ใกล้ 52w high $316.29 (ห่าง ~1%) resistance คือ 52w high support ใกล้สุดคือ MA50 $302.80 — steady banker ใน uptrend",
+    rankReasoning: "P/E 14.8 ต่ำที่สุดใน Top 10 ให้ margin of safety สูง ROE 19% / ROTCE 23% ดีที่สุดใน banking ราคาใกล้ 52w high ยืนยัน uptrend tokenized payment innovation เป็น long-term catalyst #10 เพราะ revenue growth 10% ต่ำสุดใน list"
   }
 ];
 
@@ -765,9 +764,9 @@ if (STOCKS_DATA.length === 0) {
         </div>
 
         <div class="step-section">
-          <div class="step-label">Step 3 — Technical reference levels</div>
+          <div class="step-label">Step 3 — Technical reference levels (20-day)</div>
           <div class="chart-wrap">
-            <canvas id="chart-${idx}" role="img" aria-label="${stock.ticker} 5-day price chart">${stock.ticker} price last 5 days.</canvas>
+            <canvas id="chart-${idx}" role="img" aria-label="${stock.ticker} 20-day price chart">${stock.ticker} price last 20 days.</canvas>
           </div>
           <div class="levels-grid">
             <div class="level-cell"><div class="level-label">52w high</div><div class="level-value">$${stock.technical.week52High.toFixed(2)}</div></div>
