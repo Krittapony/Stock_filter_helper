@@ -1,3 +1,9 @@
 {
-  "reports": []
+  "reports": [
+    {
+      "date": "2026-05-08",
+      "url": "2026-05-08.html",
+      "topPicks": ["MSFT", "GOOGL", "META", "AAPL", "V", "AVGO", "NVDA", "LLY", "JPM", "MA"]
+    }
+  ]
 }
