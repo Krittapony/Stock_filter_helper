@@ -1,0 +1,5 @@
+cd /path/to/Stock_filter_helper
+unzip ~/Downloads/auto-merge-workflow.zip
+git add .github/
+git commit -m "Add auto-merge workflow for claude branches"
+git push origin main
