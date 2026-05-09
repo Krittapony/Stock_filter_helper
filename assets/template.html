@@ -444,7 +444,7 @@
 <script>
 // ============== ROUTINE: REPLACE BELOW ==============
 const REPORT_DATE = "2026-05-08";
-const GENERATED_AT = "07:00 น.";
+const GENERATED_AT_ISO = "";
 
 const STOCKS_DATA = [
   {
@@ -508,8 +508,21 @@ const STOCKS_DATA = [
 
 // =============== RENDERING ===============
 document.getElementById('report-date').textContent = REPORT_DATE;
-document.getElementById('generated-at').textContent = GENERATED_AT;
+document.getElementById('generated-at').textContent = formatGeneratedAt(GENERATED_AT_ISO);
 document.getElementById('count-badge').textContent = `🎯 ${STOCKS_DATA.length} หุ้นเด็ด`;
+
+function formatGeneratedAt(iso) {
+  if (!iso) return "—";
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "—";
+  const datePart = new Intl.DateTimeFormat('th-TH', {
+    day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Bangkok'
+  }).format(d);
+  const timePart = new Intl.DateTimeFormat('th-TH', {
+    hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Bangkok'
+  }).format(d);
+  return `${datePart} · ${timePart} น.`;
+}
 
 const RANK_CLASS = { 1: "rank-1", 2: "rank-2", 3: "rank-3" };
 const MEDAL_CLASS = { 1: "gold", 2: "silver", 3: "bronze" };

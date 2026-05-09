@@ -190,13 +190,27 @@ git push origin main
 
 ```javascript
 // ============== ROUTINE: REPLACE BELOW ==============
+const REPORT_DATE = "YYYY-MM-DD";
+const GENERATED_AT_ISO = "YYYY-MM-DDTHH:MM:SS+07:00";
 const STOCKS_DATA = [...];
-const REPORT_DATE = "...";
-const GENERATED_AT = "...";
 // ============== ROUTINE: REPLACE ABOVE ==============
 ```
 
 แทนที่เฉพาะส่วนระหว่าง marker นี้เท่านั้น ส่วนอื่นใน HTML **ห้ามแก้**
+
+### `GENERATED_AT_ISO` — เวลาที่สร้างจริง
+
+ใช้เวลา **ตอนที่ routine กำลัง build HTML** (ไม่ใช่ hard-code "08:00 น.")  
+รูปแบบ: ISO 8601 พร้อม timezone `+07:00` (Asia/Bangkok)
+
+วิธีหาค่า:
+```bash
+date '+%Y-%m-%dT%H:%M:%S+07:00'
+# ตัวอย่าง output: 2026-05-09T07:32:15+07:00
+```
+
+⚠️ JS ฝั่ง browser จะ format เป็นภาษาไทยอัตโนมัติ (เช่น `9 พ.ค. 2569 · 07:32 น.`) — routine ไม่ต้องแปลงเอง  
+❌ ห้ามใส่ string ภาษาไทยตรงๆ ลง `GENERATED_AT_ISO` (เช่น `"08:00 น."`) จะทำให้ format พัง
 
 ---
 
