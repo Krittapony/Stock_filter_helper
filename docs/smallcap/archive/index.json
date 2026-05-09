@@ -1,3 +1,9 @@
 {
-  "reports": []
+  "reports": [
+    {
+      "date": "2026-05-09",
+      "url": "2026-05-09.html",
+      "topPicks": ["GRRR", "RCAT", "EVER", "UMAC", "PGY", "AEVA", "CODA", "DUOT", "RNGR", "SERV"]
+    }
+  ]
 }
