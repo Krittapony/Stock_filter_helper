@@ -68,17 +68,35 @@ git push origin main
 ```
 Stock_filter_helper/
 ├── prompts/
-│   └── daily-screener.md      # Prompt v2 — ภาษาไทยง่ายๆ + push main
-├── docs/                       # ⭐ GitHub Pages serve จากที่นี่
-│   ├── index.html              # หน้าเว็บปัจจุบัน (รายงานวันล่าสุด)
-│   └── archive/                # ประวัติย้อนหลังทั้งหมดอยู่ใน docs/
-│       ├── index.html          # หน้าประวัติย้อนหลัง
-│       ├── index.json          # ดัชนี (อ่านก่อน append, ห้าม overwrite)
-│       └── YYYY-MM-DD.html     # รายงานย้อนหลังของแต่ละวัน
+│   ├── daily-screener.md       # Prompt: หุ้นใหญ่ (default theme)
+│   └── daily-smallcap.md       # Prompt: หุ้นเล็กดาวรุ่ง ราคา < $20 (smallcap theme)
+├── docs/                        # ⭐ GitHub Pages serve จากที่นี่
+│   ├── index.html               # หน้าหุ้นใหญ่ (รายงานวันล่าสุด)
+│   ├── archive/                 # ประวัติของหุ้นใหญ่
+│   │   ├── index.html
+│   │   ├── index.json
+│   │   └── YYYY-MM-DD.html
+│   └── smallcap/                # 🌱 section หุ้นเล็กดาวรุ่ง
+│       ├── index.html           # หน้าหุ้นเล็กวันล่าสุด
+│       └── archive/             # ประวัติของหุ้นเล็ก (แยก index.json เป็นของตัวเอง)
+│           ├── index.html
+│           ├── index.json
+│           └── YYYY-MM-DD.html
 ├── assets/
-│   └── template.html           # Template ที่ Routine ใช้สร้าง
+│   └── template.html            # Template ใช้ร่วมกัน 2 routine — เปลี่ยน theme ผ่าน REPORT_THEME
 └── README.md
 ```
+
+## 🌱 Two Routines
+
+repo นี้รองรับ 2 routines ใน claude.ai/code/routines (แยกกันชัด):
+
+| Routine | Prompt | Output | Theme |
+|---------|--------|--------|-------|
+| หุ้นใหญ่ | `prompts/daily-screener.md` | `docs/index.html` | default (ส้ม-ชมพู) |
+| หุ้นเล็กดาวรุ่ง | `prompts/daily-smallcap.md` | `docs/smallcap/index.html` | smallcap (น้ำเงิน-ม่วง) + extra disclaimer |
+
+ทั้ง 2 routines ใช้ `assets/template.html` ตัวเดียวกัน ต่างกันที่ `REPORT_THEME` constant ในส่วน routine block
 
 ---
 

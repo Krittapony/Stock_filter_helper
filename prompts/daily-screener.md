@@ -192,11 +192,17 @@ git push origin main
 // ============== ROUTINE: REPLACE BELOW ==============
 const REPORT_DATE = "YYYY-MM-DD";
 const GENERATED_AT_ISO = "YYYY-MM-DDTHH:MM:SS+07:00";
+const REPORT_TITLE = "📊 หุ้นเด็ดวันนี้";
+const REPORT_SUBTITLE = "Top 10 หุ้น US ที่น่าจับตามองวันนี้ — คัดเองโดย AI";
+const REPORT_THEME = "default";
 const STOCKS_DATA = [...];
 // ============== ROUTINE: REPLACE ABOVE ==============
 ```
 
 แทนที่เฉพาะส่วนระหว่าง marker นี้เท่านั้น ส่วนอื่นใน HTML **ห้ามแก้**
+
+⚠️ Routine นี้คือ "หุ้นใหญ่" (default theme) — `REPORT_THEME` ต้องเป็น `"default"` เสมอ ห้ามเปลี่ยน
+สำหรับ routine "หุ้นเล็กดาวรุ่ง" ให้ดู `prompts/daily-smallcap.md` (THEME = `"smallcap"`)
 
 ### `GENERATED_AT_ISO` — เวลาที่สร้างจริง
 
