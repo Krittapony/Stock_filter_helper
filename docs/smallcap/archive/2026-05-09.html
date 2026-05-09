@@ -450,7 +450,7 @@
 <script>
 // ============== ROUTINE: REPLACE BELOW ==============
 const REPORT_DATE = "2026-05-09";
-const GENERATED_AT_ISO = "2026-05-09T03:10:00+07:00";
+const GENERATED_AT_ISO = "2026-05-09T11:11:13+07:00";
 const REPORT_TITLE = "🌱 หุ้นเล็กดาวรุ่ง";
 const REPORT_SUBTITLE = "Top 10 หุ้นเล็ก US (ราคา < $20) ที่กำลังเป็นดาวรุ่ง — คัดเองโดย AI";
 const REPORT_THEME = "smallcap";
@@ -468,57 +468,57 @@ const STOCKS_DATA = [
     marketCapThai: "425 ล้านดอลลาร์",
     price: 15.25,
     changePercent: -0.33,
-    score: 75,
-    oneLineSummary: "กำไรต่อหุ้นเกินคาด +33% + นักวิเคราะห์ 3 ราย Strong Buy + รายได้โต 35.7% 🚀",
+    score: 78,
+    oneLineSummary: "Q1 EPS เกินคาด +33% + นักวิเคราะห์ 3 ราย Strong Buy + รายได้โต 35.7% — กำไรจริงใน AI small cap 🚀",
     pros: [
-      "📈 รายได้ปี 2025 โต 35.7% YoY สู่ $101M และ guidance 2026 อยู่ที่ $137-200M",
-      "💰 กำไรจริง — P/E 19.77x บริษัทมีกำไรแล้ว ไม่ใช่แค่โต",
-      "🎯 EPS Q1 beat: $0.32 vs คาด $0.24 (+33% surprise)",
-      "⭐ นักวิเคราะห์ 3 ราย ให้ Strong Buy ทุกคน เป้า $36.67 (+140%)"
+      "📈 รายได้ปี 2025 โต 35.7% YoY สู่ $101M — guidance 2026 อยู่ที่ $137M-$200M",
+      "💰 กำไรจริง P/E ~19.77x ไม่ใช่แค่โตแต่ยังขาดทุน",
+      "🎯 Q1 EPS $0.32 เทียบกับที่คาด $0.24 — surprise +33%",
+      "⭐ นักวิเคราะห์ 3 ราย ให้ Strong Buy พร้อมกัน เป้าเฉลี่ย $36.67 (+140% upside)"
     ],
     cons: [
-      "⚠️ ราคาห่างจาก 52-week high ($27.90) อยู่มาก — ต้องใช้เวลากลับไป",
-      "⚠️ ลูกค้าหลักอยู่ในเอเชีย — ความเสี่ยงด้านภูมิรัฐศาสตร์และสกุลเงิน"
+      "⚠️ ราคาปัจจุบัน $15.25 ยังห่างจาก 52-week high $27.90 ราว 45% — ต้องใช้เวลา",
+      "⚠️ ลูกค้าหลักอยู่ในเอเชีย — ความเสี่ยงภูมิรัฐศาสตร์และอัตราแลกเปลี่ยน"
     ],
     fundamentals: {
-      revGrowth:    { value: "+35.7%",   pass: true,  label: "รายได้โต YoY" },
-      grossMargin:  { value: "~55%",     pass: true,  label: "อัตรากำไรขั้นต้น" },
-      cashVsDebt:   { value: "Cash>Debt",pass: true,  label: "เงินสด>หนี้" },
-      opCashFlow:   { value: "บวก",      pass: true,  label: "กระแสเงินสดธุรกิจ" },
-      insiderBuy:   { value: "ไม่มีข้อมูล", pass: false, label: "ผู้บริหารซื้อหุ้น" },
-      instOwn:      { value: "~35%",     pass: true,  label: "สถาบันถือ" },
-      shortInterest:{ value: "<15%",     pass: true,  label: "Short Interest" }
+      revGrowth:    { value: "+35.7%",    pass: true,  label: "รายได้โต YoY" },
+      grossMargin:  { value: "~55%",      pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "Cash>Debt", pass: true,  label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "บวก",       pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",   pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~35%",      pass: true,  label: "สถาบันถือ" },
+      shortInterest:{ value: "<15%",      pass: true,  label: "Short Interest" }
     },
     news: {
       positive: [
         { emoji: "🚀", headline: "Q1 2026 EPS $0.32 เกินคาด $0.24 — กำไรต่อหุ้น surprise +33%", source: "GlobeNewswire", date: "1 พ.ค." },
-        { emoji: "⬆️", headline: "guidance 2026 ยืนยันรายได้ $137M-$200M หลังผลประกอบการดีกว่าคาด", source: "Seeking Alpha", date: "1 พ.ค." },
-        { emoji: "⭐", headline: "นักวิเคราะห์ 3 ราย Strong Buy ทุกคน เป้าเฉลี่ย $36.67", source: "MarketBeat", date: "5 พ.ค." }
+        { emoji: "⬆️", headline: "ยืนยัน guidance 2026 รายได้ $137M-$200M หลังผลฯดีกว่าคาด", source: "Seeking Alpha", date: "1 พ.ค." },
+        { emoji: "⭐", headline: "นักวิเคราะห์ 3 ราย Strong Buy พร้อมกัน เป้าเฉลี่ย $36.67", source: "MarketBeat", date: "5 พ.ค." }
       ],
       negative: [
-        { emoji: "📉", headline: "ราคาปัจจุบัน $15.25 ยังห่างจาก 52-week high $27.90 ประมาณ 45%", source: "Yahoo Finance", date: "8 พ.ค." }
+        { emoji: "📉", headline: "ราคา $15.25 ยังห่าง 52-week high $27.90 ราว 45% — ต้องใช้เวลาฟื้น", source: "Yahoo Finance", date: "9 พ.ค." }
       ]
     },
     technical: {
       priceHistory: [12.50, 12.85, 12.70, 13.20, 13.45, 13.30, 13.75, 14.10, 13.90, 14.35, 14.55, 14.25, 14.65, 14.95, 14.75, 15.05, 14.85, 15.30, 15.45, 15.25],
       volumeHistory: [820000, 760000, 910000, 1150000, 1230000, 880000, 970000, 1080000, 790000, 940000, 1120000, 850000, 1020000, 1350000, 980000, 1430000, 1080000, 1650000, 1820000, 1560000],
-      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8"],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
       week52High: 27.90,
       week52Low:  9.04,
       support1:   13.50,
       support2:   11.00,
       resistance1:17.00,
       resistance2:21.00,
-      ma20:  14.11,
-      ma50:  12.95,
-      ma200: 11.40,
-      rsi:   63,
+      ma20: 14.11,
+      ma50: 12.95,
+      ma200: null,
+      rsi: 63,
       rsiStatus: "neutral",
       vsMA50:  "above",
       vsMA200: "above"
     },
-    technicalSimple: "ราคาอยู่เหนือ MA20 และ MA50 ทั้งคู่ — แนวโน้มยังเป็นขาขึ้น RSI 63 ไม่ร้อนแรงเกินไป และ Volume เพิ่มขึ้นต่อเนื่อง 10 วัน",
-    rankReasoning: "อันดับ 1 — profitable AI play ที่ยังอยู่ใน small cap แต่กำไรจริง + นักวิเคราะห์เห็นด้วยพร้อมกันทุกคน"
+    technicalSimple: "ราคาอยู่เหนือ MA20 และ MA50 ทั้งคู่ — แนวโน้มขาขึ้น RSI 63 ยังไม่ร้อนแรง Volume เพิ่มขึ้นต่อเนื่อง 10 วัน",
+    rankReasoning: "อันดับ 1 — profitable AI play ที่มีกำไรจริง + นักวิเคราะห์เห็นด้วยพร้อมกันทุกคน + EPS surprise +33%"
   },
   {
     rank: 2,
@@ -527,575 +527,576 @@ const STOCKS_DATA = [
     thaiName: "เรด แคท — โดรนทหาร",
     emoji: "🐱",
     sector: "กลาโหม · โดรนทหาร",
-    whatItDoes: "ผลิตโดรนและอุปกรณ์สำหรับกองทัพสหรัฐ ผ่านมาตรฐาน NDAA (ห้ามอุปกรณ์จีน) — รองรับโครงการ Golden Dome และภารกิจข่าวกรอง",
+    whatItDoes: "ผลิตโดรนสำหรับกองทัพสหรัฐ ผ่านมาตรฐาน NDAA (ห้ามอุปกรณ์จีน) — รองรับโครงการ Golden Dome, บูรณาการกับ Anduril Lattice และร่วมกับยูเครนพัฒนาโดรนรุ่นถัดไป",
     marketCap: "$1.22B",
     marketCapThai: "1.2 พันล้านดอลลาร์",
     price: 10.09,
     changePercent: 1.51,
-    score: 73,
-    oneLineSummary: "รายได้ Q1 2026 โตถึง 849% YoY + สัญญาความมั่นคงแห่งชาติ $60M+ เข้า backlog 🛸",
+    score: 74,
+    oneLineSummary: "รายได้ Q1 พุ่ง 849% YoY + พันธมิตรยูเครน + M&A ต่อเนื่อง — โดรนทหารฟีเวอร์ 🛸",
     pros: [
-      "🚀 รายได้ Q1 2026 พุ่ง 849% YoY แตะ $15.5M — จาก $1.6M ในปีที่แล้ว",
-      "🛡️ ผ่านมาตรฐาน NDAA ทุกรายการ — ได้เปรียบทางกฎหมายชัดเจน",
-      "📋 backlog เพิ่มขึ้น ≥$60M สัญญาความมั่นคงแห่งชาติในไตรมาสเดียว",
-      "🎯 เป้าหมายรายได้ปีนี้ $150-180M หากได้สัญญาตามแผน"
+      "🚀 รายได้ Q1 2026 พุ่ง 849% YoY จาก $1.6M เป็น $15.5M — สถิติใหม่",
+      "🛡️ ผ่านมาตรฐาน NDAA ทุกรายการ — ได้เปรียบชัดเจนจากกฎหมายห้ามสินค้าจีน",
+      "🤝 ร่วมมือกับยูเครน STE พัฒนา USV + M&A ต่อเนื่อง (Apium, Quaze)",
+      "⚙️ Black Widow ใช้งานจริงในยูเครน — ผลิตภัณฑ์พิสูจน์แล้วในสนามรบ"
     ],
     cons: [
-      "⚠️ Gross margin ยังต่ำเพียง 12.7% — ยังขยายต้นทุนสูง ยังขาดทุน",
-      "⚠️ การแข่งขันในตลาดโดรนทหารสูง และสัญญาภาครัฐมีความไม่แน่นอน"
+      "⚠️ Gross Margin 12.7% ยังต่ำ — บริษัทยังอยู่ในช่วงขยาย scale ยังขาดทุนสุทธิ",
+      "⚠️ ราคาหุ้นขึ้นมามาก 1 ปี — ความเสี่ยงสูงถ้างบกลาโหมถูกตัด"
     ],
     fundamentals: {
       revGrowth:    { value: "+849%",     pass: true,  label: "รายได้โต YoY" },
       grossMargin:  { value: "12.7%",     pass: false, label: "อัตรากำไรขั้นต้น" },
-      cashVsDebt:   { value: "Cash>Debt", pass: true,  label: "เงินสด>หนี้" },
-      opCashFlow:   { value: "ลบ",        pass: false, label: "กระแสเงินสดธุรกิจ" },
-      insiderBuy:   { value: "ไม่มีข้อมูล", pass: false, label: "ผู้บริหารซื้อหุ้น" },
-      instOwn:      { value: "~45%",      pass: true,  label: "สถาบันถือ" },
+      cashVsDebt:   { value: "Inventory $62.7M", pass: true, label: "สต็อก/เงินสด" },
+      opCashFlow:   { value: "ลบ (ลงทุน)",pass: false, label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",   pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~20-40%",   pass: true,  label: "สถาบันถือ" },
       shortInterest:{ value: "<20%",      pass: true,  label: "Short Interest" }
     },
     news: {
       positive: [
-        { emoji: "📈", headline: "Q1 2026: รายได้ $15.5M โต 849% YoY + Gross margin ดีขึ้น 64.8 ppt จากปีก่อน", source: "BusinessWire", date: "7 พ.ค." },
-        { emoji: "🛡️", headline: "ได้รับสัญญาความมั่นคงแห่งชาติ classified มูลค่ากว่า $53M รายเดียว", source: "GlobeNewswire", date: "5 พ.ค." },
-        { emoji: "🌐", headline: "Golden Dome defense strategy เปิดโอกาส $151B IDIQ สำหรับโดรน NDAA", source: "Reuters", date: "2 พ.ค." }
+        { emoji: "🚀", headline: "Q1 2026 รายได้ $15.5M — โต 849% YoY gross margin เพิ่ม 64.8pp", source: "GlobeNewswire", date: "8 พ.ค." },
+        { emoji: "🤝", headline: "พันธมิตรกับ STE ยูเครน พัฒนาโดรนรุ่นถัดไปและ USV ร่วมกัน", source: "GlobeNewswire", date: "7 พ.ค." },
+        { emoji: "🔬", headline: "ประกาศซื้อกิจการ Quaze Technologies — wireless power สำหรับโดรน", source: "BusinessWire", date: "5 พ.ค." }
       ],
       negative: [
-        { emoji: "⚠️", headline: "Gross margin เพิ่งเป็นบวก — ยังต้องการ scale ก่อนจะทำกำไรสุทธิ", source: "Seeking Alpha", date: "7 พ.ค." }
+        { emoji: "⚠️", headline: "Gross margin 12.7% ยังต่ำ — บริษัทยังขาดทุนสุทธิ ต้องรอ scale", source: "StockTitan", date: "8 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [7.85, 7.95, 8.10, 8.25, 8.40, 8.20, 8.55, 8.75, 8.60, 8.90, 9.10, 8.85, 9.20, 9.45, 9.30, 9.60, 9.75, 9.90, 10.05, 10.09],
-      volumeHistory: [1200000, 1350000, 1450000, 1800000, 1950000, 1400000, 1650000, 1900000, 1500000, 1750000, 2100000, 1600000, 1850000, 2300000, 1750000, 2050000, 2200000, 2500000, 2800000, 2650000],
-      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8"],
-      week52High: 15.80,
-      week52Low:  4.20,
-      support1:   8.50,
-      support2:   7.00,
-      resistance1:11.50,
+      priceHistory: [8.50, 8.65, 8.80, 8.70, 8.95, 9.10, 9.25, 9.15, 9.40, 9.35, 9.50, 9.45, 9.85, 9.70, 9.60, 9.85, 10.10, 10.25, 9.95, 10.09],
+      volumeHistory: [1200000, 980000, 1350000, 1100000, 1480000, 1650000, 1200000, 1380000, 1550000, 1800000, 1350000, 1600000, 1420000, 1950000, 1680000, 2100000, 1850000, 2300000, 2150000, 1980000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 18.50,
+      week52Low:  5.20,
+      support1:   9.00,
+      support2:   7.50,
+      resistance1:12.00,
       resistance2:15.00,
-      ma20:  9.07,
-      ma50:  8.20,
-      ma200: 6.50,
-      rsi:   60,
+      ma20: 9.50,
+      ma50: 8.20,
+      ma200: null,
+      rsi: 57,
       rsiStatus: "neutral",
       vsMA50:  "above",
       vsMA200: "above"
     },
-    technicalSimple: "ราคาขึ้นมา 28% ใน 20 วัน Volume เพิ่มต่อเนื่องพร้อมกับราคา — pattern นี้เรียกว่า accumulation RSI 60 ยังไม่ร้อนแรงเกินไป",
-    rankReasoning: "อันดับ 2 — catalyst ชัดมาก ทั้งสัญญาทหารและ Golden Dome policy ดึงดูดเงินสถาบัน"
+    technicalSimple: "ราคาเพิ่งทำ high ใหม่ในช่วง 3 เดือน RSI 57 ปกติ — Volume สูงกว่าค่าเฉลี่ย 30 วัน สัญญาณ accumulation ชัดเจน",
+    rankReasoning: "อันดับ 2 — revenue growth 849% เป็นเลขที่หายากมาก + catalyst ต่อเนื่องจาก M&A และความต้องการโดรนทหาร"
   },
   {
     rank: 3,
-    ticker: "EVER",
-    name: "EverQuote",
-    thaiName: "เอเวอร์โควต — ประกันออนไลน์",
-    emoji: "🛡️",
-    sector: "FinTech · ตลาดกลางประกัน",
-    whatItDoes: "แพลตฟอร์มเปรียบราคาประกันออนไลน์ที่ใหญ่ที่สุดในสหรัฐ เชื่อมระหว่างผู้ซื้อกับบริษัทประกันรถยนต์ บ้าน และสุขภาพ — หาเงินจากค่า lead ที่บริษัทประกันจ่าย",
-    marketCap: "$720M",
-    marketCapThai: "720 ล้านดอลลาร์",
-    price: 17.38,
-    changePercent: -1.82,
-    score: 67,
-    oneLineSummary: "Q1 beat + หุ้นพุ่ง 19.1% หลังประกาศผล + บ้านและเช่า insurance โต 33% 🏠",
+    ticker: "DUOT",
+    name: "Duos Technologies Group",
+    thaiName: "ดูโอส เทคโนโลยีส์ — GPU-as-a-Service",
+    emoji: "🖥️",
+    sector: "เทคโนโลยี · AI Infrastructure / GPU",
+    whatItDoes: "พัฒนา Edge AI สำหรับรถไฟและโครงสร้างพื้นฐาน และเพิ่งเปิดตัว GPU-as-a-Service ให้เช่า NVIDIA GPU cluster ความหนาแน่นสูงแก่ผู้ใช้งาน AI",
+    marketCap: "$262M",
+    marketCapThai: "262 ล้านดอลลาร์",
+    price: 9.00,
+    changePercent: 0.56,
+    score: 72,
+    oneLineSummary: "สัญญา GPU $176M (80%+ margin) + 2025 รายได้โต 271% + price target ขึ้นจาก $14→$17 🖥️",
     pros: [
-      "🏆 Q1 2026 รายได้ $190.9M เกินคาด + หุ้นขึ้น 19.1% ในวันเดียว",
-      "🏠 Home/Renters segment โต 33% YoY — ตลาดใหม่กำลังเปิด",
-      "💰 FCF $28M (14.7% margin) — ธุรกิจสร้างเงินสดได้จริง",
-      "📈 Q2 guidance สื่อว่าจะโต 21% YoY — เกิน 20% threshold ที่ตั้งไว้"
+      "💎 สัญญา GPU-as-a-Service กับ Hydra Host มูลค่า $176M/36 เดือน — gross margin >80%",
+      "📈 รายได้ 2025 โต 271% สู่ $27M — 2026 guidance $50-55M",
+      "🏭 15 Edge Data Centers (EDCs) deployed แล้ว — สิทธิบัตร clean-room tech",
+      "⬆️ Ascendiant ปรับ price target ขึ้นจาก $14→$17 ล่าสุด April 2026"
     ],
     cons: [
-      "⚠️ Overall revenue growth Q1 อยู่ที่ 15% YoY — ยังไม่ถึง 20% threshold",
-      "⚠️ Automotive segment โตแค่ 9% ซึ่งเป็น segment ใหญ่สุด ชะลอตัว"
+      "⚠️ บริษัทขนาดเล็กมาก market cap $262M — สภาพคล่องหุ้นอาจต่ำในบางวัน",
+      "⚠️ GPU segment ใหม่ — ต้องติดตามว่าจะรักษา margin ได้ตลอดหรือไม่"
     ],
     fundamentals: {
-      revGrowth:    { value: "+15%",      pass: false, label: "รายได้โต YoY" },
-      grossMargin:  { value: ">80%",      pass: true,  label: "อัตรากำไรขั้นต้น" },
-      cashVsDebt:   { value: "Cash>Debt", pass: true,  label: "เงินสด>หนี้" },
-      opCashFlow:   { value: "+$28M FCF", pass: true,  label: "กระแสเงินสดธุรกิจ" },
-      insiderBuy:   { value: "ไม่มี net buy", pass: false, label: "ผู้บริหารซื้อหุ้น" },
-      instOwn:      { value: "~55%",      pass: true,  label: "สถาบันถือ" },
+      revGrowth:    { value: "+271%",     pass: true,  label: "รายได้โต YoY (2025)" },
+      grossMargin:  { value: ">80% (GPU)",pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "เงินทุน $110M",pass: true,label: "เงินสด/ทุน" },
+      opCashFlow:   { value: "EBITDA ~$40M",pass: true, label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",   pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~25%",      pass: true,  label: "สถาบันถือ" },
       shortInterest:{ value: "<20%",      pass: true,  label: "Short Interest" }
     },
     news: {
       positive: [
-        { emoji: "🚀", headline: "Q1 2026 revenue $190.9M (+15%) เกินคาด — หุ้นพุ่ง 19.1% ในวันประกาศ", source: "GlobeNewswire", date: "4 พ.ค." },
-        { emoji: "🏠", headline: "Home & Renters Insurance segment โต 33% YoY — ตลาดใหม่เปิดเร็ว", source: "Yahoo Finance", date: "4 พ.ค." },
-        { emoji: "📊", headline: "Adjusted EBITDA $29.3M โต 30% YoY + Q2 guidance 21% growth", source: "MarketWatch", date: "4 พ.ค." }
+        { emoji: "💎", headline: "สัญญา GPU กับ Hydra Host $176M/3 ปี — gross margin >80% — pre-payment $18M", source: "StockTitan", date: "13 มี.ค." },
+        { emoji: "⬆️", headline: "Ascendiant ปรับ price target ขึ้นจาก $14 เป็น $17 — คาด $50-55M revenue 2026", source: "MarketBeat", date: "เม.ย. 2026" },
+        { emoji: "📊", headline: "ประกาศวันรายงาน Q1 2026: 13 พ.ค. — คาด backlog GPU ใหม่เพิ่ม", source: "StockTitan", date: "5 พ.ค." }
       ],
       negative: [
-        { emoji: "📉", headline: "Automotive segment (90% ของรายได้) โตแค่ 9% YoY — ชะลอตัว", source: "StockStory", date: "4 พ.ค." }
+        { emoji: "📉", headline: "Market cap เล็ก $262M — volume trading ต่ำกว่าหุ้นใหญ่ อาจมี slippage", source: "Yahoo Finance", date: "9 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [13.80, 14.10, 13.95, 14.30, 14.50, 14.25, 14.65, 14.45, 14.80, 14.95, 14.70, 14.60, 14.85, 15.05, 14.65, 17.38, 17.20, 17.05, 17.30, 17.38],
-      volumeHistory: [380000, 420000, 360000, 490000, 510000, 400000, 450000, 480000, 390000, 520000, 540000, 430000, 470000, 510000, 420000, 2850000, 980000, 720000, 840000, 690000],
-      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8"],
-      week52High: 19.20,
-      week52Low:  8.50,
-      support1:   15.50,
-      support2:   13.80,
-      resistance1:18.00,
-      resistance2:19.20,
-      ma20:  15.40,
-      ma50:  13.20,
-      ma200: 11.80,
-      rsi:   68,
+      priceHistory: [6.80, 7.20, 7.50, 7.35, 7.60, 7.45, 7.70, 8.10, 8.50, 9.20, 8.85, 8.60, 8.75, 8.90, 8.80, 9.10, 8.95, 9.25, 9.30, 9.00],
+      volumeHistory: [350000, 280000, 420000, 310000, 850000, 1200000, 680000, 520000, 790000, 950000, 480000, 560000, 620000, 750000, 680000, 920000, 810000, 1100000, 980000, 850000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 14.20,
+      week52Low:  3.50,
+      support1:   7.50,
+      support2:   6.00,
+      resistance1:10.50,
+      resistance2:14.20,
+      ma20: 8.60,
+      ma50: 7.40,
+      ma200: null,
+      rsi: 62,
       rsiStatus: "neutral",
       vsMA50:  "above",
       vsMA200: "above"
     },
-    technicalSimple: "Breakout ชัดเจนวันที่ 4 พ.ค. หลังประกาศผล Q1 Volume พุ่งกว่า 6x ค่าเฉลี่ย RSI 68 เข้าใกล้ overbought แต่ยังไม่ถึง 70",
-    rankReasoning: "อันดับ 3 — post-earnings breakout ชัด บริษัทมีกำไรจริง และ Q2 guidance แข็งแกร่ง"
+    technicalSimple: "ราคาทะลุแนวต้าน $8.50 ขึ้นไปชัดเจน — RSI 62 ยังมีพื้นที่วิ่งต่อ Earnings May 13 เป็น Catalyst สำคัญถัดไป",
+    rankReasoning: "อันดับ 3 — GPU contract ขนาดใหญ่เมื่อเทียบกับ market cap + revenue growth ระเบิด + price target ขึ้น"
   },
   {
     rank: 4,
-    ticker: "UMAC",
-    name: "Unusual Machines",
-    thaiName: "อันยูชวล แมชชีนส์ — อุปกรณ์โดรน",
-    emoji: "🚁",
-    sector: "กลาโหม · อุปกรณ์โดรน NDAA",
-    whatItDoes: "ผลิตชิ้นส่วนโดรนที่ผ่านมาตรฐาน NDAA ของสหรัฐ ได้แก่ มอเตอร์ กล้อง FPV และ flight controller ขายให้กองทัพและองค์กรที่ต้องการห้ามของจีน",
-    marketCap: "$760M",
-    marketCapThai: "760 ล้านดอลลาร์",
-    price: 13.46,
-    changePercent: -0.81,
-    score: 66,
-    oneLineSummary: "รายได้ปี 2025 โต 101% + Q1 2026 earnings ประกาศ 14 พ.ค. — upcoming catalyst 🛸",
+    ticker: "PGY",
+    name: "Pagaya Technologies",
+    thaiName: "พากายา — AI สินเชื่อ",
+    emoji: "🤖",
+    sector: "เทคโนโลยีการเงิน · AI Lending",
+    whatItDoes: "ใช้ AI ช่วยธนาคารและ Fintech ตัดสินใจอนุมัติสินเชื่อได้แม่นขึ้น — ลูกค้ารวมถึง US Bank, Ally Financial และ SoFi ช่วยขยาย loan book โดยไม่เพิ่มความเสี่ยง",
+    marketCap: "$1.22B",
+    marketCapThai: "1.2 พันล้านดอลลาร์",
+    price: 16.49,
+    changePercent: 11.19,
+    score: 70,
+    oneLineSummary: "Q1 กำไรสุทธิพุ่งสู่ $24.7M (+213% YoY) + ปรับ guidance FY26 ขึ้น + ABS $800M AAA 🏦",
     pros: [
-      "📈 รายได้ปี 2025 โต 101% YoY สู่ $11.2M — คู่แข่งจีนถูกห้าม NDAA",
-      "💰 เงินสด $103M — runway ยาวพอไม่ต้องกังวลการเพิ่มทุน",
-      "🎯 นักวิเคราะห์ Strong Buy ราคาเป้า $24.20 (+80% จากราคาปัจจุบัน)",
-      "📅 Q1 2026 earnings ประกาศ 14 พ.ค. — อาจเป็น catalyst ใหญ่ถัดไป"
+      "💰 Q1 2026 กำไรสุทธิ $24.7M — เทียบปีก่อนเพียง $7.9M (+213% YoY)",
+      "📈 ปรับ FY2026 guidance net income ขึ้นสู่ $110M-$160M",
+      "🏦 ปิดดีล ABS $800M ระดับ AAA — 33 นักลงทุน สัญญาณความเชื่อมั่นตลาด",
+      "🤖 AI platform ช่วยพาร์ตเนอร์อนุมัติสินเชื่อมากขึ้น โดยไม่เพิ่ม default rate"
     ],
     cons: [
-      "⚠️ ยังขาดทุน net loss $19.2M ปี 2025 — พึ่งเงินสดที่ระดมทุนไว้",
-      "⚠️ Revenue ยังเล็ก ($11.2M) ต้องโตอีกมากก่อนจะ cash flow positive"
+      "⚠️ CFO ประกาศลาออก มีผล 15 มิ.ย. — การเปลี่ยน CFO อาจทำให้นักลงทุนกังวลระยะสั้น",
+      "⚠️ Revenue โต +9.6% YoY เท่านั้น — ต่ำกว่าคู่แข่ง fintech หลายราย"
     ],
     fundamentals: {
-      revGrowth:    { value: "+101%",     pass: true,  label: "รายได้โต YoY" },
-      grossMargin:  { value: "~35%",      pass: true,  label: "อัตรากำไรขั้นต้น" },
-      cashVsDebt:   { value: "$103M cash",pass: true,  label: "เงินสด>หนี้" },
-      opCashFlow:   { value: "ลบ",        pass: false, label: "กระแสเงินสดธุรกิจ" },
-      insiderBuy:   { value: "ไม่มีข้อมูล", pass: false, label: "ผู้บริหารซื้อหุ้น" },
-      instOwn:      { value: "~42%",      pass: true,  label: "สถาบันถือ" },
-      shortInterest:{ value: "<18%",      pass: true,  label: "Short Interest" }
+      revGrowth:    { value: "+9.6%",     pass: false, label: "รายได้โต YoY" },
+      grossMargin:  { value: ">50% (est)",pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "Net Profit", pass: true, label: "มีกำไร/เงินสด" },
+      opCashFlow:   { value: "บวก",       pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "CFO ลาออก", pass: false, label: "ผู้บริหาร" },
+      instOwn:      { value: "~30%",      pass: true,  label: "สถาบันถือ" },
+      shortInterest:{ value: "<25%",      pass: true,  label: "Short Interest" }
     },
     news: {
       positive: [
-        { emoji: "🛡️", headline: "Pentagon ลงนามข้อตกลง AI กับบริษัทโดรน NDAA หนุน demand ระยะยาว", source: "24/7 Wall St.", date: "4 พ.ค." },
-        { emoji: "📅", headline: "ประกาศผล Q1 2026 วันที่ 14 พ.ค. — นักวิเคราะห์คาดรายได้ Q4 beat อาจต่อเนื่อง", source: "Nasdaq", date: "7 พ.ค." },
-        { emoji: "📈", headline: "Q4 2025 revenue $4.9M เกินคาด $3.59M — momentum ต่อเนื่อง", source: "WallStreetZen", date: "1 เม.ย." }
+        { emoji: "💰", headline: "Q1 2026 net income $24.7M (+213% YoY) — ปรับ FY26 guidance ขึ้น", source: "BusinessWire", date: "6 พ.ค." },
+        { emoji: "🏦", headline: "ปิด ABS $800M ระดับ AAA — 33 investors — YTD personal loan ABS รวม $3B", source: "StockTitan", date: "5 พ.ค." },
+        { emoji: "📊", headline: "Q1 EPS $0.28/share — คาด FY26 EBITDA $420M-$460M", source: "Yahoo Finance", date: "6 พ.ค." }
       ],
       negative: [
-        { emoji: "📉", headline: "ราคา pullback จาก $14.09 (เม.ย.) มา $13.46 — นักลงทุนรอ Q1 ก่อนตัดสินใจ", source: "Yahoo Finance", date: "8 พ.ค." }
+        { emoji: "👔", headline: "CFO Evangelos Perros ลาออก มีผล 15 มิ.ย. 2026 — Jon Dobres ขึ้นแทน", source: "BusinessWire", date: "6 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [14.90, 14.65, 14.35, 14.80, 14.55, 14.10, 13.85, 14.05, 14.25, 13.90, 13.60, 13.90, 14.15, 13.75, 13.50, 13.70, 13.45, 13.60, 13.50, 13.46],
-      volumeHistory: [550000, 480000, 610000, 780000, 720000, 590000, 640000, 700000, 580000, 620000, 590000, 640000, 710000, 580000, 550000, 670000, 590000, 620000, 600000, 580000],
-      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8"],
-      week52High: 18.50,
-      week52Low:  6.80,
-      support1:   13.00,
-      support2:   11.50,
-      resistance1:15.00,
-      resistance2:18.50,
-      ma20:  14.07,
-      ma50:  14.50,
-      ma200: 12.20,
-      rsi:   45,
+      priceHistory: [12.50, 12.80, 13.10, 12.90, 13.40, 13.20, 13.50, 13.35, 13.75, 13.60, 14.00, 13.85, 14.10, 14.83, 14.60, 15.00, 16.20, 16.49, 16.30, 16.49],
+      volumeHistory: [580000, 620000, 710000, 650000, 780000, 850000, 720000, 890000, 960000, 820000, 750000, 880000, 1020000, 1150000, 980000, 2300000, 3100000, 1850000, 1620000, 1450000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 44.99,
+      week52Low:  10.40,
+      support1:   14.50,
+      support2:   12.50,
+      resistance1:20.00,
+      resistance2:30.00,
+      ma20: 13.85,
+      ma50: 12.40,
+      ma200: null,
+      rsi: 68,
       rsiStatus: "neutral",
-      vsMA50:  "below",
+      vsMA50:  "above",
       vsMA200: "above"
     },
-    technicalSimple: "หุ้น consolidate อยู่ในช่วง $13-15 ก่อน earnings วันที่ 14 พ.ค. RSI 45 ค่อนข้างเย็น — volume ลดลงแสดงว่าคนรอดูผล Q1 ก่อน",
-    rankReasoning: "อันดับ 4 — NDAA tailwind ชัด + Q1 earnings upcoming เป็น binary catalyst ที่น่าจับตา"
+    technicalSimple: "ราคาพุ่งแรงหลัง Q1 earnings RSI 68 ใกล้ overbought — ควรจับตา consolidation ก่อนรอบถัดไป",
+    rankReasoning: "อันดับ 4 — กำไรสุทธิโต 213% + ปรับ guidance ขึ้น + ABS deal ใหญ่ แต่ revenue growth ช้าและ CFO ลาออก"
   },
   {
     rank: 5,
-    ticker: "PGY",
-    name: "Pagaya Technologies",
-    thaiName: "พาเกย่า — AI สินเชื่อ",
+    ticker: "SERV",
+    name: "Serve Robotics",
+    thaiName: "เสิร์ฟ โรโบติกส์ — โรบอทส่งอาหาร",
     emoji: "🤖",
-    sector: "FinTech · AI Credit Decisioning",
-    whatItDoes: "แพลตฟอร์ม AI ช่วยธนาคารและ fintech ตัดสินใจปล่อยกู้แม่นยำขึ้น — เชื่อมต่อกับ Ally Financial, SoFi และพันธมิตรอีกกว่า 30 ราย ผ่านเงินกู้กว่า $10B ต่อปี",
-    marketCap: "$1.22B",
-    marketCapThai: "1.2 พันล้านดอลลาร์",
-    price: 14.75,
-    changePercent: 0.48,
-    score: 65,
-    oneLineSummary: "กำไร GAAP $81M ปี 2025 + รายได้โต 26% + AI credit เป็นธุรกิจที่ profitable จริง 💳",
+    sector: "หุ่นยนต์ · Last-Mile Delivery",
+    whatItDoes: "ผลิตและดำเนินงานหุ่นยนต์ส่งอาหารบนทางเท้าในอเมริกา — ปัจจุบันมีหุ่นยนต์ 2,000 ตัว ใน 44 เมือง 14 รัฐ ขยายเข้าสู่การดูแลสุขภาพด้วย Diligent Robotics",
+    marketCap: "$666M",
+    marketCapThai: "666 ล้านดอลลาร์",
+    price: 8.77,
+    changePercent: -0.45,
+    score: 68,
+    oneLineSummary: "รายได้ Q1 โต 578% YoY + ขยายสู่ healthcare + 2,000 โรบอทบน 44 เมือง 🤖",
     pros: [
-      "💰 GAAP net income ปี 2025 = $81M — บริษัทมีกำไรจริงไม่ใช่แค่โต",
-      "📈 รายได้ปี 2025 โต 26% YoY สู่ $1.3B + guidance 2026 สูงขึ้นถึง $1.4-1.575B",
-      "🔗 Network ขนาดใหญ่ — ปล่อยกู้ผ่านระบบ $10B+ ต่อปี ยากสร้าง moat",
-      "🎯 2026 EBITDA guidance $410-460M — margin expansion ต่อเนื่อง"
+      "🚀 Q1 2026 revenue ~$3M — โต 578% YoY และ 238% QoQ",
+      "🏥 ขยายสู่ healthcare ด้วยการซื้อ Diligent Robotics — รายได้หลายกระแส",
+      "💰 เงินสดแข็งแรง $197.4M ไม่มีหนี้ระยะยาว — รันแวยยาว",
+      "🌆 44 เมือง 14 รัฐ — เป็นผู้นำในตลาด sidewalk delivery ของสหรัฐ"
     ],
     cons: [
-      "⚠️ หุ้นลดจาก 52-week high $44.99 มา $14.75 (-67%) — valuation overhang จาก hype cycle ก่อนหน้า",
-      "⚠️ ธุรกิจสินเชื่อได้รับผลกระทบหาก default rate ในอเมริกาสูงขึ้น"
+      "⚠️ ยังขาดทุน — Net loss Q1 $49M เนื่องจาก R&D และ M&A สูง",
+      "⚠️ Gross loss $9M — ยังไม่ถึงจุดคุ้มทุน ต้องรอ scale ใหญ่กว่านี้"
     ],
     fundamentals: {
-      revGrowth:    { value: "+26%",      pass: true,  label: "รายได้โต YoY" },
-      grossMargin:  { value: ">50%",      pass: true,  label: "อัตรากำไรขั้นต้น" },
-      cashVsDebt:   { value: "Cash>Debt", pass: true,  label: "เงินสด>หนี้" },
-      opCashFlow:   { value: "บวก",       pass: true,  label: "กระแสเงินสดธุรกิจ" },
-      insiderBuy:   { value: "ไม่มีข้อมูล", pass: false, label: "ผู้บริหารซื้อหุ้น" },
-      instOwn:      { value: "~38%",      pass: true,  label: "สถาบันถือ" },
-      shortInterest:{ value: "<22%",      pass: true,  label: "Short Interest" }
+      revGrowth:    { value: "+578%",     pass: true,  label: "รายได้โต YoY" },
+      grossMargin:  { value: "ลบ (scale)",pass: false, label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "$197.4M",   pass: true,  label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "ลบ (ลงทุน)",pass: false, label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",   pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~30-50%",   pass: true,  label: "สถาบันถือ" },
+      shortInterest:{ value: "<20%",      pass: true,  label: "Short Interest" }
     },
     news: {
       positive: [
-        { emoji: "💰", headline: "ปี 2025: รายได้ $1.3B (+26%) + GAAP net income $81M — profitable AI fintech", source: "BusinessWire", date: "1 เม.ย." },
-        { emoji: "📈", headline: "guidance 2026: รายได้ $1.4-1.575B + adjusted EBITDA $410-460M", source: "Seeking Alpha", date: "1 เม.ย." }
+        { emoji: "🚀", headline: "Q1 2026 revenue ~$3M +578% YoY — 3x sequential — fleet revenue x10", source: "GlobeNewswire", date: "7 พ.ค." },
+        { emoji: "🏥", headline: "ซื้อ Diligent Robotics ขยายเข้า healthcare automation — รายได้กระแสใหม่", source: "Yahoo Finance", date: "5 พ.ค." },
+        { emoji: "🤖", headline: "812 active robots/วัน เพิ่ม 48% QoQ — fleet hours ทะลุ 10,000+ ชั่วโมง/วัน", source: "GlobeNewswire", date: "7 พ.ค." }
       ],
       negative: [
-        { emoji: "📉", headline: "ราคาลดจาก 52-week high $44.99 — hype cycle รอบก่อน overshooting", source: "Yahoo Finance", date: "8 พ.ค." },
-        { emoji: "⚠️", headline: "ความเสี่ยงสินเชื่อ consumer หากเศรษฐกิจอ่อนแอในปลายปี 2026", source: "Reuters", date: "30 เม.ย." }
+        { emoji: "📉", headline: "Net loss Q1 $49M — ขาดทุนสูง เนื่องจากลงทุน R&D และ M&A หนักมาก", source: "SimplyWallSt", date: "8 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [12.80, 13.10, 12.90, 13.35, 13.50, 13.25, 13.70, 13.95, 13.75, 14.10, 14.30, 14.05, 14.40, 14.60, 14.35, 14.55, 14.25, 14.70, 14.85, 14.75],
-      volumeHistory: [1800000, 1650000, 1920000, 2100000, 2250000, 1780000, 2050000, 2300000, 1900000, 2150000, 2400000, 1950000, 2100000, 2500000, 2050000, 2200000, 1900000, 2350000, 2600000, 2200000],
-      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8"],
-      week52High: 44.99,
-      week52Low:  10.40,
-      support1:   13.00,
-      support2:   11.00,
-      resistance1:16.50,
-      resistance2:20.00,
-      ma20:  14.00,
-      ma50:  12.50,
-      ma200: 18.50,
-      rsi:   55,
+      priceHistory: [6.50, 6.80, 7.10, 6.90, 7.30, 7.50, 7.40, 7.70, 7.60, 8.00, 7.90, 8.20, 8.40, 8.10, 8.30, 8.60, 8.45, 8.80, 8.90, 8.77],
+      volumeHistory: [680000, 720000, 850000, 780000, 920000, 1050000, 880000, 1100000, 980000, 1230000, 1080000, 1350000, 1200000, 1450000, 1280000, 1580000, 1420000, 1680000, 1750000, 1520000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 18.20,
+      week52Low:  3.80,
+      support1:   7.50,
+      support2:   6.00,
+      resistance1:10.00,
+      resistance2:14.00,
+      ma20: 8.05,
+      ma50: 7.10,
+      ma200: null,
+      rsi: 58,
       rsiStatus: "neutral",
       vsMA50:  "above",
-      vsMA200: "below"
+      vsMA200: "above"
     },
-    technicalSimple: "ราคาฟื้นตัวจาก 52-week low $10.40 ขึ้นมา $14.75 — ยังต่ำกว่า MA200 อยู่ RSI 55 ปกติ ถ้าผ่าน $16.50 resistance จะน่าสนใจขึ้นมาก",
-    rankReasoning: "อันดับ 5 — AI fintech profitable จริง แต่ราคายังฟื้นจากจุดต่ำ ความไม่แน่นอนสูงกว่าอันดับบน"
+    technicalSimple: "ราคาอยู่เหนือ MA20 และ MA50 — แนวโน้มขาขึ้น RSI 58 มีพื้นที่วิ่งต่อ Volume เพิ่มหลัง Q1 earnings",
+    rankReasoning: "อันดับ 5 — revenue growth 578% เป็นเลขที่โดดเด่น + healthcare expansion + เงินสดแข็ง แต่ยังขาดทุนอยู่"
   },
   {
     rank: 6,
     ticker: "AEVA",
     name: "Aeva Technologies",
-    thaiName: "อีวา เทคโนโลยีส์ — LiDAR 4D",
+    thaiName: "เอวา เทคโนโลยีส์ — LiDAR รุ่นใหม่",
     emoji: "👁️",
-    sector: "เทคโนโลยี · LiDAR ยานยนต์",
-    whatItDoes: "พัฒนาเซ็นเซอร์ LiDAR ที่ตรวจจับได้ทั้งตำแหน่งและความเร็ว (4D) สำหรับรถยนต์ไร้คนขับและหุ่นยนต์อุตสาหกรรม — เป็นพันธมิตรกับ Daimler Truck ในเชิงพาณิชย์",
+    sector: "เทคโนโลยี · LiDAR / Autonomous Sensing",
+    whatItDoes: "พัฒนาเซ็นเซอร์ LiDAR แบบ FMCW สำหรับรถยนต์ไร้คนขับและระบบอุตสาหกรรม — ร่วมมือกับ Daimler Truck และ Nikon ในการผลิตเชิงพาณิชย์",
     marketCap: "$1.04B",
-    marketCapThai: "1,040 ล้านดอลลาร์",
-    price: 15.25,
-    changePercent: 2.08,
-    score: 65,
-    oneLineSummary: "Q1 2026 revenue โต 90% YoY + หุ้นพุ่ง 8% หลังผลประกอบการ + Daimler deployment 🚗",
+    marketCapThai: "1 พันล้านดอลลาร์",
+    price: 16.57,
+    changePercent: 8.73,
+    score: 67,
+    oneLineSummary: "Q1 revenue +90% YoY + Daimler Truck milestone + Nikon commercial deployment 👁️",
     pros: [
-      "📈 Q1 2026 revenue $6.3M โต 90% YoY — กำลังขยายตัวเร็วในหลายตลาด",
-      "🚛 Daimler Truck เป็น commercial partner — deployment จริงไม่ใช่แค่ pilot",
-      "🎯 Revenue guidance 2026: $33M (5x จาก $6.3M Q1) — เป้าหมายท้าทายแต่ ambitious",
-      "⬆️ หุ้นขึ้น 8.33% หลัง Q1 beat — market ตอบรับดี"
+      "🚀 Q1 2026 revenue $6.3M — โต 90% YoY — record high สำหรับบริษัท",
+      "🚗 Daimler Truck milestone: ส่งมอบ production intent Atlas sensors แล้ว",
+      "🏭 Nikon เริ่ม commercial deployment ระบบ APDIS MV5X — multi-year production agreement",
+      "💰 สภาพคล่อง $224.5M (cash + facility) — รันแวยยาว 3+ ปี"
     ],
     cons: [
-      "⚠️ Net loss Q1 2026 = $35M — ขาดทุนหนัก cash burn สูง",
-      "⚠️ Revenue ยังเล็กมาก ($6.3M Q1) เทียบกับ market cap $1B+ — valuation premium สูงมาก"
+      "⚠️ ยังขาดทุนสุทธิ $35M ต่อไตรมาส — ต้องการ scale ใหญ่กว่านี้ก่อนถึง break even",
+      "⚠️ Revenue รวม FY26 แค่ $33M — valuation $1B+ สูงมากเทียบกับรายได้"
     ],
     fundamentals: {
       revGrowth:    { value: "+90%",      pass: true,  label: "รายได้โต YoY" },
-      grossMargin:  { value: "ยังลบ",     pass: false, label: "อัตรากำไรขั้นต้น" },
-      cashVsDebt:   { value: "$621M cash",pass: true,  label: "เงินสด>หนี้" },
-      opCashFlow:   { value: "ลบ",        pass: false, label: "กระแสเงินสดธุรกิจ" },
-      insiderBuy:   { value: "ไม่มีข้อมูล", pass: false, label: "ผู้บริหารซื้อหุ้น" },
-      instOwn:      { value: "~48%",      pass: true,  label: "สถาบันถือ" },
+      grossMargin:  { value: "ลบ (scale)",pass: false, label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "$224.5M",   pass: true,  label: "สภาพคล่อง" },
+      opCashFlow:   { value: "ลบ (-$25.8M)",pass: false,label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",   pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~40%",      pass: true,  label: "สถาบันถือ" },
       shortInterest:{ value: "<20%",      pass: true,  label: "Short Interest" }
     },
     news: {
       positive: [
-        { emoji: "🚀", headline: "Q1 2026 revenue $6.3M (+90% YoY) เกินคาด — diversified markets", source: "Investing.com", date: "7 พ.ค." },
-        { emoji: "🚛", headline: "Daimler Truck เริ่ม commercial deployment LiDAR 4D บน truck fleet", source: "BusinessWire", date: "29 เม.ย." }
+        { emoji: "🚀", headline: "Q1 2026 revenue $6.3M +90% YoY — record quarter + Q1 profit beat", source: "BusinessWire", date: "6 พ.ค." },
+        { emoji: "🚗", headline: "ส่งมอบ production intent Atlas sensors ให้ Daimler Truck — milestone ใหญ่มาก", source: "BusinessWire", date: "6 พ.ค." },
+        { emoji: "🏭", headline: "Nikon เริ่ม commercial deploy APDIS MV5X ที่ใช้เทคโนโลยี AEVA", source: "BusinessWire", date: "6 พ.ค." }
       ],
       negative: [
-        { emoji: "⚠️", headline: "Net loss Q1 = $35M — ยังห่างจาก profitability มาก", source: "StockTitan", date: "7 พ.ค." },
-        { emoji: "📉", headline: "80% ขึ้นจาก 52-week low ปัจจุบัน — ผู้ถือหุ้นเดิมอาจขายทำกำไร", source: "CNN Money", date: "8 พ.ค." }
+        { emoji: "⚠️", headline: "Net loss $35M/ไตรมาส — ต้องการ scale ขึ้นมากก่อนถึง break even", source: "StockTitan", date: "6 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [13.20, 13.50, 13.35, 13.80, 14.00, 13.65, 14.10, 14.35, 14.15, 14.50, 14.70, 14.40, 14.65, 14.90, 14.20, 14.05, 14.30, 14.15, 15.33, 15.25],
-      volumeHistory: [680000, 620000, 750000, 890000, 920000, 760000, 830000, 950000, 780000, 860000, 980000, 810000, 870000, 1020000, 780000, 820000, 890000, 850000, 2800000, 1400000],
-      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8"],
-      week52High: 19.50,
-      week52Low:  7.20,
-      support1:   13.50,
-      support2:   11.00,
-      resistance1:16.50,
-      resistance2:19.50,
-      ma20:  14.32,
-      ma50:  13.00,
-      ma200: 10.50,
-      rsi:   65,
+      priceHistory: [10.50, 11.20, 11.80, 12.30, 11.90, 12.50, 12.20, 12.80, 13.10, 13.50, 13.20, 13.80, 14.30, 14.80, 15.10, 15.24, 16.57, 16.80, 16.45, 16.57],
+      volumeHistory: [850000, 920000, 1050000, 980000, 1120000, 1280000, 1050000, 1350000, 1480000, 1620000, 1380000, 1750000, 1560000, 1820000, 1650000, 1920000, 3500000, 2800000, 2100000, 1850000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 22.50,
+      week52Low:  5.30,
+      support1:   14.50,
+      support2:   12.00,
+      resistance1:18.00,
+      resistance2:22.50,
+      ma20: 13.80,
+      ma50: 12.10,
+      ma200: null,
+      rsi: 70,
+      rsiStatus: "overbought",
+      vsMA50:  "above",
+      vsMA200: "above"
+    },
+    technicalSimple: "ราคาพุ่ง +8.73% หลัง earnings RSI แตะ 70 — อาจต้อง cool down ก่อน แต่ breakout ชัดเจน",
+    rankReasoning: "อันดับ 6 — revenue growth 90% + automotive milestone จริง + liquidity แข็ง แต่ valuation สูงเทียบกับรายได้"
+  },
+  {
+    rank: 7,
+    ticker: "UMAC",
+    name: "Unusual Machines",
+    thaiName: "อันยูชวล แมชชีนส์ — โดรน Made in USA",
+    emoji: "🚁",
+    sector: "กลาโหม-พลเรือน · โดรน US-Made",
+    whatItDoes: "ผลิตโดรนและอุปกรณ์ชิ้นส่วนโดรนในสหรัฐอเมริกา — ผ่านมาตรฐาน NDAA (ห้ามสินค้าจีน) และได้ประโยชน์จากนโยบาย Buy American ทั้งในตลาดพลเรือนและทหาร",
+    marketCap: "$530M",
+    marketCapThai: "530 ล้านดอลลาร์",
+    price: 13.73,
+    changePercent: -2.74,
+    score: 65,
+    oneLineSummary: "Q1 earnings May 14 — คาด EPS โต +271% YoY + NDAA advantage + UAE regulatory milestone 🚁",
+    pros: [
+      "📅 Q1 2026 earnings รายงาน 14 พ.ค. — Wall Street คาด EPS +271% YoY",
+      "🛡️ ผ่านมาตรฐาน NDAA — ได้เปรียบโดยตรงจากนโยบายห้ามโดรนจีน",
+      "📈 รายได้ 2025 doubled YoY $11.2M — demand จาก enterprise และ regulatory shift",
+      "✈️ UAE Restricted Type Certificate milestone — ผ่านก่อนคู่แข่งในอุตสาหกรรม"
+    ],
+    cons: [
+      "⚠️ Q1 earnings ยังไม่ออก — มีความเสี่ยงตลาดตอบสนองหลัง 14 พ.ค.",
+      "⚠️ ตลาดโดรนแข่งขันสูง — ทั้ง Red Cat และผู้ผลิตอื่นแย่งส่วนแบ่งตลาด"
+    ],
+    fundamentals: {
+      revGrowth:    { value: "+100% (2025)",pass: true, label: "รายได้โต YoY" },
+      grossMargin:  { value: "ต้องรอ Q1",  pass: false, label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "ต้องรอ Q1",  pass: false, label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "ต้องรอ Q1",  pass: false, label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",    pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~25%",       pass: true,  label: "สถาบันถือ" },
+      shortInterest:{ value: "<20%",       pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "📅", headline: "ประกาศรายงาน Q1 2026: 14 พ.ค. — คาด EPS +271% YoY", source: "StockTitan", date: "5 พ.ค." },
+        { emoji: "✈️", headline: "UAE Restricted Type Certificate milestone — first in industry (Midnight aircraft)", source: "StocksToTrade", date: "8 พ.ค." },
+        { emoji: "🛡️", headline: "NDAA advantage ยังแข็งแกร่ง — กฎเข้มงวดขึ้นสำหรับโดรนจีนใน US", source: "Yahoo Finance", date: "6 พ.ค." }
+      ],
+      negative: [
+        { emoji: "📉", headline: "ราคาร่วง 2.74% วันนี้ — market ปรับฐาน pre-earnings volatility", source: "Yahoo Finance", date: "9 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [11.20, 11.50, 11.80, 11.60, 12.00, 12.30, 12.10, 12.50, 12.80, 13.00, 12.85, 13.20, 13.10, 13.40, 13.25, 13.60, 13.45, 13.80, 13.92, 13.73],
+      volumeHistory: [520000, 580000, 650000, 610000, 720000, 810000, 680000, 850000, 920000, 980000, 820000, 950000, 880000, 1050000, 980000, 1150000, 1080000, 1250000, 1380000, 1200000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 18.80,
+      week52Low:  5.20,
+      support1:   12.00,
+      support2:   10.00,
+      resistance1:15.00,
+      resistance2:18.80,
+      ma20: 12.90,
+      ma50: 11.50,
+      ma200: null,
+      rsi: 58,
       rsiStatus: "neutral",
       vsMA50:  "above",
       vsMA200: "above"
     },
-    technicalSimple: "Breakout หลัง Q1 earnings วันที่ 7 พ.ค. Volume พุ่ง 3x ค่าเฉลี่ย RSI 65 warm แต่ยังไม่ถึง overbought ถ้าไม่ pullback อาจทดสอบ $16.50 resistance ต่อไป",
-    rankReasoning: "อันดับ 6 — LiDAR sector น่าจับตา แต่ขาดทุนหนักทำให้ risk สูงกว่าอันดับบน"
+    technicalSimple: "ราคาอยู่เหนือ MA20 และ MA50 — RSI 58 ปกติ จับตา Volume spike วัน earnings 14 พ.ค.",
+    rankReasoning: "อันดับ 7 — NDAA-compliant drone play + EPS คาดโต +271% + UAE milestone แต่ earnings ยังไม่ออก มีความไม่แน่นอน"
   },
   {
-    rank: 7,
+    rank: 8,
     ticker: "CODA",
     name: "Coda Octopus Group",
-    thaiName: "โคดา ออคโทพัส — โซนาร์ทหาร",
+    thaiName: "โคดา อ็อกโตปัส — เทคโนโลยีทะเล",
     emoji: "🐙",
-    sector: "กลาโหม · อุปกรณ์โซนาร์ใต้น้ำ",
-    whatItDoes: "ผลิตเซ็นเซอร์และซอฟต์แวร์โซนาร์ใต้น้ำสำหรับกองทัพเรือ หน่วยกู้ภัย และการสำรวจทางทะเล — กำลังเปลี่ยนโมเดลธุรกิจเป็น recurring revenue แบบ SaaS",
-    marketCap: "$131M",
-    marketCapThai: "131 ล้านดอลลาร์",
-    price: 11.67,
-    changePercent: 0.52,
-    score: 65,
-    oneLineSummary: "รายได้โต 30.7% + gross margin 66.5% + กำไรจริง + กำลังซื้อ defense orders เพิ่ม 🌊",
+    sector: "เทคโนโลยีทะเล · Underwater Sonar",
+    whatItDoes: "พัฒนาและขายระบบ Echoscope 3D sonar สำหรับงานวิศวกรรมใต้น้ำ ท่าเรือ ทหารเรือ และการสำรวจใต้น้ำ — บริษัทที่มีกำไรและเติบโตต่อเนื่อง",
+    marketCap: "$139M",
+    marketCapThai: "139 ล้านดอลลาร์",
+    price: 12.27,
+    changePercent: 1.24,
+    score: 63,
+    oneLineSummary: "Q1 revenue +28.8% YoY + EPS beat +33% + Echoscope เอเชียโต 63% — profitable hidden gem 🐙",
     pros: [
-      "💰 Gross margin 66.5% — ระดับเดียวกับ SaaS บริษัทใหญ่ เกิดจากการ shift ไป software",
-      "📈 รายได้ปี 2025 โต 30.7% YoY สู่ $26.6M + profitable net income $4.1M",
-      "🛡️ คาดว่า US Defense orders จะเพิ่มขึ้นจาก Golden Dome และยุทธศาสตร์ทะเล",
-      "🔄 กำลัง shift ไป recurring revenue model — ทำให้รายได้ predictable ขึ้น"
+      "💰 กำไรจริง — profitable small cap ที่หายาก EPS Q1 $0.08 เกินคาด $0.06 (+33%)",
+      "📈 Q1 2026 revenue $6.7M — โต 28.8% YoY marine tech segment โต 47.4%",
+      "🌏 Echoscope revenue โต 63.4% ในเอเชีย — expansion ชัดเจน",
+      "💵 เงินสด $30.45M ไม่มีหนี้ — ฐานะการเงินแข็งแรงมาก"
     ],
     cons: [
-      "⚠️ Market cap เล็กมาก ($131M) — สภาพคล่องต่ำ spread กว้าง ออกจากหุ้นลำบาก",
-      "⚠️ Revenue ยังเล็ก ($26.6M ทั้งปี) — ต้องใช้เวลาในการ scale"
+      "⚠️ Market cap $139M เล็กมาก — volume ต่ำ อาจมี slippage เวลาซื้อขาย",
+      "⚠️ Revenue ต่อไตรมาสยังเพียง $6.7M — ขยายตัวช้ากว่า tech growth stock"
     ],
     fundamentals: {
-      revGrowth:    { value: "+30.7%",    pass: true,  label: "รายได้โต YoY" },
-      grossMargin:  { value: "66.5%",     pass: true,  label: "อัตรากำไรขั้นต้น" },
-      cashVsDebt:   { value: "Cash>Debt", pass: true,  label: "เงินสด>หนี้" },
-      opCashFlow:   { value: "+$4.5M",    pass: true,  label: "กระแสเงินสดธุรกิจ" },
-      insiderBuy:   { value: "ไม่มีข้อมูล", pass: false, label: "ผู้บริหารซื้อหุ้น" },
-      instOwn:      { value: "~25%",      pass: true,  label: "สถาบันถือ" },
+      revGrowth:    { value: "+28.8%",    pass: true,  label: "รายได้โต YoY" },
+      grossMargin:  { value: ">40% (est)",pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "$30.45M",   pass: true,  label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "$1.48M",    pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",   pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~15%",      pass: true,  label: "สถาบันถือ" },
       shortInterest:{ value: "<10%",      pass: true,  label: "Short Interest" }
     },
     news: {
       positive: [
-        { emoji: "📈", headline: "FY2025 revenue $26.6M (+30.7%) + net income $4.1M + gross margin 66.5%", source: "GlobeNewswire", date: "28 เม.ย." },
-        { emoji: "🛡️", headline: "US Defense orders คาดว่าจะเพิ่มในปีหน้า หนุน revenue ต่อเนื่อง", source: "Simply Wall St.", date: "1 พ.ค." },
-        { emoji: "🔄", headline: "เข้าซื้อกิจการ Precision Acoustics — ขยาย portfolio ป้องกันภัยทางทะเล", source: "Nasdaq.com", date: "25 เม.ย." }
+        { emoji: "💰", headline: "Q1 2026 revenue $6.7M +28.8% YoY — EPS $0.08 เกินคาด +33%", source: "Investing.com", date: "6 มี.ค." },
+        { emoji: "🌏", headline: "Echoscope revenue Asia โต 63.4% — ขยาย market ชัดเจน", source: "Yahoo Finance", date: "6 มี.ค." },
+        { emoji: "💵", headline: "เงินสด $30.45M ไม่มีหนี้ — กระแสเงินสดบวก $1.48M จาก operations", source: "StockTitan", date: "6 มี.ค." }
       ],
       negative: [
-        { emoji: "⚠️", headline: "Market cap $131M ต่ำมาก — volume น้อย spread กว้าง นักลงทุนสถาบันเข้าได้จำกัด", source: "Yahoo Finance", date: "8 พ.ค." }
+        { emoji: "📉", headline: "Market cap เล็กมาก $139M — volume ต่ำ อาจมี slippage เวลาซื้อขาย", source: "Yahoo Finance", date: "9 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [10.55, 10.70, 10.60, 10.85, 11.00, 10.80, 10.95, 11.15, 10.95, 11.20, 11.35, 11.10, 11.30, 11.50, 11.25, 11.40, 11.20, 11.55, 11.70, 11.67],
-      volumeHistory: [45000, 38000, 52000, 67000, 72000, 48000, 55000, 63000, 45000, 58000, 71000, 49000, 60000, 75000, 52000, 64000, 48000, 70000, 82000, 61000],
-      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8"],
-      week52High: 16.80,
-      week52Low:  7.50,
-      support1:   10.50,
-      support2:   9.00,
-      resistance1:13.00,
-      resistance2:16.80,
-      ma20:  11.17,
-      ma50:  10.40,
-      ma200: 9.20,
-      rsi:   62,
+      priceHistory: [10.50, 10.80, 11.00, 10.85, 11.20, 11.40, 11.25, 11.60, 11.50, 11.80, 11.70, 12.00, 11.90, 12.10, 11.95, 12.20, 12.10, 12.35, 12.40, 12.27],
+      volumeHistory: [180000, 150000, 220000, 200000, 250000, 280000, 210000, 260000, 290000, 320000, 280000, 350000, 310000, 380000, 340000, 420000, 390000, 450000, 480000, 410000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 14.80,
+      week52Low:  6.50,
+      support1:   11.00,
+      support2:   9.50,
+      resistance1:13.50,
+      resistance2:14.80,
+      ma20: 11.70,
+      ma50: 10.80,
+      ma200: null,
+      rsi: 60,
       rsiStatus: "neutral",
       vsMA50:  "above",
       vsMA200: "above"
     },
-    technicalSimple: "Uptrend เงียบๆ — ราคาค่อยๆ ขึ้นมา 10% ใน 20 วัน Volume เบาบาง (เพราะ market cap เล็ก) RSI 62 ปกติ ไม่ volatile",
-    rankReasoning: "อันดับ 7 — hidden gem ที่มีพื้นฐานดีมาก แต่ liquidity ต่ำทำให้ risk สูงสำหรับนักลงทุนขนาดใหญ่"
-  },
-  {
-    rank: 8,
-    ticker: "DUOT",
-    name: "Duos Technologies Group",
-    thaiName: "ดูออส เทคโนโลยีส์ — AI ทางรถไฟ",
-    emoji: "🚂",
-    sector: "เทคโนโลยี · AI Edge ความปลอดภัยรถไฟ",
-    whatItDoes: "ติดตั้งระบบ AI และ edge computing เพื่อตรวจสอบความปลอดภัยของขบวนรถไฟ — กล้อง sensor และ AI วิเคราะห์ realtime ช่วยลดอุบัติเหตุและลดต้นทุนการตรวจสอบ",
-    marketCap: "$261M",
-    marketCapThai: "261 ล้านดอลลาร์",
-    price: 8.95,
-    changePercent: 1.24,
-    score: 60,
-    oneLineSummary: "รายได้ Q1 2026 โต 159% + guidance 2026 $50M+ (จาก $19M ปีก่อน) 🚆",
-    pros: [
-      "🚀 รายได้ Q1 2026 โต 159% YoY — committed contracts + pending orders แน่น",
-      "📋 ยืนยัน 2026 revenue เกิน $50M — เกือบ 3x จากปี 2025 ($19M)",
-      "🛤️ ระบบรถไฟอเมริกาต้องการ upgrade ความปลอดภัย — ตลาดเติบโต",
-      "📅 Q1 2026 earnings ประกาศ 14 พ.ค. — อีก catalyst ใกล้มือ"
-    ],
-    cons: [
-      "⚠️ Revenue ยังเล็กมาก ($19M ปี 2025) — execution risk สูง",
-      "⚠️ ลูกค้าหลักคือรัฐบาลและรถไฟ — cycle ยาว อาจชะลอถ้างบภาครัฐถูกตัด"
-    ],
-    fundamentals: {
-      revGrowth:    { value: "+159%",     pass: true,  label: "รายได้โต YoY (Q1)" },
-      grossMargin:  { value: "~40%",      pass: true,  label: "อัตรากำไรขั้นต้น" },
-      cashVsDebt:   { value: "Cash~=Debt",pass: false, label: "เงินสด>หนี้" },
-      opCashFlow:   { value: "ลบ (เล็กน้อย)",pass: false, label: "กระแสเงินสดธุรกิจ" },
-      insiderBuy:   { value: "ไม่มีข้อมูล", pass: false, label: "ผู้บริหารซื้อหุ้น" },
-      instOwn:      { value: "~30%",      pass: true,  label: "สถาบันถือ" },
-      shortInterest:{ value: "<15%",      pass: true,  label: "Short Interest" }
-    },
-    news: {
-      positive: [
-        { emoji: "🚀", headline: "Q1 2026 revenue +159% YoY — committed contracts ยืนยัน 2026 revenue $50M+", source: "GlobeNewswire", date: "1 เม.ย." },
-        { emoji: "🚂", headline: "FRA (Federal Railroad Admin) เพิ่มงบ safety inspection — หนุน DUOT โดยตรง", source: "MarketWatch", date: "28 เม.ย." }
-      ],
-      negative: [
-        { emoji: "⚠️", headline: "ยังขาดทุน + กระแสเงินสดลบ ต้องพึ่ง backlog ให้ convert เป็นรายได้ให้ได้", source: "Morningstar", date: "8 พ.ค." }
-      ]
-    },
-    technical: {
-      priceHistory: [7.60, 7.80, 7.65, 7.95, 8.15, 7.90, 8.20, 8.40, 8.25, 8.50, 8.65, 8.45, 8.60, 8.80, 8.60, 8.75, 8.55, 8.85, 8.95, 8.95],
-      volumeHistory: [120000, 105000, 135000, 165000, 180000, 142000, 158000, 195000, 148000, 172000, 205000, 155000, 178000, 215000, 168000, 188000, 160000, 195000, 220000, 190000],
-      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8"],
-      week52High: 12.50,
-      week52Low:  4.20,
-      support1:   8.00,
-      support2:   6.50,
-      resistance1:10.00,
-      resistance2:12.50,
-      ma20:  8.38,
-      ma50:  7.50,
-      ma200: 6.30,
-      rsi:   57,
-      rsiStatus: "neutral",
-      vsMA50:  "above",
-      vsMA200: "above"
-    },
-    technicalSimple: "ราคาขึ้นมา 17% ใน 20 วัน อยู่เหนือ MA20/MA50/MA200 ทั้งหมด RSI 57 ปกติ Volume เพิ่มขึ้น suggest การสะสม",
-    rankReasoning: "อันดับ 8 — growth สูงมากแต่ขนาดเล็กและ risk execution สูง เหมาะสำหรับ risk-tolerant investor"
+    technicalSimple: "ราคาทำ new high ใหม่ใน 3 เดือน RSI 60 ยังมีพื้นที่ — แต่ volume ต่ำ ควรระวัง slippage",
+    rankReasoning: "อันดับ 8 — profitable small cap ที่หายาก + ขยายตัวในเอเชีย + ฐานะการเงินดีมาก แต่ขนาดเล็กมากและ volume ต่ำ"
   },
   {
     rank: 9,
     ticker: "RNGR",
     name: "Ranger Energy Services",
-    thaiName: "เรนเจอร์ เอเนอร์จี — บริการพลังงาน",
-    emoji: "⛽",
-    sector: "พลังงาน · Well Services",
-    whatItDoes: "ให้บริการด้านน้ำมันและก๊าซในอเมริกา — บริการ well completion, production services และ ancillary equipment สำหรับ shale producers และผู้ผลิตพลังงาน",
+    thaiName: "เรนเจอร์ เอ็นเนอร์จี — บริการน้ำมันและก๊าซ",
+    emoji: "🛢️",
+    sector: "พลังงาน · Oilfield Services",
+    whatItDoes: "ให้บริการ well completion และ wireline services แก่บริษัทผลิตน้ำมัน-ก๊าซในสหรัฐ — มีรถขุด high-spec rig ที่ทันสมัยและ Echo Hybrid RIC program สำหรับความยั่งยืน",
     marketCap: "$411M",
     marketCapThai: "411 ล้านดอลลาร์",
     price: 17.25,
-    changePercent: 0.58,
-    score: 57,
-    oneLineSummary: "กำไร EPS Q1 โต 300% YoY + revenue +18% + data center power demand หนุน demand พลังงาน ⚡",
+    changePercent: -0.87,
+    score: 62,
+    oneLineSummary: "Q1 revenue +17.7% YoY + EPS โต +300% + ปันผล $0.06 — energy services ฟื้นตัวแข็งแกร่ง 🛢️",
     pros: [
-      "💰 Non-GAAP EPS Q1 2026 โต 300% YoY — ประสิทธิภาพปรับตัวดีมาก",
-      "⚡ data center boom ดัน electricity demand → ดี ให้ shale producers → ดีให้ RNGR",
-      "📈 Q1 revenue $159.1M (+18%) เกินคาดนักวิเคราะห์"
+      "💰 Q1 2026 EPS $0.12 — โต +300% YoY จาก $0.03 ปีก่อน",
+      "📈 Q1 revenue $159.1M — โต 17.7% YoY — EBITDA $23.3M (14.6% margin)",
+      "💵 ประกาศปันผล $0.06/หุ้น — บริษัทขนาดเล็กที่จ่ายเงินคืนผู้ถือหุ้น",
+      "⚙️ Echo Hybrid RIC program + integration ธุรกิจใหม่ AWS ขับเคลื่อนการเติบโต"
     ],
     cons: [
-      "⚠️ Revenue growth 18% ยังต่ำกว่า threshold 20% ที่ตั้งไว้",
-      "⚠️ ธุรกิจผูกพันกับราคาน้ำมัน — ถ้าน้ำมันลง demand บริการลดตาม",
-      "⚠️ Working capital challenges ใน Q1 — อาจกดดัน cash flow ระยะสั้น"
+      "⚠️ Revenue growth 17.7% ต่ำกว่าเกณฑ์ 20% — เติบโตช้ากว่า tech stocks",
+      "⚠️ ราคาน้ำมันผันผวน — รายได้ขึ้นกับ commodity price ที่ควบคุมไม่ได้"
     ],
     fundamentals: {
-      revGrowth:    { value: "+18%",      pass: false, label: "รายได้โต YoY" },
-      grossMargin:  { value: "~20%",      pass: false, label: "อัตรากำไรขั้นต้น" },
-      cashVsDebt:   { value: "ตรวจสอบได้", pass: false, label: "เงินสด>หนี้" },
-      opCashFlow:   { value: "บวก",       pass: true,  label: "กระแสเงินสดธุรกิจ" },
-      insiderBuy:   { value: "ไม่มีข้อมูล", pass: false, label: "ผู้บริหารซื้อหุ้น" },
-      instOwn:      { value: "~40%",      pass: true,  label: "สถาบันถือ" },
+      revGrowth:    { value: "+17.7%",    pass: false, label: "รายได้โต YoY" },
+      grossMargin:  { value: ">20% (est)",pass: false, label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "บวก",       pass: true,  label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "EBITDA $23M",pass: true, label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",   pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~30%",      pass: true,  label: "สถาบันถือ" },
       shortInterest:{ value: "<15%",      pass: true,  label: "Short Interest" }
     },
     news: {
       positive: [
-        { emoji: "💰", headline: "Q1 2026 non-GAAP EPS +300% YoY + revenue $159.1M เกินคาด", source: "Yahoo Finance", date: "1 พ.ค." },
-        { emoji: "⚡", headline: "data center power demand ดัน shale production — เพิ่ม demand บริการน้ำมัน", source: "Reuters", date: "28 เม.ย." }
+        { emoji: "💰", headline: "Q1 2026 revenue $159.1M +17.7% YoY — EPS $0.12 โต +300% จากปีก่อน", source: "Benzinga", date: "28 เม.ย." },
+        { emoji: "💵", headline: "ประกาศปันผล $0.06/หุ้น จ่าย 22 พ.ค. 2026 — yield ~1.4%", source: "TipRanks", date: "28 เม.ย." },
+        { emoji: "⚙️", headline: "Echo Hybrid RIC program + integration AWS businesses ขับเคลื่อนการเติบโต", source: "Yahoo Finance", date: "28 เม.ย." }
       ],
       negative: [
-        { emoji: "⚠️", headline: "Revenue growth 18% ต่ำกว่า 20% threshold — ไม่ใช่ hyper-growth play", source: "MarketBeat", date: "1 พ.ค." },
-        { emoji: "📉", headline: "ราคาน้ำมัน NYMEX ผันผวน — risk ต่อ demand บริการ E&P", source: "Bloomberg", date: "7 พ.ค." }
+        { emoji: "⚠️", headline: "EPS miss consensus — แม้ revenue beat แต่ profit ยังต่ำกว่าที่นักวิเคราะห์คาด", source: "Investing.com", date: "28 เม.ย." }
       ]
     },
     technical: {
-      priceHistory: [16.20, 16.45, 16.30, 16.65, 16.85, 16.55, 16.90, 17.10, 16.90, 17.15, 17.30, 17.05, 17.20, 17.40, 17.15, 17.35, 17.10, 17.25, 17.30, 17.25],
-      volumeHistory: [280000, 250000, 310000, 380000, 420000, 290000, 340000, 390000, 300000, 360000, 420000, 290000, 340000, 410000, 310000, 365000, 310000, 380000, 400000, 345000],
-      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8"],
-      week52High: 21.50,
-      week52Low:  12.80,
-      support1:   16.00,
-      support2:   14.50,
-      resistance1:18.50,
-      resistance2:21.50,
-      ma20:  16.97,
-      ma50:  16.20,
-      ma200: 15.50,
-      rsi:   57,
+      priceHistory: [14.50, 14.80, 15.10, 14.90, 15.30, 15.60, 15.40, 16.00, 16.30, 16.10, 16.50, 17.20, 17.00, 16.80, 17.10, 17.30, 17.15, 17.45, 17.30, 17.25],
+      volumeHistory: [850000, 920000, 1050000, 980000, 1120000, 1280000, 1050000, 1350000, 1480000, 1620000, 1380000, 1750000, 1560000, 820000, 1200000, 1350000, 1150000, 1050000, 980000, 920000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 18.82,
+      week52Low:  10.56,
+      support1:   15.50,
+      support2:   13.00,
+      resistance1:18.82,
+      resistance2:21.00,
+      ma20: 16.40,
+      ma50: 15.20,
+      ma200: null,
+      rsi: 62,
       rsiStatus: "neutral",
       vsMA50:  "above",
       vsMA200: "above"
     },
-    technicalSimple: "ราคาขยับขึ้นเล็กน้อยใน range $16-17.40 ไม่ breakout ชัด RSI 57 ปกติ Volume คงที่ — เป็นหุ้น stable ไม่ใช่ momentum play",
-    rankReasoning: "อันดับ 9 — profitable และ cash flow บวก แต่ growth rate ต่ำกว่า threshold ทำให้ไม่ใช่ดาวรุ่งในระดับเดียวกับอันดับบน"
+    technicalSimple: "ราคาใกล้ 52-week high $18.82 — RSI 62 ยังมีพื้นที่ก่อน overbought ปันผลสนับสนุน downside",
+    rankReasoning: "อันดับ 9 — EPS โต +300% + มีปันผล + revenue beat แต่ sector ขึ้นกับราคาพลังงานและ growth ช้ากว่ากลุ่มอื่น"
   },
   {
     rank: 10,
-    ticker: "SERV",
-    name: "Serve Robotics",
-    thaiName: "เซิร์ฟ โรโบติกส์ — หุ่นยนต์ส่งอาหาร",
-    emoji: "🤖",
-    sector: "เทคโนโลยี · Delivery Robotics",
-    whatItDoes: "ผลิตและดำเนินงานหุ่นยนต์ส่งอาหารบนทางเท้าในลอสแอนเจลิส — เป็นพันธมิตรกับทั้ง Uber Eats และ DoorDash ราว 1 ใน 3 ของรายได้เป็น software recurring",
-    marketCap: "$700M",
-    marketCapThai: "700 ล้านดอลลาร์",
-    price: 9.14,
-    changePercent: -0.98,
-    score: 56,
-    oneLineSummary: "รายได้ Q1 2026 โต 578% YoY สู่ $3M + DoorDash + Uber Eats partnership ดำเนินการพร้อมกัน 🍔",
+    ticker: "MGNI",
+    name: "Magnite",
+    thaiName: "แมกไนต์ — โฆษณา CTV / Streaming",
+    emoji: "📺",
+    sector: "โฆษณาดิจิทัล · CTV Ad Tech",
+    whatItDoes: "Supply-side advertising platform สำหรับ streaming TV และ digital media — ช่วยให้สตูดิโอและสื่อขายโฆษณาอัตโนมัติ ลูกค้ารวม Roku, Hearst, Walmart Connect",
+    marketCap: "$2.01B",
+    marketCapThai: "2 พันล้านดอลลาร์",
+    price: 13.83,
+    changePercent: 0.95,
+    score: 60,
+    oneLineSummary: "CTV revenue โต 30% YoY + AI tools ใหม่ + Hearst partnership + live sports 80% growth 📺",
     pros: [
-      "🚀 รายได้ Q1 2026 โต 578% YoY และ 3x sequential — ชัดเจนว่า scaling",
-      "🤝 ทำงานร่วมทั้ง Uber Eats และ DoorDash พร้อมกัน — สองช่องทางใหญ่ที่สุด",
-      "💻 ~33% ของรายได้คือ software/SaaS — recurring revenue เพิ่มขึ้น",
-      "📋 ยืนยัน 2026 guidance $26M — ขยาย fleet 7x จากปีที่แล้ว"
+      "📺 CTV contribution ex-TAC โต 30% YoY — streaming เป็น growth engine หลัก",
+      "🤖 เปิดตัว AI-powered SpringServe tools ใหม่ — agentic capabilities สำหรับ ad buyers",
+      "🤝 Hearst เลือก Magnite เป็น preferred partner สำหรับ CTV formats",
+      "🏆 Live sports โต >80% YoY — World Cup ที่จะมาถึงเป็น catalyst ต่อไป"
     ],
     cons: [
-      "⚠️ CEO/COO/CFO ขายหุ้นใน มี.ค. 2026 — insider selling เป็น signal ลบ",
-      "⚠️ ขาดทุนสุทธิกว้างขึ้น + revenue base เล็กมาก ($3M ต่อไตรมาส) ยังห่าง breakeven",
-      "⚠️ ราคาลดจาก 52-week high $18.64 มา $9.14 — ลดมากกว่า 50%"
+      "⚠️ Market cap $2.01B อยู่นอก small cap threshold $2B — อาจ qualify ได้บ้างขึ้นกับวันที่",
+      "⚠️ Q1 revenue $164.4M miss consensus $174M — headline revenue ต่ำกว่าคาด"
     ],
     fundamentals: {
-      revGrowth:    { value: "+578%",     pass: true,  label: "รายได้โต YoY" },
-      grossMargin:  { value: "~55%",      pass: true,  label: "อัตรากำไรขั้นต้น" },
-      cashVsDebt:   { value: "Cash>Debt", pass: true,  label: "เงินสด>หนี้" },
-      opCashFlow:   { value: "ลบ",        pass: false, label: "กระแสเงินสดธุรกิจ" },
-      insiderBuy:   { value: "Insiders ขาย ❌", pass: false, label: "ผู้บริหารซื้อหุ้น" },
-      instOwn:      { value: "~35%",      pass: true,  label: "สถาบันถือ" },
-      shortInterest:{ value: "~8% (เพิ่ม)", pass: true, label: "Short Interest" }
+      revGrowth:    { value: "+5.5%",     pass: false, label: "รายได้โต YoY" },
+      grossMargin:  { value: ">50% (est)",pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "บวก",       pass: true,  label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "EBITDA 26%",pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",   pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~60%",      pass: true,  label: "สถาบันถือ" },
+      shortInterest:{ value: "<20%",      pass: true,  label: "Short Interest" }
     },
     news: {
       positive: [
-        { emoji: "🚀", headline: "Q1 2026 revenue $3M (+578% YoY, 3X sequential) — reaffirm 2026 $26M guidance", source: "GlobeNewswire", date: "7 พ.ค." },
-        { emoji: "🍔", headline: "DoorDash + Uber Eats ทำงานพร้อมกัน — fleet ขยาย 7x จากปีก่อน", source: "Benzinga", date: "7 พ.ค." }
+        { emoji: "📺", headline: "CTV contribution ex-TAC โต 30% — Hearst เลือก Magnite เป็น preferred partner", source: "Yahoo Finance", date: "6 พ.ค." },
+        { emoji: "🤖", headline: "เปิดตัว AI SpringServe + agentic tools — Walmart Connect & Expedia Group integration", source: "MarketBeat", date: "3 พ.ค." },
+        { emoji: "🏆", headline: "Live sports revenue โต >80% — World Cup เป็น catalyst ใหญ่ที่จะถึง", source: "Gurufocus", date: "6 พ.ค." }
       ],
       negative: [
-        { emoji: "⚠️", headline: "CEO/COO/CFO ขายหุ้นในเดือน มี.ค. — insider selling เกิดขึ้นพร้อมกันหลายคน", source: "Fintel.io", date: "1 เม.ย." },
-        { emoji: "📉", headline: "Net loss Q1 กว้างขึ้น — ยังห่างจาก cash flow positive มาก", source: "StockTitan", date: "7 พ.ค." }
+        { emoji: "📉", headline: "Q1 headline revenue $164.4M miss consensus $174M — 5.5% below estimate", source: "StockStory", date: "6 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [9.80, 9.60, 9.45, 9.70, 9.85, 9.55, 9.30, 9.15, 9.35, 9.55, 9.40, 9.20, 9.35, 9.50, 9.30, 9.15, 9.25, 9.10, 9.20, 9.14],
-      volumeHistory: [1800000, 1600000, 1950000, 2400000, 2600000, 1900000, 2100000, 2500000, 1800000, 2200000, 2700000, 1950000, 2100000, 2600000, 2000000, 1900000, 2000000, 1850000, 2100000, 1980000],
-      labels: ["Apr 11","Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8"],
-      week52High: 18.64,
-      week52Low:  5.87,
-      support1:   8.50,
-      support2:   7.00,
-      resistance1:11.00,
-      resistance2:14.00,
-      ma20:  9.41,
-      ma50:  11.50,
-      ma200: 13.20,
-      rsi:   42,
+      priceHistory: [11.20, 11.50, 11.80, 11.60, 12.00, 12.30, 12.10, 12.50, 12.80, 13.00, 12.85, 13.20, 13.10, 13.40, 13.25, 13.60, 13.80, 14.00, 13.90, 13.83],
+      volumeHistory: [1500000, 1350000, 1680000, 1520000, 1800000, 2050000, 1720000, 1900000, 2100000, 1950000, 1850000, 2200000, 2050000, 2400000, 2150000, 2600000, 2350000, 2800000, 2500000, 2200000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 26.65,
+      week52Low:  10.82,
+      support1:   12.50,
+      support2:   11.00,
+      resistance1:16.00,
+      resistance2:20.00,
+      ma20: 12.80,
+      ma50: 11.90,
+      ma200: null,
+      rsi: 55,
       rsiStatus: "neutral",
-      vsMA50:  "below",
-      vsMA200: "below"
+      vsMA50:  "above",
+      vsMA200: "above"
     },
-    technicalSimple: "ราคาต่ำกว่า MA50 และ MA200 ทั้งคู่ — ยังอยู่ในเทรนด์ขาลงจาก 52-week high RSI 42 เริ่มเย็น อาจเด้งถ้า Q2 catalyst ดี แต่ยังไม่ยืนยัน",
-    rankReasoning: "อันดับ 10 — growth น่าตื่นเต้นมาก แต่ insider selling + ราคาต่ำกว่า MA ทำให้ technical ไม่เอื้อ ระวังความเสี่ยงสูง"
+    technicalSimple: "ราคาทำ higher high ต่อเนื่อง 4 สัปดาห์ RSI 55 ปกติ — Volume สม่ำเสมอ CTV momentum ชัดเจน",
+    rankReasoning: "อันดับ 10 — CTV momentum + AI tools + live sports catalyst แต่ market cap เกิน $2B นิดหน่อยและ revenue miss"
   }
+
 ];
 // ============== ROUTINE: REPLACE ABOVE ==============
 
