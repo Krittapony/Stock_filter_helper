@@ -81,6 +81,9 @@
     position: relative;
     overflow: hidden;
   }
+  body.theme-smallcap header {
+    background: linear-gradient(135deg, #4facfe 0%, #667eea 50%, #764ba2 100%);
+  }
   header::before {
     content: ""; position: absolute; top: -40px; right: -40px;
     width: 180px; height: 180px; background: rgba(255,255,255,0.15);
@@ -412,13 +415,14 @@
 <div class="container">
 
   <header>
-    <h1>📊 หุ้นเด็ดวันนี้</h1>
-    <div class="subtitle">Top 10 หุ้น US ที่น่าจับตามองวันนี้ — คัดเองโดย AI</div>
+    <h1 id="report-title">📊 หุ้นเด็ดวันนี้</h1>
+    <div class="subtitle" id="report-subtitle">Top 10 หุ้น US ที่น่าจับตามองวันนี้ — คัดเองโดย AI</div>
     <div class="meta-row">
       <span class="pill">📅 <span id="report-date">—</span></span>
       <span class="pill">⏰ <span id="generated-at">—</span></span>
       <span class="pill" id="count-badge">10 ตัวเลือก</span>
       <a class="pill archive-pill" href="archive/">📚 ดูประวัติย้อนหลัง</a>
+      <a class="pill archive-pill" id="cross-nav" href="#" style="display:none"></a>
     </div>
   </header>
 
@@ -431,6 +435,8 @@
   </div>
 
   <div id="stocks-container"></div>
+
+  <div id="theme-disclaimer"></div>
 
   <div class="disclaimer">
     <strong>⚠️ ข้อควรรู้:</strong>
@@ -445,6 +451,9 @@
 // ============== ROUTINE: REPLACE BELOW ==============
 const REPORT_DATE = "2026-05-08";
 const GENERATED_AT_ISO = "2026-05-08T20:00:00+07:00";
+const REPORT_TITLE = "📊 หุ้นเด็ดวันนี้";
+const REPORT_SUBTITLE = "Top 10 หุ้น US ที่น่าจับตามองวันนี้ — คัดเองโดย AI";
+const REPORT_THEME = "default";
 
 const STOCKS_DATA = [
   {
@@ -1030,9 +1039,40 @@ const STOCKS_DATA = [
 // ============== ROUTINE: REPLACE ABOVE ==============
 
 // =============== RENDERING ===============
+document.body.classList.add(`theme-${REPORT_THEME}`);
+document.title = `${REPORT_TITLE} — Stock Screener`;
+document.getElementById('report-title').textContent = REPORT_TITLE;
+document.getElementById('report-subtitle').textContent = REPORT_SUBTITLE;
 document.getElementById('report-date').textContent = REPORT_DATE;
 document.getElementById('generated-at').textContent = formatGeneratedAt(GENERATED_AT_ISO);
 document.getElementById('count-badge').textContent = `🎯 ${STOCKS_DATA.length} หุ้นเด็ด`;
+renderCrossNav(REPORT_THEME);
+renderThemeDisclaimer(REPORT_THEME);
+
+function renderCrossNav(theme) {
+  const nav = document.getElementById('cross-nav');
+  if (theme === 'smallcap') {
+    nav.href = '../';
+    nav.textContent = '💎 หุ้นใหญ่แข็งแรง';
+  } else {
+    nav.href = 'smallcap/';
+    nav.textContent = '🌱 หุ้นเล็กดาวรุ่ง';
+  }
+  nav.style.display = '';
+}
+
+function renderThemeDisclaimer(theme) {
+  if (theme !== 'smallcap') return;
+  document.getElementById('theme-disclaimer').innerHTML = `
+    <div class="disclaimer" style="background: var(--red-bg); color: var(--red-text); margin-bottom: 12px;">
+      <strong>🎢 หุ้นเล็กเสี่ยงสูงเป็นพิเศษ:</strong>
+      <ul style="margin: 8px 0 0 20px; padding: 0;">
+        <li><strong>ผันผวนสูง</strong> — ราคาเหวี่ยงแรงกว่าหุ้นใหญ่หลายเท่า</li>
+        <li><strong>Liquidity ต่ำ</strong> — เข้า/ออกอาจมี slippage</li>
+        <li><strong>เสี่ยง pump-and-dump</strong> — ระวัง pattern ราคาวิ่งโดยไม่มีพื้นฐานรองรับ</li>
+      </ul>
+    </div>`;
+}
 
 function formatGeneratedAt(iso) {
   if (!iso) return "—";

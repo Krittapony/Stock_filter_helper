@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 ประวัติย้อนหลัง — หุ้นเด็ดวันนี้</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-page: #fff8f3; --bg-card: #ffffff;
+    --text-1: #1a1015; --text-2: #5a4d52; --text-3: #8a7d82;
+    --pink-strong: #e91e63; --border: rgba(0,0,0,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg-page: #1a1015; --bg-card: #251a20; --text-1: #fff8f3; --text-2: #d4c4ca; --text-3: #a89097; --border: rgba(255,255,255,0.08); }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Sarabun', sans-serif; background: var(--bg-page); color: var(--text-1); padding: 24px 16px; line-height: 1.7; }
+  .container { max-width: 800px; margin: 0 auto; }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 4px;
+    color: var(--pink-strong); text-decoration: none;
+    font-size: 14px; margin-bottom: 16px; font-weight: 500;
+  }
+  header {
+    background: linear-gradient(135deg, #ff6b9d, #ffa06b); border-radius: 24px;
+    padding: 24px 28px; margin-bottom: 16px; color: white;
+  }
+  header h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+  header .desc { font-size: 13px; opacity: 0.95; }
+  .archive-list { background: var(--bg-card); border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
+  .archive-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 22px; border-bottom: 1px solid var(--border);
+    text-decoration: none; color: var(--text-1); transition: background 0.15s;
+  }
+  .archive-item:last-child { border-bottom: none; }
+  .archive-item:hover { background: var(--bg-page); }
+  .archive-date { font-weight: 600; font-size: 15px; }
+  .archive-picks { font-size: 12px; color: var(--text-2); margin-top: 3px; }
+  .archive-arrow { font-size: 18px; color: var(--pink-strong); }
+  .empty { padding: 60px 20px; text-align: center; color: var(--text-2); font-size: 15px; }
+  .empty .emoji { font-size: 56px; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back-link" href="../">← กลับไปหน้าหลัก</a>
+  <header>
+    <h1>📚 ประวัติย้อนหลัง</h1>
+    <div class="desc">รายงานหุ้นเด็ดทุกวันที่ผ่านมา</div>
+  </header>
+  <div class="archive-list" id="archive-list"></div>
+</div>
+<script>
+fetch('index.json').then(r => r.json()).then(data => {
+  const list = document.getElementById('archive-list');
+  if (!data.reports || data.reports.length === 0) {
+    list.innerHTML = '<div class="empty"><div class="emoji">📭</div>ยังไม่มีรายงานย้อนหลัง<br><small>รายงานวันนี้จะถูกเก็บที่นี่หลังจากวันถัดไป</small></div>';
+    return;
+  }
+  data.reports.sort((a, b) => b.date.localeCompare(a.date));
+  list.innerHTML = data.reports.map(r => `
+    <a class="archive-item" href="${r.url}">
+      <div>
+        <div class="archive-date">📅 ${r.date}</div>
+        <div class="archive-picks">หุ้น Top: ${(r.topPicks || []).slice(0, 5).join(' · ')}${r.topPicks && r.topPicks.length > 5 ? ' ...' : ''}</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+  `).join('');
+}).catch(() => {
+  document.getElementById('archive-list').innerHTML = '<div class="empty"><div class="emoji">📭</div>ยังไม่มีรายงานย้อนหลัง</div>';
+});
+</script>
+</body>
+</html>
