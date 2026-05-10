@@ -9,6 +9,11 @@
       "date": "2026-05-09",
       "url": "2026-05-09.html",
       "topPicks": ["GOOGL", "META", "AAPL", "AMZN", "MSFT", "V", "MA", "QCOM", "AVGO", "AMD"]
+    },
+    {
+      "date": "2026-05-10",
+      "url": "2026-05-10.html",
+      "topPicks": ["GOOGL", "AAPL", "META", "MA", "V", "AMZN", "AMD", "NVDA", "AVGO", "MSFT"]
     }
   ]
 }
