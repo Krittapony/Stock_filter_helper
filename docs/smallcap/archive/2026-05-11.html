@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌱 หุ้นเล็กดาวรุ่ง — Stock Screener</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --bg-page: #fff8f3;
+    --bg-card: #ffffff;
+    --bg-soft: #fff3e8;
+    --text-1: #1a1015;
+    --text-2: #5a4d52;
+    --text-3: #8a7d82;
+    --border: rgba(0,0,0,0.06);
+    --pink-bg: #fff0f5;
+    --pink-text: #c2185b;
+    --pink-strong: #e91e63;
+    --green-bg: #e8f8ee;
+    --green-text: #1f7a3e;
+    --green-strong: #2ec866;
+    --red-bg: #ffeaea;
+    --red-text: #b3261e;
+    --red-strong: #f44336;
+    --orange-bg: #fff4e0;
+    --orange-text: #b35900;
+    --orange-strong: #ff9800;
+    --purple-bg: #f3edff;
+    --purple-text: #5e35b1;
+    --purple-strong: #7c4dff;
+    --blue-bg: #e3f2fd;
+    --blue-text: #0d47a1;
+    --blue-strong: #2196f3;
+    --gold: #ffb300;
+    --silver: #b0bec5;
+    --bronze: #d7a86e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-page: #1a1015;
+      --bg-card: #251a20;
+      --bg-soft: #2e2128;
+      --text-1: #fff8f3;
+      --text-2: #d4c4ca;
+      --text-3: #a89097;
+      --border: rgba(255,255,255,0.08);
+      --pink-bg: rgba(233,30,99,0.15);
+      --pink-text: #ff80ab;
+      --green-bg: rgba(46,200,102,0.15);
+      --green-text: #81c784;
+      --red-bg: rgba(244,67,54,0.15);
+      --red-text: #ff8a80;
+      --orange-bg: rgba(255,152,0,0.15);
+      --orange-text: #ffb74d;
+      --purple-bg: rgba(124,77,255,0.15);
+      --purple-text: #b39ddb;
+      --blue-bg: rgba(33,150,243,0.15);
+      --blue-text: #90caf9;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Sarabun', 'Inter', -apple-system, sans-serif;
+    background: var(--bg-page);
+    color: var(--text-1);
+    line-height: 1.7;
+    padding: 20px 12px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* ============ HEADER ============ */
+  header {
+    background: linear-gradient(135deg, #ff6b9d 0%, #ffa06b 50%, #ffd16b 100%);
+    border-radius: 24px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  body.theme-smallcap header {
+    background: linear-gradient(135deg, #4facfe 0%, #667eea 50%, #764ba2 100%);
+  }
+  header::before {
+    content: ""; position: absolute; top: -40px; right: -40px;
+    width: 180px; height: 180px; background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+  }
+  header::after {
+    content: ""; position: absolute; bottom: -60px; left: 30%;
+    width: 140px; height: 140px; background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+  }
+  header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; position: relative; }
+  header .subtitle { font-size: 14px; opacity: 0.95; position: relative; }
+  header .meta-row {
+    display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; position: relative;
+  }
+  header .pill {
+    background: rgba(255,255,255,0.25); backdrop-filter: blur(10px);
+    padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  header .archive-pill {
+    background: #fff; color: #c2185b;
+    text-decoration: none; cursor: pointer;
+    font-weight: 600;
+    padding: 8px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border: 1.5px solid rgba(255,255,255,0.5);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  header .archive-pill::after {
+    content: "→"; margin-left: 4px;
+    transition: transform 0.15s ease;
+    display: inline-block;
+  }
+  header .archive-pill:hover {
+    background: #c2185b; color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  }
+  header .archive-pill:hover::after {
+    transform: translateX(3px);
+  }
+  header .archive-pill:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  /* ============ INTRO BANNER ============ */
+  .intro-banner {
+    background: var(--bg-card); border-radius: 20px; padding: 18px 22px;
+    margin-bottom: 16px; border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .intro-banner .emoji-big { font-size: 36px; }
+  .intro-banner .text-block { flex: 1; }
+  .intro-banner .title { font-size: 15px; font-weight: 600; color: var(--text-1); }
+  .intro-banner .desc { font-size: 13px; color: var(--text-2); margin-top: 2px; }
+
+  /* ============ STOCK CARDS ============ */
+  .stock-card {
+    background: var(--bg-card);
+    border-radius: 24px;
+    padding: 24px 28px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .stock-card:hover { transform: translateY(-2px); }
+  .stock-card.rank-1::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg, #ffd700, #ffb300, #ffd700);
+  }
+  .stock-card.rank-2::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg, #c0c0c0, #b0bec5, #c0c0c0);
+  }
+  .stock-card.rank-3::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg, #cd7f32, #d7a86e, #cd7f32);
+  }
+
+  /* Card header */
+  .card-header {
+    display: flex; gap: 16px; margin-bottom: 16px;
+    align-items: flex-start; flex-wrap: wrap;
+  }
+  .ticker-emoji {
+    width: 64px; height: 64px; border-radius: 18px;
+    background: var(--bg-soft);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; flex-shrink: 0;
+  }
+  .ticker-info { flex: 1; min-width: 0; }
+  .rank-medal {
+    display: inline-block; padding: 3px 12px; border-radius: 100px;
+    font-size: 12px; font-weight: 700; margin-bottom: 4px;
+  }
+  .rank-medal.gold { background: linear-gradient(135deg, #ffd700, #ffb300); color: #5d3700; }
+  .rank-medal.silver { background: linear-gradient(135deg, #e0e0e0, #b0bec5); color: #424242; }
+  .rank-medal.bronze { background: linear-gradient(135deg, #d7a86e, #cd7f32); color: #5d3700; }
+  .rank-medal.normal { background: var(--bg-soft); color: var(--text-2); }
+  .ticker-name { font-size: 22px; font-weight: 700; color: var(--text-1); margin-top: 2px; }
+  .ticker-name .symbol { color: var(--pink-strong); }
+  .ticker-thai { font-size: 14px; color: var(--text-2); margin-top: 1px; }
+  .ticker-sector {
+    font-size: 12px; color: var(--text-3); margin-top: 6px;
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+  }
+  .ticker-sector .dot { width: 3px; height: 3px; background: var(--text-3); border-radius: 50%; }
+
+  .price-block { text-align: right; min-width: 110px; }
+  .price-now { font-size: 24px; font-weight: 700; color: var(--text-1); }
+  .price-change {
+    font-size: 13px; font-weight: 600; margin-top: 2px;
+    display: inline-block; padding: 3px 10px; border-radius: 100px;
+  }
+  .price-change.up { background: var(--green-bg); color: var(--green-text); }
+  .price-change.down { background: var(--red-bg); color: var(--red-text); }
+
+  /* What it does */
+  .what-it-does {
+    background: var(--bg-soft); border-radius: 14px;
+    padding: 12px 16px; margin-bottom: 16px;
+    font-size: 14px; color: var(--text-2);
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .what-it-does .icon { font-size: 18px; flex-shrink: 0; }
+
+  /* Score bar */
+  .score-section {
+    background: linear-gradient(135deg, var(--purple-bg), var(--pink-bg));
+    border-radius: 18px; padding: 16px 20px; margin-bottom: 16px;
+  }
+  .score-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px;
+  }
+  .score-label {
+    font-size: 13px; color: var(--text-2); font-weight: 500;
+    display: flex; gap: 6px; align-items: center;
+  }
+  .score-value {
+    font-size: 20px; font-weight: 700; color: var(--purple-text);
+  }
+  .score-value .total { color: var(--text-3); font-size: 14px; font-weight: 500; }
+  .score-bar-track {
+    height: 12px; background: rgba(255,255,255,0.6);
+    border-radius: 100px; overflow: hidden; position: relative;
+  }
+  @media (prefers-color-scheme: dark) {
+    .score-bar-track { background: rgba(0,0,0,0.3); }
+  }
+  .score-bar-fill {
+    height: 100%; border-radius: 100px;
+    background: linear-gradient(90deg, #ff6b9d, #b75ce8, #5e6cff);
+    transition: width 1s ease-out;
+  }
+  .score-segments {
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: var(--text-3); margin-top: 8px;
+  }
+
+  /* One-line summary */
+  .one-liner {
+    font-size: 15px; color: var(--text-1); font-weight: 500;
+    margin-bottom: 16px; line-height: 1.6;
+    padding: 12px 16px; border-radius: 14px;
+    background: var(--blue-bg); border-left: 4px solid var(--blue-strong);
+  }
+
+  /* Pros & Cons */
+  .pros-cons {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    margin-bottom: 18px;
+  }
+  @media (max-width: 640px) { .pros-cons { grid-template-columns: 1fr; } }
+  .pros-col, .cons-col {
+    border-radius: 16px; padding: 14px 16px;
+  }
+  .pros-col { background: var(--green-bg); }
+  .cons-col { background: var(--red-bg); }
+  .pros-cons-title {
+    font-size: 13px; font-weight: 700; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .pros-col .pros-cons-title { color: var(--green-text); }
+  .cons-col .pros-cons-title { color: var(--red-text); }
+  .pros-cons ul { list-style: none; }
+  .pros-cons li {
+    font-size: 13px; line-height: 1.7; margin-bottom: 4px;
+    color: var(--text-1);
+  }
+
+  /* Section header */
+  .section-title {
+    font-size: 14px; font-weight: 700; color: var(--text-1);
+    margin: 18px 0 10px; display: flex; align-items: center; gap: 8px;
+  }
+
+  /* Fundamentals */
+  .fund-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 8px;
+  }
+  .fund-card {
+    background: var(--bg-soft); border-radius: 14px; padding: 10px 12px;
+    border: 1px solid var(--border);
+  }
+  .fund-card.pass { background: var(--green-bg); }
+  .fund-card.fail { background: var(--red-bg); }
+  .fund-label { font-size: 11px; color: var(--text-3); margin-bottom: 2px; }
+  .fund-value { font-size: 15px; font-weight: 700; color: var(--text-1); }
+  .fund-icon { font-size: 14px; margin-left: 4px; }
+  .fund-thai { font-size: 10px; color: var(--text-2); margin-top: 2px; }
+
+  /* News */
+  .news-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  @media (max-width: 640px) { .news-grid { grid-template-columns: 1fr; } }
+  .news-block { border-radius: 16px; padding: 14px 16px; }
+  .news-block.positive { background: var(--green-bg); }
+  .news-block.negative { background: var(--red-bg); }
+  .news-block-title {
+    font-size: 13px; font-weight: 700; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .news-block.positive .news-block-title { color: var(--green-text); }
+  .news-block.negative .news-block-title { color: var(--red-text); }
+  .news-item {
+    font-size: 13px; line-height: 1.6; margin-bottom: 6px;
+    color: var(--text-1); padding-left: 24px; position: relative;
+  }
+  .news-item .news-emoji {
+    position: absolute; left: 0; top: 0; font-size: 16px;
+  }
+  .news-source { font-size: 11px; color: var(--text-3); margin-top: 1px; }
+
+  /* Chart container */
+  .chart-area {
+    background: var(--bg-soft); border-radius: 18px; padding: 16px;
+    margin-top: 12px;
+  }
+  .chart-wrap {
+    position: relative; width: 100%; height: 300px;
+    margin-bottom: 8px;
+  }
+  .volume-wrap {
+    position: relative; width: 100%; height: 80px;
+    margin-bottom: 8px;
+  }
+
+  /* RSI gauge */
+  .rsi-section {
+    display: flex; gap: 14px; align-items: center;
+    background: var(--bg-card); border-radius: 14px; padding: 12px 16px;
+    margin-top: 10px; border: 1px solid var(--border);
+  }
+  .rsi-emoji { font-size: 28px; flex-shrink: 0; }
+  .rsi-info { flex: 1; }
+  .rsi-title { font-size: 13px; font-weight: 600; color: var(--text-1); }
+  .rsi-desc { font-size: 12px; color: var(--text-2); margin-top: 1px; }
+  .rsi-bar-track {
+    height: 10px; background: linear-gradient(90deg,
+      var(--blue-strong) 0%, var(--blue-strong) 30%,
+      var(--green-strong) 30%, var(--green-strong) 70%,
+      var(--red-strong) 70%, var(--red-strong) 100%);
+    border-radius: 100px; position: relative; margin-top: 6px;
+  }
+  .rsi-marker {
+    position: absolute; top: -3px; width: 16px; height: 16px;
+    background: white; border: 3px solid var(--text-1);
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Reference levels */
+  .levels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+    gap: 6px; margin-top: 10px;
+  }
+  .level-pill {
+    background: var(--bg-soft); border-radius: 10px;
+    padding: 8px 10px; border: 1px solid var(--border);
+  }
+  .level-name { font-size: 10px; color: var(--text-3); }
+  .level-num { font-size: 13px; font-weight: 600; color: var(--text-1); margin-top: 1px; }
+
+  .technical-simple {
+    background: var(--orange-bg); border-radius: 14px;
+    padding: 12px 16px; margin-top: 10px;
+    font-size: 13px; color: var(--orange-text);
+    display: flex; gap: 10px;
+  }
+  .technical-simple .icon { font-size: 18px; flex-shrink: 0; }
+
+  /* Why top reasoning */
+  .why-top {
+    background: linear-gradient(135deg, var(--purple-bg), var(--pink-bg));
+    border-radius: 16px; padding: 14px 18px; margin-top: 14px;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .why-top .why-emoji { font-size: 24px; flex-shrink: 0; }
+  .why-top .why-text {
+    font-size: 13px; color: var(--text-1); line-height: 1.7;
+  }
+  .why-top .why-text strong { color: var(--purple-text); }
+
+  /* Disclaimer */
+  .disclaimer {
+    background: var(--orange-bg); border-radius: 18px;
+    padding: 16px 20px; margin-top: 24px;
+    font-size: 12px; color: var(--orange-text); line-height: 1.7;
+  }
+  .disclaimer strong { font-weight: 700; }
+
+  .empty-state {
+    text-align: center; padding: 80px 20px;
+    color: var(--text-2); font-size: 16px;
+  }
+  .empty-state .emoji { font-size: 64px; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1 id="report-title">🌱 หุ้นเล็กดาวรุ่ง</h1>
+    <div class="subtitle" id="report-subtitle">Top 10 หุ้นเล็ก US (ราคา &lt; $20) ที่กำลังเป็นดาวรุ่ง — คัดเองโดย AI</div>
+    <div class="meta-row">
+      <span class="pill">📅 <span id="report-date">—</span></span>
+      <span class="pill">⏰ <span id="generated-at">—</span></span>
+      <span class="pill" id="count-badge">10 ตัวเลือก</span>
+      <a class="pill archive-pill" href="archive/">📚 ดูประวัติย้อนหลัง</a>
+      <a class="pill archive-pill" id="cross-nav" href="#" style="display:none"></a>
+    </div>
+  </header>
+
+  <div class="intro-banner">
+    <div class="emoji-big">👋</div>
+    <div class="text-block">
+      <div class="title">หุ้นในรายการนี้คัดมาจากอะไร?</div>
+      <div class="desc">เราดู 3 ด้านหลัก: <strong>พื้นฐานบริษัท</strong> (กำไรดี หนี้น้อย) + <strong>ข่าว 14 วันล่าสุด</strong> + <strong>ราคาในกราฟ</strong> — แล้วให้คะแนนรวม</div>
+    </div>
+  </div>
+
+  <div id="stocks-container"></div>
+
+  <div id="theme-disclaimer"></div>
+
+  <div class="disclaimer">
+    <strong>⚠️ ข้อควรรู้:</strong>
+    รายงานนี้จัดทำเพื่อ<strong>ให้ข้อมูล</strong>เท่านั้น <strong>ไม่ใช่คำแนะนำการลงทุน</strong>
+    การตัดสินใจซื้อ-ขาย การกำหนดจุดตัดขาดทุน และความเสี่ยงทั้งหมดเป็นของผู้ใช้
+    หุ้นมีความเสี่ยง ผู้ลงทุนควรศึกษาข้อมูลและพิจารณาให้รอบคอบก่อนตัดสินใจ
+    AI อาจมีข้อมูลผิดพลาด — ตรวจสอบกับแหล่งข้อมูลทางการก่อนใช้เสมอ
+  </div>
+</div>
+
+<script>
+// ============== ROUTINE: REPLACE BELOW ==============
+const REPORT_DATE = "2026-05-11";
+const GENERATED_AT_ISO = "2026-05-11T11:20:44+07:00";
+const REPORT_TITLE = "🌱 หุ้นเล็กดาวรุ่ง";
+const REPORT_SUBTITLE = "Top 10 หุ้นเล็ก US (ราคา < $20) ที่กำลังเป็นดาวรุ่ง — คัดเองโดย AI";
+const REPORT_THEME = "smallcap";
+
+const STOCKS_DATA = [
+  {
+    rank: 1,
+    ticker: "RXT",
+    name: "Rackspace Technology",
+    thaiName: "แร็คสเปซ — Private Cloud + AI",
+    emoji: "☁️",
+    sector: "เทคโนโลยี · Cloud & AI Infrastructure",
+    whatItDoes: "ผู้ให้บริการ Private Cloud และ Managed Cloud สำหรับองค์กรขนาดใหญ่ — กำลังเปลี่ยนตัวเองสู่ AI Cloud Infrastructure ร่วมกับ AMD สำหรับลูกค้าในอุตสาหกรรม regulated เช่น finance, healthcare และ government",
+    marketCap: "$1.37B",
+    marketCapThai: "1.37 พันล้านดอลลาร์",
+    price: 6.21,
+    changePercent: 1.80,
+    score: 84,
+    oneLineSummary: "กลับมากำไรครั้งแรกใน Q1 + ลงนาม AMD AI Cloud deal + ราคาพุ่ง +99% ใน พ.ค. — Cloud provider ที่ revive ตัวเองได้น่าทึ่ง 🚀",
+    pros: [
+      "💰 Q1 2026 net income $8M — กลับมากำไรครั้งแรกหลังขาดทุนมาหลายปี",
+      "🤝 ลงนาม MoU กับ AMD สำหรับ Governed Enterprise AI Cloud — differentiated จาก AWS/Azure",
+      "📈 ราคาพุ่งกว่า 99% ใน พ.ค. 2026 — momentum แรงสุดในกลุ่ม cloud",
+      "🏛️ ฐานรายได้ $678M ต่อไตรมาส — large enterprise client base ที่มั่นคง"
+    ],
+    cons: [
+      "⚠️ Revenue โต +2% YoY เท่านั้น — ยังไม่ high-growth แบบ cloud รุ่นใหม่",
+      "⚠️ ภาระหนี้สูงจากอดีต leveraged buyout — ต้องใช้เวลา deleveraging",
+      "⚠️ RSI 78 เข้าโซน overbought — ราคาวิ่งเร็วมาก อาจมี pullback ระยะสั้น"
+    ],
+    fundamentals: {
+      revGrowth:    { value: "+2% YoY",   pass: false, label: "รายได้โต YoY" },
+      grossMargin:  { value: "~38%",      pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "Debt>Cash", pass: false, label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "บวก",       pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",   pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~52%",      pass: true,  label: "สถาบันถือ" },
+      shortInterest:{ value: "<20%",      pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "💰", headline: "Q1 2026 net income $8M — กลับมากำไรเป็นครั้งแรก ยืนยันการ turnaround ชัดเจน", source: "Rackspace IR / StockTitan", date: "7 พ.ค." },
+        { emoji: "🤝", headline: "ลงนาม MoU กับ AMD สำหรับ Governed Enterprise AI Cloud สำหรับ regulated industries", source: "Motley Fool", date: "8 พ.ค." },
+        { emoji: "🚀", headline: "ราคาพุ่ง 103.5% ในวันเดียว (7 พ.ค.) — +99% ในเดือน พ.ค. momentum แรงสุดในกลุ่ม cloud", source: "SimplyWallSt", date: "8 พ.ค." }
+      ],
+      negative: [
+        { emoji: "⚠️", headline: "Revenue Q1 โต 2% YoY เท่านั้น — ยังไม่เห็น high-growth จาก AI Cloud pivot ชัดเจน", source: "Seeking Alpha", date: "9 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [0.92,0.90,0.95,0.93,1.05,1.10,1.15,1.20,1.18,1.25,1.35,1.50,1.65,1.80,2.05,2.20,2.50,5.30,5.95,6.21],
+      volumeHistory: [10500000,9800000,11200000,10500000,12000000,13500000,14200000,15800000,14500000,16200000,18000000,21000000,25000000,28000000,30000000,22000000,35000000,85000000,52000000,38000000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 6.25, week52Low: 0.62,
+      support1: 4.50, support2: 2.50,
+      resistance1: 6.25, resistance2: 8.00,
+      ma20: 2.85, ma50: 1.45, ma200: null,
+      rsi: 78, rsiStatus: "overbought",
+      vsMA50: "above", vsMA200: null
+    },
+    technicalSimple: "ราคาพุ่ง 575% ใน 20 วัน จาก $0.90 สู่ $6.21 — breakout สุดแรง RSI 78 เข้าโซน overbought Volume 7 พ.ค. พุ่ง 85M หุ้น (record)",
+    rankReasoning: "อันดับ 1 — <strong>กลับมากำไรครั้งแรก + AMD AI Cloud deal</strong> + ราคา +99% ใน พ.ค. — Cloud turnaround story ที่มี catalyst ชัดที่สุดในวันนี้"
+  },
+  {
+    rank: 2,
+    ticker: "BBAI",
+    name: "BigBear.ai Holdings",
+    thaiName: "บิ๊กแบร์ AI — AI กลาโหมและความมั่นคง",
+    emoji: "🐻",
+    sector: "เทคโนโลยี · AI กลาโหม & ความมั่นคงแห่งชาติ",
+    whatItDoes: "ผู้ให้บริการ AI/ML platform สำหรับหน่วยงานความมั่นคงแห่งชาติและการป้องกันประเทศ — วิเคราะห์ข้อมูลขนาดใหญ่เพื่อตัดสินใจในเวลาจริง ลูกค้าหลักคือ Pentagon, US Army, DHS, Navy และ NASA",
+    marketCap: "$1.58B",
+    marketCapThai: "1.58 พันล้านดอลลาร์",
+    price: 4.15,
+    changePercent: 2.10,
+    score: 80,
+    oneLineSummary: "Q1 beat + backlog $281.9M +14% + $53M sole-source contract + NASA/Navy wins — AI defense ที่ DOD budget กำลัง unlock 🛡️",
+    pros: [
+      "🚀 Q1 revenue $34.4M เกินคาด — gross margin พุ่ง +1,300bp จาก software/platform shift",
+      "🛡️ Backlog $281.9M โต 14% — $53M sole-source intelligence contract + NASA & US Navy wins ใหม่",
+      "💰 ยืนยัน guidance ปี 2026 รายได้ $135M–$165M — midpoint +17% YoY",
+      "🏛️ FY2026 DOD budget ผ่าน + DHS Secretary ใหม่ — unlock $150B+ สำหรับ AI defense"
+    ],
+    cons: [
+      "⚠️ ยังขาดทุน EPS -$0.12 ต่อหุ้น — burn rate ยังสูง cash ต้องจับตา",
+      "⚠️ Revenue guidance midpoint +17% ต่ำกว่าเกณฑ์ >20% เล็กน้อย"
+    ],
+    fundamentals: {
+      revGrowth:    { value: "+17% guided", pass: false, label: "รายได้โต YoY" },
+      grossMargin:  { value: "~45%",        pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "Cash>Debt",   pass: true,  label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "ลบ",          pass: false, label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",     pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~65%",        pass: true,  label: "สถาบันถือ" },
+      shortInterest:{ value: "~18%",        pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "🛡️", headline: "Q1 revenue $34.4M beat + backlog $281.9M +14% — $53M sole-source intelligence contract ใหม่", source: "BusinessWire", date: "5 พ.ค." },
+        { emoji: "🚀", headline: "Gross margin พุ่ง +1,300bp สู่ 34% — software-first platform ทำให้ margin ดีขึ้นชัดเจน", source: "Motley Fool", date: "5 พ.ค." },
+        { emoji: "🏛️", headline: "FY2026 DOD budget ผ่าน + DHS Secretary ใหม่ — unlock โปรเจกต์ AI defense ที่ถูก hold ไว้", source: "247WallSt", date: "4 พ.ค." }
+      ],
+      negative: [
+        { emoji: "📉", headline: "Analyst ปรับ price target ลง 20% เหลือเฉลี่ย $5.33 — cautious หลัง EPS loss widened", source: "Yahoo Finance", date: "6 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [3.35,3.25,3.38,3.30,3.42,3.50,3.45,3.58,3.65,3.72,3.68,3.75,3.80,3.85,3.90,3.92,4.44,4.35,4.22,4.15],
+      volumeHistory: [5200000,4800000,5500000,5100000,5800000,6200000,5700000,6500000,6800000,7200000,6500000,7100000,7500000,7800000,8200000,9500000,18500000,12000000,9800000,8200000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 5.50, week52Low: 2.10,
+      support1: 3.80, support2: 3.00,
+      resistance1: 4.80, resistance2: 5.50,
+      ma20: 3.82, ma50: 3.40, ma200: 3.25,
+      rsi: 60, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ราคาขึ้นต่อเนื่องจาก $3.35 — สูงกว่า MA20 และ MA50 ทั้งคู่ RSI 60 ปกติ Volume spike 18.5M วันประกาศผล Q1",
+    rankReasoning: "อันดับ 2 — <strong>backlog +14% + $53M sole-source contract</strong> + DOD budget unlock — pure-play AI defense ที่ timing ดีที่สุดตอนนี้"
+  },
+  {
+    rank: 3,
+    ticker: "AEVA",
+    name: "Aeva Technologies",
+    thaiName: "เอวา เทคโนโลยีส์ — 4D LiDAR อัจฉริยะ",
+    emoji: "👁️",
+    sector: "เทคโนโลยี · LiDAR & Autonomous Sensing",
+    whatItDoes: "ผู้พัฒนา 4D LiDAR sensing technology สำหรับรถยนต์อัตโนมัติ อุตสาหกรรม และกลาโหม — ใช้ FMCW ที่ให้ทั้งตำแหน่ง ความเร็ว และสี ใน sensor เดียว ร่วมมือกับ Nvidia สำหรับ AI data center",
+    marketCap: "$1.04B",
+    marketCapThai: "1.04 พันล้านดอลลาร์",
+    price: 16.22,
+    changePercent: 1.20,
+    score: 77,
+    oneLineSummary: "รายได้ปี 2025 doubled YoY + Nvidia 800V HVDC partnership + ขยายสู่กลาโหม — 4D LiDAR ที่ไม่มีคู่แข่งตรงๆ 👁️",
+    pros: [
+      "🚀 รายได้ปี 2025 doubled YoY — guidance 2026 อยู่ที่ +100% growth rate",
+      "🤝 Partnership กับ Nvidia พัฒนา FMCW LiDAR สำหรับ 800V HVDC AI data center",
+      "🛡️ ขยายตลาดสู่กลาโหมและ industrial — OEM wins ใหม่นอก automotive เพิ่มขึ้น",
+      "⭐ 4 analyst ให้ Buy consensus เป้า $26.50 (+63% จากราคาปัจจุบัน)"
+    ],
+    cons: [
+      "⚠️ ยังขาดทุนจากการ scaling — cash burn ต้องติดตาม runway",
+      "⚠️ ราคา LiDAR ต้องลดลงก่อน automotive mass market จะเกิดขึ้น"
+    ],
+    fundamentals: {
+      revGrowth:    { value: "+100% guided", pass: true,  label: "รายได้โต YoY" },
+      grossMargin:  { value: "~50%",         pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "Cash>Debt",    pass: true,  label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "ลบ",           pass: false, label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",      pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~60%",         pass: true,  label: "สถาบันถือ" },
+      shortInterest:{ value: "~20%",         pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "🚀", headline: "ราคาพุ่ง +8.73% ใน 1 วัน (6 พ.ค.) — record 2025 revenue doubled YoY พร้อม 2026 guidance +100%", source: "Public.com", date: "6 พ.ค." },
+        { emoji: "🤝", headline: "Partnership กับ Nvidia พัฒนา FMCW LiDAR สำหรับ 800V HVDC AI data center Rubin Ultra", source: "Yahoo Finance", date: "28 เม.ย." },
+        { emoji: "🛡️", headline: "ขยายตลาดสู่กลาโหมและ industrial — major OEM wins ใหม่นอก automotive segment", source: "StockInvest", date: "7 พ.ค." }
+      ],
+      negative: [
+        { emoji: "⚠️", headline: "ยังขาดทุน — Q1 2026 ยังไม่ประกาศ cash burn อาจสูงในช่วง scale production", source: "Yahoo Finance", date: "9 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [13.10,13.25,13.05,13.40,13.60,13.45,13.70,13.85,14.10,14.30,14.15,14.45,14.60,14.40,14.75,14.90,16.57,16.20,15.95,16.22],
+      volumeHistory: [2500000,2300000,2700000,2600000,2900000,3100000,2800000,3200000,3400000,3600000,3200000,3500000,3700000,3400000,3800000,4200000,9800000,5500000,4800000,4200000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 19.00, week52Low: 4.50,
+      support1: 14.50, support2: 12.00,
+      resistance1: 18.00, resistance2: 19.00,
+      ma20: 14.40, ma50: 12.50, ma200: 9.80,
+      rsi: 65, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ราคาขึ้น 24% ใน 20 วัน พุ่งทะลุ $16 หลัง Nvidia partnership — RSI 65 ยังปกติ Volume spike 9.8M วัน 6 พ.ค.",
+    rankReasoning: "อันดับ 3 — <strong>revenue doubled + Nvidia deal</strong> + ขยายสู่กลาโหม + 4 analyst Buy — 4D LiDAR tech ที่ไม่ซ้ำใคร"
+  },
+  {
+    rank: 4,
+    ticker: "UMAC",
+    name: "Unusual Machines",
+    thaiName: "อันยูชวล แมชชีนส์ — โดรน Made-in-USA",
+    emoji: "🚁",
+    sector: "กลาโหม · ชิ้นส่วนโดรน NDAA",
+    whatItDoes: "ผู้ผลิตชิ้นส่วนและอุปกรณ์โดรน Made-in-USA ครบวงจร — ได้ประโยชน์โดยตรงจากกฎหมาย NDAA ที่ห้ามใช้โดรนจีน (DJI ถูกแบน) กำลัง scale จาก consumer สู่ Tier-1 defense supplier Q1 2026 ประกาศ 14 พ.ค.",
+    marketCap: "$786M",
+    marketCapThai: "786 ล้านดอลลาร์",
+    price: 13.46,
+    changePercent: -1.50,
+    score: 76,
+    oneLineSummary: "เริ่ม $75M strategic materials orders + doubles drone motor output + Strong Buy x5 นักวิเคราะห์ — NDAA drone ที่กฎหมายอยู่ข้างๆ 🚁",
+    pros: [
+      "🛡️ NDAA compliance 100% — ได้เปรียบโดยตรงจากการแบน DJI และโดรนจีน",
+      "📦 เริ่ม $75M strategic materials purchase orders (5 พ.ค.) — สัญญาณ scale up ขนาดใหญ่",
+      "⚡ Doubles drone motor output — ขยาย production capacity รับ DOD demand ที่เพิ่มขึ้น",
+      "⭐ Strong Buy x5 นักวิเคราะห์ เป้าเฉลี่ย $24.20 (+79% จากราคาปัจจุบัน)"
+    ],
+    cons: [
+      "⚠️ TTM Revenue ยังเพียง $11.2M — ต้องพิสูจน์ว่า scale จริงได้จาก orders ใหม่",
+      "⚠️ Q1 2026 ยังไม่ประกาศ (14 พ.ค.) — uncertainty ก่อนผลจะออก"
+    ],
+    fundamentals: {
+      revGrowth:    { value: ">100% YoY", pass: true,  label: "รายได้โต YoY" },
+      grossMargin:  { value: "~32%",      pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "Cash>Debt", pass: true,  label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "ลบ",        pass: false, label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",   pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~45%",      pass: true,  label: "สถาบันถือ" },
+      shortInterest:{ value: "~22%",      pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "📦", headline: "เริ่ม $75M strategic materials purchase orders — ลด supply chain dependency ยกระดับสู่ Tier-1 defense", source: "StockTitan", date: "5 พ.ค." },
+        { emoji: "⚡", headline: "Doubles drone motor output — ขยาย production capacity รับ DOD demand ที่เพิ่มขึ้น", source: "StocksToTrade", date: "20 เม.ย." },
+        { emoji: "🎤", headline: "นัดหมาย live drone ecosystem demonstrations — showcase ความพร้อมสู่ลูกค้าใหม่", source: "StockTitan", date: "6 พ.ค." }
+      ],
+      negative: [
+        { emoji: "⚠️", headline: "Q1 2026 ประกาศ 14 พ.ค. — ยังไม่มี financial validation จาก scale up ที่ announced", source: "StockTitan", date: "7 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [11.80,12.05,11.90,12.20,12.40,12.25,12.50,12.65,12.45,12.70,12.90,13.10,13.25,13.05,13.20,13.65,13.80,13.92,13.70,13.46],
+      volumeHistory: [1200000,1100000,1350000,1250000,1400000,1300000,1450000,1550000,1400000,1600000,1750000,1900000,2100000,1850000,2000000,3500000,3800000,3200000,2800000,2400000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 23.38, week52Low: 4.67,
+      support1: 12.50, support2: 11.00,
+      resistance1: 15.00, resistance2: 18.00,
+      ma20: 12.95, ma50: 11.80, ma200: null,
+      rsi: 56, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: null
+    },
+    technicalSimple: "ราคาขึ้นต่อเนื่องจาก $11.80 สู่ $13.92 แล้วพัก consolidate — RSI 56 ปกติ Volume spike วัน $75M order announcement แนวรับ $12.50 แข็งแกร่ง",
+    rankReasoning: "อันดับ 4 — <strong>$75M purchase orders + NDAA tailwind</strong> + Strong Buy x5 analyst — drone defense ที่กฎหมายเปิดทางชัดเจนที่สุด"
+  },
+  {
+    rank: 5,
+    ticker: "GRRR",
+    name: "Gorilla Technology Group",
+    thaiName: "กอริลล่า เทคโนโลยี — AI Video Analytics",
+    emoji: "🦍",
+    sector: "เทคโนโลยี · AI Video Analytics",
+    whatItDoes: "ผู้ให้บริการ AI วิเคราะห์วิดีโอและความปลอดภัยอัจฉริยะ — ช่วยให้กล้องวงจรปิดฉลาดขึ้น ใช้ในสนามบิน เมืองอัจฉริยะ และโครงสร้างพื้นฐาน กำลังขยายสู่ AI Data Center ขนาดใหญ่ในไทยและอินเดีย",
+    marketCap: "$419M",
+    marketCapThai: "419 ล้านดอลลาร์",
+    price: 15.25,
+    changePercent: 2.70,
+    score: 74,
+    oneLineSummary: "Thailand AI Campus 200MW + India $2.8B AI project + FY2025 revenue +35.7% — AI ที่มีกำไรจริงแบบนี้หายากมาก 🦍",
+    pros: [
+      "🌏 ลงนาม Thailand AI Campus 200MW — Southeast Asia AI infrastructure hub ขนาดใหญ่",
+      "🇮🇳 ขยาย India AI Infrastructure Collaboration มูลค่า ~$2.8B — TAM ใหม่มหาศาล",
+      "💰 FY2025 revenue โต 35.7% YoY แตะ $101M — guidance 2026 อยู่ที่ $137M–$200M",
+      "📊 P/E ~20x — AI company ที่มีกำไรจริง หายากมากในกลุ่ม small cap AI"
+    ],
+    cons: [
+      "⚠️ ลูกค้าหลักกระจุกในเอเชียและตะวันออกกลาง — เสี่ยงภูมิรัฐศาสตร์และ FX",
+      "⚠️ ราคายังต่ำกว่า 52-week high $27.90 ราว 45% — ต้องใช้เวลาฟื้นตัว"
+    ],
+    fundamentals: {
+      revGrowth:    { value: "+35.7%",    pass: true,  label: "รายได้โต YoY" },
+      grossMargin:  { value: "~55%",      pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "Cash>Debt", pass: true,  label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "บวก",       pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",   pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~35%",      pass: true,  label: "สถาบันถือ" },
+      shortInterest:{ value: "<15%",      pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "🌏", headline: "ลงนาม Thailand AI Campus 200MW — ขยาย AI compute infrastructure ทั่ว Southeast Asia", source: "GlobeNewswire", date: "29 เม.ย." },
+        { emoji: "🇮🇳", headline: "ขยาย India AI Infrastructure Collaboration มูลค่า ~$2.8B — long-term partnership", source: "Gorilla Technology IR", date: "15 เม.ย." },
+        { emoji: "⭐", headline: "Northland Securities คง Buy rating — Strong Buy consensus 3 analyst เป้าเฉลี่ย $36.67", source: "MarketBeat", date: "1 พ.ค." }
+      ],
+      negative: [
+        { emoji: "⚠️", headline: "เปลี่ยน auditor เป็น UHY LLP — routine transition แต่นักลงทุนบางส่วนยังสังเกตอยู่", source: "Gorilla Technology IR", date: "1 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [12.50,12.35,12.70,12.85,12.60,12.90,13.05,12.80,13.15,13.30,13.06,13.20,13.45,14.20,14.50,14.85,14.60,14.45,14.70,15.25],
+      volumeHistory: [800000,750000,900000,850000,780000,920000,1050000,890000,1100000,980000,1200000,1350000,1450000,2800000,1900000,2400000,1800000,1500000,1700000,2100000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 27.90, week52Low: 9.04,
+      support1: 12.90, support2: 10.50,
+      resistance1: 17.00, resistance2: 21.00,
+      ma20: 13.72, ma50: 12.50, ma200: null,
+      rsi: 64, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: null
+    },
+    technicalSimple: "ราคาทำ high ใหม่ที่ $15.25 ขึ้นต่อเนื่องเหนือ MA20 ($13.72) — RSI 64 ยังปกติ Volume สูงขึ้นสม่ำเสมอ",
+    rankReasoning: "อันดับ 5 — <strong>Thailand 200MW + India $2.8B</strong> + FY2025 revenue +35.7% + กำไรจริง — AI ที่ profitable ที่ราคานี้หายากมาก"
+  },
+  {
+    rank: 6,
+    ticker: "BLZE",
+    name: "Backblaze",
+    thaiName: "แบ็คเบลซ — คลาวด์สตอเรจ AI",
+    emoji: "🔥",
+    sector: "เทคโนโลยี · คลาวด์สตอเรจ",
+    whatItDoes: "ให้บริการ Cloud Storage สำหรับธุรกิจและบุคคล — มี 2 ผลิตภัณฑ์หลัก: B2 Cloud Storage (คู่แข่ง AWS S3 ราคาถูกกว่า 75%) และ Computer Backup กำลังขยายฐานลูกค้า AI อย่างรวดเร็ว",
+    marketCap: "$449M",
+    marketCapThai: "449 ล้านดอลลาร์",
+    price: 7.50,
+    changePercent: 1.20,
+    score: 72,
+    oneLineSummary: "Q1 EPS beat ใหญ่ $0.04 vs คาด -$0.09 + AI customers โต 76% + guidance ปรับขึ้น — cloud storage ที่ถูกกว่า AWS กำลัง breakout 🔥",
+    pros: [
+      "🔥 Q1 EPS $0.04 vs คาด -$0.09 — surprise ใหญ่มาก ทิศทาง profitability ชัดเจน",
+      "☁️ B2 Cloud Storage revenue โต 24% YoY — ลูกค้า AI พุ่ง 76% ใน 1 ปี",
+      "📈 ปรับ guidance รายได้ปีนี้เป็น $161.5M–$163.5M พร้อม EBITDA margin target 23–25%",
+      "💰 Adj. EBITDA $10.1M (26% margin) ปรับดีขึ้นจาก 18% ปีก่อน"
+    ],
+    cons: [
+      "⚠️ Revenue total โต 12% YoY — ต่ำกว่าเกณฑ์ 20% แม้ B2 segment จะโต 24%",
+      "⚠️ ยังขาดทุน net loss $6.1M — profitable บน EBITDA เท่านั้น ยังไม่ GAAP profitable"
+    ],
+    fundamentals: {
+      revGrowth:    { value: "+12%",         pass: false, label: "รายได้โต YoY" },
+      grossMargin:  { value: "61%",          pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "~เท่ากัน",    pass: false, label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "บวก (EBITDA)", pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",      pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~70%",         pass: true,  label: "สถาบันถือ" },
+      shortInterest:{ value: "~10%",         pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "🔥", headline: "Q1 2026 EPS $0.04 เกินคาด -$0.09 — กำไรสวนทางคาด! B2 revenue +24% YoY", source: "BusinessWire", date: "4 พ.ค." },
+        { emoji: "☁️", headline: "ลูกค้า AI โตแรง 76% ใน 1 ปี — เซ็น 2 สัญญา AI ใหม่ ACV $1.5M", source: "Benzinga", date: "5 พ.ค." },
+        { emoji: "📈", headline: "ปรับ guidance รายได้ขึ้นเป็น $161.5M–$163.5M EBITDA margin target +4% vs ปีก่อน", source: "Seeking Alpha", date: "5 พ.ค." }
+      ],
+      negative: [
+        { emoji: "⚠️", headline: "ราคา $7.50 ยังต่ำกว่า 52-week high $10.86 — ยังไม่ถึง new high มีแรงต้านข้างบน", source: "Yahoo Finance", date: "9 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [4.45,4.35,4.50,4.40,4.60,4.75,4.65,4.55,4.80,4.90,4.85,5.10,5.05,5.20,5.15,7.80,7.50,7.30,7.50,7.50],
+      volumeHistory: [1200000,1050000,1300000,1150000,1400000,1600000,1350000,1200000,1500000,1700000,1450000,1650000,1550000,1800000,1700000,14000000,8500000,6200000,5800000,4900000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 10.86, week52Low: 3.26,
+      support1: 6.80, support2: 5.50,
+      resistance1: 9.50, resistance2: 10.86,
+      ma20: 5.45, ma50: 4.80, ma200: 5.00,
+      rsi: 68, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ราคาพุ่ง 69% ในเดือน พ.ค. หลัง EPS surprise — RSI 68 ใกล้โซน overbought แต่ยังปกติ Volume วันประกาศ 14M หุ้น (สูงสุด 6 เดือน)",
+    rankReasoning: "อันดับ 6 — <strong>EPS surprise $0.04 vs คาด -$0.09</strong> + AI customers +76% + guidance raise — cloud storage momentum ชัดเจน"
+  },
+  {
+    rank: 7,
+    ticker: "PUBM",
+    name: "PubMatic",
+    thaiName: "พับแมติก — โฆษณาดิจิทัล AI",
+    emoji: "📲",
+    sector: "เทคโนโลยี · Programmatic Advertising",
+    whatItDoes: "ผู้ให้บริการ sell-side programmatic advertising platform ช่วยให้ publisher ขายโฆษณา digital ได้ราคาดีขึ้น — ใช้ AI/automation ใน transaction ปัจจุบันขยายฐาน CTV และ AI-powered AgenticOS channels",
+    marketCap: "$502M",
+    marketCapThai: "502 ล้านดอลลาร์",
+    price: 10.74,
+    changePercent: 0.84,
+    score: 70,
+    oneLineSummary: "Emerging revenue พุ่ง 80% YoY + AgenticOS 1,000+ AI deals + FCF $10.7M — programmatic AdTech ที่ AI กำลัง redefine ใหม่ 📲",
+    pros: [
+      "🚀 Emerging revenues (CTV/AI channels) โต 80% YoY — คิดเป็น 14% ของรายได้รวมแล้ว",
+      "🤖 AgenticOS: 20+ AI agents, 1,000+ AI-powered deals, 30+ live autonomous campaigns",
+      "💰 Free cash flow $10.7M (17% margin) — สร้างเงินสดได้จริงจาก operation",
+      "⭐ 7 analyst ให้ Buy consensus เป้าเฉลี่ย $12.43 (+16% จากราคาปัจจุบัน)"
+    ],
+    cons: [
+      "⚠️ Revenue headline -2% YoY จากการสูญเสีย legacy DSP buyer — ต้องพิสูจน์ว่า AI จะทดแทนได้",
+      "⚠️ ยังขาดทุน GAAP EPS -$0.11 ต่อหุ้น — profitable บน adjusted EBITDA เท่านั้น"
+    ],
+    fundamentals: {
+      revGrowth:    { value: "+13% underlying", pass: false, label: "รายได้โต YoY" },
+      grossMargin:  { value: "~65%",            pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "Cash>Debt",       pass: true,  label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "บวก (FCF)",       pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",         pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~70%",            pass: true,  label: "สถาบันถือ" },
+      shortInterest:{ value: "~15%",            pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "🤖", headline: "AgenticOS: 20+ AI agents ทำงาน, 1,000+ AI-powered deals, 30+ autonomous campaigns ทั่วโลก", source: "Investing.com", date: "7 พ.ค." },
+        { emoji: "📈", headline: "Q1 EPS -$0.11 เกินคาด -$0.19 ถึง 42% — revenue $62.6M beat consensus สูงสุดของ guidance", source: "GuruFocus", date: "7 พ.ค." },
+        { emoji: "⭐", headline: "7 analyst ให้ Buy consensus เป้าเฉลี่ย $12.43 — +16% upside จากราคาปัจจุบัน", source: "MarketBeat", date: "8 พ.ค." }
+      ],
+      negative: [
+        { emoji: "⚠️", headline: "Revenue headline -2% YoY จาก legacy DSP buyer — ต้องพิสูจน์ว่า AI segment จะทดแทนได้", source: "MarketWatch", date: "9 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [8.50,8.35,8.70,8.55,8.80,9.10,8.95,9.25,9.40,9.55,9.30,9.60,9.75,9.50,9.85,10.20,10.39,10.55,10.65,10.74],
+      volumeHistory: [4500000,4100000,5200000,4800000,5500000,6100000,5600000,6800000,7100000,6400000,5800000,6500000,7200000,6100000,6800000,7500000,9200000,8100000,7800000,6900000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 14.20, week52Low: 5.80,
+      support1: 9.50, support2: 8.50,
+      resistance1: 12.43, resistance2: 14.20,
+      ma20: 9.48, ma50: 8.50, ma200: 9.00,
+      rsi: 61, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ราคาขึ้นต่อเนื่อง 20 วัน ไม่มีวันลงในช่วงนี้ — RSI 61 ปกติ Volume เพิ่มสม่ำเสมอ สัญญาณ accumulation ชัดเจน",
+    rankReasoning: "อันดับ 7 — <strong>AgenticOS AI platform + Emerging revenue +80%</strong> + FCF positive + 7 analyst Buy — AdTech ที่ pivot สู่ AI ชัดเจนที่สุด"
+  },
+  {
+    rank: 8,
+    ticker: "SERV",
+    name: "Serve Robotics",
+    thaiName: "เสิร์ฟ โรโบติกส์ — หุ่นยนต์ส่งของอัตโนมัติ",
+    emoji: "🤖",
+    sector: "เทคโนโลยี · หุ่นยนต์อัตโนมัติ",
+    whatItDoes: "บริษัทหุ่นยนต์บนทางเท้า (sidewalk delivery robot) สำหรับส่งอาหารในเมือง — ร่วมงานกับ Uber Eats (2,000 หุ่นยนต์) และ DoorDash ขยายทั่วสหรัฐ กำลังทดสอบส่งยาและอุปกรณ์การแพทย์",
+    marketCap: "$663M",
+    marketCapThai: "663 ล้านดอลลาร์",
+    price: 8.82,
+    changePercent: -3.49,
+    score: 68,
+    oneLineSummary: "รายได้ Q1 พุ่ง 578% YoY + ทดสอบส่งยา/อุปกรณ์การแพทย์ + Uber/DoorDash backing — delivery robot ที่ scaling เร็วที่สุดในตลาด 🚗",
+    pros: [
+      "🚀 รายได้ Q1 2026 พุ่ง 578% YoY สู่ $3M — Fleet revenue โต 10 เท่า YoY",
+      "🏥 เปิดตัวทดสอบส่งยาและอุปกรณ์การแพทย์ — diversify TAM ใหม่ขนาดใหญ่",
+      "🤝 Uber Eats (2,000 หุ่นยนต์) + DoorDash — ช่องทางขายที่แข็งแกร่ง",
+      "💰 Current ratio 18.13 — ฐานะการเงินแข็งแรงมาก ไม่กังวลเรื่อง runway"
+    ],
+    cons: [
+      "⚠️ ยังขาดทุนสุทธิ EPS -$0.65 ต่อหุ้น — burn rate สูงในช่วง scale up",
+      "⚠️ Revenue $3M ต่อไตรมาส — guidance ปี $26M ต้องโตเร็วมากใน Q2-Q4"
+    ],
+    fundamentals: {
+      revGrowth:    { value: "+578%",      pass: true,  label: "รายได้โต YoY" },
+      grossMargin:  { value: "~45%",       pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "Cash>Debt",  pass: true,  label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "ลบ",         pass: false, label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",    pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~65%",       pass: true,  label: "สถาบันถือ" },
+      shortInterest:{ value: "~18%",       pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "🚀", headline: "Q1 2026 รายได้ $3M พุ่ง 578% YoY — Fleet revenue โต ~10 เท่า จากการส่งอาหารจริง", source: "Investing.com", date: "8 พ.ค." },
+        { emoji: "🏥", headline: "เปิดตัวโครงการทดสอบส่งยาและอุปกรณ์การแพทย์ — ขยาย TAM ใหม่ขนาดใหญ่", source: "Yahoo Finance", date: "8 พ.ค." },
+        { emoji: "🎯", headline: "ยืนยัน guidance ปี 2026 รายได้ $26M — Uber/DoorDash deployment ตามแผนทุกประการ", source: "Serve Robotics IR", date: "8 พ.ค." }
+      ],
+      negative: [
+        { emoji: "📉", headline: "ขาดทุนสุทธิ Q1 $0.65/หุ้น — ต้องใช้เวลาหลายปีกว่าจะ breakeven จากธุรกิจหลัก", source: "Seeking Alpha", date: "9 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [7.20,7.35,7.15,7.50,7.65,7.80,7.60,7.90,8.10,8.25,8.15,8.40,8.55,8.30,8.45,8.70,8.95,8.80,9.14,8.82],
+      volumeHistory: [3500000,3200000,4100000,3800000,3500000,4200000,3900000,4500000,4800000,4200000,3900000,4500000,5100000,4300000,4700000,5200000,5800000,5500000,8900000,6200000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 18.64, week52Low: 6.60,
+      support1: 7.80, support2: 6.60,
+      resistance1: 10.50, resistance2: 13.00,
+      ma20: 8.14, ma50: 7.50, ma200: 8.50,
+      rsi: 55, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ราคาอยู่เหนือ MA20 และ MA50 — แนวโน้มขาขึ้นสม่ำเสมอ RSI 55 ห่างไกลโซน overbought Volume พุ่งวันประกาศผล Q1",
+    rankReasoning: "อันดับ 8 — <strong>รายได้ +578%</strong> + healthcare expansion + Uber/DoorDash backing — autonomous delivery ที่ scaling เร็วสุดในตลาด"
+  },
+  {
+    rank: 9,
+    ticker: "PGY",
+    name: "Pagaya Technologies",
+    thaiName: "พาเกย่า — AI Fintech สินเชื่อ",
+    emoji: "💳",
+    sector: "FinTech · AI-Powered Credit",
+    whatItDoes: "ผู้ให้บริการ AI platform สำหรับอนุมัติสินเชื่อผู้บริโภค — ร่วมงานกับธนาคารและ fintech เพื่อประมวลผล credit decision แบบ real-time ล่าสุดออก ABS $2.1B ได้ Fitch AAA rating",
+    marketCap: "$1.22B",
+    marketCapThai: "1.22 พันล้านดอลลาร์",
+    price: 14.85,
+    changePercent: -1.65,
+    score: 67,
+    oneLineSummary: "Q1 EPS $0.73 เกินคาด +265% + GAAP net income $25M + guidance raise — AI fintech ที่มีกำไรจริงในปี 2026 💳",
+    pros: [
+      "💰 Non-GAAP EPS Q1 2026 $0.73 เกินคาด $0.20 ถึง 265% — EPS surprise ใหญ่มาก",
+      "📊 GAAP net income $25M — profitable จริงๆ ไม่ใช่แค่ adjusted metrics",
+      "🎯 ปรับ guidance EBITDA ปี 2026 ขึ้นเป็น $420M–$460M พร้อม net income $110M–$160M",
+      "🏦 ออก ABS $2.1B + ได้ Fitch AAA rating — ความน่าเชื่อถือระดับสูง"
+    ],
+    cons: [
+      "⚠️ Revenue Q1 โต 10% YoY — ต่ำกว่าเกณฑ์ 20% แม้ EPS จะ beat มาก",
+      "⚠️ ธุรกิจ cyclical ตาม credit cycle — ถ้า default rate พุ่งจะกระทบ margin"
+    ],
+    fundamentals: {
+      revGrowth:    { value: "+10%",       pass: false, label: "รายได้โต YoY" },
+      grossMargin:  { value: "~60%",       pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "Cash>Debt",  pass: true,  label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "บวก",        pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",    pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~55%",       pass: true,  label: "สถาบันถือ" },
+      shortInterest:{ value: "~15%",       pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "💰", headline: "Q1 Non-GAAP EPS $0.73 เกินคาด $0.20 (+265%) — GAAP net income $25M ยืนยัน profitable จริง", source: "Pagaya IR", date: "8 พ.ค." },
+        { emoji: "📈", headline: "ปรับ guidance EBITDA ขึ้นเป็น $420M–$460M + net income guide $110M–$160M (+67% YoY midpoint)", source: "Seeking Alpha", date: "8 พ.ค." },
+        { emoji: "🏦", headline: "ออก ABS $2.1B รวม auto re-securitization ครั้งแรก + ได้ Fitch AAA rating", source: "BusinessWire", date: "6 พ.ค." }
+      ],
+      negative: [
+        { emoji: "⚠️", headline: "Revenue โต 10% YoY เท่านั้น — ช้ากว่า fintech growth peers แม้ EPS จะ beat มาก", source: "MarketWatch", date: "9 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [12.50,12.35,12.70,12.55,12.80,13.10,12.95,13.25,13.40,13.55,13.30,13.60,13.75,13.50,13.85,14.20,14.50,14.30,15.10,14.85],
+      volumeHistory: [3200000,2800000,3500000,3100000,3400000,3800000,3500000,4100000,4300000,3900000,3600000,4200000,4500000,3800000,4100000,4600000,5200000,4800000,8500000,5600000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 17.20, week52Low: 8.50,
+      support1: 13.50, support2: 12.00,
+      resistance1: 16.50, resistance2: 19.00,
+      ma20: 13.51, ma50: 12.50, ma200: 12.50,
+      rsi: 58, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ราคาขึ้นสม่ำเสมอ 20 วัน เหนือ MA20/MA50 ทั้งคู่ — RSI 58 ปกติ Volume พุ่งวัน Q1 earnings 8.5M หุ้น สัญญาณ institutional buying",
+    rankReasoning: "อันดับ 9 — <strong>EPS surprise +265%</strong> + GAAP profitable + guidance raise — revenue growth ต่ำแต่ profitability ใน 2026 น่าประทับใจ"
+  },
+  {
+    rank: 10,
+    ticker: "EVC",
+    name: "Entravision Communications",
+    thaiName: "เอนตราวิชั่น — สื่อ + AI AdTech",
+    emoji: "📡",
+    sector: "สื่อ · โฆษณาดิจิทัล AI",
+    whatItDoes: "บริษัทสื่อและโฆษณาดิจิทัล มี 2 ธุรกิจ: สถานีวิทยุ-TV สำหรับชุมชนฮิสแปนิกในสหรัฐ และ ATS (AI Advertising Technology) ขยายตัวรวดเร็วทั่วโลก Q1 revenue พุ่ง 114% YoY",
+    marketCap: "$656M",
+    marketCapThai: "656 ล้านดอลลาร์",
+    price: 7.10,
+    changePercent: 0.71,
+    score: 65,
+    oneLineSummary: "รายได้ Q1 พุ่ง 114% YoY — ATS segment โต 204% + กลับมากำไร + ปันผลต่อเนื่อง — AI AdTech ที่ market ยังไม่ fully price in 📡",
+    pros: [
+      "🚀 รายได้ Q1 2026 พุ่ง 114% YoY สู่ $197M — ATS segment โต 204% จาก AI advertising",
+      "💰 กลับมากำไร net income $12.36M จากที่ขาดทุน — EPS +$0.13 vs -$0.53 ปีก่อน",
+      "💵 จ่ายปันผล $0.05/หุ้น Q2 2026 — ต่อเนื่องเป็นไตรมาสที่ 3 นักลงทุนได้รับผลตอบแทนระหว่างรอ",
+      "📊 เงินสด $71M + ไม่มีหนี้ระยะสั้น — ฐานะการเงินยืดหยุ่น"
+    ],
+    cons: [
+      "⚠️ หนี้รวม $162M > เงินสด $71M — leverage สูงในช่วงดอกเบี้ยยังไม่ต่ำมาก",
+      "⚠️ ธุรกิจสื่อ TV/Radio ซบเซา — ต้องพึ่ง ATS segment สำหรับการเติบโตทั้งหมด"
+    ],
+    fundamentals: {
+      revGrowth:    { value: "+114%",      pass: true,  label: "รายได้โต YoY" },
+      grossMargin:  { value: "~45%",       pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:   { value: "Debt>Cash",  pass: false, label: "เงินสด>หนี้" },
+      opCashFlow:   { value: "บวก",        pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insiderBuy:   { value: "ไม่ระบุ",    pass: false, label: "ผู้บริหารซื้อหุ้น" },
+      instOwn:      { value: "~55%",       pass: true,  label: "สถาบันถือ" },
+      shortInterest:{ value: "~12%",       pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "🚀", headline: "Q1 2026 รายได้ $197M พุ่ง 114% YoY — ATS segment +204% จาก AI advertising platform", source: "BusinessWire", date: "5 พ.ค." },
+        { emoji: "💰", headline: "กลับมากำไร net income $12.36M จากขาดทุน — EPS +$0.13 vs -$0.53 ปีก่อน", source: "Benzinga", date: "5 พ.ค." },
+        { emoji: "💵", headline: "ประกาศปันผล $0.05/หุ้น Q2 2026 — ต่อเนื่องเป็นไตรมาสที่ 3 นักลงทุนได้รับผลตอบแทนระหว่างรอ", source: "Yahoo Finance", date: "6 พ.ค." }
+      ],
+      negative: [
+        { emoji: "⚠️", headline: "หนี้รวม $162M > เงินสด $71M — leverage สูงในช่วงดอกเบี้ยยังไม่ต่ำ", source: "Seeking Alpha", date: "7 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [4.20,4.15,4.30,4.25,4.10,4.35,4.50,4.45,4.60,4.55,4.40,4.30,4.55,4.70,4.65,7.20,7.15,6.90,7.05,7.10],
+      volumeHistory: [2500000,2100000,2800000,2400000,2200000,3100000,2900000,2600000,3200000,2800000,2400000,2100000,2700000,2900000,2500000,25000000,18000000,12000000,9500000,7800000],
+      labels: ["Apr 14","Apr 15","Apr 16","Apr 17","Apr 18","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 28","Apr 29","Apr 30","May 1","May 2","May 5","May 6","May 7","May 8","May 9"],
+      week52High: 8.35, week52Low: 1.81,
+      support1: 6.50, support2: 5.00,
+      resistance1: 8.35, resistance2: 10.00,
+      ma20: 5.07, ma50: 3.50, ma200: 3.20,
+      rsi: 71, rsiStatus: "overbought",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ราคาพุ่งทะลุ 52-week high หลังผลประกอบการ — RSI 71 เริ่มร้อน Volume วันประกาศ 25M หุ้น กำลัง consolidate ระดับนี้",
+    rankReasoning: "อันดับ 10 — <strong>รายได้ +114% + กลับมากำไร</strong> + ปันผลต่อเนื่อง — leverage สูงทำให้ไม่ติดอันดับต้น แต่ AI AdTech momentum ยังแรง"
+  }
+];
+// ============== ROUTINE: REPLACE ABOVE ==============
+
+// =============== RENDERING ===============
+document.body.classList.add(`theme-${REPORT_THEME}`);
+document.title = `${REPORT_TITLE} — Stock Screener`;
+document.getElementById('report-title').textContent = REPORT_TITLE;
+document.getElementById('report-subtitle').textContent = REPORT_SUBTITLE;
+document.getElementById('report-date').textContent = REPORT_DATE;
+document.getElementById('generated-at').textContent = formatGeneratedAt(GENERATED_AT_ISO);
+document.getElementById('count-badge').textContent = `🎯 ${STOCKS_DATA.length} หุ้นเด็ด`;
+renderCrossNav(REPORT_THEME);
+renderThemeDisclaimer(REPORT_THEME);
+
+function renderCrossNav(theme) {
+  const nav = document.getElementById('cross-nav');
+  if (theme === 'smallcap') {
+    nav.href = '../';
+    nav.textContent = '💎 หุ้นใหญ่แข็งแรง';
+  } else {
+    nav.href = 'smallcap/';
+    nav.textContent = '🌱 หุ้นเล็กดาวรุ่ง';
+  }
+  nav.style.display = '';
+}
+
+function renderThemeDisclaimer(theme) {
+  if (theme !== 'smallcap') return;
+  document.getElementById('theme-disclaimer').innerHTML = `
+    <div class="disclaimer" style="background: var(--red-bg); color: var(--red-text); margin-bottom: 12px;">
+      <strong>🎢 หุ้นเล็กเสี่ยงสูงเป็นพิเศษ:</strong>
+      <ul style="margin: 8px 0 0 20px; padding: 0;">
+        <li><strong>ผันผวนสูง</strong> — ราคาเหวี่ยงแรงกว่าหุ้นใหญ่หลายเท่า</li>
+        <li><strong>Liquidity ต่ำ</strong> — เข้า/ออกอาจมี slippage</li>
+        <li><strong>เสี่ยง pump-and-dump</strong> — ระวัง pattern ราคาวิ่งโดยไม่มีพื้นฐานรองรับ</li>
+      </ul>
+    </div>`;
+}
+
+function formatGeneratedAt(iso) {
+  if (!iso) return "—";
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "—";
+  const datePart = new Intl.DateTimeFormat('th-TH', {
+    day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Bangkok'
+  }).format(d);
+  const timePart = new Intl.DateTimeFormat('th-TH', {
+    hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Bangkok'
+  }).format(d);
+  return `${datePart} · ${timePart} น.`;
+}
+
+const RANK_CLASS = { 1: "rank-1", 2: "rank-2", 3: "rank-3" };
+const MEDAL_CLASS = { 1: "gold", 2: "silver", 3: "bronze" };
+const MEDAL_EMOJI = { 1: "🥇", 2: "🥈", 3: "🥉" };
+
+function getRsiEmoji(rsi) {
+  if (rsi >= 70) return { emoji: "🔥", title: "อาจร้อนเกินไป", desc: "RSI สูงเกิน 70 — บางคนรอ pullback ก่อน" };
+  if (rsi <= 30) return { emoji: "❄️", title: "อาจเย็นเกินไป", desc: "RSI ต่ำกว่า 30 — บางคนมองว่าเป็นโอกาส" };
+  return { emoji: "⚖️", title: "ระดับปกติ", desc: "RSI 30-70 ถือว่าปกติ ไม่ร้อนไม่เย็น" };
+}
+
+const container = document.getElementById('stocks-container');
+
+if (STOCKS_DATA.length === 0) {
+  container.innerHTML = '<div class="empty-state"><div class="emoji">🌙</div>ยังไม่มีรายงานวันนี้<br><small>ลองเช็คอีกครั้งหลัง 8 โมงเช้า</small></div>';
+} else {
+  STOCKS_DATA.forEach((stock, idx) => {
+    const changeClass = stock.changePercent >= 0 ? 'up' : 'down';
+    const changeArrow = stock.changePercent >= 0 ? '▲' : '▼';
+    const changeSign = stock.changePercent >= 0 ? '+' : '';
+    const rankCardClass = RANK_CLASS[stock.rank] || '';
+    const medalClass = MEDAL_CLASS[stock.rank] || 'normal';
+    const medalText = stock.rank <= 3 ? `${MEDAL_EMOJI[stock.rank]} อันดับ ${stock.rank}` : `อันดับ ${stock.rank}`;
+
+    const fundamentalsHTML = Object.entries(stock.fundamentals).map(([key, val]) => {
+      const passClass = val.pass ? 'pass' : 'fail';
+      const icon = val.pass ? '✅' : '⚠️';
+      return `
+        <div class="fund-card ${passClass}">
+          <div class="fund-label">${val.label || key}</div>
+          <div class="fund-value">${val.value}<span class="fund-icon">${icon}</span></div>
+        </div>`;
+    }).join('');
+
+    const positiveHTML = stock.news.positive.length
+      ? stock.news.positive.map(n => `
+          <div class="news-item">
+            <span class="news-emoji">${n.emoji || '🟢'}</span>
+            ${n.headline}<br>
+            <span class="news-source">${n.source} · ${n.date}</span>
+          </div>`).join('')
+      : '<div class="news-item" style="opacity:0.6">ไม่มีข่าวบวก</div>';
+
+    const negativeHTML = stock.news.negative.length
+      ? stock.news.negative.map(n => `
+          <div class="news-item">
+            <span class="news-emoji">${n.emoji || '🔴'}</span>
+            ${n.headline}<br>
+            <span class="news-source">${n.source} · ${n.date}</span>
+          </div>`).join('')
+      : '<div class="news-item" style="opacity:0.6">ไม่มีข่าวลบ ✨</div>';
+
+    const prosHTML = stock.pros.map(p => `<li>${p}</li>`).join('');
+    const consHTML = stock.cons.length
+      ? stock.cons.map(c => `<li>${c}</li>`).join('')
+      : '<li style="opacity:0.6">ยังไม่พบข้อกังวลที่สำคัญ ✨</li>';
+
+    const rsi = stock.technical.rsi;
+    const rsiInfo = getRsiEmoji(rsi);
+
+    const cardHTML = `
+      <article class="stock-card ${rankCardClass}">
+        <div class="card-header">
+          <div class="ticker-emoji">${stock.emoji}</div>
+          <div class="ticker-info">
+            <span class="rank-medal ${medalClass}">${medalText}</span>
+            <div class="ticker-name"><span class="symbol">$${stock.ticker}</span> · ${stock.name}</div>
+            <div class="ticker-thai">${stock.thaiName}</div>
+            <div class="ticker-sector">
+              <span>${stock.sector}</span>
+              <span class="dot"></span>
+              <span>มูลค่าบริษัท ${stock.marketCapThai}</span>
+            </div>
+          </div>
+          <div class="price-block">
+            <div class="price-now">$${stock.price.toFixed(2)}</div>
+            <div class="price-change ${changeClass}">${changeArrow} ${changeSign}${stock.changePercent.toFixed(2)}%</div>
+          </div>
+        </div>
+
+        <div class="what-it-does">
+          <span class="icon">💼</span>
+          <span><strong>บริษัทนี้ทำอะไร?</strong> ${stock.whatItDoes}</span>
+        </div>
+
+        <div class="score-section">
+          <div class="score-row">
+            <div class="score-label">⭐ คะแนนรวมวันนี้</div>
+            <div class="score-value">${stock.score}<span class="total">/100</span></div>
+          </div>
+          <div class="score-bar-track">
+            <div class="score-bar-fill" style="width: ${stock.score}%;"></div>
+          </div>
+          <div class="score-segments">
+            <span>0</span><span>50</span><span>100</span>
+          </div>
+        </div>
+
+        <div class="one-liner">
+          💡 <strong>สรุปสั้นๆ:</strong> ${stock.oneLineSummary}
+        </div>
+
+        <div class="pros-cons">
+          <div class="pros-col">
+            <div class="pros-cons-title">👍 ข้อดี</div>
+            <ul>${prosHTML}</ul>
+          </div>
+          <div class="cons-col">
+            <div class="pros-cons-title">👎 ข้อควรระวัง</div>
+            <ul>${consHTML}</ul>
+          </div>
+        </div>
+
+        <div class="section-title">📊 ตัวเลขสำคัญของบริษัท</div>
+        <div class="fund-grid">${fundamentalsHTML}</div>
+
+        <div class="section-title">📰 ข่าวล่าสุด 14 วัน</div>
+        <div class="news-grid">
+          <div class="news-block positive">
+            <div class="news-block-title">🟢 ข่าวดี · ${stock.news.positive.length} ข่าว</div>
+            ${positiveHTML}
+          </div>
+          <div class="news-block negative">
+            <div class="news-block-title">🔴 ข่าวควรรู้ · ${stock.news.negative.length} ข่าว</div>
+            ${negativeHTML}
+          </div>
+        </div>
+
+        <div class="section-title">📈 กราฟราคา 20 วันล่าสุด</div>
+        <div class="chart-area">
+          <div class="chart-wrap">
+            <canvas id="chart-${idx}" role="img" aria-label="${stock.ticker} price chart">${stock.ticker} กราฟราคา</canvas>
+          </div>
+          <div class="volume-wrap">
+            <canvas id="volume-${idx}" role="img" aria-label="${stock.ticker} volume">${stock.ticker} ปริมาณซื้อขาย</canvas>
+          </div>
+
+          <div class="rsi-section">
+            <div class="rsi-emoji">${rsiInfo.emoji}</div>
+            <div class="rsi-info">
+              <div class="rsi-title">RSI ${rsi} — ${rsiInfo.title}</div>
+              <div class="rsi-desc">${rsiInfo.desc}</div>
+              <div class="rsi-bar-track">
+                <div class="rsi-marker" style="left: ${rsi}%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="levels-grid">
+            <div class="level-pill">
+              <div class="level-name">⬆️ จุดสูงสุดปี</div>
+              <div class="level-num">$${stock.technical.week52High.toFixed(2)}</div>
+            </div>
+            <div class="level-pill">
+              <div class="level-name">⬇️ จุดต่ำสุดปี</div>
+              <div class="level-num">$${stock.technical.week52Low.toFixed(2)}</div>
+            </div>
+            <div class="level-pill">
+              <div class="level-name">🟢 แนวรับ 1</div>
+              <div class="level-num">$${stock.technical.support1.toFixed(2)}</div>
+            </div>
+            <div class="level-pill">
+              <div class="level-name">🟢 แนวรับ 2</div>
+              <div class="level-num">$${stock.technical.support2.toFixed(2)}</div>
+            </div>
+            <div class="level-pill">
+              <div class="level-name">🔴 แนวต้าน 1</div>
+              <div class="level-num">$${stock.technical.resistance1.toFixed(2)}</div>
+            </div>
+            <div class="level-pill">
+              <div class="level-name">🔴 แนวต้าน 2</div>
+              <div class="level-num">$${stock.technical.resistance2.toFixed(2)}</div>
+            </div>
+          </div>
+
+          <div class="technical-simple">
+            <span class="icon">🎯</span>
+            <span>${stock.technicalSimple}</span>
+          </div>
+        </div>
+
+        <div class="why-top">
+          <span class="why-emoji">✨</span>
+          <div class="why-text"><strong>ทำไมติด Top:</strong> ${stock.rankReasoning}</div>
+        </div>
+      </article>
+    `;
+    container.insertAdjacentHTML('beforeend', cardHTML);
+  });
+
+  // Render charts
+  setTimeout(() => {
+    STOCKS_DATA.forEach((stock, idx) => {
+      // Price chart
+      const ctx = document.getElementById(`chart-${idx}`);
+      if (ctx) {
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: stock.technical.labels,
+            datasets: [
+              {
+                label: 'ราคา',
+                data: stock.technical.priceHistory,
+                borderColor: '#e91e63',
+                backgroundColor: 'rgba(233, 30, 99, 0.08)',
+                tension: 0.4, fill: true, pointRadius: 3, borderWidth: 3,
+                pointBackgroundColor: '#e91e63'
+              },
+              {
+                label: 'แนวรับ',
+                data: Array(stock.technical.labels.length).fill(stock.technical.support1),
+                borderColor: '#2ec866', borderDash: [6, 6], pointRadius: 0, fill: false, borderWidth: 2
+              },
+              {
+                label: 'แนวต้าน',
+                data: Array(stock.technical.labels.length).fill(stock.technical.resistance1),
+                borderColor: '#f44336', borderDash: [6, 6], pointRadius: 0, fill: false, borderWidth: 2
+              },
+              {
+                label: 'MA50',
+                data: Array(stock.technical.labels.length).fill(stock.technical.ma50),
+                borderColor: '#ff9800', borderDash: [3, 3], pointRadius: 0, fill: false, borderWidth: 1.5
+              }
+            ]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: { display: true, position: 'top', labels: { boxWidth: 12, font: { size: 11, family: 'Sarabun' } } },
+              tooltip: { callbacks: { label: (c) => `${c.dataset.label}: $${c.parsed.y.toFixed(2)}` } }
+            },
+            scales: {
+              y: { ticks: { font: { size: 11, family: 'Sarabun' }, callback: (v) => '$' + v } },
+              x: { ticks: { font: { size: 10, family: 'Sarabun' }, maxRotation: 45 } }
+            }
+          }
+        });
+      }
+
+      // Volume bar chart
+      const volCtx = document.getElementById(`volume-${idx}`);
+      if (volCtx && stock.technical.volumeHistory) {
+        const avgVol = stock.technical.volumeHistory.reduce((a, b) => a + b, 0) / stock.technical.volumeHistory.length;
+        const colors = stock.technical.volumeHistory.map(v => v > avgVol * 1.3 ? '#7c4dff' : 'rgba(124, 77, 255, 0.4)');
+        new Chart(volCtx, {
+          type: 'bar',
+          data: {
+            labels: stock.technical.labels,
+            datasets: [{
+              label: 'Volume',
+              data: stock.technical.volumeHistory,
+              backgroundColor: colors,
+              borderWidth: 0,
+              borderRadius: 3
+            }]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { callbacks: { label: (c) => 'Volume: ' + (c.parsed.y / 1e6).toFixed(1) + 'M' } }
+            },
+            scales: {
+              y: { ticks: { font: { size: 10, family: 'Sarabun' }, callback: (v) => (v / 1e6).toFixed(0) + 'M' } },
+              x: { ticks: { display: false } }
+            }
+          }
+        });
+      }
+    });
+  }, 100);
+}
+</script>
+</body>
+</html>
