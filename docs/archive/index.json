@@ -3,17 +3,66 @@
     {
       "date": "2026-05-08",
       "url": "2026-05-08.html",
-      "topPicks": ["GOOGL", "MSFT", "AAPL", "AMZN", "NVDA", "META", "AMD", "PLTR", "APP", "SHOP"]
+      "topPicks": [
+        "GOOGL",
+        "MSFT",
+        "AAPL",
+        "AMZN",
+        "NVDA",
+        "META",
+        "AMD",
+        "PLTR",
+        "APP",
+        "SHOP"
+      ]
     },
     {
       "date": "2026-05-09",
       "url": "2026-05-09.html",
-      "topPicks": ["GOOGL", "META", "AAPL", "AMZN", "MSFT", "V", "MA", "QCOM", "AVGO", "AMD"]
+      "topPicks": [
+        "GOOGL",
+        "META",
+        "AAPL",
+        "AMZN",
+        "MSFT",
+        "V",
+        "MA",
+        "QCOM",
+        "AVGO",
+        "AMD"
+      ]
     },
     {
       "date": "2026-05-10",
       "url": "2026-05-10.html",
-      "topPicks": ["GOOGL", "AAPL", "META", "MA", "V", "AMZN", "AMD", "NVDA", "AVGO", "MSFT"]
+      "topPicks": [
+        "GOOGL",
+        "AAPL",
+        "META",
+        "MA",
+        "V",
+        "AMZN",
+        "AMD",
+        "NVDA",
+        "AVGO",
+        "MSFT"
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "url": "2026-05-11.html",
+      "topPicks": [
+        "GOOGL",
+        "MSFT",
+        "META",
+        "V",
+        "AAPL",
+        "MA",
+        "AVGO",
+        "NVDA",
+        "AMZN",
+        "AMD"
+      ]
     }
   ]
 }
