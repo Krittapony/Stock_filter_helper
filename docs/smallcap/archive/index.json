@@ -3,17 +3,66 @@
     {
       "date": "2026-05-09",
       "url": "2026-05-09.html",
-      "topPicks": ["GRRR", "RCAT", "DUOT", "PGY", "SERV", "AEVA", "UMAC", "CODA", "RNGR", "MGNI"]
+      "topPicks": [
+        "GRRR",
+        "RCAT",
+        "DUOT",
+        "PGY",
+        "SERV",
+        "AEVA",
+        "UMAC",
+        "CODA",
+        "RNGR",
+        "MGNI"
+      ]
     },
     {
       "date": "2026-05-10",
       "url": "2026-05-10.html",
-      "topPicks": ["GRRR", "EVC", "SERV", "RCAT", "BLZE", "PGY", "PUBM", "UMAC", "MGNI", "BBAI"]
+      "topPicks": [
+        "GRRR",
+        "EVC",
+        "SERV",
+        "RCAT",
+        "BLZE",
+        "PGY",
+        "PUBM",
+        "UMAC",
+        "MGNI",
+        "BBAI"
+      ]
     },
     {
       "date": "2026-05-11",
       "url": "2026-05-11.html",
-      "topPicks": ["RXT", "BBAI", "AEVA", "UMAC", "GRRR", "BLZE", "PUBM", "SERV", "PGY", "EVC"]
+      "topPicks": [
+        "RXT",
+        "BBAI",
+        "AEVA",
+        "UMAC",
+        "GRRR",
+        "BLZE",
+        "PUBM",
+        "SERV",
+        "PGY",
+        "EVC"
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "url": "2026-05-12.html",
+      "topPicks": [
+        "RCAT",
+        "PGY",
+        "GRRR",
+        "BLZE",
+        "EVC",
+        "PUBM",
+        "SERV",
+        "UMAC",
+        "MGNI",
+        "AEVA"
+      ]
     }
   ]
 }
