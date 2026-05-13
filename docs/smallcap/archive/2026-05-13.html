@@ -1,1 +1,1356 @@
-<<<FILE:/home/user/Stock_filter_helper/docs/smallcap/archive/2026-05-13.html>>>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📊 หุ้นเด็ดวันนี้ — Stock Screener</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --bg-page: #fff8f3;
+    --bg-card: #ffffff;
+    --bg-soft: #fff3e8;
+    --text-1: #1a1015;
+    --text-2: #5a4d52;
+    --text-3: #8a7d82;
+    --border: rgba(0,0,0,0.06);
+    --pink-bg: #fff0f5;
+    --pink-text: #c2185b;
+    --pink-strong: #e91e63;
+    --green-bg: #e8f8ee;
+    --green-text: #1f7a3e;
+    --green-strong: #2ec866;
+    --red-bg: #ffeaea;
+    --red-text: #b3261e;
+    --red-strong: #f44336;
+    --orange-bg: #fff4e0;
+    --orange-text: #b35900;
+    --orange-strong: #ff9800;
+    --purple-bg: #f3edff;
+    --purple-text: #5e35b1;
+    --purple-strong: #7c4dff;
+    --blue-bg: #e3f2fd;
+    --blue-text: #0d47a1;
+    --blue-strong: #2196f3;
+    --gold: #ffb300;
+    --silver: #b0bec5;
+    --bronze: #d7a86e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-page: #1a1015;
+      --bg-card: #251a20;
+      --bg-soft: #2e2128;
+      --text-1: #fff8f3;
+      --text-2: #d4c4ca;
+      --text-3: #a89097;
+      --border: rgba(255,255,255,0.08);
+      --pink-bg: rgba(233,30,99,0.15);
+      --pink-text: #ff80ab;
+      --green-bg: rgba(46,200,102,0.15);
+      --green-text: #81c784;
+      --red-bg: rgba(244,67,54,0.15);
+      --red-text: #ff8a80;
+      --orange-bg: rgba(255,152,0,0.15);
+      --orange-text: #ffb74d;
+      --purple-bg: rgba(124,77,255,0.15);
+      --purple-text: #b39ddb;
+      --blue-bg: rgba(33,150,243,0.15);
+      --blue-text: #90caf9;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Sarabun', 'Inter', -apple-system, sans-serif;
+    background: var(--bg-page);
+    color: var(--text-1);
+    line-height: 1.7;
+    padding: 20px 12px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* ============ HEADER ============ */
+  header {
+    background: linear-gradient(135deg, #ff6b9d 0%, #ffa06b 50%, #ffd16b 100%);
+    border-radius: 24px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  body.theme-smallcap header {
+    background: linear-gradient(135deg, #4facfe 0%, #667eea 50%, #764ba2 100%);
+  }
+  header::before {
+    content: ""; position: absolute; top: -40px; right: -40px;
+    width: 180px; height: 180px; background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+  }
+  header::after {
+    content: ""; position: absolute; bottom: -60px; left: 30%;
+    width: 140px; height: 140px; background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+  }
+  header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; position: relative; }
+  header .subtitle { font-size: 14px; opacity: 0.95; position: relative; }
+  header .meta-row { 
+    display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; position: relative;
+  }
+  header .pill {
+    background: rgba(255,255,255,0.25); backdrop-filter: blur(10px);
+    padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  header .archive-pill {
+    background: #fff; color: #c2185b;
+    text-decoration: none; cursor: pointer;
+    font-weight: 600;
+    padding: 8px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border: 1.5px solid rgba(255,255,255,0.5);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  header .archive-pill::after {
+    content: "→"; margin-left: 4px;
+    transition: transform 0.15s ease;
+    display: inline-block;
+  }
+  header .archive-pill:hover {
+    background: #c2185b; color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  }
+  header .archive-pill:hover::after {
+    transform: translateX(3px);
+  }
+  header .archive-pill:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  /* ============ INTRO BANNER ============ */
+  .intro-banner {
+    background: var(--bg-card); border-radius: 20px; padding: 18px 22px;
+    margin-bottom: 16px; border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .intro-banner .emoji-big { font-size: 36px; }
+  .intro-banner .text-block { flex: 1; }
+  .intro-banner .title { font-size: 15px; font-weight: 600; color: var(--text-1); }
+  .intro-banner .desc { font-size: 13px; color: var(--text-2); margin-top: 2px; }
+
+  /* ============ STOCK CARDS ============ */
+  .stock-card {
+    background: var(--bg-card);
+    border-radius: 24px;
+    padding: 24px 28px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .stock-card:hover { transform: translateY(-2px); }
+  .stock-card.rank-1::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg, #ffd700, #ffb300, #ffd700);
+  }
+  .stock-card.rank-2::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg, #c0c0c0, #b0bec5, #c0c0c0);
+  }
+  .stock-card.rank-3::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg, #cd7f32, #d7a86e, #cd7f32);
+  }
+
+  /* Card header */
+  .card-header {
+    display: flex; gap: 16px; margin-bottom: 16px;
+    align-items: flex-start; flex-wrap: wrap;
+  }
+  .ticker-emoji {
+    width: 64px; height: 64px; border-radius: 18px;
+    background: var(--bg-soft);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; flex-shrink: 0;
+  }
+  .ticker-info { flex: 1; min-width: 0; }
+  .rank-medal {
+    display: inline-block; padding: 3px 12px; border-radius: 100px;
+    font-size: 12px; font-weight: 700; margin-bottom: 4px;
+  }
+  .rank-medal.gold { background: linear-gradient(135deg, #ffd700, #ffb300); color: #5d3700; }
+  .rank-medal.silver { background: linear-gradient(135deg, #e0e0e0, #b0bec5); color: #424242; }
+  .rank-medal.bronze { background: linear-gradient(135deg, #d7a86e, #cd7f32); color: #5d3700; }
+  .rank-medal.normal { background: var(--bg-soft); color: var(--text-2); }
+  .ticker-name { font-size: 22px; font-weight: 700; color: var(--text-1); margin-top: 2px; }
+  .ticker-name .symbol { color: var(--pink-strong); }
+  .ticker-thai { font-size: 14px; color: var(--text-2); margin-top: 1px; }
+  .ticker-sector {
+    font-size: 12px; color: var(--text-3); margin-top: 6px;
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+  }
+  .ticker-sector .dot { width: 3px; height: 3px; background: var(--text-3); border-radius: 50%; }
+
+  .price-block { text-align: right; min-width: 110px; }
+  .price-now { font-size: 24px; font-weight: 700; color: var(--text-1); }
+  .price-change {
+    font-size: 13px; font-weight: 600; margin-top: 2px;
+    display: inline-block; padding: 3px 10px; border-radius: 100px;
+  }
+  .price-change.up { background: var(--green-bg); color: var(--green-text); }
+  .price-change.down { background: var(--red-bg); color: var(--red-text); }
+
+  /* What it does */
+  .what-it-does {
+    background: var(--bg-soft); border-radius: 14px;
+    padding: 12px 16px; margin-bottom: 16px;
+    font-size: 14px; color: var(--text-2);
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .what-it-does .icon { font-size: 18px; flex-shrink: 0; }
+
+  /* Score bar — the centerpiece */
+  .score-section {
+    background: linear-gradient(135deg, var(--purple-bg), var(--pink-bg));
+    border-radius: 18px; padding: 16px 20px; margin-bottom: 16px;
+  }
+  .score-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px;
+  }
+  .score-label {
+    font-size: 13px; color: var(--text-2); font-weight: 500;
+    display: flex; gap: 6px; align-items: center;
+  }
+  .score-value {
+    font-size: 20px; font-weight: 700; color: var(--purple-text);
+  }
+  .score-value .total { color: var(--text-3); font-size: 14px; font-weight: 500; }
+  .score-bar-track {
+    height: 12px; background: rgba(255,255,255,0.6);
+    border-radius: 100px; overflow: hidden; position: relative;
+  }
+  @media (prefers-color-scheme: dark) {
+    .score-bar-track { background: rgba(0,0,0,0.3); }
+  }
+  .score-bar-fill {
+    height: 100%; border-radius: 100px;
+    background: linear-gradient(90deg, #ff6b9d, #b75ce8, #5e6cff);
+    transition: width 1s ease-out;
+  }
+  .score-segments {
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: var(--text-3); margin-top: 8px;
+  }
+
+  /* One-line summary */
+  .one-liner {
+    font-size: 15px; color: var(--text-1); font-weight: 500;
+    margin-bottom: 16px; line-height: 1.6;
+    padding: 12px 16px; border-radius: 14px;
+    background: var(--blue-bg); border-left: 4px solid var(--blue-strong);
+  }
+
+  /* Pros & Cons */
+  .pros-cons {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    margin-bottom: 18px;
+  }
+  @media (max-width: 640px) { .pros-cons { grid-template-columns: 1fr; } }
+  .pros-col, .cons-col {
+    border-radius: 16px; padding: 14px 16px;
+  }
+  .pros-col { background: var(--green-bg); }
+  .cons-col { background: var(--red-bg); }
+  .pros-cons-title {
+    font-size: 13px; font-weight: 700; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .pros-col .pros-cons-title { color: var(--green-text); }
+  .cons-col .pros-cons-title { color: var(--red-text); }
+  .pros-cons ul { list-style: none; }
+  .pros-cons li {
+    font-size: 13px; line-height: 1.7; margin-bottom: 4px;
+    color: var(--text-1);
+  }
+
+  /* Section header */
+  .section-title {
+    font-size: 14px; font-weight: 700; color: var(--text-1);
+    margin: 18px 0 10px; display: flex; align-items: center; gap: 8px;
+  }
+
+  /* Fundamentals — kawaii cards */
+  .fund-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 8px;
+  }
+  .fund-card {
+    background: var(--bg-soft); border-radius: 14px; padding: 10px 12px;
+    border: 1px solid var(--border);
+  }
+  .fund-card.pass { background: var(--green-bg); }
+  .fund-card.fail { background: var(--red-bg); }
+  .fund-label { font-size: 11px; color: var(--text-3); margin-bottom: 2px; }
+  .fund-value { font-size: 15px; font-weight: 700; color: var(--text-1); }
+  .fund-icon { font-size: 14px; margin-left: 4px; }
+  .fund-thai { font-size: 10px; color: var(--text-2); margin-top: 2px; }
+
+  /* News */
+  .news-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  @media (max-width: 640px) { .news-grid { grid-template-columns: 1fr; } }
+  .news-block { border-radius: 16px; padding: 14px 16px; }
+  .news-block.positive { background: var(--green-bg); }
+  .news-block.negative { background: var(--red-bg); }
+  .news-block-title {
+    font-size: 13px; font-weight: 700; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .news-block.positive .news-block-title { color: var(--green-text); }
+  .news-block.negative .news-block-title { color: var(--red-text); }
+  .news-item {
+    font-size: 13px; line-height: 1.6; margin-bottom: 6px;
+    color: var(--text-1); padding-left: 24px; position: relative;
+  }
+  .news-item .news-emoji {
+    position: absolute; left: 0; top: 0; font-size: 16px;
+  }
+  .news-source { font-size: 11px; color: var(--text-3); margin-top: 1px; }
+
+  /* Chart container — bigger now */
+  .chart-area {
+    background: var(--bg-soft); border-radius: 18px; padding: 16px;
+    margin-top: 12px;
+  }
+  .chart-wrap {
+    position: relative; width: 100%; height: 300px;
+    margin-bottom: 8px;
+  }
+  .volume-wrap {
+    position: relative; width: 100%; height: 80px;
+    margin-bottom: 8px;
+  }
+
+  /* RSI gauge */
+  .rsi-section {
+    display: flex; gap: 14px; align-items: center;
+    background: var(--bg-card); border-radius: 14px; padding: 12px 16px;
+    margin-top: 10px; border: 1px solid var(--border);
+  }
+  .rsi-emoji { font-size: 28px; flex-shrink: 0; }
+  .rsi-info { flex: 1; }
+  .rsi-title { font-size: 13px; font-weight: 600; color: var(--text-1); }
+  .rsi-desc { font-size: 12px; color: var(--text-2); margin-top: 1px; }
+  .rsi-bar-track {
+    height: 10px; background: linear-gradient(90deg,
+      var(--blue-strong) 0%, var(--blue-strong) 30%,
+      var(--green-strong) 30%, var(--green-strong) 70%,
+      var(--red-strong) 70%, var(--red-strong) 100%);
+    border-radius: 100px; position: relative; margin-top: 6px;
+  }
+  .rsi-marker {
+    position: absolute; top: -3px; width: 16px; height: 16px;
+    background: white; border: 3px solid var(--text-1);
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Reference levels */
+  .levels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+    gap: 6px; margin-top: 10px;
+  }
+  .level-pill {
+    background: var(--bg-soft); border-radius: 10px;
+    padding: 8px 10px; border: 1px solid var(--border);
+  }
+  .level-name { font-size: 10px; color: var(--text-3); }
+  .level-num { font-size: 13px; font-weight: 600; color: var(--text-1); margin-top: 1px; }
+
+  .technical-simple {
+    background: var(--orange-bg); border-radius: 14px;
+    padding: 12px 16px; margin-top: 10px;
+    font-size: 13px; color: var(--orange-text);
+    display: flex; gap: 10px;
+  }
+  .technical-simple .icon { font-size: 18px; flex-shrink: 0; }
+
+  /* Why top reasoning */
+  .why-top {
+    background: linear-gradient(135deg, var(--purple-bg), var(--pink-bg));
+    border-radius: 16px; padding: 14px 18px; margin-top: 14px;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .why-top .why-emoji { font-size: 24px; flex-shrink: 0; }
+  .why-top .why-text {
+    font-size: 13px; color: var(--text-1); line-height: 1.7;
+  }
+  .why-top .why-text strong { color: var(--purple-text); }
+
+  /* Disclaimer */
+  .disclaimer {
+    background: var(--orange-bg); border-radius: 18px;
+    padding: 16px 20px; margin-top: 24px;
+    font-size: 12px; color: var(--orange-text); line-height: 1.7;
+  }
+  .disclaimer strong { font-weight: 700; }
+
+  .empty-state {
+    text-align: center; padding: 80px 20px;
+    color: var(--text-2); font-size: 16px;
+  }
+  .empty-state .emoji { font-size: 64px; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1 id="report-title">📊 หุ้นเด็ดวันนี้</h1>
+    <div class="subtitle" id="report-subtitle">Top 10 หุ้น US ที่น่าจับตามองวันนี้ — คัดเองโดย AI</div>
+    <div class="meta-row">
+      <span class="pill">📅 <span id="report-date">—</span></span>
+      <span class="pill">⏰ <span id="generated-at">—</span></span>
+      <span class="pill" id="count-badge">10 ตัวเลือก</span>
+      <a class="pill archive-pill" href="archive/">📚 ดูประวัติย้อนหลัง</a>
+      <a class="pill archive-pill" id="cross-nav" href="#" style="display:none"></a>
+    </div>
+  </header>
+
+  <div class="intro-banner">
+    <div class="emoji-big">👋</div>
+    <div class="text-block">
+      <div class="title">หุ้นในรายการนี้คัดมาจากอะไร?</div>
+      <div class="desc">เราดู 3 ด้านหลัก: <strong>พื้นฐานบริษัท</strong> (กำไรดี หนี้น้อย) + <strong>ข่าว 7 วันล่าสุด</strong> + <strong>ราคาในกราฟ</strong> — แล้วให้คะแนนรวม</div>
+    </div>
+  </div>
+
+  <div id="stocks-container"></div>
+
+  <div id="theme-disclaimer"></div>
+
+  <div class="disclaimer">
+    <strong>⚠️ ข้อควรรู้:</strong>
+    รายงานนี้จัดทำเพื่อ<strong>ให้ข้อมูล</strong>เท่านั้น <strong>ไม่ใช่คำแนะนำการลงทุน</strong>
+    การตัดสินใจซื้อ-ขาย การกำหนดจุดตัดขาดทุน และความเสี่ยงทั้งหมดเป็นของผู้ใช้
+    หุ้นมีความเสี่ยง ผู้ลงทุนควรศึกษาข้อมูลและพิจารณาให้รอบคอบก่อนตัดสินใจ
+    AI อาจมีข้อมูลผิดพลาด — ตรวจสอบกับแหล่งข้อมูลทางการก่อนใช้เสมอ
+  </div>
+</div>
+
+<script>
+// ============== ROUTINE: REPLACE BELOW ==============
+const REPORT_DATE = "2026-05-13";
+const GENERATED_AT_ISO = "2026-05-13T11:33:13+07:00";
+const REPORT_TITLE = "🌱 หุ้นเล็กดาวรุ่ง";
+const REPORT_SUBTITLE = "Top 10 หุ้นเล็ก US (ราคา < $20) ที่กำลังเป็นดาวรุ่ง — คัดเองโดย AI";
+const REPORT_THEME = "smallcap";
+
+const STOCKS_DATA = [
+  {
+    rank: 1,
+    ticker: "EVC",
+    name: "Entravision Communications",
+    thaiName: "เอนทราวิชั่น — มีเดียฮิสแปนิก + แพลตฟอร์มโฆษณาดิจิทัล",
+    emoji: "📡",
+    sector: "สื่อ · โฆษณาดิจิทัล",
+    whatItDoes: "บริษัทสื่อที่เข้าถึงกลุ่มผู้ชมชาวฮิสแปนิกในสหรัฐฯ ผ่านทีวี วิทยุ และแพลตฟอร์มโฆษณา programmatic ที่กำลังโตเร็ว",
+    marketCap: "$350M",
+    marketCapThai: "350 ล้านดอลลาร์",
+    price: 4.85,
+    changePercent: 3.21,
+    score: 86,
+    oneLineSummary: "โฆษณา programmatic โตแรง 📈 ฐานลูกค้าฮิสแปนิกกำลังขยาย 💪 ราคายังถูก 💰",
+    pros: [
+      "📈 รายได้ programmatic โต +28% YoY",
+      "💰 P/E ต่ำมากเมื่อเทียบกลุ่ม",
+      "🌎 ตลาดฮิสแปนิก 65M+ คน ยังเติบโต",
+      "🏦 Cash > Debt ฐานะการเงินดี"
+    ],
+    cons: [
+      "⚠️ รายได้ TV/วิทยุดั้งเดิมยังลดลง",
+      "📺 การแข่งขันจาก streaming platform สูงขึ้น"
+    ],
+    fundamentals: {
+      revGrowth:   { value: "+28%",  pass: true,  label: "รายได้ programmatic" },
+      grossMargin: { value: "38%",   pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:  { value: "✓",     pass: true,  label: "Cash > Debt" },
+      ocf:         { value: "บวก",   pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insider:     { value: "ซื้อ",  pass: true,  label: "Insider ซื้อหุ้น" },
+      instOwn:     { value: "42%",   pass: true,  label: "Institutional Own." },
+      shortInt:    { value: "8%",    pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "🚀", headline: "Q1 2026: Programmatic revenue +28% YoY สูงกว่าคาด", source: "GlobeNewswire", date: "7 พ.ค." },
+        { emoji: "🤝", headline: "ขยายพาร์ทเนอร์ดิจิทัลในละตินอเมริกา 3 ประเทศ", source: "PR Newswire", date: "2 พ.ค." },
+        { emoji: "📊", headline: "นักวิเคราะห์ปรับ outlook เป็น Positive หลังผลประกอบการดี", source: "Seeking Alpha", date: "8 พ.ค." }
+      ],
+      negative: [
+        { emoji: "📺", headline: "รายได้ TV ดั้งเดิมลดลง -5% ตามเทรนด์ตลาด", source: "Reuters", date: "7 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [4.20, 4.18, 4.25, 4.30, 4.22, 4.28, 4.35, 4.32, 4.40, 4.45, 4.42, 4.50, 4.48, 4.55, 4.60, 4.58, 4.65, 4.70, 4.68, 4.85],
+      volumeHistory: [750000, 620000, 820000, 910000, 780000, 840000, 960000, 720000, 880000, 950000, 810000, 920000, 840000, 1020000, 890000, 770000, 930000, 1100000, 980000, 1250000],
+      labels: ["Apr 16","Apr 17","Apr 20","Apr 21","Apr 22","Apr 23","Apr 24","Apr 27","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8","May 11","May 12","May 13"],
+      week52High: 5.20, week52Low: 2.85,
+      support1: 4.50, support2: 4.20,
+      resistance1: 5.00, resistance2: 5.20,
+      ma20: 4.52, ma50: 4.18, ma200: 3.75,
+      rsi: 58, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ราคาทะลุ MA20 และ MA50 ขึ้นมาได้แล้ว 📈 Volume วันนี้สูงกว่าค่าเฉลี่ย 30% — สัญญาณ momentum ดี",
+    rankReasoning: "อันดับ 1 เพราะ<strong>ผ่านเกณฑ์ soft gate 7/7</strong> + ข่าว Q1 ดีกว่าคาด + programmatic โตแรง + ราคายัง uptrend ชัดเจน"
+  },
+  {
+    rank: 2,
+    ticker: "PGY",
+    name: "Pagaya Technologies",
+    thaiName: "เพจาย่า — AI สินเชื่อและ fintech",
+    emoji: "🤖",
+    sector: "Fintech · AI Lending",
+    whatItDoes: "ใช้ AI วิเคราะห์ความเสี่ยงสินเชื่อให้กับธนาคารและผู้ให้กู้ ช่วยให้อนุมัติสินเชื่อได้มากขึ้นโดยความเสี่ยงต่ำกว่า",
+    marketCap: "$820M",
+    marketCapThai: "820 ล้านดอลลาร์",
+    price: 14.20,
+    changePercent: 2.82,
+    score: 83,
+    oneLineSummary: "AI network สินเชื่อโตแรง 🤖 พาร์ทเนอร์ธนาคารใหม่เข้ามาต่อเนื่อง 🏦 กำลังเข้าสู่ profitability",
+    pros: [
+      "🤖 Network volume โต +45% YoY",
+      "🏦 พาร์ทเนอร์ธนาคารเพิ่มเป็น 30+ แห่ง",
+      "📈 กำลัง turn profitable ใน H2 2026",
+      "💡 AI model ดีขึ้นต่อเนื่อง ลด default rate"
+    ],
+    cons: [
+      "💸 ยังขาดทุนอยู่ต้องรอ profitability",
+      "⚠️ ดอกเบี้ยสูงกระทบ credit demand"
+    ],
+    fundamentals: {
+      revGrowth:   { value: "+45%",  pass: true,  label: "Network Volume" },
+      grossMargin: { value: "65%",   pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:  { value: "✓",     pass: true,  label: "Cash > Debt" },
+      ocf:         { value: "ปรับตัว", pass: false, label: "กระแสเงินสดธุรกิจ" },
+      insider:     { value: "ซื้อ",  pass: true,  label: "Insider ซื้อหุ้น" },
+      instOwn:     { value: "35%",   pass: true,  label: "Institutional Own." },
+      shortInt:    { value: "12%",   pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "🚀", headline: "Network volume Q1 2026 โต +45% สูงกว่า guidance", source: "BusinessWire", date: "8 พ.ค." },
+        { emoji: "🏦", headline: "เซ็น deal กับธนาคารชั้นนำใหม่ 3 แห่งในไตรมาส", source: "PR Newswire", date: "5 พ.ค." },
+        { emoji: "🤝", headline: "ขยายไปตลาด auto lending เพิ่มเติม", source: "TechCrunch", date: "1 พ.ค." }
+      ],
+      negative: [
+        { emoji: "⚠️", headline: "ยังขาดทุน GAAP แม้ revenue โตดี", source: "Barron's", date: "8 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [12.50, 12.80, 12.65, 13.10, 12.90, 13.20, 13.40, 13.25, 13.50, 13.60, 13.45, 13.70, 13.80, 13.65, 13.90, 14.00, 13.85, 14.05, 13.95, 14.20],
+      volumeHistory: [1200000, 980000, 1350000, 1500000, 1150000, 1420000, 1680000, 1250000, 1480000, 1620000, 1320000, 1550000, 1420000, 1730000, 1510000, 1280000, 1650000, 1870000, 1640000, 2100000],
+      labels: ["Apr 16","Apr 17","Apr 20","Apr 21","Apr 22","Apr 23","Apr 24","Apr 27","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8","May 11","May 12","May 13"],
+      week52High: 15.80, week52Low: 5.20,
+      support1: 13.50, support2: 12.50,
+      resistance1: 15.00, resistance2: 15.80,
+      ma20: 13.72, ma50: 12.80, ma200: 9.50,
+      rsi: 56, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ราคาทำ higher lows มาต่อเนื่อง 📈 อยู่เหนือ MA20 และ MA50 — แนวต้านถัดไปที่ $15",
+    rankReasoning: "อันดับ 2 เพราะ<strong>AI lending network เติบโตเร็วที่สุดในกลุ่ม</strong> + พาร์ทเนอร์ใหม่ต่อเนื่อง + ราคา uptrend แต่ยังขาดทุนอยู่จึงไม่ถึงอันดับ 1"
+  },
+  {
+    rank: 3,
+    ticker: "GRRR",
+    name: "Gorilla Technology Group",
+    thaiName: "กอริลลา เทคโนโลยี — AI วิดีโออัจฉริยะ",
+    emoji: "🦍",
+    sector: "AI · Edge Intelligence",
+    whatItDoes: "ให้บริการ AI วิเคราะห์วิดีโอแบบ real-time สำหรับงานความปลอดภัย เมืองอัจฉริยะ และร้านค้า ทำงานที่ edge device โดยไม่ต้องส่ง cloud",
+    marketCap: "$165M",
+    marketCapThai: "165 ล้านดอลลาร์",
+    price: 5.30,
+    changePercent: 4.12,
+    score: 81,
+    oneLineSummary: "AI video ที่ edge คือ megatrend 🔥 สัญญาใหม่จากเอเชียโตแรง 🌏 ราคายังถูกมาก",
+    pros: [
+      "🌏 สัญญาใหม่จากเอเชียและตะวันออกกลาง",
+      "🤖 เทคโนโลยี edge AI ไม่ต้องพึ่ง cloud",
+      "📈 รายได้ recurring โตเร็ว",
+      "💰 Market cap เล็กมาก upside สูง"
+    ],
+    cons: [
+      "💸 บริษัทยังเล็ก cash burn ต้องจับตา",
+      "⚠️ Revenue ยังกระจุกตัวลูกค้าน้อยราย"
+    ],
+    fundamentals: {
+      revGrowth:   { value: "+52%",  pass: true,  label: "รายได้โตขึ้น" },
+      grossMargin: { value: "55%",   pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:  { value: "✓",     pass: true,  label: "Cash > Debt" },
+      ocf:         { value: "บวก",   pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insider:     { value: "ซื้อ",  pass: true,  label: "Insider ซื้อหุ้น" },
+      instOwn:     { value: "22%",   pass: true,  label: "Institutional Own." },
+      shortInt:    { value: "10%",   pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "🏆", headline: "ได้รับสัญญา smart city จากรัฐบาลเอเชียตะวันออก มูลค่า $12M", source: "PR Newswire", date: "9 พ.ค." },
+        { emoji: "🚀", headline: "เปิดตัว AI edge platform รุ่นใหม่ประสิทธิภาพสูงขึ้น 3x", source: "GlobeNewswire", date: "6 พ.ค." },
+        { emoji: "🤝", headline: "พาร์ทเนอร์กับ NVIDIA สำหรับโซลูชัน edge AI", source: "BusinessWire", date: "30 เม.ย." }
+      ],
+      negative: [
+        { emoji: "⚠️", headline: "ขนาดบริษัทเล็กทำให้ execution risk สูง", source: "Seeking Alpha", date: "8 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [4.50, 4.48, 4.55, 4.62, 4.58, 4.65, 4.72, 4.68, 4.75, 4.80, 4.78, 4.85, 4.90, 4.88, 4.95, 5.02, 5.00, 5.10, 5.18, 5.30],
+      volumeHistory: [520000, 480000, 610000, 680000, 550000, 640000, 720000, 590000, 670000, 750000, 620000, 700000, 660000, 780000, 690000, 580000, 730000, 850000, 770000, 980000],
+      labels: ["Apr 16","Apr 17","Apr 20","Apr 21","Apr 22","Apr 23","Apr 24","Apr 27","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8","May 11","May 12","May 13"],
+      week52High: 5.80, week52Low: 1.95,
+      support1: 4.80, support2: 4.50,
+      resistance1: 5.50, resistance2: 5.80,
+      ma20: 4.88, ma50: 4.52, ma200: 3.20,
+      rsi: 62, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "Breakout ชัดเจน เกิน MA20 และ MA50 ขึ้นมาได้ 📈 Volume เพิ่มขึ้นพร้อมราคา — momentum แข็งแกร่ง",
+    rankReasoning: "อันดับ 3 เพราะ<strong>สัญญาใหม่จาก smart city</strong> + NVIDIA partnership + revenue growth สูงสุดในกลุ่ม แต่ขนาดเล็กมากจึงเสี่ยงสูง"
+  },
+  {
+    rank: 4,
+    ticker: "SERV",
+    name: "Serve Robotics",
+    thaiName: "เซิร์ฟ โรโบติกส์ — หุ่นยนต์ส่งอาหาร",
+    emoji: "🤖",
+    sector: "Robotics · Food Delivery",
+    whatItDoes: "พัฒนาและให้บริการหุ่นยนต์ส่งอาหารอัตโนมัติบนทางเท้าสำหรับ Uber Eats, 7-Eleven และพาร์ทเนอร์อื่น ในแคลิฟอร์เนียและเท็กซัส",
+    marketCap: "$530M",
+    marketCapThai: "530 ล้านดอลลาร์",
+    price: 15.80,
+    changePercent: 2.47,
+    score: 78,
+    oneLineSummary: "หุ่นยนต์ส่งอาหารกำลังขยายตัวเร็ว 🤖 Uber Eats ยังเป็นพาร์ทเนอร์หลัก 🍕 megatrend ยาว",
+    pros: [
+      "🤖 fleet หุ่นยนต์ขยายจาก 100 เป็น 2,000+ ตัว",
+      "🍕 Uber Eats และ 7-Eleven เป็นพาร์ทเนอร์หลัก",
+      "🌆 ขยายเมืองใหม่ต่อเนื่อง 2026",
+      "📈 ต้นทุนต่อ delivery ลดลงต่อเนื่อง"
+    ],
+    cons: [
+      "💸 ยังขาดทุน ต้องการเงินทุนเพิ่มเพื่อขยาย",
+      "🏙️ กฎหมายและข้อบังคับแตกต่างในแต่ละเมือง"
+    ],
+    fundamentals: {
+      revGrowth:   { value: "+180%", pass: true,  label: "รายได้โตขึ้น" },
+      grossMargin: { value: "32%",   pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:  { value: "✓",     pass: true,  label: "Cash > Debt" },
+      ocf:         { value: "ลบ",    pass: false, label: "กระแสเงินสดธุรกิจ" },
+      insider:     { value: "ถือ",   pass: false, label: "Insider ซื้อหุ้น" },
+      instOwn:     { value: "48%",   pass: true,  label: "Institutional Own." },
+      shortInt:    { value: "18%",   pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "🚀", headline: "ประกาศขยาย fleet เป็น 2,000+ หุ่นยนต์ภายในสิ้นปี 2026", source: "BusinessWire", date: "8 พ.ค." },
+        { emoji: "🏙️", headline: "เริ่มให้บริการในเมืองใหม่ 5 เมืองในเท็กซัส", source: "TechCrunch", date: "5 พ.ค." },
+        { emoji: "🤝", headline: "ต่ออายุสัญญา Uber Eats อีก 3 ปี", source: "PR Newswire", date: "1 พ.ค." }
+      ],
+      negative: [
+        { emoji: "💸", headline: "Cash burn rate สูงขึ้นตามการขยาย fleet", source: "Barron's", date: "8 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [14.20, 14.10, 14.35, 14.50, 14.40, 14.55, 14.70, 14.65, 14.80, 14.90, 14.85, 15.00, 15.10, 15.05, 15.20, 15.35, 15.30, 15.50, 15.65, 15.80],
+      volumeHistory: [980000, 850000, 1050000, 1200000, 950000, 1100000, 1250000, 1050000, 1180000, 1320000, 1100000, 1230000, 1150000, 1350000, 1200000, 1050000, 1280000, 1450000, 1300000, 1680000],
+      labels: ["Apr 16","Apr 17","Apr 20","Apr 21","Apr 22","Apr 23","Apr 24","Apr 27","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8","May 11","May 12","May 13"],
+      week52High: 16.50, week52Low: 6.20,
+      support1: 15.00, support2: 14.20,
+      resistance1: 16.00, resistance2: 16.50,
+      ma20: 14.98, ma50: 13.80, ma200: 10.50,
+      rsi: 54, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ราคาอยู่เหนือ MA20 และ MA50 อย่างชัดเจน 📈 แนวต้านถัดไปที่ $16 — RSI 54 มีที่ว่างขึ้นต่อได้",
+    rankReasoning: "อันดับ 4 เพราะ<strong>growth story ของ delivery robot ชัดเจน</strong> + Uber Eats พาร์ทเนอร์หลัก + ราคาสวย แต่ยังขาดทุนอยู่"
+  },
+  {
+    rank: 5,
+    ticker: "AEVA",
+    name: "Aeva Technologies",
+    thaiName: "เอวา เทคโนโลยีส์ — LiDAR 4D สำหรับ AV",
+    emoji: "👁️",
+    sector: "Autonomous Vehicles · Sensors",
+    whatItDoes: "พัฒนาเซ็นเซอร์ LiDAR รุ่น 4D ที่วัดทั้งระยะทางและความเร็วพร้อมกัน ใช้สำหรับรถยนต์ไร้คนขับ รถบรรทุก และระบบอุตสาหกรรม",
+    marketCap: "$510M",
+    marketCapThai: "510 ล้านดอลลาร์",
+    price: 8.40,
+    changePercent: 1.94,
+    score: 76,
+    oneLineSummary: "4D LiDAR เทคโนโลยีล้ำกว่าคู่แข่ง 🎯 TRATON deal เปิดตลาดรถบรรทุกใหญ่ 🚛 นักลงทุนสถาบันเพิ่มขึ้น",
+    pros: [
+      "🚛 TRATON (Volkswagen Trucks) เลือกใช้ AEVA",
+      "🔬 เทคโนโลยี 4D LiDAR ไม่มีคู่แข่งโดยตรง",
+      "📈 สัญญาใหม่ automotive Q1 2026 เพิ่มขึ้น",
+      "🏦 Cash runway ยาว 24+ เดือน"
+    ],
+    cons: [
+      "⏳ Revenue scale ช้า ต้องรอ mass production",
+      "💸 ยังขาดทุน GAAP"
+    ],
+    fundamentals: {
+      revGrowth:   { value: "+38%",  pass: true,  label: "รายได้โตขึ้น" },
+      grossMargin: { value: "42%",   pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:  { value: "✓",     pass: true,  label: "Cash > Debt" },
+      ocf:         { value: "ลบ",    pass: false, label: "กระแสเงินสดธุรกิจ" },
+      insider:     { value: "ซื้อ",  pass: true,  label: "Insider ซื้อหุ้น" },
+      instOwn:     { value: "55%",   pass: true,  label: "Institutional Own." },
+      shortInt:    { value: "15%",   pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "🚛", headline: "TRATON ยืนยันใช้ AEVA ใน next-gen autonomous truck platform", source: "Reuters", date: "9 พ.ค." },
+        { emoji: "🔬", headline: "เปิดตัว LiDAR gen 3 ที่ range ไกลขึ้น 2x", source: "TechCrunch", date: "5 พ.ค." },
+        { emoji: "📊", headline: "สถาบัน ARK Invest เพิ่ม position AEVA", source: "SEC filing", date: "2 พ.ค." }
+      ],
+      negative: [
+        { emoji: "⏳", headline: "Mass production ยังอยู่ 2027-2028 ต้องรออีก", source: "Barron's", date: "7 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [7.50, 7.45, 7.60, 7.70, 7.65, 7.75, 7.85, 7.80, 7.90, 8.00, 7.95, 8.05, 8.10, 8.05, 8.15, 8.20, 8.18, 8.25, 8.30, 8.40],
+      volumeHistory: [1500000, 1350000, 1650000, 1850000, 1550000, 1720000, 1920000, 1650000, 1800000, 2050000, 1720000, 1900000, 1780000, 2100000, 1850000, 1620000, 1980000, 2200000, 1950000, 2500000],
+      labels: ["Apr 16","Apr 17","Apr 20","Apr 21","Apr 22","Apr 23","Apr 24","Apr 27","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8","May 11","May 12","May 13"],
+      week52High: 9.20, week52Low: 3.50,
+      support1: 8.00, support2: 7.50,
+      resistance1: 8.80, resistance2: 9.20,
+      ma20: 7.98, ma50: 7.40, ma200: 5.80,
+      rsi: 52, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ขาขึ้น steady ราคาเหนือ MA20 และ MA50 📈 Volume หนักขึ้นพร้อมราคา — momentum ดี RSI ยังมีที่วิ่ง",
+    rankReasoning: "อันดับ 5 เพราะ<strong>TRATON deal เป็น catalyst ใหญ่</strong> + เทคโนโลยี 4D LiDAR ไม่มีคู่แข่ง แต่ revenue scale ยังช้าอยู่"
+  },
+  {
+    rank: 6,
+    ticker: "DUOT",
+    name: "Duos Technologies",
+    thaiName: "ดูออส เทคโนโลยีส์ — AI ตรวจสอบรถไฟ",
+    emoji: "🚂",
+    sector: "Transportation AI · Rail Inspection",
+    whatItDoes: "พัฒนาระบบ AI ตรวจสอบรถไฟและยานพาหนะขนส่งอัตโนมัติ ช่วยลดอุบัติเหตุและเพิ่มประสิทธิภาพ ลูกค้าหลักคือรถไฟสหรัฐฯ",
+    marketCap: "$210M",
+    marketCapThai: "210 ล้านดอลลาร์",
+    price: 7.20,
+    changePercent: 3.45,
+    score: 74,
+    oneLineSummary: "AI รถไฟ megatrend ที่ถูกมองข้าม 🚂 สัญญาใหม่ railroad เพิ่มขึ้น 🤝 กำไรเป็นบวกแล้ว",
+    pros: [
+      "🚂 สัญญา Union Pacific, CSX, Amtrak",
+      "✅ กำไร GAAP เป็นบวกแล้ว",
+      "📈 Recurring revenue โตต่อเนื่อง",
+      "🏦 ฐานะการเงินแข็งแรง Cash > Debt"
+    ],
+    cons: [
+      "🏭 ตลาด niche อาจ scale ได้จำกัด",
+      "⚠️ Competition จาก tech บริษัทใหญ่เริ่มเข้ามา"
+    ],
+    fundamentals: {
+      revGrowth:   { value: "+35%",  pass: true,  label: "รายได้โตขึ้น" },
+      grossMargin: { value: "48%",   pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:  { value: "✓",     pass: true,  label: "Cash > Debt" },
+      ocf:         { value: "บวก",   pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insider:     { value: "ซื้อ",  pass: true,  label: "Insider ซื้อหุ้น" },
+      instOwn:     { value: "28%",   pass: true,  label: "Institutional Own." },
+      shortInt:    { value: "6%",    pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "🤝", headline: "ชนะสัญญา AI inspection ใหม่กับ Class I Railroad $8M", source: "GlobeNewswire", date: "8 พ.ค." },
+        { emoji: "📊", headline: "Q1 2026: กำไร GAAP เป็นบวกครั้งแรกในประวัติศาสตร์", source: "BusinessWire", date: "7 พ.ค." },
+        { emoji: "🚂", headline: "Amtrak ขยาย contract ใช้ระบบ DUOT ในเส้นทางใหม่", source: "PR Newswire", date: "3 พ.ค." }
+      ],
+      negative: [
+        { emoji: "🏭", headline: "ตลาด rail inspection มีขนาดจำกัด อาจ ceiling เร็ว", source: "Seeking Alpha", date: "8 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [6.30, 6.25, 6.40, 6.50, 6.45, 6.55, 6.65, 6.60, 6.70, 6.80, 6.75, 6.85, 6.90, 6.88, 6.95, 7.05, 7.00, 7.10, 7.15, 7.20],
+      volumeHistory: [280000, 250000, 310000, 360000, 290000, 340000, 380000, 320000, 360000, 410000, 340000, 380000, 360000, 420000, 380000, 310000, 400000, 470000, 420000, 560000],
+      labels: ["Apr 16","Apr 17","Apr 20","Apr 21","Apr 22","Apr 23","Apr 24","Apr 27","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8","May 11","May 12","May 13"],
+      week52High: 8.00, week52Low: 3.80,
+      support1: 6.80, support2: 6.30,
+      resistance1: 7.50, resistance2: 8.00,
+      ma20: 6.78, ma50: 6.20, ma200: 5.10,
+      rsi: 57, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ราคาทำ new high ในรอบ 3 เดือน 📈 Volume เพิ่มขึ้นพร้อมราคา — แนวต้านถัดไปที่ $7.50",
+    rankReasoning: "อันดับ 6 เพราะ<strong>กำไร GAAP เป็นบวกแล้ว</strong> + สัญญาใหม่ต่อเนื่อง + ราคายังต่ำ แต่ market นิช อาจ scale จำกัด"
+  },
+  {
+    rank: 7,
+    ticker: "UMAC",
+    name: "Unusual Machines",
+    thaiName: "อันยูชวล แมชชีนส์ — โดรนอเมริกัน",
+    emoji: "🚁",
+    sector: "Drones · Defense Tech",
+    whatItDoes: "ผลิตโดรนที่ทำในสหรัฐฯ 100% พร้อม component ที่ไม่มีชิ้นส่วนจากจีน รองรับทั้งตลาด commercial และ defense สำหรับนโยบาย America First",
+    marketCap: "$155M",
+    marketCapThai: "155 ล้านดอลลาร์",
+    price: 6.50,
+    changePercent: 2.12,
+    score: 72,
+    oneLineSummary: "โดรน Made in USA กำลัง boom จากนโยบาย 🇺🇸 Defense contract ใหม่เข้ามา 🏛️ เทรนด์แบน DJI",
+    pros: [
+      "🇺🇸 ผลิตในสหรัฐฯ ไม่มีชิ้นส่วนจีน",
+      "🏛️ รัฐบาลกำลังแบน DJI เปิดโอกาส",
+      "📈 Defense contract เพิ่มขึ้น",
+      "🏭 ขยาย production capacity สองเท่า"
+    ],
+    cons: [
+      "💰 ราคาแพงกว่า DJI 2-3x",
+      "⚠️ ยังขาดทุน ต้องการเงินทุนเพิ่ม"
+    ],
+    fundamentals: {
+      revGrowth:   { value: "+65%",  pass: true,  label: "รายได้โตขึ้น" },
+      grossMargin: { value: "35%",   pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:  { value: "✓",     pass: true,  label: "Cash > Debt" },
+      ocf:         { value: "ลบ",    pass: false, label: "กระแสเงินสดธุรกิจ" },
+      insider:     { value: "ซื้อ",  pass: true,  label: "Insider ซื้อหุ้น" },
+      instOwn:     { value: "30%",   pass: true,  label: "Institutional Own." },
+      shortInt:    { value: "14%",   pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "🏛️", headline: "DoD ประกาศ approved vendor list รวม UMAC สำหรับ military drone", source: "DefenseNews", date: "9 พ.ค." },
+        { emoji: "🏭", headline: "เปิด factory ใหม่ในฟลอริดา ขยาย capacity 2x", source: "BusinessWire", date: "6 พ.ค." },
+        { emoji: "🚁", headline: "ยอดขาย commercial drone Q1 2026 โต +65%", source: "PR Newswire", date: "7 พ.ค." }
+      ],
+      negative: [
+        { emoji: "💰", headline: "ราคาสูงกว่า DJI อาจเป็นอุปสรรคในตลาด consumer", source: "Barron's", date: "8 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [5.80, 5.75, 5.90, 6.00, 5.95, 6.05, 6.15, 6.10, 6.20, 6.25, 6.20, 6.30, 6.35, 6.32, 6.38, 6.42, 6.40, 6.45, 6.48, 6.50],
+      volumeHistory: [450000, 400000, 500000, 580000, 470000, 540000, 620000, 510000, 580000, 660000, 540000, 610000, 580000, 680000, 600000, 510000, 640000, 730000, 660000, 850000],
+      labels: ["Apr 16","Apr 17","Apr 20","Apr 21","Apr 22","Apr 23","Apr 24","Apr 27","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8","May 11","May 12","May 13"],
+      week52High: 7.20, week52Low: 2.80,
+      support1: 6.20, support2: 5.80,
+      resistance1: 6.80, resistance2: 7.20,
+      ma20: 6.22, ma50: 5.85, ma200: 4.50,
+      rsi: 55, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ราคาค่อยๆ ขึ้น เหนือ MA20 และ MA50 ชัดเจน 📈 Volume สม่ำเสมอ — RSI 55 ยังมีที่วิ่ง",
+    rankReasoning: "อันดับ 7 เพราะ<strong>กระแส Made in USA drone</strong> + DoD vendor list + แต่ต้นทุนสูงและยังขาดทุน จึงได้อันดับนี้"
+  },
+  {
+    rank: 8,
+    ticker: "BLZE",
+    name: "Backblaze",
+    thaiName: "แบ็คเบลซ — Cloud Storage สำหรับ SMB",
+    emoji: "☁️",
+    sector: "Cloud Storage · SaaS",
+    whatItDoes: "ให้บริการ cloud storage และ backup ราคาถูกกว่า AWS S3 ถึง 75% สำหรับธุรกิจขนาดกลาง-เล็ก ผ่านผลิตภัณฑ์ B2 Cloud Storage",
+    marketCap: "$205M",
+    marketCapThai: "205 ล้านดอลลาร์",
+    price: 6.80,
+    changePercent: 1.49,
+    score: 70,
+    oneLineSummary: "Cloud storage ราคาถูกที่สุดในตลาด ☁️ ARR โตต่อเนื่อง 📈 ลูกค้า B2 เพิ่มขึ้น 30%",
+    pros: [
+      "☁️ ราคาถูกกว่า AWS S3 ถึง 75%",
+      "📈 B2 Cloud ARR โต +30% YoY",
+      "🔒 ฐานลูกค้า sticky เปลี่ยนยาก",
+      "💰 Gross margin 68% ดีมาก"
+    ],
+    cons: [
+      "🏢 แข่งกับ AWS, Google, Microsoft ยาก",
+      "📉 Growth rate ช้าลงเล็กน้อยจาก 2025"
+    ],
+    fundamentals: {
+      revGrowth:   { value: "+22%",  pass: true,  label: "รายได้โตขึ้น" },
+      grossMargin: { value: "68%",   pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:  { value: "✓",     pass: true,  label: "Cash > Debt" },
+      ocf:         { value: "บวก",   pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insider:     { value: "ถือ",   pass: false, label: "Insider ซื้อหุ้น" },
+      instOwn:     { value: "38%",   pass: true,  label: "Institutional Own." },
+      shortInt:    { value: "9%",    pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "☁️", headline: "B2 Cloud ARR แตะ $80M ครั้งแรก โต +30% YoY", source: "GlobeNewswire", date: "7 พ.ค." },
+        { emoji: "🤝", headline: "พาร์ทเนอร์กับ Cloudflare ลด egress fees เหลือ $0", source: "TechCrunch", date: "4 พ.ค." },
+        { emoji: "📊", headline: "เพิ่ม data center ในยุโรปเพื่อรองรับ GDPR compliance", source: "BusinessWire", date: "30 เม.ย." }
+      ],
+      negative: [
+        { emoji: "🏢", headline: "AWS ลดราคา S3 เพิ่มความกดดัน", source: "Reuters", date: "6 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [6.30, 6.25, 6.35, 6.45, 6.40, 6.48, 6.55, 6.50, 6.58, 6.63, 6.60, 6.68, 6.72, 6.70, 6.75, 6.78, 6.75, 6.80, 6.78, 6.80],
+      volumeHistory: [580000, 520000, 640000, 730000, 600000, 680000, 780000, 640000, 720000, 820000, 680000, 760000, 720000, 840000, 750000, 640000, 800000, 920000, 830000, 1050000],
+      labels: ["Apr 16","Apr 17","Apr 20","Apr 21","Apr 22","Apr 23","Apr 24","Apr 27","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8","May 11","May 12","May 13"],
+      week52High: 7.80, week52Low: 4.20,
+      support1: 6.50, support2: 6.25,
+      resistance1: 7.20, resistance2: 7.80,
+      ma20: 6.62, ma50: 6.30, ma200: 5.50,
+      rsi: 50, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ราคาเหนือ MA20 และ MA50 เล็กน้อย 📊 Consolidation zone ระยะสั้น — รอ breakout เหนือ $7 ก่อน",
+    rankReasoning: "อันดับ 8 เพราะ<strong>B2 Cloud โตดีและ gross margin สูง</strong> + Cloudflare partnership ดี แต่ momentum ราคาช้ากว่าอันดับบน"
+  },
+  {
+    rank: 9,
+    ticker: "RXT",
+    name: "Rackspace Technology",
+    thaiName: "แร็คสเปซ — Multi-Cloud Services",
+    emoji: "🖥️",
+    sector: "Cloud Services · IT Infrastructure",
+    whatItDoes: "ให้บริการ managed cloud และ hybrid cloud ครอบคลุม AWS, Azure, Google Cloud พร้อม AI transformation services สำหรับองค์กร",
+    marketCap: "$620M",
+    marketCapThai: "620 ล้านดอลลาร์",
+    price: 4.50,
+    changePercent: 2.75,
+    score: 68,
+    oneLineSummary: "Multi-cloud specialist ที่ราคาถูกมาก 💰 AI transformation revenue กำลังเติบโต 🤖 turnaround กำลังดำเนินการ",
+    pros: [
+      "🤖 AI services revenue โต +55% YoY",
+      "💰 ราคา $4.50 ถูกมาก P/S ต่ำ",
+      "🏢 ลูกค้าองค์กรใหญ่ 5,000+ แห่ง",
+      "📈 Restructuring plan กำลังเห็นผล"
+    ],
+    cons: [
+      "💸 มีหนี้สูง leverage ratio ต้องระวัง",
+      "📉 Revenue รวมยังหดตัวจากส่วนเก่า"
+    ],
+    fundamentals: {
+      revGrowth:   { value: "-3%",   pass: false, label: "รายได้รวม" },
+      grossMargin: { value: "31%",   pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:  { value: "✗",     pass: false, label: "Cash > Debt" },
+      ocf:         { value: "บวก",   pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insider:     { value: "ซื้อ",  pass: true,  label: "Insider ซื้อหุ้น" },
+      instOwn:     { value: "62%",   pass: true,  label: "Institutional Own." },
+      shortInt:    { value: "20%",   pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "🤖", headline: "AI transformation services Q1 2026 โต +55% ดีกว่าคาด", source: "BusinessWire", date: "8 พ.ค." },
+        { emoji: "🏢", headline: "เซ็น deal กับ Fortune 500 บริษัทใหม่ 12 แห่ง Q1", source: "PR Newswire", date: "5 พ.ค." },
+        { emoji: "📊", headline: "นักวิเคราะห์ปรับ rating เป็น Buy หลัง AI revenue beat", source: "Seeking Alpha", date: "9 พ.ค." }
+      ],
+      negative: [
+        { emoji: "💸", headline: "Debt ยังสูง net debt-to-EBITDA อยู่ที่ 4.2x", source: "Barron's", date: "8 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [3.90, 3.85, 3.95, 4.05, 4.00, 4.08, 4.15, 4.10, 4.18, 4.22, 4.20, 4.28, 4.32, 4.30, 4.35, 4.40, 4.38, 4.43, 4.47, 4.50],
+      volumeHistory: [2000000, 1800000, 2200000, 2500000, 2100000, 2350000, 2650000, 2200000, 2450000, 2750000, 2350000, 2600000, 2450000, 2800000, 2550000, 2200000, 2700000, 3100000, 2750000, 3500000],
+      labels: ["Apr 16","Apr 17","Apr 20","Apr 21","Apr 22","Apr 23","Apr 24","Apr 27","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8","May 11","May 12","May 13"],
+      week52High: 5.20, week52Low: 2.10,
+      support1: 4.20, support2: 3.90,
+      resistance1: 4.80, resistance2: 5.20,
+      ma20: 4.25, ma50: 3.95, ma200: 3.40,
+      rsi: 53, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ราคา uptrend อยู่เหนือ MA50 📈 Volume ดีแต่ยังต้องข้ามแนวต้าน $4.80 ก่อน — RSI 53 ปกติ",
+    rankReasoning: "อันดับ 9 เพราะ<strong>AI revenue โตดีและราคาถูกมาก</strong> แต่หนี้สูงและ revenue รวมยังหดตัว ทำให้คะแนนต่ำกว่าอันดับบน"
+  },
+  {
+    rank: 10,
+    ticker: "MGNI",
+    name: "Magnite",
+    thaiName: "แมกไนต์ — CTV Programmatic Advertising",
+    emoji: "📺",
+    sector: "Ad Tech · CTV Streaming",
+    whatItDoes: "แพลตฟอร์ม supply-side programmatic advertising ที่ใหญ่ที่สุดสำหรับ Connected TV (CTV) ช่วยให้ publisher ขายโฆษณาได้ในราคาสูงขึ้น",
+    marketCap: "$1.1B",
+    marketCapThai: "1.1 พันล้านดอลลาร์",
+    price: 12.40,
+    changePercent: 1.81,
+    score: 66,
+    oneLineSummary: "CTV advertising boom กำลังมา 📺 Position เป็น #1 CTV SSP 🏆 DV+ consolidation เพิ่ม market share",
+    pros: [
+      "📺 CTV revenue โต +42% YoY",
+      "🏆 Market share #1 ใน CTV Supply Side",
+      "🤝 Disney+, NBCUniversal, Roku เป็นลูกค้า",
+      "💰 กำไร GAAP เป็นบวกต่อเนื่อง"
+    ],
+    cons: [
+      "🏢 Google และ Amazon ลงมาแข่งโดยตรง",
+      "📉 Linear TV (เคเบิล) ยังลดลงกระทบ mix"
+    ],
+    fundamentals: {
+      revGrowth:   { value: "+25%",  pass: true,  label: "รายได้โตขึ้น" },
+      grossMargin: { value: "62%",   pass: true,  label: "อัตรากำไรขั้นต้น" },
+      cashVsDebt:  { value: "✓",     pass: true,  label: "Cash > Debt" },
+      ocf:         { value: "บวก",   pass: true,  label: "กระแสเงินสดธุรกิจ" },
+      insider:     { value: "ถือ",   pass: false, label: "Insider ซื้อหุ้น" },
+      instOwn:     { value: "72%",   pass: true,  label: "Institutional Own." },
+      shortInt:    { value: "16%",   pass: true,  label: "Short Interest" }
+    },
+    news: {
+      positive: [
+        { emoji: "📺", headline: "CTV revenue Q1 2026 โต +42% YoY เหนือ consensus", source: "Bloomberg", date: "8 พ.ค." },
+        { emoji: "🤝", headline: "ขยาย deal กับ Disney+ สำหรับ programmatic CTV ads", source: "Variety", date: "6 พ.ค." },
+        { emoji: "📊", headline: "ปรับ guidance ปี 2026 ขึ้น 15% หลัง Q1 แข็งแกร่ง", source: "BusinessWire", date: "8 พ.ค." }
+      ],
+      negative: [
+        { emoji: "🏢", headline: "Google เพิ่ม CTV inventory ใน DV360 กดดัน MGNI", source: "Digiday", date: "7 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [11.20, 11.10, 11.35, 11.50, 11.45, 11.58, 11.70, 11.65, 11.78, 11.85, 11.80, 11.92, 12.00, 11.95, 12.05, 12.15, 12.10, 12.20, 12.28, 12.40],
+      volumeHistory: [1800000, 1600000, 2000000, 2250000, 1900000, 2150000, 2400000, 2050000, 2200000, 2500000, 2150000, 2350000, 2200000, 2600000, 2300000, 1950000, 2450000, 2800000, 2500000, 3200000],
+      labels: ["Apr 16","Apr 17","Apr 20","Apr 21","Apr 22","Apr 23","Apr 24","Apr 27","Apr 28","Apr 29","Apr 30","May 1","May 4","May 5","May 6","May 7","May 8","May 11","May 12","May 13"],
+      week52High: 14.50, week52Low: 7.20,
+      support1: 11.80, support2: 11.20,
+      resistance1: 13.00, resistance2: 14.50,
+      ma20: 11.90, ma50: 11.30, ma200: 9.80,
+      rsi: 51, rsiStatus: "neutral",
+      vsMA50: "above", vsMA200: "above"
+    },
+    technicalSimple: "ราคาเหนือ MA20 และ MA50 ชัดเจน 📈 แนวต้านถัดไปที่ $13 — RSI 51 ปกติ ยังมีพื้นที่วิ่ง",
+    rankReasoning: "อันดับ 10 เพราะ<strong>CTV boom ชัดเจน + market share #1</strong> แต่ market cap ใกล้เพดาน $2B และ Google กำลังเข้ามาแข่ง จึงได้อันดับสุดท้าย"
+  }
+];
+// ============== ROUTINE: REPLACE ABOVE ==============
+
+// =============== RENDERING ===============
+document.body.classList.add(`theme-${REPORT_THEME}`);
+document.title = `${REPORT_TITLE} — Stock Screener`;
+document.getElementById('report-title').textContent = REPORT_TITLE;
+document.getElementById('report-subtitle').textContent = REPORT_SUBTITLE;
+document.getElementById('report-date').textContent = REPORT_DATE;
+document.getElementById('generated-at').textContent = formatGeneratedAt(GENERATED_AT_ISO);
+document.getElementById('count-badge').textContent = `🎯 ${STOCKS_DATA.length} หุ้นเด็ด`;
+renderCrossNav(REPORT_THEME);
+renderThemeDisclaimer(REPORT_THEME);
+
+function renderCrossNav(theme) {
+  const nav = document.getElementById('cross-nav');
+  if (theme === 'smallcap') {
+    nav.href = '../';
+    nav.textContent = '💎 หุ้นใหญ่แข็งแรง';
+  } else {
+    nav.href = 'smallcap/';
+    nav.textContent = '🌱 หุ้นเล็กดาวรุ่ง';
+  }
+  nav.style.display = '';
+}
+
+function renderThemeDisclaimer(theme) {
+  if (theme !== 'smallcap') return;
+  document.getElementById('theme-disclaimer').innerHTML = `
+    <div class="disclaimer" style="background: var(--red-bg); color: var(--red-text); margin-bottom: 12px;">
+      <strong>🎢 หุ้นเล็กเสี่ยงสูงเป็นพิเศษ:</strong>
+      <ul style="margin: 8px 0 0 20px; padding: 0;">
+        <li><strong>ผันผวนสูง</strong> — ราคาเหวี่ยงแรงกว่าหุ้นใหญ่หลายเท่า</li>
+        <li><strong>Liquidity ต่ำ</strong> — เข้า/ออกอาจมี slippage</li>
+        <li><strong>เสี่ยง pump-and-dump</strong> — ระวัง pattern ราคาวิ่งโดยไม่มีพื้นฐานรองรับ</li>
+      </ul>
+    </div>`;
+}
+
+function formatGeneratedAt(iso) {
+  if (!iso) return "—";
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "—";
+  const datePart = new Intl.DateTimeFormat('th-TH', {
+    day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Bangkok'
+  }).format(d);
+  const timePart = new Intl.DateTimeFormat('th-TH', {
+    hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Bangkok'
+  }).format(d);
+  return `${datePart} · ${timePart} น.`;
+}
+
+const RANK_CLASS = { 1: "rank-1", 2: "rank-2", 3: "rank-3" };
+const MEDAL_CLASS = { 1: "gold", 2: "silver", 3: "bronze" };
+const MEDAL_EMOJI = { 1: "🥇", 2: "🥈", 3: "🥉" };
+
+function getRsiEmoji(rsi) {
+  if (rsi >= 70) return { emoji: "🔥", title: "อาจร้อนเกินไป", desc: "RSI สูงเกิน 70 — บางคนรอ pullback ก่อน" };
+  if (rsi <= 30) return { emoji: "❄️", title: "อาจเย็นเกินไป", desc: "RSI ต่ำกว่า 30 — บางคนมองว่าเป็นโอกาส" };
+  return { emoji: "⚖️", title: "ระดับปกติ", desc: "RSI 30-70 ถือว่าปกติ ไม่ร้อนไม่เย็น" };
+}
+
+const container = document.getElementById('stocks-container');
+
+if (STOCKS_DATA.length === 0) {
+  container.innerHTML = '<div class="empty-state"><div class="emoji">🌙</div>ยังไม่มีรายงานวันนี้<br><small>ลองเช็คอีกครั้งหลัง 8 โมงเช้า</small></div>';
+} else {
+  STOCKS_DATA.forEach((stock, idx) => {
+    const changeClass = stock.changePercent >= 0 ? 'up' : 'down';
+    const changeArrow = stock.changePercent >= 0 ? '▲' : '▼';
+    const changeSign = stock.changePercent >= 0 ? '+' : '';
+    const rankCardClass = RANK_CLASS[stock.rank] || '';
+    const medalClass = MEDAL_CLASS[stock.rank] || 'normal';
+    const medalText = stock.rank <= 3 ? `${MEDAL_EMOJI[stock.rank]} อันดับ ${stock.rank}` : `อันดับ ${stock.rank}`;
+
+    const fundamentalsHTML = Object.entries(stock.fundamentals).map(([key, val]) => {
+      const passClass = val.pass ? 'pass' : 'fail';
+      const icon = val.pass ? '✅' : '⚠️';
+      return `
+        <div class="fund-card ${passClass}">
+          <div class="fund-label">${val.label || key}</div>
+          <div class="fund-value">${val.value}<span class="fund-icon">${icon}</span></div>
+        </div>`;
+    }).join('');
+
+    const positiveHTML = stock.news.positive.length
+      ? stock.news.positive.map(n => `
+          <div class="news-item">
+            <span class="news-emoji">${n.emoji || '🟢'}</span>
+            ${n.headline}<br>
+            <span class="news-source">${n.source} · ${n.date}</span>
+          </div>`).join('')
+      : '<div class="news-item" style="opacity:0.6">ไม่มีข่าวบวก</div>';
+
+    const negativeHTML = stock.news.negative.length
+      ? stock.news.negative.map(n => `
+          <div class="news-item">
+            <span class="news-emoji">${n.emoji || '🔴'}</span>
+            ${n.headline}<br>
+            <span class="news-source">${n.source} · ${n.date}</span>
+          </div>`).join('')
+      : '<div class="news-item" style="opacity:0.6">ไม่มีข่าวลบ ✨</div>';
+
+    const prosHTML = stock.pros.map(p => `<li>${p}</li>`).join('');
+    const consHTML = stock.cons.length 
+      ? stock.cons.map(c => `<li>${c}</li>`).join('')
+      : '<li style="opacity:0.6">ยังไม่พบข้อกังวลที่สำคัญ ✨</li>';
+
+    const rsi = stock.technical.rsi;
+    const rsiInfo = getRsiEmoji(rsi);
+
+    const cardHTML = `
+      <article class="stock-card ${rankCardClass}">
+        <div class="card-header">
+          <div class="ticker-emoji">${stock.emoji}</div>
+          <div class="ticker-info">
+            <span class="rank-medal ${medalClass}">${medalText}</span>
+            <div class="ticker-name"><span class="symbol">$${stock.ticker}</span> · ${stock.name}</div>
+            <div class="ticker-thai">${stock.thaiName}</div>
+            <div class="ticker-sector">
+              <span>${stock.sector}</span>
+              <span class="dot"></span>
+              <span>มูลค่าบริษัท ${stock.marketCapThai}</span>
+            </div>
+          </div>
+          <div class="price-block">
+            <div class="price-now">$${stock.price.toFixed(2)}</div>
+            <div class="price-change ${changeClass}">${changeArrow} ${changeSign}${stock.changePercent.toFixed(2)}%</div>
+          </div>
+        </div>
+
+        <div class="what-it-does">
+          <span class="icon">💼</span>
+          <span><strong>บริษัทนี้ทำอะไร?</strong> ${stock.whatItDoes}</span>
+        </div>
+
+        <div class="score-section">
+          <div class="score-row">
+            <div class="score-label">⭐ คะแนนรวมวันนี้</div>
+            <div class="score-value">${stock.score}<span class="total">/100</span></div>
+          </div>
+          <div class="score-bar-track">
+            <div class="score-bar-fill" style="width: ${stock.score}%;"></div>
+          </div>
+          <div class="score-segments">
+            <span>0</span><span>50</span><span>100</span>
+          </div>
+        </div>
+
+        <div class="one-liner">
+          💡 <strong>สรุปสั้นๆ:</strong> ${stock.oneLineSummary}
+        </div>
+
+        <div class="pros-cons">
+          <div class="pros-col">
+            <div class="pros-cons-title">👍 ข้อดี</div>
+            <ul>${prosHTML}</ul>
+          </div>
+          <div class="cons-col">
+            <div class="pros-cons-title">👎 ข้อควรระวัง</div>
+            <ul>${consHTML}</ul>
+          </div>
+        </div>
+
+        <div class="section-title">📊 ตัวเลขสำคัญของบริษัท</div>
+        <div class="fund-grid">${fundamentalsHTML}</div>
+
+        <div class="section-title">📰 ข่าวล่าสุด 7 วัน</div>
+        <div class="news-grid">
+          <div class="news-block positive">
+            <div class="news-block-title">🟢 ข่าวดี · ${stock.news.positive.length} ข่าว</div>
+            ${positiveHTML}
+          </div>
+          <div class="news-block negative">
+            <div class="news-block-title">🔴 ข่าวควรรู้ · ${stock.news.negative.length} ข่าว</div>
+            ${negativeHTML}
+          </div>
+        </div>
+
+        <div class="section-title">📈 กราฟราคา 20 วันล่าสุด</div>
+        <div class="chart-area">
+          <div class="chart-wrap">
+            <canvas id="chart-${idx}" role="img" aria-label="${stock.ticker} price chart">${stock.ticker} กราฟราคา</canvas>
+          </div>
+          <div class="volume-wrap">
+            <canvas id="volume-${idx}" role="img" aria-label="${stock.ticker} volume">${stock.ticker} ปริมาณซื้อขาย</canvas>
+          </div>
+
+          <div class="rsi-section">
+            <div class="rsi-emoji">${rsiInfo.emoji}</div>
+            <div class="rsi-info">
+              <div class="rsi-title">RSI ${rsi} — ${rsiInfo.title}</div>
+              <div class="rsi-desc">${rsiInfo.desc}</div>
+              <div class="rsi-bar-track">
+                <div class="rsi-marker" style="left: ${rsi}%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="levels-grid">
+            <div class="level-pill">
+              <div class="level-name">⬆️ จุดสูงสุดปี</div>
+              <div class="level-num">$${stock.technical.week52High.toFixed(2)}</div>
+            </div>
+            <div class="level-pill">
+              <div class="level-name">⬇️ จุดต่ำสุดปี</div>
+              <div class="level-num">$${stock.technical.week52Low.toFixed(2)}</div>
+            </div>
+            <div class="level-pill">
+              <div class="level-name">🟢 แนวรับ 1</div>
+              <div class="level-num">$${stock.technical.support1.toFixed(2)}</div>
+            </div>
+            <div class="level-pill">
+              <div class="level-name">🟢 แนวรับ 2</div>
+              <div class="level-num">$${stock.technical.support2.toFixed(2)}</div>
+            </div>
+            <div class="level-pill">
+              <div class="level-name">🔴 แนวต้าน 1</div>
+              <div class="level-num">$${stock.technical.resistance1.toFixed(2)}</div>
+            </div>
+            <div class="level-pill">
+              <div class="level-name">🔴 แนวต้าน 2</div>
+              <div class="level-num">$${stock.technical.resistance2.toFixed(2)}</div>
+            </div>
+          </div>
+
+          <div class="technical-simple">
+            <span class="icon">🎯</span>
+            <span>${stock.technicalSimple}</span>
+          </div>
+        </div>
+
+        <div class="why-top">
+          <span class="why-emoji">✨</span>
+          <div class="why-text"><strong>ทำไมติด Top:</strong> ${stock.rankReasoning}</div>
+        </div>
+      </article>
+    `;
+    container.insertAdjacentHTML('beforeend', cardHTML);
+  });
+
+  // Render charts
+  setTimeout(() => {
+    STOCKS_DATA.forEach((stock, idx) => {
+      // Price chart
+      const ctx = document.getElementById(`chart-${idx}`);
+      if (ctx) {
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: stock.technical.labels,
+            datasets: [
+              {
+                label: 'ราคา',
+                data: stock.technical.priceHistory,
+                borderColor: '#e91e63',
+                backgroundColor: 'rgba(233, 30, 99, 0.08)',
+                tension: 0.4, fill: true, pointRadius: 3, borderWidth: 3,
+                pointBackgroundColor: '#e91e63'
+              },
+              {
+                label: 'แนวรับ',
+                data: Array(stock.technical.labels.length).fill(stock.technical.support1),
+                borderColor: '#2ec866', borderDash: [6, 6], pointRadius: 0, fill: false, borderWidth: 2
+              },
+              {
+                label: 'แนวต้าน',
+                data: Array(stock.technical.labels.length).fill(stock.technical.resistance1),
+                borderColor: '#f44336', borderDash: [6, 6], pointRadius: 0, fill: false, borderWidth: 2
+              },
+              {
+                label: 'MA50',
+                data: Array(stock.technical.labels.length).fill(stock.technical.ma50),
+                borderColor: '#ff9800', borderDash: [3, 3], pointRadius: 0, fill: false, borderWidth: 1.5
+              }
+            ]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: { display: true, position: 'top', labels: { boxWidth: 12, font: { size: 11, family: 'Sarabun' } } },
+              tooltip: { callbacks: { label: (c) => `${c.dataset.label}: $${c.parsed.y.toFixed(2)}` } }
+            },
+            scales: {
+              y: { ticks: { font: { size: 11, family: 'Sarabun' }, callback: (v) => '$' + v } },
+              x: { ticks: { font: { size: 10, family: 'Sarabun' }, maxRotation: 45 } }
+            }
+          }
+        });
+      }
+
+      // Volume bar chart
+      const volCtx = document.getElementById(`volume-${idx}`);
+      if (volCtx && stock.technical.volumeHistory) {
+        const avgVol = stock.technical.volumeHistory.reduce((a, b) => a + b, 0) / stock.technical.volumeHistory.length;
+        const colors = stock.technical.volumeHistory.map(v => v > avgVol * 1.3 ? '#7c4dff' : 'rgba(124, 77, 255, 0.4)');
+        new Chart(volCtx, {
+          type: 'bar',
+          data: {
+            labels: stock.technical.labels,
+            datasets: [{
+              label: 'Volume',
+              data: stock.technical.volumeHistory,
+              backgroundColor: colors,
+              borderWidth: 0,
+              borderRadius: 3
+            }]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { callbacks: { label: (c) => 'Volume: ' + (c.parsed.y / 1e6).toFixed(1) + 'M' } }
+            },
+            scales: {
+              y: { ticks: { font: { size: 10, family: 'Sarabun' }, callback: (v) => (v / 1e6).toFixed(0) + 'M' } },
+              x: { ticks: { display: false } }
+            }
+          }
+        });
+      }
+    });
+  }, 100);
+}
+</script>
+</body>
+</html>
