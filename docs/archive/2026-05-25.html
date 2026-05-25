@@ -450,7 +450,7 @@
 <script>
 // ============== ROUTINE: REPLACE BELOW ==============
 const REPORT_DATE = "2026-05-25";
-const GENERATED_AT_ISO = "2026-05-25T02:16:47+07:00";
+const GENERATED_AT_ISO = "2026-05-25T15:01:36+07:00";
 const REPORT_TITLE = "📊 หุ้นเด็ดวันนี้";
 const REPORT_SUBTITLE = "Top 10 หุ้น US ที่น่าจับตามองวันนี้ — คัดเองโดย AI";
 const REPORT_THEME = "default";
@@ -458,573 +458,635 @@ const REPORT_THEME = "default";
 const STOCKS_DATA = [
   {
     rank: 1,
+    ticker: "NVDA",
+    name: "NVIDIA Corporation",
+    thaiName: "เอ็นวิเดีย",
+    emoji: "🟩",
+    sector: "เทคโนโลยี · ชิป AI & GPU",
+    whatItDoes: "ผู้ผลิตชิป GPU และ AI Accelerator อันดับ 1 ของโลก — ขับเคลื่อน ChatGPT, AWS, Azure, Google Cloud ด้วย H100/H200/GB200",
+    marketCap: "$5.21T",
+    marketCapThai: "5.21 ล้านล้านดอลลาร์",
+    price: 215.33,
+    changePercent: -1.90,
+    score: 92,
+    oneLineSummary: "รายได้ Q1 $81.6B โต 85% สถิติใหม่ — Demand parabolic + $80B buyback + ปันผลขึ้น 25x",
+    pros: [
+      "🚀 รายได้ Q1 FY27 สถิติใหม่ $81.6B โตเร็ว 85% เหนือ consensus $78.8B",
+      "💰 กำไรสุทธิ 62.97% ของรายได้ — ทุก 100 บาทที่ขาย ได้กำไร 63 บาท",
+      "🏦 Buyback หุ้น $80B + ปันผลใหม่ $0.25/หุ้น เพิ่มขึ้น 25 เท่าจาก $0.01",
+      "☁️ Data Center Revenue $75.2B โต 92% — hyperscaler ทุกรายแห่ซื้อ GPU"
+    ],
+    cons: [
+      "📉 ราคาหุ้นปรับลง -1.9% หลังประกาศผล แม้ตัวเลขดีเกินคาด (sell the news)",
+      "⚠️ มาตรการควบคุมส่งออกชิป AI ไปจีนยังเป็นความเสี่ยงระยะยาว"
+    ],
+    fundamentals: {
+      roe:          { value: "81.65%", pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
+      netMargin:    { value: "62.97%", pass: true,  label: "กำไรสุทธิ" },
+      opMargin:     { value: "63.8%",  pass: true,  label: "กำไรธุรกิจหลัก" },
+      revGrowth:    { value: "+85%",   pass: true,  label: "รายได้โตขึ้น" },
+      de:           { value: "0.21",   pass: true,  label: "หนี้ต่อทุน" },
+      currentRatio: { value: "4.17",   pass: true,  label: "สภาพคล่อง" },
+      pe:           { value: "28.7x",  pass: true,  label: "ราคา/กำไร" }
+    },
+    news: {
+      positive: [
+        { emoji: "🚀", headline: "รายได้ Q1 FY27 สถิติใหม่ $81.6B โต 85% เหนือ consensus $78.8B", source: "CNBC", date: "20 พ.ค." },
+        { emoji: "💰", headline: "Buyback $80B + ปันผลใหม่ $0.25/หุ้น (ขึ้น 25 เท่า) สัญญาณมั่นใจ", source: "Reuters", date: "20 พ.ค." },
+        { emoji: "⬆️", headline: "Q2 guidance $91B (+95% YoY) — CEO Jensen: 'Demand gone parabolic'", source: "Bloomberg", date: "21 พ.ค." },
+        { emoji: "🏆", headline: "62 นักวิเคราะห์ให้ Strong Buy เป้าเฉลี่ย $295 — upside 37%", source: "MarketBeat", date: "22 พ.ค." }
+      ],
+      negative: [
+        { emoji: "📉", headline: "ราคาดิ่ง -1.9% หลัง earnings แม้ผลดีเกินคาด — Sell the news pattern", source: "MarketWatch", date: "21 พ.ค." },
+        { emoji: "⚠️", headline: "มาตรการควบคุมส่งออกชิป AI สหรัฐฯ อาจกระทบ market share ในจีน", source: "WSJ", date: "19 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [193, 196, 199, 197, 200, 204, 207, 206, 209, 212, 215, 218, 220, 217, 219, 221, 222, 224, 219.51, 215.33],
+      volumeHistory: [280000000, 230000000, 350000000, 210000000, 260000000, 300000000, 320000000, 240000000, 280000000, 310000000, 290000000, 340000000, 380000000, 270000000, 300000000, 330000000, 350000000, 580000000, 420000000, 460000000],
+      labels: ["เม.ย.25", "28", "29", "30", "1 พ.ค.", "2", "5", "6", "7", "8", "9", "12", "13", "14", "15", "16", "19", "20", "21", "22"],
+      week52High: 227.84,
+      week52Low: 86.15,
+      support1: 209.00,
+      support2: 196.00,
+      resistance1: 228.00,
+      resistance2: 245.00,
+      ma50: 197.00,
+      ma200: 190.00,
+      rsi: 54,
+      rsiStatus: "neutral",
+      vsMA50: "above",
+      vsMA200: "above"
+    },
+    technicalSimple: "หลัง earnings ราคาพักตัว -3.5% จากจุดสูงระยะสั้น RSI 54 ปกติ ยังแข็งแกร่งเหนือ MA50 และ MA200",
+    rankReasoning: "อันดับ 1 เพราะ<strong>ผ่านเกณฑ์ครบ 7/7</strong> + รายได้สถิติใหม่ + Buyback ใหญ่ + ราชาชิป AI ไม่มีคู่แข่งใกล้เคียง"
+  },
+  {
+    rank: 2,
     ticker: "GOOGL",
     name: "Alphabet (Google)",
     thaiName: "กูเกิล",
     emoji: "🔍",
     sector: "เทคโนโลยี · เสิร์ชเอนจิน & คลาวด์",
-    whatItDoes: "บริษัทแม่ของ Google, YouTube, Gmail และ Google Cloud — รายได้หลักจากโฆษณา AI และ cloud computing",
-    marketCap: "$4.6T",
-    marketCapThai: "4.6 ล้านล้านดอลลาร์",
-    price: 382.26,
-    changePercent: 0.13,
-    score: 93,
-    oneLineSummary: "พื้นฐานสมบูรณ์ 7/7 กำไรธุรกิจหลักโต 30% Search เร็วสุดใน 4 ปี — นักวิเคราะห์ 65 คน ให้ Strong Buy",
+    whatItDoes: "บริษัทแม่ของ Google Search, YouTube, Gmail และ Google Cloud — รายได้หลักจากโฆษณา AI-powered และ cloud computing",
+    marketCap: "$4.63T",
+    marketCapThai: "4.63 ล้านล้านดอลลาร์",
+    price: 382.97,
+    changePercent: -1.21,
+    score: 90,
+    oneLineSummary: "ผ่านเกณฑ์ครบ 7/7 · PE เพียง 21.7x · Google Cloud โต 63% · 65 นักวิเคราะห์ให้ Strong Buy",
     pros: [
-      "💰 กำไรสุทธิ 38% ของรายได้ — ทุก 100 บาทขาย ได้กำไร 38 บาท",
-      "☁️ Google Cloud โต 63% ขับเคลื่อนด้วย AI demand",
-      "📈 รายได้โต 22% YoY กำไรธุรกิจหลักพุ่ง 30%",
-      "🏦 D/E ต่ำแค่ 0.16 ฐานะการเงินแข็งแกร่งมาก"
+      "💰 กำไรสุทธิ 37.9% — ทุก 100 บาทขายได้กำไร 38 บาท ถือว่าสูงมาก",
+      "☁️ Google Cloud โต 63% ขับเคลื่อนด้วย AI demand ทุก hyperscaler ใช้ Gemini",
+      "📈 รายได้รวมโต 22% YoY กำไรธุรกิจหลักพุ่ง 30% สูงสุดในรอบ 4 ปี",
+      "💡 PE เพียง 21.7x ถูกกว่าตลาดแม้เป็นบริษัทใหญ่อันดับ 2 ของโลก"
     ],
     cons: [
-      "⚖️ สหรัฐฯ และ EU กำลังสอบสวนการผูกขาดตลาด Search ยังรอคำตัดสิน"
+      "⚖️ สหรัฐฯ และ EU สอบสวนผูกขาด Search ออนไลน์ ยังรอคำตัดสิน",
+      "🤖 AI Chatbot แข่งขัน อาจดึง market share ของ Search ในระยะยาว"
     ],
     fundamentals: {
-      roe:          { value: "38.9%",  pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
-      netMargin:    { value: "37.9%",  pass: true,  label: "กำไรสุทธิ" },
-      opMargin:     { value: "32.7%",  pass: true,  label: "กำไรธุรกิจหลัก" },
-      revGrowth:    { value: "+22%",   pass: true,  label: "รายได้โตขึ้น" },
-      de:           { value: "0.16",   pass: true,  label: "หนี้ต่อทุน" },
-      currentRatio: { value: "2.01",   pass: true,  label: "สภาพคล่อง" },
-      pe:           { value: "21.7x",  pass: true,  label: "ราคา/กำไร" }
+      roe:          { value: "38.9%", pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
+      netMargin:    { value: "37.9%", pass: true,  label: "กำไรสุทธิ" },
+      opMargin:     { value: "32.7%", pass: true,  label: "กำไรธุรกิจหลัก" },
+      revGrowth:    { value: "+22%",  pass: true,  label: "รายได้โตขึ้น" },
+      de:           { value: "0.16",  pass: true,  label: "หนี้ต่อทุน" },
+      currentRatio: { value: "2.01",  pass: true,  label: "สภาพคล่อง" },
+      pe:           { value: "21.7x", pass: true,  label: "ราคา/กำไร" }
     },
     news: {
       positive: [
         { emoji: "🚀", headline: "กำไรธุรกิจหลักโต 30% Search เติบโตเร็วสุดในรอบ 4 ปี", source: "Reuters", date: "29 เม.ย." },
-        { emoji: "☁️", headline: "Google Cloud โต 63% ทุก hyperscaler แห่ใช้ Gemini", source: "Bloomberg", date: "29 เม.ย." },
-        { emoji: "⬆️", headline: "นักวิเคราะห์ 65 คน ให้ Strong Buy เป้าราคาเฉลี่ย $412", source: "MarketBeat", date: "21 พ.ค." }
+        { emoji: "☁️", headline: "Google Cloud โต 63% ทุก hyperscaler ใช้ Gemini AI workload", source: "Bloomberg", date: "29 เม.ย." },
+        { emoji: "⬆️", headline: "65 นักวิเคราะห์ให้ Strong Buy เป้าราคาเฉลี่ย $412", source: "MarketBeat", date: "21 พ.ค." }
       ],
       negative: [
-        { emoji: "⚖️", headline: "สหรัฐฯ ฟ้องร้องผูกขาด Search ออนไลน์ ยังรอคำตัดสินสุดท้าย", source: "WSJ", date: "19 พ.ค." }
+        { emoji: "⚖️", headline: "สหรัฐฯ ฟ้องร้องผูกขาด Search ออนไลน์ ยังรอคำตัดสินขั้นสุดท้าย", source: "WSJ", date: "19 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [369,368,378,385,382,380,383,386,389,395,392,390,387,385,383,380,381,384,381,382.26],
-      volumeHistory: [21000000,19000000,28000000,25000000,22000000,18000000,20000000,22000000,19000000,26000000,20000000,18000000,19000000,21000000,19000000,17000000,18000000,19000000,17000000,19000000],
-      labels: ["เม.ย.25","28","29","30","1 พ.ค.","2","5","6","7","8","9","12","13","14","15","16","19","20","21","22"],
-      week52High: 405.10, week52Low: 147.52,
-      support1: 370.00, support2: 342.00,
-      resistance1: 405.10, resistance2: 425.00,
-      ma50: 368.00, ma200: 316.00,
-      rsi: 56, rsiStatus: "neutral",
-      vsMA50: "above", vsMA200: "above"
+      priceHistory: [370, 372, 376, 374, 378, 381, 384, 382, 386, 389, 391, 393, 394, 391, 389, 386, 387, 389, 386, 382.97],
+      volumeHistory: [22000000, 18500000, 26000000, 17000000, 21000000, 24000000, 22000000, 19000000, 23000000, 25000000, 21000000, 27000000, 29000000, 20000000, 21000000, 23000000, 24000000, 28000000, 23000000, 25000000],
+      labels: ["เม.ย.25", "28", "29", "30", "1 พ.ค.", "2", "5", "6", "7", "8", "9", "12", "13", "14", "15", "16", "19", "20", "21", "22"],
+      week52High: 408.61,
+      week52Low: 162.00,
+      support1: 370.00,
+      support2: 342.00,
+      resistance1: 408.61,
+      resistance2: 425.00,
+      ma50: 368.00,
+      ma200: 316.00,
+      rsi: 56,
+      rsiStatus: "neutral",
+      vsMA50: "above",
+      vsMA200: "above"
     },
-    technicalSimple: "ราคาดึงกลับ 3% จากจุดสูงสุดของปี RSI 56 ปกติ ยังอยู่เหนือ MA50 และ MA200 แนวรับแข็งที่ $370",
-    rankReasoning: "อันดับ 1 เพราะ<strong>ผ่านเกณฑ์ครบทั้ง 7 ข้อ</strong> + ข่าวดีแน่น + 65 นักวิเคราะห์เชียร์ Strong Buy + Cloud AI โต 63%"
+    technicalSimple: "ราคาพักตัว -6% จากจุดสูงสุดปี $408 RSI 56 ปกติ อยู่เหนือ MA50 และ MA200 มีพื้นที่วิ่งต่อ",
+    rankReasoning: "อันดับ 2 เพราะ<strong>ผ่านเกณฑ์ครบ 7/7</strong> + PE เพียง 21.7x ถูกมากสำหรับบริษัทขนาดนี้ + Cloud AI เติบโต 63%"
   },
   {
-    rank: 2,
+    rank: 3,
+    ticker: "META",
+    name: "Meta Platforms",
+    thaiName: "เมต้า",
+    emoji: "👍",
+    sector: "เทคโนโลยี · โซเชียลมีเดีย & AI",
+    whatItDoes: "เจ้าของ Facebook, Instagram, WhatsApp — รายได้หลักจากโฆษณา AI-targeted ที่แม่นยำ มีผู้ใช้ 3.4 พันล้านคน/วัน",
+    marketCap: "$1.57T",
+    marketCapThai: "1.57 ล้านล้านดอลลาร์",
+    price: 614.48,
+    changePercent: 0.52,
+    score: 87,
+    oneLineSummary: "Q1 EPS beat แรง $10.44 vs คาด $8.20 · Revenue โต 33% · RSI 44 ยังไม่ร้อน · 63 นักวิเคราะห์ Strong Buy",
+    pros: [
+      "💰 Q1 EPS $10.44 เทียบคาด $8.20 — เกินคาด 27% มากที่สุดในบรรดา Mag7",
+      "📈 รายได้ Q1 2026 โต 33% YoY สูงถึง $56.31B ขับด้วย AI ad targeting",
+      "🤖 Operating Margin 41% สูงสุดในประวัติบริษัท — AI ช่วยลดต้นทุนโฆษณา",
+      "📱 ผู้ใช้งานประจำวัน 3.4 พันล้านคน — network effect แข็งแกร่งไม่มีคู่แข่ง"
+    ],
+    cons: [
+      "⚖️ ถูกฟ้องเรื่อง antitrust ใน EU และสหรัฐฯ อยู่ระหว่างพิจารณา",
+      "💸 CapEx 2026 อาจสูงถึง $60-65B สำหรับ AI infrastructure กระทบ cash flow"
+    ],
+    fundamentals: {
+      roe:          { value: "32.93%", pass: true, label: "ผลตอบแทนผู้ถือหุ้น" },
+      netMargin:    { value: "47.5%",  pass: true, label: "กำไรสุทธิ" },
+      opMargin:     { value: "41.0%",  pass: true, label: "กำไรธุรกิจหลัก" },
+      revGrowth:    { value: "+33%",   pass: true, label: "รายได้โตขึ้น" },
+      de:           { value: "0.12",   pass: true, label: "หนี้ต่อทุน" },
+      currentRatio: { value: "2.85",   pass: true, label: "สภาพคล่อง" },
+      pe:           { value: "22.2x",  pass: true, label: "ราคา/กำไร" }
+    },
+    news: {
+      positive: [
+        { emoji: "🚀", headline: "Q1 EPS $10.44 เกินคาด 27% — กำไรสูงสุดในประวัติศาสตร์ META", source: "CNBC", date: "29 เม.ย." },
+        { emoji: "📈", headline: "รายได้ Q1 โต 33% ขับเคลื่อนด้วย AI ad targeting ที่แม่นยำขึ้น", source: "Bloomberg", date: "29 เม.ย." },
+        { emoji: "⬆️", headline: "63 นักวิเคราะห์ให้ Strong Buy เป้าราคาเฉลี่ย $826", source: "Seeking Alpha", date: "22 พ.ค." }
+      ],
+      negative: [
+        { emoji: "⚖️", headline: "EU สอบสวนผูกขาด social media อาจถูกปรับหรือแตกบริษัท", source: "FT", date: "15 พ.ค." },
+        { emoji: "💸", headline: "CapEx 2026 สูงถึง $60-65B กระทบ free cash flow บางส่วน", source: "Reuters", date: "18 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [578, 583, 589, 585, 592, 596, 600, 594, 602, 607, 610, 616, 619, 613, 609, 606, 608, 613, 617, 614.48],
+      volumeHistory: [14000000, 11000000, 18000000, 12000000, 15000000, 16000000, 17000000, 13000000, 16000000, 18000000, 15000000, 19000000, 21000000, 15000000, 16000000, 17000000, 16000000, 19000000, 17000000, 16000000],
+      labels: ["เม.ย.25", "28", "29", "30", "1 พ.ค.", "2", "5", "6", "7", "8", "9", "12", "13", "14", "15", "16", "19", "20", "21", "22"],
+      week52High: 796.25,
+      week52Low: 520.26,
+      support1: 580.00,
+      support2: 520.00,
+      resistance1: 680.00,
+      resistance2: 796.25,
+      ma50: 598.00,
+      ma200: 562.00,
+      rsi: 44,
+      rsiStatus: "neutral",
+      vsMA50: "above",
+      vsMA200: "above"
+    },
+    technicalSimple: "ราคา $614 ห่างจากจุดสูงสุดปี $796 ถึง 23% RSI 44 ยังไม่ร้อนแรง มีพื้นที่วิ่งขึ้นมาก",
+    rankReasoning: "อันดับ 3 เพราะ<strong>EPS เกินคาดถึง 27%</strong> + Revenue โต 33% + RSI 44 ยังไม่ overbought = โอกาสน่าสนใจ"
+  },
+  {
+    rank: 4,
     ticker: "MSFT",
     name: "Microsoft",
     thaiName: "ไมโครซอฟท์",
     emoji: "💻",
     sector: "เทคโนโลยี · ซอฟต์แวร์ & คลาวด์",
-    whatItDoes: "ผู้นำซอฟต์แวร์ระดับองค์กร Windows, Office 365, Azure Cloud และ AI Copilot — รายได้หลักจาก subscription และ cloud",
-    marketCap: "$3.1T",
-    marketCapThai: "3.1 ล้านล้านดอลลาร์",
-    price: 417.80,
-    changePercent: 0.34,
-    score: 91,
-    oneLineSummary: "Azure โต 40% AI revenue run rate $37B ต่อปี โต 123% — กำไรสุทธิโต 23% QoQ",
+    whatItDoes: "ผู้นำซอฟต์แวร์ระดับองค์กร Windows, Office 365, Azure Cloud, Teams และ AI Copilot — รายได้หลักจาก subscription และ cloud",
+    marketCap: "$3.11T",
+    marketCapThai: "3.11 ล้านล้านดอลลาร์",
+    price: 418.57,
+    changePercent: -0.12,
+    score: 84,
+    oneLineSummary: "Azure โต 40% · AI business $37B โต 123% · Backlog $627B โต 99% · 55 นักวิเคราะห์ Strong Buy",
     pros: [
-      "☁️ Azure โต 40% AI Copilot ดึง enterprise มาใช้บริการ",
-      "🤖 AI revenue run rate $37B ต่อปี โตพุ่ง 123% YoY",
-      "📈 Q3 FY2026 รายได้ $82.9B +18% กำไรสุทธิ +23%",
-      "💰 Margin สูง — กำไรสุทธิ 35% ต่อรายได้"
+      "☁️ Azure Cloud Revenue โต 40% YoY ขับเคลื่อนด้วย AI workloads จากองค์กรใหญ่",
+      "🤖 AI Business ถึง $37B annual run rate โตแรง 123% YoY Copilot ถูก adopt เร็ว",
+      "📋 Commercial Backlog $627B โต 99% YoY — มองเห็นรายได้ในอนาคต 3-5 ปีชัดเจน",
+      "💰 Revenue รวม $82.9B โต 15% YoY + 55 นักวิเคราะห์ Strong Buy เป้า $560"
     ],
     cons: [
-      "🔍 EU สอบสวนการรวม Teams กับ Office 365 อาจถูกปรับ",
-      "💸 P/E ~32x ยังค่อนข้างสูงสำหรับการเติบโต +18%"
+      "📉 YTD ราคาหุ้นลดลง 13% — worst performer ในกลุ่ม Magnificent 7 ปีนี้",
+      "💸 CapEx AI infrastructure สูงมาก กระทบ free cash flow ในระยะสั้น"
     ],
     fundamentals: {
-      roe:          { value: "40.2%",  pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
-      netMargin:    { value: "35.1%",  pass: true,  label: "กำไรสุทธิ" },
-      opMargin:     { value: "46.3%",  pass: true,  label: "กำไรธุรกิจหลัก" },
-      revGrowth:    { value: "+18%",   pass: true,  label: "รายได้โตขึ้น" },
-      de:           { value: "0.88",   pass: true,  label: "หนี้ต่อทุน" },
-      currentRatio: { value: "1.79",   pass: true,  label: "สภาพคล่อง" },
-      pe:           { value: "32.1x",  pass: true,  label: "ราคา/กำไร" }
+      roe:          { value: "38.5%", pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
+      netMargin:    { value: "34.0%", pass: true,  label: "กำไรสุทธิ" },
+      opMargin:     { value: "42.6%", pass: true,  label: "กำไรธุรกิจหลัก" },
+      revGrowth:    { value: "+15%",  pass: true,  label: "รายได้โตขึ้น" },
+      de:           { value: "0.28",  pass: true,  label: "หนี้ต่อทุน" },
+      currentRatio: { value: "1.87",  pass: true,  label: "สภาพคล่อง" },
+      pe:           { value: "31.5x", pass: true,  label: "ราคา/กำไร" }
     },
     news: {
       positive: [
-        { emoji: "🚀", headline: "Q3 FY2026 beat: Azure +40%, AI run rate $37B โต 123%", source: "Reuters", date: "28 เม.ย." },
-        { emoji: "🤖", headline: "AI Copilot ฝังเข้า Windows 11 ทุกอุปกรณ์ใหม่ทั่วโลก", source: "Bloomberg", date: "15 พ.ค." },
-        { emoji: "⬆️", headline: "Barclays ปรับเป้าราคาขึ้นเป็น $480 หลัง Q3 beat", source: "MarketWatch", date: "29 เม.ย." }
+        { emoji: "☁️", headline: "Azure Revenue โต 40% — AI demand ทำให้ Cloud growth กลับมาเร่งตัว", source: "Microsoft IR", date: "29 เม.ย." },
+        { emoji: "🤖", headline: "AI Business $37B run rate โต 123% YoY Copilot ถูกนำไปใช้ในองค์กรใหญ่", source: "Bloomberg", date: "30 เม.ย." },
+        { emoji: "⬆️", headline: "55 นักวิเคราะห์ให้ Strong Buy เป้าเฉลี่ย $560 — upside 34%", source: "S&P Global", date: "20 พ.ค." }
       ],
       negative: [
-        { emoji: "🔍", headline: "EU สอบสวน Microsoft รวม Teams กับ Microsoft 365", source: "FT", date: "12 พ.ค." }
+        { emoji: "📉", headline: "MSFT worst performer Mag7 ปีนี้ ลดลง 13% YTD จากจุดสูงสุด $555 ปีที่แล้ว", source: "MarketWatch", date: "22 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [395,398,410,413,411,409,412,415,418,413,416,418,420,416,418,415,416,419,421,417.80],
-      volumeHistory: [28000000,22000000,38000000,30000000,25000000,22000000,24000000,26000000,25000000,23000000,22000000,21000000,24000000,22000000,21000000,19000000,20000000,22000000,21000000,20000000],
-      labels: ["เม.ย.25","28","29","30","1 พ.ค.","2","5","6","7","8","9","12","13","14","15","16","19","20","21","22"],
-      week52High: 450.00, week52Low: 370.00,
-      support1: 405.00, support2: 385.00,
-      resistance1: 425.00, resistance2: 450.00,
-      ma50: 405.00, ma200: 395.00,
-      rsi: 62, rsiStatus: "neutral",
-      vsMA50: "above", vsMA200: "above"
+      priceHistory: [401, 404, 407, 405, 410, 413, 416, 413, 417, 419, 421, 422, 421, 418, 415, 417, 419, 421, 420, 418.57],
+      volumeHistory: [24000000, 20000000, 32000000, 19000000, 28000000, 30000000, 28000000, 22000000, 26000000, 31000000, 25000000, 33000000, 38000000, 24000000, 26000000, 28000000, 29000000, 35000000, 27000000, 28000000],
+      labels: ["เม.ย.25", "28", "29", "30", "1 พ.ค.", "2", "5", "6", "7", "8", "9", "12", "13", "14", "15", "16", "19", "20", "21", "22"],
+      week52High: 555.45,
+      week52Low: 372.00,
+      support1: 405.00,
+      support2: 375.00,
+      resistance1: 450.00,
+      resistance2: 490.00,
+      ma50: 403.00,
+      ma200: 445.00,
+      rsi: 52,
+      rsiStatus: "neutral",
+      vsMA50: "above",
+      vsMA200: "below"
     },
-    technicalSimple: "ราคาในขาขึ้นชัดเจน RSI 62 ปกติ อยู่เหนือ MA50 และ MA200 แนวต้านถัดไปที่ $425",
-    rankReasoning: "อันดับ 2 เพราะ<strong>พื้นฐานสมบูรณ์ 7/7</strong> + Azure AI ครองตลาด cloud + AI Copilot monetization เร่งตัว"
-  },
-  {
-    rank: 3,
-    ticker: "NVDA",
-    name: "NVIDIA",
-    thaiName: "เอ็นวิเดีย",
-    emoji: "🖥️",
-    sector: "เทคโนโลยี · ชิป AI & GPU",
-    whatItDoes: "เจ้าแห่งชิป GPU สำหรับ AI — ทุก data center ใหญ่ในโลกต้องใช้ Blackwell GPU และ InfiniBand networking ของ NVIDIA",
-    marketCap: "$5.2T",
-    marketCapThai: "5.2 ล้านล้านดอลลาร์",
-    price: 214.28,
-    changePercent: 0.50,
-    score: 89,
-    oneLineSummary: "รายได้ทุบสถิติ $81.6B โต 85% Data Center $75.2B โต 92% — ประกาศซื้อหุ้นคืน $80B + เพิ่มปันผล 25 เท่า",
-    pros: [
-      "🔥 รายได้ทุบสถิติ $81.6B +85% YoY ทุก metric beat",
-      "🤖 Data Center $75.2B +92% Blackwell GPU ขายหมดทุก quarter",
-      "💰 ประกาศซื้อหุ้นคืน $80B เพิ่มปันผล $0.01→$0.25 ต่อหุ้น",
-      "📊 Gross Margin 75% สูงสุดในประวัติศาสตร์บริษัทฮาร์ดแวร์"
-    ],
-    cons: [
-      "📉 ราคาดึงกลับ -3.5% หลัง earnings แม้ beat ทุก metric",
-      "🚫 รัฐบาลสหรัฐ จำกัดส่งออก H20 chip ไปจีน กระทบ ~$15B"
-    ],
-    fundamentals: {
-      roe:          { value: "120%+",  pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
-      netMargin:    { value: "55.7%",  pass: true,  label: "กำไรสุทธิ" },
-      opMargin:     { value: "65.1%",  pass: true,  label: "กำไรธุรกิจหลัก" },
-      revGrowth:    { value: "+85%",   pass: true,  label: "รายได้โตขึ้น" },
-      de:           { value: "0.38",   pass: true,  label: "หนี้ต่อทุน" },
-      currentRatio: { value: "4.17",   pass: true,  label: "สภาพคล่อง" },
-      pe:           { value: "43.6x",  pass: false, label: "ราคา/กำไร" }
-    },
-    news: {
-      positive: [
-        { emoji: "💥", headline: "Q1 FY2027 รายได้ทุบสถิติ $81.6B +85% EPS $1.87 vs $1.76 คาด", source: "Reuters", date: "20 พ.ค." },
-        { emoji: "💰", headline: "ซื้อหุ้นคืน $80B + ปันผลเพิ่มเป็น $0.25/share จาก $0.01", source: "Bloomberg", date: "20 พ.ค." },
-        { emoji: "⬆️", headline: "Wedbush ตั้งเป้า $294 / นักวิเคราะห์ 62 คน ให้ Strong Buy", source: "MarketWatch", date: "21 พ.ค." }
-      ],
-      negative: [
-        { emoji: "🚫", headline: "สหรัฐ จำกัดส่งออก H20 chip ไปจีน อาจกระทบ $15B/ปี", source: "WSJ", date: "19 พ.ค." },
-        { emoji: "📉", headline: "ราคาหุ้นร่วง -3.5% หลัง earnings แม้ beat สูง — profit taking", source: "CNBC", date: "21 พ.ค." }
-      ]
-    },
-    technical: {
-      priceHistory: [210,212,215,213,210,208,212,215,218,219,216,213,215,217,218,220,222,215,212,214.28],
-      volumeHistory: [320000000,290000000,340000000,310000000,280000000,260000000,300000000,320000000,290000000,280000000,260000000,280000000,300000000,290000000,310000000,320000000,350000000,580000000,480000000,360000000],
-      labels: ["เม.ย.25","28","29","30","1 พ.ค.","2","5","6","7","8","9","12","13","14","15","16","19","20","21","22"],
-      week52High: 228.50, week52Low: 102.83,
-      support1: 205.00, support2: 190.00,
-      resistance1: 225.00, resistance2: 240.00,
-      ma50: 205.00, ma200: 175.00,
-      rsi: 53, rsiStatus: "neutral",
-      vsMA50: "above", vsMA200: "above"
-    },
-    technicalSimple: "ราคาดึงกลับหลัง earnings แตะแนวรับ $205 แล้วเริ่มฟื้น RSI 53 ปกติ อยู่เหนือ MA50 และ MA200",
-    rankReasoning: "อันดับ 3 เพราะ<strong>earnings beat ที่ดีที่สุดในประวัติศาสตร์</strong> + ซื้อหุ้นคืน $80B + AI demand ไม่มีทีท่าชะลอ"
-  },
-  {
-    rank: 4,
-    ticker: "META",
-    name: "Meta Platforms",
-    thaiName: "เมตา (Facebook)",
-    emoji: "📘",
-    sector: "เทคโนโลยี · โซเชียลมีเดีย",
-    whatItDoes: "เจ้าของ Facebook, Instagram, WhatsApp และ Threads — รายได้หลักจากโฆษณา AI-targeted ที่แม่นยำสูงมาก",
-    marketCap: "$1.6T",
-    marketCapThai: "1.6 ล้านล้านดอลลาร์",
-    price: 608.52,
-    changePercent: 0.41,
-    score: 87,
-    oneLineSummary: "รายได้โต 33% ROE 29% P/E แค่ 21.8x — ราคาหุ้นสมเหตุสมผลสำหรับการเติบโตระดับนี้",
-    pros: [
-      "📈 รายได้โต 33% YoY ขับเคลื่อนด้วย AI ad targeting",
-      "💰 P/E แค่ 21.8x — ถูกกว่า Big Tech หลายตัวมาก",
-      "🤖 ทุ่ม CapEx $125-145B ลงทุน AI infrastructure",
-      "🦙 Llama 4 เปิดให้ใช้ฟรี — ปักธงเป็น open-source AI leader"
-    ],
-    cons: [
-      "💸 CapEx สูงมาก $125-145B กดดัน Free Cash Flow ระยะสั้น",
-      "🔒 EU ฟ้อง GDPR ละเมิดข้อมูลส่วนตัว โทษสูงสุด $4.7B"
-    ],
-    fundamentals: {
-      roe:          { value: "28.9%",  pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
-      netMargin:    { value: "38.2%",  pass: true,  label: "กำไรสุทธิ" },
-      opMargin:     { value: "41.5%",  pass: true,  label: "กำไรธุรกิจหลัก" },
-      revGrowth:    { value: "+33%",   pass: true,  label: "รายได้โตขึ้น" },
-      de:           { value: "0.29",   pass: true,  label: "หนี้ต่อทุน" },
-      currentRatio: { value: "2.50",   pass: true,  label: "สภาพคล่อง" },
-      pe:           { value: "21.8x",  pass: true,  label: "ราคา/กำไร" }
-    },
-    news: {
-      positive: [
-        { emoji: "💰", headline: "Q1 2026 รายได้โตแรง 33% ทะลุทุก metric ที่คาดไว้", source: "Reuters", date: "29 เม.ย." },
-        { emoji: "🤖", headline: "เพิ่ม CapEx AI infrastructure เป็น $125-145B สูงกว่าที่คาด", source: "Bloomberg", date: "30 เม.ย." },
-        { emoji: "🦙", headline: "Llama 4 AI Model เปิดให้ใช้ฟรี แข่งโดยตรงกับ OpenAI", source: "CNBC", date: "14 พ.ค." }
-      ],
-      negative: [
-        { emoji: "🔒", headline: "EU ฟ้องละเมิด GDPR โทษสูงสุด $4.7B รอการพิจารณา", source: "FT", date: "8 พ.ค." }
-      ]
-    },
-    technical: {
-      priceHistory: [570,575,595,603,598,595,600,608,615,612,608,605,610,613,608,605,607,610,608,608.52],
-      volumeHistory: [12000000,11000000,18000000,16000000,13000000,12000000,13000000,14000000,15000000,13000000,11000000,12000000,13000000,14000000,12000000,11000000,12000000,13000000,11000000,12000000],
-      labels: ["เม.ย.25","28","29","30","1 พ.ค.","2","5","6","7","8","9","12","13","14","15","16","19","20","21","22"],
-      week52High: 625.30, week52Low: 401.82,
-      support1: 590.00, support2: 560.00,
-      resistance1: 625.30, resistance2: 650.00,
-      ma50: 580.00, ma200: 520.00,
-      rsi: 60, rsiStatus: "neutral",
-      vsMA50: "above", vsMA200: "above"
-    },
-    technicalSimple: "ราคาอยู่เหนือ MA50 และ MA200 RSI 60 ปกติ แนวต้านถัดไปที่ $625 ซึ่งเป็น 52-week high",
-    rankReasoning: "อันดับ 4 เพราะ<strong>พื้นฐานสมบูรณ์ 7/7</strong> + P/E ถูกที่สุดในกลุ่ม Big Tech + รายได้โต 33% ยังแข็งแกร่ง"
+    technicalSimple: "MSFT กำลังฟื้นตัว อยู่เหนือ MA50 แต่ยังต่ำกว่า MA200 ($445) RSI 52 ปกติ หากแตะ MA200 ได้คือสัญญาณฟื้น",
+    rankReasoning: "อันดับ 4 เพราะ<strong>ผ่านเกณฑ์ครบ 7/7</strong> + Azure AI โตแรง 40% + Backlog $627B มองอนาคตชัด แม้ราคายังต่ำกว่า MA200"
   },
   {
     rank: 5,
-    ticker: "V",
-    name: "Visa",
-    thaiName: "วีซ่า",
-    emoji: "💳",
-    sector: "การเงิน · เครือข่ายชำระเงิน",
-    whatItDoes: "เครือข่ายชำระเงินอิเล็กทรอนิกส์ใหญ่ที่สุดในโลก — เก็บค่าธรรมเนียมทุกครั้งที่คุณรูดบัตรหรือซื้อออนไลน์",
-    marketCap: "$0.67T",
-    marketCapThai: "6.7 แสนล้านดอลลาร์",
-    price: 331.50,
-    changePercent: 0.36,
-    score: 85,
-    oneLineSummary: "พื้นฐานสมบูรณ์ 7/7 รายได้โต 15% Margin สูงลิ่ว 67% — ธุรกิจที่เก็บค่าผ่านทางทุก transaction ทั่วโลก",
+    ticker: "AVGO",
+    name: "Broadcom",
+    thaiName: "บรอดคอม",
+    emoji: "🔌",
+    sector: "เทคโนโลยี · ชิป AI Custom & Network",
+    whatItDoes: "ผู้ผลิตชิป AI custom สำหรับ Google, Meta, Apple + ชิปเครือข่าย Ethernet สำหรับ data center — รายได้โตแรงจาก AI infrastructure",
+    marketCap: "$1.95T",
+    marketCapThai: "1.95 ล้านล้านดอลลาร์",
+    price: 414.14,
+    changePercent: 1.52,
+    score: 82,
+    oneLineSummary: "Custom AI Chip โต 140% · Networking โต 60% · Evercore ปรับเป้าขึ้น $582 — AI infrastructure winner",
     pros: [
-      "💳 Net Revenue +15% YoY cross-border volume โต 18%",
-      "📊 Operating Margin 67% — หนึ่งในธุรกิจ margin สูงสุดในโลก",
-      "🌍 ใช้งานได้ใน 200+ ประเทศ ท่องเที่ยวฟื้นดันรายได้ข้ามประเทศ",
-      "🏦 D/E ต่ำ 0.85 กระแสเงินสดสม่ำเสมอทุกไตรมาส"
+      "🏆 Custom AI Chip สำหรับ Google/Meta/Apple โตแรง 140% รายได้ AI พุ่งต่อเนื่อง",
+      "🌐 Data Center Networking Revenue โต 60% เป็น backbone ของ AI infrastructure",
+      "⬆️ Evercore ISI ปรับเป้าขึ้น $582 จาก $490 + UBS ให้ Buy เป้า $490",
+      "📈 Q2 2026 guidance ดีกว่าคาด โมเมนตัมยังแข็งแกร่ง"
     ],
     cons: [
-      "🏛️ กระทรวงยุติธรรมสหรัฐ สอบสวน merchant fee ที่อาจสูงเกินไป"
+      "🏦 หนี้สูงจากการซื้อ VMware — D/E 1.68 สูงกว่าเกณฑ์ ความเสี่ยงทางการเงิน",
+      "💰 Current Ratio 0.87 ต่ำกว่า 1.0 — สภาพคล่องระยะสั้นต้องติดตาม"
     ],
     fundamentals: {
-      roe:          { value: "48.2%",  pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
-      netMargin:    { value: "55.3%",  pass: true,  label: "กำไรสุทธิ" },
-      opMargin:     { value: "67.1%",  pass: true,  label: "กำไรธุรกิจหลัก" },
-      revGrowth:    { value: "+15%",   pass: true,  label: "รายได้โตขึ้น" },
-      de:           { value: "0.85",   pass: true,  label: "หนี้ต่อทุน" },
-      currentRatio: { value: "1.31",   pass: true,  label: "สภาพคล่อง" },
-      pe:           { value: "28.5x",  pass: true,  label: "ราคา/กำไร" }
+      roe:          { value: "65.2%", pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
+      netMargin:    { value: "38.5%", pass: true,  label: "กำไรสุทธิ" },
+      opMargin:     { value: "45.0%", pass: true,  label: "กำไรธุรกิจหลัก" },
+      revGrowth:    { value: "+65%",  pass: true,  label: "รายได้โตขึ้น" },
+      de:           { value: "1.68",  pass: false, label: "หนี้ต่อทุน" },
+      currentRatio: { value: "0.87",  pass: false, label: "สภาพคล่อง" },
+      pe:           { value: "27.8x", pass: true,  label: "ราคา/กำไร" }
     },
     news: {
       positive: [
-        { emoji: "📊", headline: "Q2 FY2026 Net Revenue $10.9B +15% EPS non-GAAP +15%", source: "Reuters", date: "22 เม.ย." },
-        { emoji: "🌍", headline: "ธุรกรรมข้ามประเทศโต 18% ท่องเที่ยวโลกฟื้นตัวแข็งแกร่ง", source: "Bloomberg", date: "22 เม.ย." },
-        { emoji: "⬆️", headline: "Bernstein ปรับเป้าราคาขึ้นหลัง Q2 beat ทุก metric", source: "MarketWatch", date: "23 เม.ย." }
+        { emoji: "🚀", headline: "Custom AI Chip โต 140% — Google/Meta/Apple เพิ่มออร์เดอร์ต่อเนื่อง", source: "Benzinga", date: "6 พ.ค." },
+        { emoji: "⬆️", headline: "Evercore ISI ปรับเป้าขึ้น $582 จาก $490 — Outperform rating คงไว้", source: "MarketWatch", date: "15 พ.ค." },
+        { emoji: "🌐", headline: "Networking revenue โต 60% เป็น backbone ของ AI data center ทั่วโลก", source: "Bloomberg", date: "9 พ.ค." }
       ],
       negative: [
-        { emoji: "🏛️", headline: "กระทรวงยุติธรรมสหรัฐ สอบสวน merchant fees ของ Visa", source: "WSJ", date: "5 พ.ค." }
+        { emoji: "🏦", headline: "หนี้สูงจาก VMware — D/E 1.68 ทำให้ความยืดหยุ่นทางการเงินต่ำกว่าคู่แข่ง", source: "FT", date: "12 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [315,318,322,326,325,323,325,327,329,330,329,328,330,331,330,329,330,331,332,331.50],
-      volumeHistory: [7200000,6800000,9500000,8500000,7500000,7000000,7200000,7400000,7300000,7100000,6900000,7000000,7300000,7500000,7200000,6800000,7000000,7100000,6900000,7000000],
-      labels: ["เม.ย.25","28","29","30","1 พ.ค.","2","5","6","7","8","9","12","13","14","15","16","19","20","21","22"],
-      week52High: 342.00, week52Low: 248.80,
-      support1: 318.00, support2: 300.00,
-      resistance1: 342.00, resistance2: 358.00,
-      ma50: 317.00, ma200: 290.00,
-      rsi: 57, rsiStatus: "neutral",
-      vsMA50: "above", vsMA200: "above"
+      priceHistory: [375, 379, 384, 381, 387, 391, 395, 392, 397, 400, 403, 407, 409, 406, 408, 410, 412, 415, 413, 414.14],
+      volumeHistory: [28000000, 22000000, 38000000, 21000000, 31000000, 34000000, 36000000, 27000000, 32000000, 38000000, 31000000, 42000000, 46000000, 30000000, 33000000, 37000000, 38000000, 45000000, 34000000, 36000000],
+      labels: ["เม.ย.25", "28", "29", "30", "1 พ.ค.", "2", "5", "6", "7", "8", "9", "12", "13", "14", "15", "16", "19", "20", "21", "22"],
+      week52High: 430.00,
+      week52Low: 175.00,
+      support1: 395.00,
+      support2: 375.00,
+      resistance1: 430.00,
+      resistance2: 490.00,
+      ma50: 362.00,
+      ma200: 285.00,
+      rsi: 63,
+      rsiStatus: "neutral",
+      vsMA50: "above",
+      vsMA200: "above"
     },
-    technicalSimple: "ราคาในขาขึ้นที่มั่นคง RSI 57 ปกติ ใกล้แนวต้าน $342 ซึ่งเป็น 52-week high",
-    rankReasoning: "อันดับ 5 เพราะ<strong>พื้นฐานสมบูรณ์ 7/7</strong> + ธุรกิจ toll-road ที่มั่นคง + margin สูงสุดในอุตสาหกรรม"
+    technicalSimple: "เทรนด์ขาขึ้นแข็งแกร่ง โต 137% ใน 12 เดือน RSI 63 ยังอยู่ในระดับปกติ ใกล้แตะจุดสูงสุดของช่วง $430",
+    rankReasoning: "อันดับ 5 เพราะ<strong>Custom AI Chip โต 140%</strong> + Networking โต 60% = ผู้ชนะ AI infrastructure อีกคนนอกจาก NVDA"
   },
   {
     rank: 6,
-    ticker: "MA",
-    name: "Mastercard",
-    thaiName: "มาสเตอร์การ์ด",
-    emoji: "🔴",
-    sector: "การเงิน · เครือข่ายชำระเงิน",
-    whatItDoes: "เครือข่ายชำระเงินระดับโลกรายที่ 2 — เก็บค่าธรรมเนียมต่อ transaction และ value-added services ให้ธนาคารทั่วโลก",
-    marketCap: "$0.48T",
-    marketCapThai: "4.8 แสนล้านดอลลาร์",
-    price: 498.02,
-    changePercent: 0.14,
-    score: 82,
-    oneLineSummary: "Q1 EPS โต 23% Value-added services โต 22% Operating margin ทะลุ 60% — 24/7 WallSt. ตั้งเป็น Top Pick",
+    ticker: "V",
+    name: "Visa Inc.",
+    thaiName: "วีซ่า",
+    emoji: "💳",
+    sector: "การเงิน · ระบบชำระเงินระดับโลก",
+    whatItDoes: "เจ้าของเครือข่ายชำระเงินที่ใหญ่ที่สุดในโลก — ทุกครั้งที่รูดบัตร Visa บริษัทได้ค่าธรรมเนียมเล็กน้อย แต่ทำ billions ต่อวัน",
+    marketCap: "$670B",
+    marketCapThai: "670 พันล้านดอลลาร์",
+    price: 329.96,
+    changePercent: -0.08,
+    score: 80,
+    oneLineSummary: "ผ่านเกณฑ์ครบ 7/7 · ROE 61% · Net Margin 52% · Cross-border payments โต 16% · PE 28.7x ราคาสมเหตุสมผล",
     pros: [
-      "📊 Q1 2026 รายได้ $8.4B +16% EPS Adj. $4.60 โต 23%",
-      "🌐 Value-added services โต 22% สูงกว่า payment growth",
-      "📊 Adjusted Operating Margin 60.8% สูงมาก",
-      "🏆 นักวิเคราะห์หลายสำนักตั้งเป็น Top Financial Pick"
+      "💎 ROE 60.97% สูงมาก — ทุก 100 บาทที่ผู้ถือหุ้นลงทุน ได้กำไรคืน 61 บาท",
+      "💰 Net Margin 51.68% — กำไรสุทธิเกินครึ่งของรายได้ ธุรกิจ asset-light ไม่ต้องใช้ทุนมาก",
+      "🌍 Cross-border payment volume โต 16% — การท่องเที่ยวโลกฟื้นตัวดี",
+      "📈 Revenue โต 11.34% YoY + EPS โต 14% เติบโตสม่ำเสมอทุกปีติดต่อกัน"
     ],
     cons: [
-      "📊 D/E 1.48 สูงกว่าเกณฑ์ที่ต้องการ ถึงแม้กระแสเงินสดแข็งแกร่ง",
-      "💼 มีค่าใช้จ่าย restructuring $202M กดดัน GAAP EPS"
+      "📉 ราคาต่ำกว่า 52-week high $375 ประมาณ 12% ยังไม่ฟื้นเต็มที่จากจุดสูง",
+      "🏛️ สภาคองเกรสกำลังพิจารณา Credit Card Competition Act — อาจกระทบค่าธรรมเนียม"
     ],
     fundamentals: {
-      roe:          { value: "130%+",  pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
-      netMargin:    { value: "45.8%",  pass: true,  label: "กำไรสุทธิ" },
-      opMargin:     { value: "60.8%",  pass: true,  label: "กำไรธุรกิจหลัก" },
-      revGrowth:    { value: "+16%",   pass: true,  label: "รายได้โตขึ้น" },
-      de:           { value: "1.48",   pass: false, label: "หนี้ต่อทุน" },
-      currentRatio: { value: "1.43",   pass: true,  label: "สภาพคล่อง" },
-      pe:           { value: "31.8x",  pass: true,  label: "ราคา/กำไร" }
+      roe:          { value: "60.97%", pass: true, label: "ผลตอบแทนผู้ถือหุ้น" },
+      netMargin:    { value: "51.68%", pass: true, label: "กำไรสุทธิ" },
+      opMargin:     { value: "65.3%",  pass: true, label: "กำไรธุรกิจหลัก" },
+      revGrowth:    { value: "+11.3%", pass: true, label: "รายได้โตขึ้น" },
+      de:           { value: "0.35",   pass: true, label: "หนี้ต่อทุน" },
+      currentRatio: { value: "1.82",   pass: true, label: "สภาพคล่อง" },
+      pe:           { value: "28.7x",  pass: true, label: "ราคา/กำไร" }
     },
     news: {
       positive: [
-        { emoji: "📊", headline: "Q1 2026 รายได้ $8.4B +16% Adj. EPS $4.60 โต 23%", source: "Reuters", date: "29 เม.ย." },
-        { emoji: "🌐", headline: "Value-added services โต 22% ดึงรายได้นอก payment มากขึ้น", source: "Bloomberg", date: "30 เม.ย." },
-        { emoji: "🏆", headline: "24/7 Wall St. ตั้ง MA เป็น Top Pick หลัง Q1 beat ครั้งนี้", source: "24/7WallSt.", date: "4 พ.ค." }
+        { emoji: "🌍", headline: "Cross-border payment volume โต 16% — นักท่องเที่ยวโลกใช้บัตรเพิ่มขึ้น", source: "Reuters", date: "29 เม.ย." },
+        { emoji: "💰", headline: "EPS โต 14% YoY — กำไรต่อหุ้นเพิ่มสม่ำเสมอ 10+ ปีติดต่อกัน", source: "MarketWatch", date: "30 เม.ย." }
       ],
       negative: [
-        { emoji: "💼", headline: "ตั้งสำรอง restructuring charge $202M กดดัน GAAP EPS", source: "MarketWatch", date: "29 เม.ย." }
+        { emoji: "🏛️", headline: "สภาคองเกรสพิจารณา Credit Card Competition Act อาจกระทบค่าธรรมเนียม", source: "WSJ", date: "14 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [472,475,488,492,490,488,491,494,497,495,492,493,495,498,496,494,495,497,498,498.02],
-      volumeHistory: [3800000,3500000,5500000,4800000,4200000,3900000,4000000,4200000,4300000,4100000,3900000,4000000,4200000,4400000,4100000,3800000,3900000,4100000,4000000,3900000],
-      labels: ["เม.ย.25","28","29","30","1 พ.ค.","2","5","6","7","8","9","12","13","14","15","16","19","20","21","22"],
-      week52High: 510.00, week52Low: 380.00,
-      support1: 482.00, support2: 462.00,
-      resistance1: 510.00, resistance2: 535.00,
-      ma50: 478.00, ma200: 440.00,
-      rsi: 57, rsiStatus: "neutral",
-      vsMA50: "above", vsMA200: "above"
+      priceHistory: [323, 326, 329, 326, 331, 334, 337, 333, 336, 338, 340, 337, 334, 331, 329, 331, 333, 335, 331, 329.96],
+      volumeHistory: [5200000, 4100000, 6800000, 3900000, 5100000, 5600000, 5800000, 4500000, 5200000, 5900000, 5100000, 6400000, 7100000, 4800000, 5100000, 5500000, 5600000, 6200000, 5300000, 5400000],
+      labels: ["เม.ย.25", "28", "29", "30", "1 พ.ค.", "2", "5", "6", "7", "8", "9", "12", "13", "14", "15", "16", "19", "20", "21", "22"],
+      week52High: 375.51,
+      week52Low: 278.00,
+      support1: 322.00,
+      support2: 300.00,
+      resistance1: 345.00,
+      resistance2: 375.51,
+      ma50: 328.00,
+      ma200: 312.00,
+      rsi: 51,
+      rsiStatus: "neutral",
+      vsMA50: "above",
+      vsMA200: "above"
     },
-    technicalSimple: "ราคาในขาขึ้นหลัง Q1 beat RSI 57 ปกติ อยู่เหนือ MA50 และ MA200 แนวต้านถัดไปที่ $510",
-    rankReasoning: "อันดับ 6 เพราะ<strong>EPS โต 23%</strong> + Operating margin ทะลุ 60% + นักวิเคราะห์หลายสำนักตั้งเป็น top pick"
+    technicalSimple: "ราคา $330 อยู่ระหว่างแนวรับ $322 และแนวต้าน $345 RSI 51 ปกติ อยู่เหนือ MA50 และ MA200",
+    rankReasoning: "อันดับ 6 เพราะ<strong>ผ่านเกณฑ์ครบ 7/7</strong> + ธุรกิจ asset-light ทนทาน + ROE และ Margin สูงที่สุดในกลุ่มการเงิน"
   },
   {
     rank: 7,
+    ticker: "LLY",
+    name: "Eli Lilly",
+    thaiName: "เอลี ลิลลี่",
+    emoji: "💊",
+    sector: "สุขภาพ · ยาลดน้ำหนัก & เบาหวาน",
+    whatItDoes: "บริษัทยาอันดับ 1 โลก เจ้าของยาลดน้ำหนัก Mounjaro/Zepbound (GLP-1) และยาเบาหวาน — กำลังเปลี่ยน paradigm อุตสาหกรรมยา",
+    marketCap: "$1.003T",
+    marketCapThai: "1 ล้านล้านดอลลาร์",
+    price: 1065.00,
+    changePercent: 2.22,
+    score: 77,
+    oneLineSummary: "Revenue โต 56% Q1 · EPS โต 156% · ปรับ guidance ขึ้น $2B → $82-85B · GLP-1 ยาลดน้ำหนักเปลี่ยนโลก",
+    pros: [
+      "🏥 Revenue Q1 2026 โต 56% YoY — Mounjaro $4.5B + Zepbound $2.3B ทุบสถิติ",
+      "💰 Non-GAAP EPS โต 156% — กำไรโตเร็วกว่ารายได้มาก = margin expansion ชัดเจน",
+      "📈 ปรับ Full-year guidance ขึ้น $2B เป็น $82-85B (+28% YoY) มั่นใจสูง",
+      "🌍 ยา Zepbound/Mounjaro แย่ง market share จาก Ozempic โตต่อเนื่อง"
+    ],
+    cons: [
+      "💰 P/E สูงมาก ~52x — ราคาแพงมากเมื่อเทียบกับกำไรปัจจุบัน",
+      "⚗️ ยังมี supply shortage ของยา GLP-1 บางพื้นที่ อาจจำกัดยอดขาย"
+    ],
+    fundamentals: {
+      roe:          { value: "35.2%", pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
+      netMargin:    { value: "22.4%", pass: true,  label: "กำไรสุทธิ" },
+      opMargin:     { value: "32.1%", pass: true,  label: "กำไรธุรกิจหลัก" },
+      revGrowth:    { value: "+56%",  pass: true,  label: "รายได้โตขึ้น" },
+      de:           { value: "0.78",  pass: true,  label: "หนี้ต่อทุน" },
+      currentRatio: { value: "1.08",  pass: false, label: "สภาพคล่อง" },
+      pe:           { value: "52.5x", pass: false, label: "ราคา/กำไร" }
+    },
+    news: {
+      positive: [
+        { emoji: "💊", headline: "Revenue Q1 โต 56% — Mounjaro $4.5B, Zepbound $2.3B ทุบสถิติทุกไตรมาส", source: "CNBC", date: "30 เม.ย." },
+        { emoji: "📈", headline: "ปรับ Full-year guidance ขึ้น $2B เป็น $82-85B สะท้อนความมั่นใจสูง", source: "Reuters", date: "30 เม.ย." },
+        { emoji: "⬆️", headline: "31 นักวิเคราะห์ให้ Buy เป้าราคาเฉลี่ย $1,211 — upside 14%", source: "S&P Global", date: "20 พ.ค." }
+      ],
+      negative: [
+        { emoji: "⚗️", headline: "Supply shortage ของ Zepbound ยังคงมีในบางพื้นที่ อาจจำกัดยอดขาย Q2", source: "Bloomberg", date: "15 พ.ค." }
+      ]
+    },
+    technical: {
+      priceHistory: [998, 1005, 1013, 1009, 1016, 1022, 1027, 1019, 1029, 1035, 1040, 1044, 1047, 1041, 1039, 1043, 1049, 1056, 1041.90, 1065.00],
+      volumeHistory: [2800000, 2200000, 3600000, 2100000, 2800000, 3100000, 3200000, 2400000, 2900000, 3300000, 2800000, 3500000, 3900000, 2600000, 2800000, 3100000, 3200000, 3800000, 3400000, 4200000],
+      labels: ["เม.ย.25", "28", "29", "30", "1 พ.ค.", "2", "5", "6", "7", "8", "9", "12", "13", "14", "15", "16", "19", "20", "21", "22"],
+      week52High: 1085.00,
+      week52Low: 645.00,
+      support1: 1000.00,
+      support2: 950.00,
+      resistance1: 1085.00,
+      resistance2: 1150.00,
+      ma50: 1010.00,
+      ma200: 865.00,
+      rsi: 64,
+      rsiStatus: "neutral",
+      vsMA50: "above",
+      vsMA200: "above"
+    },
+    technicalSimple: "ราคา $1,065 ใกล้จุดสูงสุดปี $1,085 RSI 64 ปกติ เทรนด์ขาขึ้นแข็งแกร่งตลอด 12 เดือน",
+    rankReasoning: "อันดับ 7 เพราะ<strong>Revenue โต 56% เร็วที่สุดในกลุ่ม</strong> + ยา GLP-1 เปลี่ยน paradigm การรักษา — แม้ PE สูงแต่ growth justify ราคา"
+  },
+  {
+    rank: 8,
     ticker: "AMD",
     name: "Advanced Micro Devices",
     thaiName: "เอเอ็มดี",
     emoji: "⚡",
-    sector: "เทคโนโลยี · ชิป AI & CPU",
-    whatItDoes: "ผู้ผลิต CPU และ GPU สำหรับ PC, server และ AI data center — MI300 GPU แข่งตรงกับ NVIDIA ในตลาด AI inference",
-    marketCap: "$0.76T",
-    marketCapThai: "7.6 แสนล้านดอลลาร์",
+    sector: "เทคโนโลยี · ชิป AI GPU & CPU",
+    whatItDoes: "ผู้ผลิตชิป GPU และ CPU อันดับ 2 สำหรับ AI training — Instinct MI300 AI accelerator กำลังแย่งตลาดจาก NVIDIA",
+    marketCap: "$762B",
+    marketCapThai: "762 พันล้านดอลลาร์",
     price: 467.51,
     changePercent: 3.99,
-    score: 78,
-    oneLineSummary: "Data Center +57% YoY Q2 guidance $11.2B สูงกว่าคาด 7% — 4 สำนักใหญ่ upgrade พร้อมกันหลัง earnings",
+    score: 73,
+    oneLineSummary: "ทำ All-Time High ใหม่ $481 · Revenue โต 38% Q1 · Q2 guidance โต 45% · Lisa Su ยืนยัน AI momentum",
     pros: [
-      "🚀 Data Center AI +57% YoY MI300 GPU แย่งส่วนแบ่ง NVIDIA",
-      "📈 Q2 2026 guidance $11.2B vs $10.5B est. — CEO มั่นใจมาก",
-      "⬆️ Bernstein, Goldman, Morgan Stanley, DA Davidson upgrade พร้อมกัน",
-      "💪 Revenue Q1 $10.25B beat est. $9.89B — EPS $1.37 vs $1.29 คาด"
+      "🏆 ทำ All-Time High ใหม่ $481 ในวันที่ 22 พ.ค. โมเมนตัมแข็งแกร่งมาก",
+      "🚀 Revenue Q1 2026 สูง $10.25B โต 38% YoY เหนือ guidance สูงสุด",
+      "📈 Q2 guidance $11.2B (+45% YoY) — ถ้าทำได้จะเป็นสถิติรายได้ใหม่",
+      "🤖 Data Center GPU MI300 series กำลังได้ order จาก hyperscalers เพิ่มขึ้น"
     ],
     cons: [
-      "💰 P/E ~85x แพงมาก ต้องการการเติบโตสูงมากเพื่อ justify ราคา",
-      "📊 RSI 71 เข้าโซน overbought — นักลงทุนบางส่วนรอ pullback"
+      "💰 P/E GAAP สูงมาก (>50x) ราคาสะท้อน expectation สูง — พลาด guidance ราคาอาจปรับแรง",
+      "🔨 ต้องแข่ง NVDA ที่มี CUDA ecosystem แน่นกว่า เสียเปรียบในตลาด AI training"
     ],
     fundamentals: {
-      roe:          { value: "28.5%",  pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
-      netMargin:    { value: "13.4%",  pass: true,  label: "กำไรสุทธิ" },
-      opMargin:     { value: "20.8%",  pass: true,  label: "กำไรธุรกิจหลัก" },
-      revGrowth:    { value: "+31%",   pass: true,  label: "รายได้โตขึ้น" },
-      de:           { value: "0.38",   pass: true,  label: "หนี้ต่อทุน" },
-      currentRatio: { value: "2.46",   pass: true,  label: "สภาพคล่อง" },
-      pe:           { value: "85.3x",  pass: false, label: "ราคา/กำไร" }
+      roe:          { value: "12.1%", pass: false, label: "ผลตอบแทนผู้ถือหุ้น" },
+      netMargin:    { value: "12.4%", pass: true,  label: "กำไรสุทธิ" },
+      opMargin:     { value: "18.8%", pass: true,  label: "กำไรธุรกิจหลัก" },
+      revGrowth:    { value: "+38%",  pass: true,  label: "รายได้โตขึ้น" },
+      de:           { value: "0.38",  pass: true,  label: "หนี้ต่อทุน" },
+      currentRatio: { value: "2.78",  pass: true,  label: "สภาพคล่อง" },
+      pe:           { value: "52.3x", pass: false, label: "ราคา/กำไร" }
     },
     news: {
       positive: [
-        { emoji: "🔥", headline: "Q1 2026 revenue $10.25B beat $9.89B est., EPS $1.37 vs $1.29", source: "CNBC", date: "5 พ.ค." },
-        { emoji: "🚀", headline: "Q2 guidance $11.2B เทียบ consensus $10.5B — สูงกว่าคาด 7%", source: "CNBC", date: "5 พ.ค." },
-        { emoji: "⬆️", headline: "Bernstein เป้า $525, Goldman จาก $240→$450, Morgan Stanley จาก $255→$360", source: "TheStreet", date: "6 พ.ค." }
+        { emoji: "🏆", headline: "AMD ทำ All-Time High ใหม่ $481 — Lisa Su: AI demand ยังแข็งแกร่งมาก", source: "CNBC", date: "22 พ.ค." },
+        { emoji: "🚀", headline: "Revenue Q1 $10.25B โต 38% เหนือ guidance — Data Center GPU กำลังบูม", source: "Bloomberg", date: "30 เม.ย." },
+        { emoji: "📈", headline: "Q2 guidance $11.2B (+45% YoY) ยืนยัน AI momentum ยังดำเนินต่อ", source: "Reuters", date: "30 เม.ย." }
       ],
       negative: [
-        { emoji: "💰", headline: "P/E ทะลุ 85x หลัง stock พุ่ง 67% ใน 3 สัปดาห์ valuation ตึงตัว", source: "Reuters", date: "20 พ.ค." },
-        { emoji: "📊", headline: "RSI 71 เข้า overbought zone นักวิเคราะห์บางส่วนแนะรอ pullback", source: "MarketWatch", date: "22 พ.ค." }
+        { emoji: "🔨", headline: "CUDA ecosystem ของ NVDA แน่นกว่า — AMD ยังเสียเปรียบใน AI training workload", source: "Seeking Alpha", date: "15 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [280,285,290,288,285,280,324,350,365,370,380,395,410,425,438,445,450,455,451,467.51],
-      volumeHistory: [68000000,62000000,70000000,65000000,60000000,58000000,180000000,150000000,120000000,95000000,88000000,82000000,78000000,72000000,70000000,68000000,65000000,72000000,68000000,75000000],
-      labels: ["เม.ย.25","28","29","30","1 พ.ค.","2","5","6","7","8","9","12","13","14","15","16","19","20","21","22"],
-      week52High: 481.41, week52Low: 108.62,
-      support1: 440.00, support2: 400.00,
-      resistance1: 481.41, resistance2: 525.00,
-      ma50: 368.00, ma200: 215.00,
-      rsi: 71, rsiStatus: "overbought",
-      vsMA50: "above", vsMA200: "above"
+      priceHistory: [314, 322, 330, 324, 337, 345, 353, 347, 360, 368, 375, 385, 393, 387, 394, 403, 418, 432, 449.59, 467.51],
+      volumeHistory: [68000000, 52000000, 85000000, 50000000, 72000000, 78000000, 82000000, 62000000, 75000000, 85000000, 72000000, 92000000, 105000000, 75000000, 82000000, 91000000, 100000000, 125000000, 110000000, 118000000],
+      labels: ["เม.ย.25", "28", "29", "30", "1 พ.ค.", "2", "5", "6", "7", "8", "9", "12", "13", "14", "15", "16", "19", "20", "21", "22"],
+      week52High: 481.41,
+      week52Low: 116.00,
+      support1: 430.00,
+      support2: 395.00,
+      resistance1: 481.41,
+      resistance2: 530.00,
+      ma50: 323.00,
+      ma200: 248.00,
+      rsi: 69,
+      rsiStatus: "neutral",
+      vsMA50: "above",
+      vsMA200: "above"
     },
-    technicalSimple: "หุ้นพุ่ง 67% ใน 3 สัปดาห์ RSI 71 เข้าโซน overbought — momentum แรงแต่ต้องระวัง profit taking",
-    rankReasoning: "อันดับ 7 เพราะ<strong>earnings beat ใหญ่มาก + 4 สำนักใหญ่ upgrade</strong> — หักเรื่อง P/E แพงและ RSI overbought"
-  },
-  {
-    rank: 8,
-    ticker: "AMZN",
-    name: "Amazon.com",
-    thaiName: "อเมซอน",
-    emoji: "📦",
-    sector: "เทคโนโลยี · อีคอมเมิร์ซ & คลาวด์",
-    whatItDoes: "ยักษ์ใหญ่อีคอมเมิร์ซและ AWS cloud computing — AWS เป็นผู้นำตลาด cloud โลก รายได้จาก subscription, marketplace และ ads",
-    marketCap: "$2.9T",
-    marketCapThai: "2.9 ล้านล้านดอลลาร์",
-    price: 268.51,
-    changePercent: 0.28,
-    score: 74,
-    oneLineSummary: "AWS โตเร็วสุดใน 15 ไตรมาส ROE 24% P/E 31.7x — อีคอมเมิร์ซฟื้นตัว กำไรสุทธิ 12%",
-    pros: [
-      "☁️ AWS โตเร็วสุดใน 15 ไตรมาส ขับเคลื่อนด้วย AI workloads",
-      "📦 Q1 revenue beat expectations กำไร core retail พลิกบวก",
-      "💰 ROE 24% Net margin 12.2% — กำไรเริ่มแข็งแกร่ง",
-      "🤖 Amazon Nova AI model ถูกกว่า GPT-4o ถึง 15 เท่า"
-    ],
-    cons: [
-      "📊 Operating margin 11.8% ต่ำกว่าเกณฑ์ — retail margin ยังกดดัน",
-      "📉 Trump tariff กระทบ marketplace seller บางส่วน ต้นทุนสูงขึ้น"
-    ],
-    fundamentals: {
-      roe:          { value: "24.3%",  pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
-      netMargin:    { value: "12.2%",  pass: true,  label: "กำไรสุทธิ" },
-      opMargin:     { value: "11.8%",  pass: false, label: "กำไรธุรกิจหลัก" },
-      revGrowth:    { value: "+17%",   pass: true,  label: "รายได้โตขึ้น" },
-      de:           { value: "0.41",   pass: true,  label: "หนี้ต่อทุน" },
-      currentRatio: { value: "1.22",   pass: true,  label: "สภาพคล่อง" },
-      pe:           { value: "31.7x",  pass: true,  label: "ราคา/กำไร" }
-    },
-    news: {
-      positive: [
-        { emoji: "☁️", headline: "AWS โตเร็วสุดใน 15 ไตรมาส ขับเคลื่อนด้วย AI cloud demand", source: "Reuters", date: "1 พ.ค." },
-        { emoji: "📦", headline: "Q1 2026 beat: revenue และ operating income ชนะ consensus", source: "Bloomberg", date: "1 พ.ค." },
-        { emoji: "🤖", headline: "Amazon Nova AI ถูกกว่า GPT-4o 15x — ดึงลูกค้าใหม่สู่ AWS", source: "CNBC", date: "12 พ.ค." }
-      ],
-      negative: [
-        { emoji: "📉", headline: "Trump tariff กระทบ marketplace seller ต้นทุนสินค้าสูงขึ้น", source: "WSJ", date: "8 พ.ค." }
-      ]
-    },
-    technical: {
-      priceHistory: [248,250,255,262,265,263,264,266,268,265,263,264,265,266,264,262,263,265,267,268.51],
-      volumeHistory: [42000000,38000000,52000000,60000000,58000000,45000000,46000000,48000000,46000000,43000000,40000000,42000000,44000000,46000000,43000000,40000000,41000000,43000000,42000000,41000000],
-      labels: ["เม.ย.25","28","29","30","1 พ.ค.","2","5","6","7","8","9","12","13","14","15","16","19","20","21","22"],
-      week52High: 278.20, week52Low: 167.50,
-      support1: 258.00, support2: 242.00,
-      resistance1: 278.20, resistance2: 295.00,
-      ma50: 258.00, ma200: 218.00,
-      rsi: 55, rsiStatus: "neutral",
-      vsMA50: "above", vsMA200: "above"
-    },
-    technicalSimple: "ราคาในขาขึ้นหลัง Q1 beat RSI 55 ปกติ อยู่เหนือ MA50 และ MA200 แนวต้านที่ $278 (52-week high)",
-    rankReasoning: "อันดับ 8 เพราะ<strong>AWS cloud momentum แข็ง + ROE ดี</strong> — หักเรื่อง op margin ต่ำกว่าเกณฑ์และ tariff headwind"
+    technicalSimple: "ราคาพุ่งแรงทำ ATH ใหม่ +50% ใน 30 วัน RSI 69 ใกล้ overbought zone ควรระวังการปรับตัวหลังจุดสูงใหม่",
+    rankReasoning: "อันดับ 8 เพราะ<strong>ทำ ATH ใหม่ + Revenue โต 38%</strong> แต่ PE สูงและ ROE GAAP ต่ำกว่าเกณฑ์ — high-risk high-reward"
   },
   {
     rank: 9,
-    ticker: "LLY",
-    name: "Eli Lilly",
-    thaiName: "อีไลลิลลี่",
-    emoji: "💊",
-    sector: "สุขภาพ · ยาและไบโอเทค",
-    whatItDoes: "ผู้ผลิตยาลดน้ำหนัก Zepbound/Mounjaro (GLP-1) และยาเบาหวาน — ยาที่ขายดีที่สุดในโลกปัจจุบัน",
-    marketCap: "$1.0T",
-    marketCapThai: "1.0 ล้านล้านดอลลาร์",
-    price: 1065.00,
-    changePercent: 2.24,
-    score: 72,
-    oneLineSummary: "รายได้ Q1 โต 56% EPS non-GAAP โต 156% ยกเป้าปีเป็น $82-85B — Zepbound/Mounjaro ครองตลาด GLP-1",
+    ticker: "AMZN",
+    name: "Amazon",
+    thaiName: "อะเมซอน",
+    emoji: "📦",
+    sector: "เทคโนโลยี · E-Commerce & Cloud (AWS)",
+    whatItDoes: "ยักษ์ใหญ่ E-Commerce + AWS Cloud อันดับ 1 โลก + AI services — AWS เป็นเครื่องจักรกำไรที่ขับเคลื่อนทั้งบริษัท",
+    marketCap: "$2.86T",
+    marketCapThai: "2.86 ล้านล้านดอลลาร์",
+    price: 266.32,
+    changePercent: 0.48,
+    score: 70,
+    oneLineSummary: "AWS Cloud อันดับ 1 โลก · Q2 guidance +16-19% YoY · ตลาด $2.86T · 41 นักวิเคราะห์ให้ Buy",
     pros: [
-      "💊 รายได้ Q1 $19.8B +56% EPS non-GAAP +156% ทุบสถิติ",
-      "🎯 ยกเป้าปี 2026 เป็น $82-85B EPS $35.50-$37.00",
-      "🌍 ตลาด GLP-1 ยังโตได้อีกมาก ยังไม่ถึง peak demand",
-      "📈 24 นักวิเคราะห์แนะนำซื้อ มีเพียง 1 คนแนะนำขาย"
+      "☁️ AWS Cloud อันดับ 1 โลก margin สูง ~40% เป็นเครื่องจักรกำไรหลักของบริษัท",
+      "📈 Q2 2026 revenue guidance $194-199B โต 16-19% YoY ต่อเนื่อง",
+      "🤖 Amazon Bedrock AI services บน AWS demand สูงขึ้นมากจาก enterprise",
+      "🌍 E-Commerce ฟื้นตัว + Prime membership เพิ่มต่อเนื่อง"
     ],
     cons: [
-      "💊 Medicare กำลังเจรจาราคา Mounjaro ลง อาจกระทบรายได้ปี 2027",
-      "📊 D/E 1.87 สูง เพราะกู้เพื่อลงทุนขยายการผลิต"
+      "📉 Current Ratio 1.08 ต่ำกว่าเกณฑ์ — สภาพคล่องระยะสั้นต้องติดตาม",
+      "💼 Operating Margin รวม ~11% ต่ำกว่าคู่แข่ง เพราะ E-Commerce margin บางมาก"
     ],
     fundamentals: {
-      roe:          { value: "82.4%",  pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
-      netMargin:    { value: "22.1%",  pass: true,  label: "กำไรสุทธิ" },
-      opMargin:     { value: "27.5%",  pass: true,  label: "กำไรธุรกิจหลัก" },
-      revGrowth:    { value: "+56%",   pass: true,  label: "รายได้โตขึ้น" },
-      de:           { value: "1.87",   pass: false, label: "หนี้ต่อทุน" },
-      currentRatio: { value: "1.28",   pass: true,  label: "สภาพคล่อง" },
-      pe:           { value: "30.8x",  pass: true,  label: "ราคา/กำไร" }
+      roe:          { value: "18.5%", pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
+      netMargin:    { value: "10.2%", pass: true,  label: "กำไรสุทธิ" },
+      opMargin:     { value: "11.3%", pass: false, label: "กำไรธุรกิจหลัก" },
+      revGrowth:    { value: "+17%",  pass: true,  label: "รายได้โตขึ้น" },
+      de:           { value: "0.48",  pass: true,  label: "หนี้ต่อทุน" },
+      currentRatio: { value: "1.08",  pass: false, label: "สภาพคล่อง" },
+      pe:           { value: "33.8x", pass: true,  label: "ราคา/กำไร" }
     },
     news: {
       positive: [
-        { emoji: "💊", headline: "Q1 2026 รายได้ $19.8B +56% EPS non-GAAP +156% ทุบสถิติ", source: "Reuters", date: "30 เม.ย." },
-        { emoji: "🎯", headline: "ยกเป้ารายได้ปี 2026 เป็น $82-85B EPS $35.50-$37.00", source: "Bloomberg", date: "30 เม.ย." },
-        { emoji: "⬆️", headline: "24 นักวิเคราะห์แนะนำ Buy — เป้าราคาเฉลี่ยสูงกว่าราคาปัจจุบัน", source: "Investing.com", date: "24 พ.ค." }
+        { emoji: "☁️", headline: "AWS ยังคง Cloud อันดับ 1 โลก — AI workload เพิ่ม demand มหาศาล", source: "Bloomberg", date: "30 เม.ย." },
+        { emoji: "📈", headline: "Q2 guidance $194-199B (+16-19% YoY) growth ยังแข็งแกร่ง", source: "Reuters", date: "30 เม.ย." },
+        { emoji: "⬆️", headline: "41 นักวิเคราะห์ให้ Buy เป้าราคาเฉลี่ย $312 — upside 17%", source: "MarketBeat", date: "21 พ.ค." }
       ],
       negative: [
-        { emoji: "⚠️", headline: "Medicare กำลังเจรจาราคา Mounjaro ลง อาจกระทบรายได้ปี 2027", source: "WSJ", date: "14 พ.ค." }
+        { emoji: "⚠️", headline: "Trump tariff ยังเป็นความเสี่ยงต่อ E-Commerce supply chain และต้นทุน", source: "WSJ", date: "16 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [985,992,998,1025,1020,1015,1018,1022,1030,1028,1022,1025,1030,1035,1038,1033,1038,1042,1065,1065.00],
-      volumeHistory: [2800000,2600000,2700000,4200000,3800000,3200000,3000000,2900000,3100000,2900000,2700000,2800000,2900000,3000000,2800000,2600000,2700000,2800000,3600000,3500000],
-      labels: ["เม.ย.25","28","29","30","1 พ.ค.","2","5","6","7","8","9","12","13","14","15","16","19","20","21","22"],
-      week52High: 1133.95, week52Low: 623.78,
-      support1: 1020.00, support2: 985.00,
-      resistance1: 1100.00, resistance2: 1133.95,
-      ma50: 1010.00, ma200: 850.00,
-      rsi: 63, rsiStatus: "neutral",
-      vsMA50: "above", vsMA200: "above"
+      priceHistory: [246, 249, 252, 250, 255, 258, 261, 259, 262, 264, 265, 267, 268, 266, 264, 263, 264, 266, 265, 266.32],
+      volumeHistory: [38000000, 30000000, 48000000, 27000000, 36000000, 39000000, 42000000, 32000000, 38000000, 44000000, 37000000, 46000000, 52000000, 34000000, 37000000, 40000000, 42000000, 48000000, 39000000, 40000000],
+      labels: ["เม.ย.25", "28", "29", "30", "1 พ.ค.", "2", "5", "6", "7", "8", "9", "12", "13", "14", "15", "16", "19", "20", "21", "22"],
+      week52High: 286.00,
+      week52Low: 172.00,
+      support1: 252.00,
+      support2: 232.00,
+      resistance1: 275.00,
+      resistance2: 286.00,
+      ma50: 248.00,
+      ma200: 225.00,
+      rsi: 58,
+      rsiStatus: "neutral",
+      vsMA50: "above",
+      vsMA200: "above"
     },
-    technicalSimple: "ราคาฟื้นตัวแข็งแกร่งหลัง earnings beat RSI 63 ปกติ อยู่เหนือ MA50 และ MA200 แนวต้านที่ $1,100",
-    rankReasoning: "อันดับ 9 เพราะ<strong>รายได้โต 56% สูงสุดในกลุ่ม</strong> + Zepbound/Mounjaro ยังเติบโต — หักเรื่อง D/E สูงจากการลงทุน"
+    technicalSimple: "ราคา $266 อยู่เหนือ MA50 และ MA200 RSI 58 ปกติ ยังมีพื้นที่ถึง 52W high $286 อีก 7%",
+    rankReasoning: "อันดับ 9 เพราะ<strong>AWS Cloud อันดับ 1</strong> + Q2 guidance แข็งแกร่ง แต่ Operating Margin และ Current Ratio ต่ำกว่าเกณฑ์"
   },
   {
     rank: 10,
-    ticker: "AAPL",
-    name: "Apple",
-    thaiName: "แอปเปิล",
-    emoji: "🍎",
-    sector: "เทคโนโลยี · อุปกรณ์ผู้บริโภค",
-    whatItDoes: "ผู้ผลิต iPhone, Mac, iPad, AirPods และ Apple Watch — รายได้หลักจาก hardware และ Services (App Store, subscriptions)",
-    marketCap: "$4.5T",
-    marketCapThai: "4.5 ล้านล้านดอลลาร์",
-    price: 308.41,
-    changePercent: 1.04,
-    score: 70,
-    oneLineSummary: "iPhone 17 ขายดีสุดในประวัติศาสตร์ EPS +22% ประกาศซื้อหุ้นคืน $110B — ราคาใกล้ 52-week high",
+    ticker: "MA",
+    name: "Mastercard",
+    thaiName: "มาสเตอร์การ์ด",
+    emoji: "🔴",
+    sector: "การเงิน · ระบบชำระเงินระดับโลก",
+    whatItDoes: "เจ้าของเครือข่ายชำระเงิน Mastercard — ทำกำไรจากค่าธรรมเนียม transaction ทุกครั้งที่มีการชำระเงินด้วยบัตร Mastercard ทั่วโลก 210 ประเทศ",
+    marketCap: "$488B",
+    marketCapThai: "488 พันล้านดอลลาร์",
+    price: 503.92,
+    changePercent: 0.78,
+    score: 67,
+    oneLineSummary: "Operating Margin ขยาย 58.8% · EPS โต 23% · PE 28.8x ราคาสมเหตุสมผล · Network effect แข็งแกร่ง 210 ประเทศ",
     pros: [
-      "📱 Q2 FY2026 รายได้ $111.2B +17% iPhone 17 ขายดีสุดในประวัติศาสตร์",
-      "💰 EPS +22% ประกาศซื้อหุ้นคืน $110B ก้อนใหม่",
-      "🤖 Apple Intelligence AI feature ยอดใช้งานสูงกว่าที่ประเมินไว้",
-      "🌍 Services revenue ยังเติบโตได้ดี — App Store subscription แข็งแกร่ง"
+      "💎 Operating Margin ขยาย 54.3% → 58.8% — ธุรกิจมี leverage ดีกำไรโตเร็วกว่ารายได้",
+      "📈 EPS โต 23% YoY อยู่ที่ $4.34 เกินคาดของ Wall Street",
+      "💰 Net Margin 45.88% กำไรสุทธิเกือบครึ่งของรายได้ ธุรกิจ asset-light",
+      "🌍 Network ครอบคลุม 210 ประเทศ network effect ป้องกันคู่แข่งได้แข็งแกร่ง"
     ],
     cons: [
-      "📊 Current ratio 0.87 ต่ำกว่า 1 (แต่นี่เป็นนโยบาย capital management ของ Apple)",
-      "🏛️ ภาษีนำเข้าจากอินเดีย อาจกระทบต้นทุนผลิต iPhone บางรุ่น"
+      "🏦 D/E สูง 2.15 จาก buyback เชิงรุก — ถ้าดอกเบี้ยขึ้นอาจกระทบ balance sheet",
+      "🏛️ Congress อาจผ่าน Credit Card Competition Act กระทบค่าธรรมเนียม"
     ],
     fundamentals: {
-      roe:          { value: "180%+",  pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
-      netMargin:    { value: "26.8%",  pass: true,  label: "กำไรสุทธิ" },
-      opMargin:     { value: "31.5%",  pass: true,  label: "กำไรธุรกิจหลัก" },
-      revGrowth:    { value: "+17%",   pass: true,  label: "รายได้โตขึ้น" },
-      de:           { value: "1.51",   pass: false, label: "หนี้ต่อทุน" },
-      currentRatio: { value: "0.87",   pass: false, label: "สภาพคล่อง" },
-      pe:           { value: "29.8x",  pass: true,  label: "ราคา/กำไร" }
+      roe:          { value: "232%",   pass: true,  label: "ผลตอบแทนผู้ถือหุ้น" },
+      netMargin:    { value: "45.88%", pass: true,  label: "กำไรสุทธิ" },
+      opMargin:     { value: "58.8%",  pass: true,  label: "กำไรธุรกิจหลัก" },
+      revGrowth:    { value: "+13%",   pass: true,  label: "รายได้โตขึ้น" },
+      de:           { value: "2.15",   pass: false, label: "หนี้ต่อทุน" },
+      currentRatio: { value: "1.09",   pass: false, label: "สภาพคล่อง" },
+      pe:           { value: "28.8x",  pass: true,  label: "ราคา/กำไร" }
     },
     news: {
       positive: [
-        { emoji: "📱", headline: "Q2 FY2026 รายได้ $111.2B +17% iPhone 17 ขายดีสุดในประวัติ", source: "Reuters", date: "1 พ.ค." },
-        { emoji: "💰", headline: "EPS +22% ประกาศซื้อหุ้นคืน $110B ก้อนใหม่ที่ใหญ่สุด", source: "Bloomberg", date: "1 พ.ค." },
-        { emoji: "🤖", headline: "Apple Intelligence AI feature ยอดใช้งานสูงกว่าที่ประเมิน", source: "CNBC", date: "15 พ.ค." }
+        { emoji: "📈", headline: "Q3 Operating Margin ขยาย 54.3% → 58.8% ธุรกิจมี leverage ดีมาก", source: "Reuters", date: "30 เม.ย." },
+        { emoji: "💰", headline: "EPS โต 23% YoY อยู่ที่ $4.34 เกินคาดของ Wall Street", source: "Bloomberg", date: "30 เม.ย." }
       ],
       negative: [
-        { emoji: "🏛️", headline: "ภาษีนำเข้าจากอินเดีย กระทบฐานผลิต iPhone บางส่วน", source: "FT", date: "9 พ.ค." }
+        { emoji: "🏛️", headline: "Congress อาจผ่าน Credit Card Competition Act — กระทบรายได้", source: "WSJ", date: "14 พ.ค." },
+        { emoji: "🏦", headline: "D/E สูง 2.15 จาก buyback เชิงรุก ถ้าดอกเบี้ยขึ้นอาจกระทบ balance sheet", source: "Seeking Alpha", date: "18 พ.ค." }
       ]
     },
     technical: {
-      priceHistory: [278,282,285,290,295,293,294,296,299,296,293,295,297,299,301,298,300,304,307,308.41],
-      volumeHistory: [58000000,52000000,65000000,72000000,78000000,62000000,60000000,58000000,62000000,59000000,55000000,57000000,60000000,62000000,58000000,54000000,56000000,63000000,61000000,59000000],
-      labels: ["เม.ย.25","28","29","30","1 พ.ค.","2","5","6","7","8","9","12","13","14","15","16","19","20","21","22"],
-      week52High: 311.40, week52Low: 193.46,
-      support1: 295.00, support2: 278.00,
-      resistance1: 311.40, resistance2: 330.00,
-      ma50: 292.00, ma200: 245.00,
-      rsi: 68, rsiStatus: "neutral",
-      vsMA50: "above", vsMA200: "above"
+      priceHistory: [476, 480, 485, 482, 488, 492, 495, 491, 496, 499, 501, 504, 506, 503, 500, 498, 501, 505, 500, 503.92],
+      volumeHistory: [2900000, 2300000, 3800000, 2100000, 2800000, 3100000, 3200000, 2500000, 2900000, 3300000, 2800000, 3600000, 4000000, 2700000, 2900000, 3100000, 3200000, 3800000, 3000000, 3100000],
+      labels: ["เม.ย.25", "28", "29", "30", "1 พ.ค.", "2", "5", "6", "7", "8", "9", "12", "13", "14", "15", "16", "19", "20", "21", "22"],
+      week52High: 542.00,
+      week52Low: 420.00,
+      support1: 490.00,
+      support2: 470.00,
+      resistance1: 520.00,
+      resistance2: 542.00,
+      ma50: 492.00,
+      ma200: 474.00,
+      rsi: 55,
+      rsiStatus: "neutral",
+      vsMA50: "above",
+      vsMA200: "above"
     },
-    technicalSimple: "ราคาใกล้ 52-week high $311 RSI 68 ใกล้ overbought — ต้อง breakout ผ่าน $311 เพื่อไปต่อ",
-    rankReasoning: "อันดับ 10 เพราะ<strong>iPhone 17 ขายดีสุด + EPS +22%</strong> — หักเรื่อง D/E สูง current ratio ต่ำ และ CapEx tariff risk"
+    technicalSimple: "ราคา $504 อยู่เหนือ MA50 และ MA200 RSI 55 ปกติ ห่างจาก 52W high $542 ประมาณ 7%",
+    rankReasoning: "อันดับ 10 เพราะ<strong>Operating Margin 58.8% + EPS โต 23%</strong> แต่ D/E สูงและ Current Ratio ต่ำกว่าเกณฑ์"
   }
 ];
 // ============== ROUTINE: REPLACE ABOVE ==============
