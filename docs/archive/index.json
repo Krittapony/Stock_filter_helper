@@ -111,6 +111,22 @@
         "AMZN",
         "MA"
       ]
+    },
+    {
+      "date": "2026-05-25",
+      "url": "2026-05-25.html",
+      "topPicks": [
+        "GOOGL",
+        "MSFT",
+        "NVDA",
+        "META",
+        "V",
+        "MA",
+        "AMD",
+        "AMZN",
+        "LLY",
+        "AAPL"
+      ]
     }
   ]
 }
