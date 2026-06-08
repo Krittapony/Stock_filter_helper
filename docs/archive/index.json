@@ -143,6 +143,22 @@
         "AVGO",
         "AAPL"
       ]
+    },
+    {
+      "date": "2026-06-08",
+      "url": "2026-06-08.html",
+      "topPicks": [
+        "GOOGL",
+        "MA",
+        "NVDA",
+        "AMZN",
+        "MSFT",
+        "META",
+        "LLY",
+        "AAPL",
+        "V",
+        "JPM"
+      ]
     }
   ]
 }
