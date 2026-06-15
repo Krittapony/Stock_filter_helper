@@ -143,6 +143,22 @@
         "SERV",
         "WTTR"
       ]
+    },
+    {
+      "date": "2026-06-15",
+      "url": "2026-06-15.html",
+      "topPicks": [
+        "BLZE",
+        "PUBM",
+        "HYLN",
+        "GRRR",
+        "GENI",
+        "SERV",
+        "BBAI",
+        "PGY",
+        "RCAT",
+        "VNDA"
+      ]
     }
   ]
 }
